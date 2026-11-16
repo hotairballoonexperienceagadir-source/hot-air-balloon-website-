@@ -6,8 +6,8 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-manrope);
-  --font-display: var(--font-playfair);
+  --font-sans: var(--font-jost);
+  --font-display: var(--font-poppins);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -151,6 +151,17 @@
   }
   body {
     @apply bg-background text-foreground font-sans antialiased;
+    font-weight: 400;
+  }
+  /* Headings always use Poppins Bold for a strong and premium look. */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+    font-weight: 700;
   }
   section[id] {
     scroll-margin-top: 84px;

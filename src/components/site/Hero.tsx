@@ -40,13 +40,13 @@ export function Hero() {
   return (
     <section id="home" className="relative isolate overflow-hidden bg-navy-900">
       <Image
-        src="/images/agadir-hero.jpg"
-        alt="Hot air balloons floating at sunrise over the green Souss Valley near Agadir with the Atlas Mountains behind"
+        src="/images/hero-agadir.webp"
+        alt="Red hot air balloon floating at sunrise above the Souss Valley near Agadir with the Atlas Mountains on the horizon and a Berber lounge in the foreground"
         fill
         priority
         fetchPriority="high"
         sizes="100vw"
-        className="object-cover object-center"
+        className="object-cover object-[24%_center] md:object-center"
       />
       <div className="absolute inset-0 bg-gradient-to-b from-navy-950/80 via-navy-950/45 to-navy-950" aria-hidden="true" />
 

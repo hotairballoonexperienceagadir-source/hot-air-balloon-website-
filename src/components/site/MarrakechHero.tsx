@@ -30,13 +30,13 @@ export function MarrakechHero() {
   return (
     <section id="home" className="relative isolate overflow-hidden bg-navy-900">
       <Image
-        src="/images/marrakech-classic.jpg"
-        alt="Hot air balloon floating over the Palmeraie desert of Marrakech with the Atlas mountains at sunrise"
+        src="/images/hero-marrakech.png"
+        alt="Colorful hot air balloons drifting over the Palmeraie desert of Marrakech at sunrise with the Atlas mountains behind"
         fill
         priority
         fetchPriority="high"
         sizes="100vw"
-        className="object-cover object-center"
+        className="object-cover object-[24%_center] md:object-center"
       />
       <div className="absolute inset-0 bg-gradient-to-b from-navy-950/80 via-navy-950/45 to-navy-950" aria-hidden="true" />
 

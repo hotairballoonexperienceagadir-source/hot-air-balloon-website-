@@ -1,16 +1,19 @@
 import type { Metadata, Viewport } from "next";
-import { Manrope, Playfair_Display } from "next/font/google";
+import { Jost, Poppins } from "next/font/google";
 import "./globals.css";
 
-const manrope = Manrope({
+/* Body font: Jost, Regular 400 for text and Medium 500 for emphasis. */
+const jost = Jost({
   subsets: ["latin"],
-  variable: "--font-manrope",
+  variable: "--font-jost",
   display: "swap",
 });
 
-const playfair = Playfair_Display({
+/* Heading font: Poppins, Bold 700 for a strong and premium look. */
+const poppins = Poppins({
   subsets: ["latin"],
-  variable: "--font-playfair",
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-poppins",
   display: "swap",
 });
 
@@ -38,7 +41,7 @@ export const metadata: Metadata = {
     title: "Hot Air Balloon Agadir | Sunrise Flights Over the Souss Valley",
     description:
       "Licensed sunrise balloon flights in Agadir. Fly over the Souss Valley and the Atlas Mountains with a Berber breakfast in a Caïdal tent included. Book directly on WhatsApp.",
-    images: [{ url: "/images/agadir-hero.jpg", width: 2048, height: 1152, alt: "Hot air balloons at sunrise over the Souss Valley near Agadir" }],
+    images: [{ url: "/images/hero-agadir.webp", width: 1672, height: 941, alt: "Hot air balloons at sunrise over the Souss Valley near Agadir" }],
   },
   robots: { index: true, follow: true },
 };
@@ -51,7 +54,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" data-scroll-behavior="smooth" className={`${manrope.variable} ${playfair.variable}`}>
+    <html lang="en" data-scroll-behavior="smooth" className={`${jost.variable} ${poppins.variable}`}>
       <body>{children}</body>
     </html>
   );
