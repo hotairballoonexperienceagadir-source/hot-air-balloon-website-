@@ -1,0 +1,89 @@
+{
+  "note": "PLACEHOLDER reviews - replace name/country/date/text with your real verified reviews (Google, TripAdvisor, WhatsApp feedback) before launch. Same reviews shown on reviews pages and page sections.",
+  "reviews": [
+    {
+      "name": "Sarah M.",
+      "country": { "en": "United Kingdom", "fr": "Royaume-Uni", "de": "Großbritannien", "es": "Reino Unido", "nl": "Verenigd Koninkrijk" },
+      "rating": 5,
+      "date": "2026-01-12",
+      "flight": "classic",
+      "text": {
+        "en": "The sunrise over the Atlas Mountains from the basket was unreal. Pickup was on time, the crew was professional, and the Berber breakfast afterwards was a lovely touch. Worth every penny.",
+        "fr": "Le lever de soleil sur l'Atlas depuis la nacelle était irréel. Prise en charge à l'heure, équipe professionnelle, et le petit-déjeuner berbère était un vrai plus. Ça vaut chaque dirham.",
+        "de": "Der Sonnenaufgang über dem Atlas aus dem Korb war unwirklich. Abholung pünktlich, Crew professionell und das berberische Frühstück war ein schönes Extra. Jeden Cent wert.",
+        "es": "El amanecer sobre el Atlas desde la cesta era irreal. Recogida puntual, equipo profesional y el desayuno bereber fue un detalle precioso. Vale cada céntimo.",
+        "nl": "De zonsopgang boven de Atlas vanuit de mand was onwerkelijk. Ophalen op tijd, professionele crew en het Berber ontbijt was een mooie extra. Elke cent waard."
+      }
+    },
+    {
+      "name": "Thomas K.",
+      "country": { "en": "Germany", "fr": "Allemagne", "de": "Deutschland", "es": "Alemania", "nl": "Duitsland" },
+      "rating": 5,
+      "date": "2025-11-03",
+      "flight": "vip",
+      "text": {
+        "en": "We booked the VIP flight for my wife's birthday. Small group, 4x4 transfer, champagne-style toast at 500 m - she cried. Best morning of our whole Morocco trip.",
+        "fr": "Nous avons réservé le vol VIP pour l'anniversaire de ma femme. Petit groupe, transfert 4x4, toast à 500 m - elle a pleuré de joie. La meilleure matinée de notre voyage au Maroc.",
+        "de": "Wir haben den VIP-Flug zum Geburtstag meiner Frau gebucht. Kleine Gruppe, 4x4-Transfer, Toast auf 500 m - sie hat geweint. Bester Morgen unserer ganzen Marokko-Reise.",
+        "es": "Reservamos el vuelo VIP para el cumpleaños de mi esposa. Grupo pequeño, traslado 4x4, brindis a 500 m - lloró de emoción. La mejor mañana de todo nuestro viaje a Marruecos.",
+        "nl": "We boekten de VIP-vaart voor de verjaardag van mijn vrouw. Kleine groep, 4x4-transfer, toast op 500 m - ze huilde van geluk. Beste ochtend van onze hele Marokko-reis."
+      }
+    },
+    {
+      "name": "Sophie L.",
+      "country": { "en": "France", "fr": "France", "de": "Frankreich", "es": "Francia", "nl": "Frankrijk" },
+      "rating": 5,
+      "date": "2026-02-08",
+      "flight": "private",
+      "text": {
+        "en": "He proposed at 400 m above the palm grove - the team had organised a banner and a photographer. Perfectly executed, warm people, unforgettable memory.",
+        "fr": "Il m'a fait sa demande à 400 m au-dessus de la palmeraie - l'équipe avait organisé une banderole et un photographe. Exécution parfaite, accueil chaleureux, souvenir inoubliable.",
+        "de": "Er hat auf 400 m über der Palmenhaine einen Antrag gemacht - das Team hatte Banner und Fotograf organisiert. Perfekt umgesetzt, herzliche Menschen, unvergessliche Erinnerung.",
+        "es": "Me propuso matrimonio a 400 m sobre la palmeral - el equipo había organizado una pancarta y un fotógrafo. Ejecución perfecta, gente cálida, recuerdo inolvidable.",
+        "nl": "Hij deed een aanzoek op 400 m boven de palmentuin - het team had een spandoek en fotograaf geregeld. Perfect uitgevoerd, warme mensen, onvergetelijke herinnering."
+      }
+    },
+    {
+      "name": "Marc V.",
+      "country": { "en": "Netherlands", "fr": "Pays-Bas", "de": "Niederlande", "es": "Países Bajos", "nl": "Nederland" },
+      "rating": 5,
+      "date": "2025-10-19",
+      "flight": "agafay",
+      "text": {
+        "en": "Floating over the stone desert with the Atlas in the background felt like another planet. WhatsApp booking took 2 minutes and the weather cancellation policy gave us peace of mind.",
+        "fr": "Survoler le désert de pierres avec l'Atlas en fond, c'était comme une autre planète. Réservation WhatsApp en 2 minutes et la politique d'annulation météo nous a rassurés.",
+        "de": "Über der Steinwüste mit dem Atlas im Hintergrund zu schweben fühlte sich wie ein anderer Planet an. WhatsApp-Buchung dauerte 2 Minuten, die Wetter-Stornierung beruhigte uns.",
+        "es": "Flotar sobre el desierto de piedra con el Atlas de fondo se sintió como otro planeta. Reserva por WhatsApp en 2 minutos y la política de cancelación por clima nos tranquilizó.",
+        "nl": "Zweven boven de steenwoestijn met de Atlas op de achtergrond voelde als een andere planeet. WhatsApp-boeking duurde 2 minuten en de annuleringsregeling gaf rust."
+      }
+    },
+    {
+      "name": "Carmen R.",
+      "country": { "en": "Spain", "fr": "Espagne", "de": "Spanien", "es": "España", "nl": "Spanje" },
+      "rating": 5,
+      "date": "2026-03-02",
+      "flight": "agadir",
+      "text": {
+        "en": "We flew over the Souss Valley near Agadir - argan forests, tiny villages, the ocean in the distance. Smooth landing, flight certificate for the kids, fantastic morning.",
+        "fr": "Nous avons survolé la vallée du Souss près d'Agadir - arganiers, petits villages, l'océan au loin. Atterrissage en douceur, certificat de vol pour les enfants, matinée fantastique.",
+        "de": "Wir flogen über das Souss-Tal bei Agadir - Arganbäume, kleine Dörfer, das Meer in der Ferne. Sanfte Landung, Flugzeug-Zertifikate für die Kinder, fantastischer Morgen.",
+        "es": "Volamos sobre el valle del Souss cerca de Agadir - arganes, pueblos pequeños, el océano a lo lejos. Aterrizaje suave, certificados de vuelo para los niños, mañana fantástica.",
+        "nl": "We vlogen boven de Souss-vallei bij Agadir - arganbomen, kleine dorpjes, de oceaan in de verte. Zachte landing, vluchtcertificaten voor de kinderen, fantastische ochtend."
+      }
+    },
+    {
+      "name": "James & Olivia",
+      "country": { "en": "United Kingdom", "fr": "Royaume-Uni", "de": "Großbritannien", "es": "Reino Unido", "nl": "Verenigd Koninkrijk" },
+      "rating": 5,
+      "date": "2026-02-21",
+      "flight": "camel",
+      "text": {
+        "en": "Balloon at sunrise then a camel ride through the palm grove - the combo is the best value in Marrakech. The pilot explained everything and the photos came out amazing.",
+        "fr": "Montgolfière au lever du soleil puis balade à dromadaire dans la palmeraie - le pack est le meilleur rapport qualité-prix de Marrakech. Le pilote a tout expliqué et les photos sont superbes.",
+        "de": "Ballonfahrt bei Sonnenaufgang, dann Kamelritt durch die Palmenhaine - das Combo-Paket ist das beste Preis-Leistungs-Verhältnis in Marrakesch. Der Pilot erklärte alles, die Fotos sind toll.",
+        "es": "Globo al amanecer y luego un paseo en camello por la palmeral - el combo es la mejor relación calidad-precio de Marrakech. El piloto lo explicó todo y las fotos quedaron increíbles.",
+        "nl": "Ballonvaart bij zonsopgang en daarna een kamelenrit door de palmentuin - de combinatie is de beste prijs-kwaliteit in Marrakech. De piloot legde alles uit en de foto's zijn geweldig."
+      }
+    }
+  ]
+}

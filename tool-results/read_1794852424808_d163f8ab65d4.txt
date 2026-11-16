@@ -1,0 +1,2002 @@
+     1→{
+     2→  "generatedAt": "2026-11-16T17:25:51.329Z",
+     3→  "langs": [
+     4→    "en",
+     5→    "fr",
+     6→    "de",
+     7→    "es",
+     8→    "nl"
+     9→  ],
+    10→  "pages": [
+    11→    {
+    12→      "id": "en-home",
+    13→      "lang": "en",
+    14→      "priority": "P0",
+    15→      "pageType": "home",
+    16→      "pageTypeRaw": "Home / Money page",
+    17→      "url": "/en/",
+    18→      "parent": null,
+    19→      "primaryKeyword": "hot air balloon marrakech",
+    20→      "primaryVolume": 2900,
+    21→      "secondaryKeywords": [
+    22→        {
+    23→          "kw": "marrakech hot air balloon",
+    24→          "volume": 1600
+    25→        },
+    26→        {
+    27→          "kw": "balloon marrakech",
+    28→          "volume": 720
+    29→        },
+    30→        {
+    31→          "kw": "marrakech by air balloon",
+    32→          "volume": 1600
+    33→        },
+    34→        {
+    35→          "kw": "air balloon marrakech",
+    36→          "volume": 320
+    37→        },
+    38→        {
+    39→          "kw": "marrakech hot balloon",
+    40→          "volume": 320
+    41→        },
+    42→        {
+    43→          "kw": "hot air balloon marrakesh",
+    44→          "volume": 170
+    45→        }
+    46→      ],
+    47→      "intent": "Commercial",
+    48→      "metaTitle": "Hot Air Balloon Marrakech | Sunrise Flights from 1,500 MAD",
+    49→      "metaDescription": "Fly over Marrakech & the Atlas at sunrise. Licensed pilots, hotel pickup, Berber breakfast & flight certificate. Book in 1 click on WhatsApp.",
+    50→      "h1": "Hot Air Balloon Marrakech – Sunrise Flights Over the Atlas",
+    51→      "wordCount": {
+    52→        "min": 1800,
+    53→        "max": 2500
+    54→      },
+    55→      "schema": [
+    56→        "Organization",
+    57→        "LocalBusiness",
+    58→        "WebSite",
+    59→        "AggregateRating",
+    60→        "FAQPage"
+    61→      ],
+    62→      "linksOut": [
+    63→        "/en/marrakech/sunrise-balloon-flight/",
+    64→        "/en/marrakech/private-balloon-flight/",
+    65→        "/en/marrakech/vip-balloon-flight/",
+    66→        "/en/marrakech/balloon-and-camel-ride/",
+    67→        "/en/marrakech/agafay-desert-balloon/",
+    68→        "/en/agadir-hot-air-balloon/",
+    69→        "/en/hot-air-balloon-morocco/",
+    70→        "/en/hot-air-balloon-marrakech-price/",
+    71→        "/en/guide/is-hot-air-balloon-safe-morocco/",
+    72→        "/en/guide/best-time-hot-air-balloon-marrakech/",
+    73→        "/en/reviews/",
+    74→        "/en/faq/",
+    75→        "/en/book/"
+    76→      ],
+    77→      "alternates": {
+    78→        "fr": "/fr/",
+    79→        "de": "/de/",
+    80→        "es": "/es/",
+    81→        "nl": "/nl/"
+    82→      },
+    83→      "whatsapp": {
+    84→        "number": "212XXXXXXXXX",
+    85→        "message": "Hi! I want to book: Hot Air Balloon Marrakech – Sunrise Flights Over the Atlas"
+    86→      }
+    87→    },
+    88→    {
+    89→      "id": "en-classic",
+    90→      "lang": "en",
+    91→      "priority": "P0",
+    92→      "pageType": "product",
+    93→      "pageTypeRaw": "Product",
+    94→      "url": "/en/marrakech/sunrise-balloon-flight/",
+    95→      "parent": "en-home",
+    96→      "primaryKeyword": "hot air balloon ride marrakech",
+    97→      "primaryVolume": 260,
+    98→      "secondaryKeywords": [
+    99→        {
+   100→          "kw": "marrakech hot air balloon sunrise",
+   101→          "volume": 170
+   102→        },
+   103→        {
+   104→          "kw": "sunrise hot air balloon marrakech",
+   105→          "volume": 90
+   106→        },
+   107→        {
+   108→          "kw": "hot balloon ride marrakech",
+   109→          "volume": 320
+   110→        },
+   111→        {
+   112→          "kw": "marrakech balloon ride",
+   113→          "volume": 140
+   114→        },
+   115→        {
+   116→          "kw": "hot air balloon rides marrakech",
+   117→          "volume": 110
+   118→        },
+   119→        {
+   120→          "kw": "hot air balloon flight marrakech",
+   121→          "volume": null
+   122→        }
+   123→      ],
+   124→      "intent": "Transactional",
+   125→      "metaTitle": "Sunrise Hot Air Balloon Ride Marrakech | Classic Flight",
+   126→      "metaDescription": "1-hour sunrise balloon ride over Marrakech palm groves & Atlas Mountains. Pickup, breakfast, certificate included. Reserve via WhatsApp.",
+   127→      "h1": "Classic Sunrise Hot Air Balloon Ride in Marrakech",
+   128→      "wordCount": {
+   129→        "min": 1200,
+   130→        "max": 1500
+   131→      },
+   132→      "schema": [
+   133→        "Product",
+   134→        "Offer(MAD",
+   135→        "EUR)",
+   136→        "TouristTrip",
+   137→        "BreadcrumbList",
+   138→        "FAQPage"
+   139→      ],
+   140→      "linksOut": [
+   141→        "/en/",
+   142→        "/en/marrakech/private-balloon-flight/",
+   143→        "/en/marrakech/vip-balloon-flight/",
+   144→        "/en/marrakech/balloon-and-camel-ride/",
+   145→        "/en/hot-air-balloon-marrakech-price/",
+   146→        "/en/guide/what-to-wear-hot-air-balloon/",
+   147→        "/en/guide/is-hot-air-balloon-safe-morocco/",
+   148→        "/en/reviews/",
+   149→        "/en/book/"
+   150→      ],
+   151→      "alternates": {
+   152→        "fr": "/fr/marrakech/vol-montgolfiere-lever-du-soleil/"
+   153→      },
+   154→      "whatsapp": {
+   155→        "number": "212XXXXXXXXX",
+   156→        "message": "Hi! I want to book: Classic Sunrise Hot Air Balloon Ride in Marrakech"
+   157→      }
+   158→    },
+   159→    {
+   160→      "id": "en-private",
+   161→      "lang": "en",
+   162→      "priority": "P1",
+   163→      "pageType": "product",
+   164→      "pageTypeRaw": "Product",
+   165→      "url": "/en/marrakech/private-balloon-flight/",
+   166→      "parent": "en-home",
+   167→      "primaryKeyword": "private hot air balloon marrakech",
+   168→      "primaryVolume": 50,
+   169→      "secondaryKeywords": [
+   170→        {
+   171→          "kw": "private balloon flight marrakech",
+   172→          "volume": null
+   173→        },
+   174→        {
+   175→          "kw": "hot air balloon marrakech for couples",
+   176→          "volume": null
+   177→        },
+   178→        {
+   179→          "kw": "marriage proposal balloon marrakech",
+   180→          "volume": null
+   181→        },
+   182→        {
+   183→          "kw": "honeymoon balloon morocco",
+   184→          "volume": null
+   185→        }
+   186→      ],
+   187→      "intent": "Transactional",
+   188→      "metaTitle": "Private Hot Air Balloon Flight Marrakech | Couples & Proposals",
+   189→      "metaDescription": "Your own basket over Marrakech: private sunrise flight for couples, families & proposals. Hotel pickup & breakfast. Book on WhatsApp.",
+   190→      "h1": "Private Hot Air Balloon Flight in Marrakech",
+   191→      "wordCount": {
+   192→        "min": 1200,
+   193→        "max": 1500
+   194→      },
+   195→      "schema": [
+   196→        "Product",
+   197→        "Offer(MAD",
+   198→        "EUR)",
+   199→        "TouristTrip",
+   200→        "BreadcrumbList",
+   201→        "FAQPage"
+   202→      ],
+   203→      "linksOut": [
+   204→        "/en/",
+   205→        "/en/marrakech/sunrise-balloon-flight/",
+   206→        "/en/marrakech/vip-balloon-flight/",
+   207→        "/en/hot-air-balloon-marrakech-price/",
+   208→        "/en/guide/hot-air-balloon-proposal-marrakech/",
+   209→        "/en/reviews/",
+   210→        "/en/book/"
+   211→      ],
+   212→      "alternates": {
+   213→        "fr": "/fr/marrakech/vol-montgolfiere-prive/"
+   214→      },
+   215→      "whatsapp": {
+   216→        "number": "212XXXXXXXXX",
+   217→        "message": "Hi! I want to book: Private Hot Air Balloon Flight in Marrakech"
+   218→      }
+   219→    },
+   220→    {
+   221→      "id": "en-vip",
+   222→      "lang": "en",
+   223→      "priority": "P1",
+   224→      "pageType": "product",
+   225→      "pageTypeRaw": "Product",
+   226→      "url": "/en/marrakech/vip-balloon-flight/",
+   227→      "parent": "en-home",
+   228→      "primaryKeyword": "luxury hot air balloon marrakech",
+   229→      "primaryVolume": 30,
+   230→      "secondaryKeywords": [
+   231→        {
+   232→          "kw": "vip hot air balloon marrakech",
+   233→          "volume": null
+   234→        },
+   235→        {
+   236→          "kw": "royal balloon flight marrakech",
+   237→          "volume": null
+   238→        },
+   239→        {
+   240→          "kw": "hot air balloon breakfast marrakech",
+   241→          "volume": 20
+   242→        },
+   243→        {
+   244→          "kw": "hot air balloon flight over marrakech with traditional breakfast",
+   245→          "volume": 20
+   246→        }
+   247→      ],
+   248→      "intent": "Transactional",
+   249→      "metaTitle": "VIP Luxury Hot Air Balloon Marrakech | Royal Flight",
+   250→      "metaDescription": "Small-group VIP balloon flight over Marrakech with 4x4 transfer, gourmet Berber breakfast & champagne-style toast. Reserve on WhatsApp.",
+   251→      "h1": "VIP Luxury Hot Air Balloon Flight Marrakech",
+   252→      "wordCount": {
+   253→        "min": 1200,
+   254→        "max": 1500
+   255→      },
+   256→      "schema": [
+   257→        "Product",
+   258→        "Offer(MAD",
+   259→        "EUR)",
+   260→        "TouristTrip",
+   261→        "BreadcrumbList",
+   262→        "FAQPage"
+   263→      ],
+   264→      "linksOut": [
+   265→        "/en/",
+   266→        "/en/marrakech/sunrise-balloon-flight/",
+   267→        "/en/marrakech/private-balloon-flight/",
+   268→        "/en/marrakech/agafay-desert-balloon/",
+   269→        "/en/hot-air-balloon-marrakech-price/",
+   270→        "/en/reviews/",
+   271→        "/en/book/"
+   272→      ],
+   273→      "alternates": {
+   274→        "fr": "/fr/marrakech/vol-montgolfiere-vip/"
+   275→      },
+   276→      "whatsapp": {
+   277→        "number": "212XXXXXXXXX",
+   278→        "message": "Hi! I want to book: VIP Luxury Hot Air Balloon Flight Marrakech"
+   279→      }
+   280→    },
+   281→    {
+   282→      "id": "en-camel",
+   283→      "lang": "en",
+   284→      "priority": "P1",
+   285→      "pageType": "product",
+   286→      "pageTypeRaw": "Product (combo)",
+   287→      "url": "/en/marrakech/balloon-and-camel-ride/",
+   288→      "parent": "en-home",
+   289→      "primaryKeyword": "hot air balloon and camel ride marrakech",
+   290→      "primaryVolume": 20,
+   291→      "secondaryKeywords": [
+   292→        {
+   293→          "kw": "balloon and camel ride marrakech",
+   294→          "volume": null
+   295→        },
+   296→        {
+   297→          "kw": "marrakech balloon camel quad package",
+   298→          "volume": null
+   299→        },
+   300→        {
+   301→          "kw": "hot air balloon marrakech with breakfast and camel",
+   302→          "volume": null
+   303→        }
+   304→      ],
+   305→      "intent": "Transactional",
+   306→      "metaTitle": "Hot Air Balloon & Camel Ride Marrakech | Combo Package",
+   307→      "metaDescription": "Sunrise balloon flight + camel ride in the palm grove in one morning. Pickup, breakfast & certificate. Book the combo on WhatsApp.",
+   308→      "h1": "Hot Air Balloon and Camel Ride in Marrakech",
+   309→      "wordCount": {
+   310→        "min": 1200,
+   311→        "max": 1500
+   312→      },
+   313→      "schema": [
+   314→        "Product",
+   315→        "Offer(MAD",
+   316→        "EUR)",
+   317→        "TouristTrip",
+   318→        "BreadcrumbList",
+   319→        "FAQPage"
+   320→      ],
+   321→      "linksOut": [
+   322→        "/en/",
+   323→        "/en/marrakech/sunrise-balloon-flight/",
+   324→        "/en/marrakech/agafay-desert-balloon/",
+   325→        "/en/hot-air-balloon-marrakech-price/",
+   326→        "/en/book/"
+   327→      ],
+   328→      "alternates": {
+   329→        "fr": "/fr/marrakech/montgolfiere-et-balade-a-dromadaire/"
+   330→      },
+   331→      "whatsapp": {
+   332→        "number": "212XXXXXXXXX",
+   333→        "message": "Hi! I want to book: Hot Air Balloon and Camel Ride in Marrakech"
+   334→      }
+   335→    },
+   336→    {
+   337→      "id": "en-agafay",
+   338→      "lang": "en",
+   339→      "priority": "P1",
+   340→      "pageType": "product",
+   341→      "pageTypeRaw": "Product",
+   342→      "url": "/en/marrakech/agafay-desert-balloon/",
+   343→      "parent": "en-home",
+   344→      "primaryKeyword": "hot air balloon agafay desert",
+   345→      "primaryVolume": 20,
+   346→      "secondaryKeywords": [
+   347→        {
+   348→          "kw": "agafay hot air balloon",
+   349→          "volume": null
+   350→        },
+   351→        {
+   352→          "kw": "hot air balloon atlas mountains",
+   353→          "volume": 40
+   354→        },
+   355→        {
+   356→          "kw": "atlas mountains hot air balloon ride from marrakech",
+   357→          "volume": 20
+   358→        },
+   359→        {
+   360→          "kw": "atlas mountain sunrise hot air balloon ride from marrakech",
+   361→          "volume": 20
+   362→        }
+   363→      ],
+   364→      "intent": "Transactional",
+   365→      "metaTitle": "Agafay Desert & Atlas Mountains Hot Air Balloon from Marrakech",
+   366→      "metaDescription": "Float over the Agafay stone desert with Atlas Mountain views, 40 min from Marrakech. Sunrise flight, breakfast, pickup. WhatsApp booking.",
+   367→      "h1": "Hot Air Balloon Over Agafay Desert & Atlas Mountains",
+   368→      "wordCount": {
+   369→        "min": 1200,
+   370→        "max": 1500
+   371→      },
+   372→      "schema": [
+   373→        "Product",
+   374→        "Offer(MAD",
+   375→        "EUR)",
+   376→        "TouristTrip",
+   377→        "BreadcrumbList",
+   378→        "FAQPage"
+   379→      ],
+   380→      "linksOut": [
+   381→        "/en/",
+   382→        "/en/marrakech/sunrise-balloon-flight/",
+   383→        "/en/marrakech/vip-balloon-flight/",
+   384→        "/en/marrakech/balloon-and-camel-ride/",
+   385→        "/en/hot-air-balloon-morocco/",
+   386→        "/en/book/"
+   387→      ],
+   388→      "alternates": {
+   389→        "fr": "/fr/marrakech/montgolfiere-desert-agafay/"
+   390→      },
+   391→      "whatsapp": {
+   392→        "number": "212XXXXXXXXX",
+   393→        "message": "Hi! I want to book: Hot Air Balloon Over Agafay Desert & Atlas Mountains"
+   394→      }
+   395→    },
+   396→    {
+   397→      "id": "en-agadir",
+   398→      "lang": "en",
+   399→      "priority": "P0",
+   400→      "pageType": "city",
+   401→      "pageTypeRaw": "City money page",
+   402→      "url": "/en/agadir-hot-air-balloon/",
+   403→      "parent": "en-home",
+   404→      "primaryKeyword": "hot air balloon agadir",
+   405→      "primaryVolume": 170,
+   406→      "secondaryKeywords": [
+   407→        {
+   408→          "kw": "agadir hot air balloon",
+   409→          "volume": 110
+   410→        },
+   411→        {
+   412→          "kw": "hot air balloon agadir morocco",
+   413→          "volume": 20
+   414→        },
+   415→        {
+   416→          "kw": "agadir hot air balloon ride",
+   417→          "volume": 20
+   418→        },
+   419→        {
+   420→          "kw": "hot air balloon agadir price",
+   421→          "volume": 20
+   422→        },
+   423→        {
+   424→          "kw": "agadir morocco hot air balloon",
+   425→          "volume": 20
+   426→        }
+   427→      ],
+   428→      "intent": "Commercial",
+   429→      "metaTitle": "Hot Air Balloon Agadir | Sunrise Flights over Souss Valley",
+   430→      "metaDescription": "Sunrise hot air balloon flights near Agadir over the Souss Valley & argan forests. Hotel pickup from Agadir & Taghazout. Book on WhatsApp.",
+   431→      "h1": "Hot Air Balloon Agadir – Sunrise Flights",
+   432→      "wordCount": {
+   433→        "min": 1500,
+   434→        "max": 2000
+   435→      },
+   436→      "schema": [
+   437→        "Product",
+   438→        "Offer",
+   439→        "BreadcrumbList"
+   440→      ],
+   441→      "linksOut": [
+   442→        "/en/",
+   443→        "/en/hot-air-balloon-morocco/",
+   444→        "/en/hot-air-balloon-marrakech-price/",
+   445→        "/en/guide/is-hot-air-balloon-safe-morocco/",
+   446→        "/en/faq/",
+   447→        "/en/reviews/",
+   448→        "/en/book/"
+   449→      ],
+   450→      "alternates": {
+   451→        "fr": "/fr/montgolfiere-agadir/",
+   452→        "de": "/de/heissluftballon-agadir/",
+   453→        "es": "/es/globo-aerostatico-agadir/",
+   454→        "nl": "/nl/luchtballon-agadir/"
+   455→      },
+   456→      "whatsapp": {
+   457→        "number": "212XXXXXXXXX",
+   458→        "message": "Hi! I want to book: Hot Air Balloon Agadir – Sunrise Flights"
+   459→      }
+   460→    },
+   461→    {
+   462→      "id": "en-morocco",
+   463→      "lang": "en",
+   464→      "priority": "P0",
+   465→      "pageType": "pillar",
+   466→      "pageTypeRaw": "Pillar (topical hub)",
+   467→      "url": "/en/hot-air-balloon-morocco/",
+   468→      "parent": "en-home",
+   469→      "primaryKeyword": "hot air balloon morocco",
+   470→      "primaryVolume": 390,
+   471→      "secondaryKeywords": [
+   472→        {
+   473→          "kw": "morocco hot air balloon",
+   474→          "volume": 390
+   475→        },
+   476→        {
+   477→          "kw": "hot air balloons morocco",
+   478→          "volume": 140
+   479→        },
+   480→        {
+   481→          "kw": "morocco hot air balloons",
+   482→          "volume": 140
+   483→        },
+   484→        {
+   485→          "kw": "morocco balloon rides",
+   486→          "volume": 320
+   487→        },
+   488→        {
+   489→          "kw": "hot air balloon in morocco",
+   490→          "volume": 90
+   491→        },
+   492→        {
+   493→          "kw": "morocco balloon ride",
+   494→          "volume": 110
+   495→        },
+   496→        {
+   497→          "kw": "hot air ballooning in morocco",
+   498→          "volume": 40
+   499→        },
+   500→        {
+   501→          "kw": "hot air balloon fes morocco",
+   502→          "volume": 20
+   503→        }
+   504→      ],
+   505→      "intent": "Commercial / Info",
+   506→      "metaTitle": "Hot Air Balloon Morocco: Marrakech, Agadir & Where to Fly",
+   507→      "metaDescription": "Where to take a hot air balloon ride in Morocco: Marrakech, Agadir, Agafay & Atlas. Prices, seasons, safety and how to book.",
+   508→      "h1": "Hot Air Balloon Rides in Morocco – The Complete Guide",
+   509→      "wordCount": {
+   510→        "min": 2500,
+   511→        "max": 3500
+   512→      },
+   513→      "schema": [
+   514→        "Product",
+   515→        "Offer",
+   516→        "BreadcrumbList"
+   517→      ],
+   518→      "linksOut": [
+   519→        "/en/",
+   520→        "/en/agadir-hot-air-balloon/",
+   521→        "/en/marrakech/agafay-desert-balloon/",
+   522→        "/en/marrakech/sunrise-balloon-flight/",
+   523→        "/en/hot-air-balloon-marrakech-price/",
+   524→        "/en/guide/best-time-hot-air-balloon-marrakech/",
+   525→        "/en/guide/is-hot-air-balloon-safe-morocco/",
+   526→        "/en/guide/marrakech-vs-cappadocia-hot-air-balloon/",
+   527→        "/en/faq/",
+   528→        "/en/book/"
+   529→      ],
+   530→      "alternates": {
+   531→        "fr": "/fr/montgolfiere-maroc/"
+   532→      },
+   533→      "whatsapp": {
+   534→        "number": "212XXXXXXXXX",
+   535→        "message": "Hi! I want to book: Hot Air Balloon Rides in Morocco – The Complete Guide"
+   536→      }
+   537→    },
+   538→    {
+   539→      "id": "en-prices",
+   540→      "lang": "en",
+   541→      "priority": "P0",
+   542→      "pageType": "pricing",
+   543→      "pageTypeRaw": "Pricing",
+   544→      "url": "/en/hot-air-balloon-marrakech-price/",
+   545→      "parent": "en-home",
+   546→      "primaryKeyword": "hot air balloon marrakech price",
+   547→      "primaryVolume": 20,
+   548→      "secondaryKeywords": [
+   549→        {
+   550→          "kw": "hot air balloon ride marrakech price",
+   551→          "volume": 20
+   552→        },
+   553→        {
+   554→          "kw": "hot air balloon marrakech cost",
+   555→          "volume": null
+   556→        },
+   557→        {
+   558→          "kw": "how much is hot air balloon marrakech",
+   559→          "volume": null
+   560→        },
+   561→        {
+   562→          "kw": "hot air balloon agadir price",
+   563→          "volume": 20
+   564→        }
+   565→      ],
+   566→      "intent": "Commercial",
+   567→      "metaTitle": "Hot Air Balloon Marrakech Price 2026 | All Flights Compared",
+   568→      "metaDescription": "Transparent 2026 prices for every balloon flight in Marrakech & Agadir: classic, private, VIP, combos. What's included, no hidden fees.",
+   569→      "h1": "Hot Air Balloon Marrakech Prices 2026",
+   570→      "wordCount": {
+   571→        "min": 1200,
+   572→        "max": 1500
+   573→      },
+   574→      "schema": [
+   575→        "Product",
+   576→        "Offer",
+   577→        "BreadcrumbList"
+   578→      ],
+   579→      "linksOut": [
+   580→        "/en/",
+   581→        "/en/marrakech/sunrise-balloon-flight/",
+   582→        "/en/marrakech/private-balloon-flight/",
+   583→        "/en/marrakech/vip-balloon-flight/",
+   584→        "/en/marrakech/balloon-and-camel-ride/",
+   585→        "/en/marrakech/agafay-desert-balloon/",
+   586→        "/en/agadir-hot-air-balloon/",
+   587→        "/en/guide/how-much-does-hot-air-balloon-cost/",
+   588→        "/en/faq/",
+   589→        "/en/book/"
+   590→      ],
+   591→      "alternates": {
+   592→        "fr": "/fr/prix-montgolfiere-marrakech/",
+   593→        "de": "/de/heissluftballon-marrakesch-preis/",
+   594→        "es": "/es/precio-globo-aerostatico-marrakech/",
+   595→        "nl": "/nl/luchtballon-marrakech-prijs/"
+   596→      },
+   597→      "whatsapp": {
+   598→        "number": "212XXXXXXXXX",
+   599→        "message": "Hi! I want to book: Hot Air Balloon Marrakech Prices 2026"
+   600→      }
+   601→    },
+   602→    {
+   603→      "id": "en-reviews",
+   604→      "lang": "en",
+   605→      "priority": "P1",
+   606→      "pageType": "reviews",
+   607→      "pageTypeRaw": "Trust",
+   608→      "url": "/en/reviews/",
+   609→      "parent": "en-home",
+   610→      "primaryKeyword": "hot air balloon marrakech reviews",
+   611→      "primaryVolume": 30,
+   612→      "secondaryKeywords": [
+   613→        {
+   614→          "kw": "marrakech balloon reviews",
+   615→          "volume": null
+   616→        },
+   617→        {
+   618→          "kw": "best hot air balloon company marrakech",
+   619→          "volume": null
+   620→        },
+   621→        {
+   622→          "kw": "marrakech hot air balloon tripadvisor",
+   623→          "volume": null
+   624→        }
+   625→      ],
+   626→      "intent": "Commercial",
+   627→      "metaTitle": "Hot Air Balloon Marrakech Reviews | Real Guest Experiences",
+   628→      "metaDescription": "Read verified reviews from travelers who flew with us over Marrakech & Agadir. Photos, ratings and honest feedback.",
+   629→      "h1": "Guest Reviews – Hot Air Balloon Marrakech",
+   630→      "wordCount": {
+   631→        "min": 800,
+   632→        "max": 1200
+   633→      },
+   634→      "schema": [
+   635→        "BreadcrumbList"
+   636→      ],
+   637→      "linksOut": [
+   638→        "/en/",
+   639→        "/en/marrakech/sunrise-balloon-flight/",
+   640→        "/en/marrakech/private-balloon-flight/",
+   641→        "/en/agadir-hot-air-balloon/",
+   642→        "/en/book/"
+   643→      ],
+   644→      "alternates": {
+   645→        "fr": "/fr/avis/"
+   646→      },
+   647→      "whatsapp": {
+   648→        "number": "212XXXXXXXXX",
+   649→        "message": "Hi! I want to book: Guest Reviews – Hot Air Balloon Marrakech"
+   650→      }
+   651→    },
+   652→    {
+   653→      "id": "en-faq",
+   654→      "lang": "en",
+   655→      "priority": "P1",
+   656→      "pageType": "faq",
+   657→      "pageTypeRaw": "FAQ",
+   658→      "url": "/en/faq/",
+   659→      "parent": "en-home",
+   660→      "primaryKeyword": "hot air balloon marrakech faq",
+   661→      "primaryVolume": 10,
+   662→      "secondaryKeywords": [
+   663→        {
+   664→          "kw": "are hot air balloons safe in morocco",
+   665→          "volume": 20
+   666→        },
+   667→        {
+   668→          "kw": "what time is the balloon flight marrakech",
+   669→          "volume": null
+   670→        },
+   671→        {
+   672→          "kw": "can kids fly hot air balloon",
+   673→          "volume": null
+   674→        },
+   675→        {
+   676→          "kw": "cancellation weather",
+   677→          "volume": null
+   678→        }
+   679→      ],
+   680→      "intent": "Informational",
+   681→      "metaTitle": "Hot Air Balloon Marrakech FAQ | Times, Safety, Kids, Weather",
+   682→      "metaDescription": "Answers to every question: pickup time, age limits, pregnancy, weather cancellations, payment and what's included in your balloon flight.",
+   683→      "h1": "Hot Air Balloon Marrakech – Frequently Asked Questions",
+   684→      "wordCount": {
+   685→        "min": 1500,
+   686→        "max": 2000
+   687→      },
+   688→      "schema": [
+   689→        "BreadcrumbList",
+   690→        "FAQPage"
+   691→      ],
+   692→      "linksOut": [
+   693→        "/en/",
+   694→        "/en/hot-air-balloon-marrakech-price/",
+   695→        "/en/guide/is-hot-air-balloon-safe-morocco/",
+   696→        "/en/guide/what-to-wear-hot-air-balloon/",
+   697→        "/en/guide/best-time-hot-air-balloon-marrakech/",
+   698→        "/en/book/"
+   699→      ],
+   700→      "alternates": {
+   701→        "fr": "/fr/faq/",
+   702→        "de": "/de/faq/",
+   703→        "es": "/es/preguntas-frecuentes/",
+   704→        "nl": "/nl/veelgestelde-vragen/"
+   705→      },
+   706→      "whatsapp": {
+   707→        "number": "212XXXXXXXXX",
+   708→        "message": "Hi! I want to book: Hot Air Balloon Marrakech – Frequently Asked Questions"
+   709→      }
+   710→    },
+   711→    {
+   712→      "id": "en-contact",
+   713→      "lang": "en",
+   714→      "priority": "P0",
+   715→      "pageType": "booking",
+   716→      "pageTypeRaw": "Booking / Contact",
+   717→      "url": "/en/book/",
+   718→      "parent": "en-home",
+   719→      "primaryKeyword": "book hot air balloon marrakech",
+   720→      "primaryVolume": 10,
+   721→      "secondaryKeywords": [
+   722→        {
+   723→          "kw": "hot air balloon marrakech booking",
+   724→          "volume": null
+   725→        },
+   726→        {
+   727→          "kw": "marrakech balloon whatsapp",
+   728→          "volume": null
+   729→        },
+   730→        {
+   731→          "kw": "reserve balloon flight marrakech",
+   732→          "volume": null
+   733→        }
+   734→      ],
+   735→      "intent": "Transactional",
+   736→      "metaTitle": "Book Your Hot Air Balloon Flight | WhatsApp Instant Booking",
+   737→      "metaDescription": "Book your Marrakech or Agadir balloon flight in 1 click. Chat on WhatsApp, confirm your date, pay on the day. Free cancellation for weather.",
+   738→      "h1": "Book Your Hot Air Balloon Flight",
+   739→      "wordCount": {
+   740→        "min": 500,
+   741→        "max": 800
+   742→      },
+   743→      "schema": [
+   744→        "BreadcrumbList"
+   745→      ],
+   746→      "linksOut": [
+   747→        "/en/",
+   748→        "/en/marrakech/sunrise-balloon-flight/",
+   749→        "/en/agadir-hot-air-balloon/",
+   750→        "/en/hot-air-balloon-marrakech-price/",
+   751→        "/en/faq/"
+   752→      ],
+   753→      "alternates": {
+   754→        "fr": "/fr/reserver/",
+   755→        "de": "/de/buchen/",
+   756→        "es": "/es/reservar/",
+   757→        "nl": "/nl/boeken/"
+   758→      },
+   759→      "whatsapp": {
+   760→        "number": "212XXXXXXXXX",
+   761→        "message": "Hi! I want to book: Book Your Hot Air Balloon Flight"
+   762→      }
+   763→    },
+   764→    {
+   765→      "id": "en-blog",
+   766→      "lang": "en",
+   767→      "priority": "P2",
+   768→      "pageType": "blogHub",
+   769→      "pageTypeRaw": "Blog hub",
+   770→      "url": "/en/guide/",
+   771→      "parent": "en-home",
+   772→      "primaryKeyword": "hot air balloon guide morocco",
+   773→      "primaryVolume": null,
+   774→      "secondaryKeywords": [
+   775→        {
+   776→          "kw": "marrakech balloon tips",
+   777→          "volume": null
+   778→        },
+   779→        {
+   780→          "kw": "morocco travel balloon",
+   781→          "volume": null
+   782→        }
+   783→      ],
+   784→      "intent": "Informational",
+   785→      "metaTitle": "Hot Air Balloon Guides & Tips for Morocco",
+   786→      "metaDescription": "Expert guides on hot air ballooning in Morocco: safety, best season, what to wear, costs and how balloons work.",
+   787→      "h1": "Hot Air Balloon Guides for Morocco",
+   788→      "wordCount": {
+   789→        "min": 300,
+   790→        "max": 500
+   791→      },
+   792→      "schema": [
+   793→        "BreadcrumbList"
+   794→      ],
+   795→      "linksOut": [
+   796→        "/en/",
+   797→        "/en/guide/is-hot-air-balloon-safe-morocco/",
+   798→        "/en/guide/best-time-hot-air-balloon-marrakech/",
+   799→        "/en/guide/what-to-wear-hot-air-balloon/",
+   800→        "/en/guide/how-much-does-hot-air-balloon-cost/",
+   801→        "/en/guide/how-do-hot-air-balloons-work/",
+   802→        "/en/guide/marrakech-vs-cappadocia-hot-air-balloon/",
+   803→        "/en/guide/hot-air-balloon-proposal-marrakech/",
+   804→        "/en/guide/marrakech-itinerary-with-balloon-ride/"
+   805→      ],
+   806→      "alternates": {
+   807→        "fr": "/fr/guide/"
+   808→      },
+   809→      "whatsapp": {
+   810→        "number": "212XXXXXXXXX",
+   811→        "message": "Hi! I want to book: Hot Air Balloon Guides for Morocco"
+   812→      }
+   813→    },
+   814→    {
+   815→      "id": "en-g-safe",
+   816→      "lang": "en",
+   817→      "priority": "P2",
+   818→      "pageType": "guide",
+   819→      "pageTypeRaw": "Guide (blog)",
+   820→      "url": "/en/guide/is-hot-air-balloon-safe-morocco/",
+   821→      "parent": "en-blog",
+   822→      "primaryKeyword": "are hot air balloons safe in morocco",
+   823→      "primaryVolume": 140,
+   824→      "secondaryKeywords": [
+   825→        {
+   826→          "kw": "how safe are hot air balloons",
+   827→          "volume": 140
+   828→        },
+   829→        {
+   830→          "kw": "hot air balloon accident morocco",
+   831→          "volume": 20
+   832→        },
+   833→        {
+   834→          "kw": "hot air balloon crash marrakech",
+   835→          "volume": 20
+   836→        },
+   837→        {
+   838→          "kw": "hot air balloon accident marrakech",
+   839→          "volume": 20
+   840→        }
+   841→      ],
+   842→      "intent": "Informational",
+   843→      "metaTitle": "Are Hot Air Balloons Safe in Morocco? Pilot Answers (2026)",
+   844→      "metaDescription": "Licensing, weather rules, insurance & safety record of hot air balloon flights in Marrakech and Agadir, explained by a pilot.",
+   845→      "h1": "Is a Hot Air Balloon Ride in Morocco Safe?",
+   846→      "wordCount": {
+   847→        "min": 1500,
+   848→        "max": 2200
+   849→      },
+   850→      "schema": [
+   851→        "BreadcrumbList",
+   852→        "FAQPage"
+   853→      ],
+   854→      "linksOut": [
+   855→        "/en/",
+   856→        "/en/faq/",
+   857→        "/en/marrakech/sunrise-balloon-flight/",
+   858→        "/en/agadir-hot-air-balloon/",
+   859→        "/en/guide/"
+   860→      ],
+   861→      "alternates": {
+   862→        "fr": "/fr/guide/montgolfiere-maroc-securite/"
+   863→      },
+   864→      "whatsapp": {
+   865→        "number": "212XXXXXXXXX",
+   866→        "message": "Hi! I want to book: Is a Hot Air Balloon Ride in Morocco Safe?"
+   867→      }
+   868→    },
+   869→    {
+   870→      "id": "en-g-besttime",
+   871→      "lang": "en",
+   872→      "priority": "P2",
+   873→      "pageType": "guide",
+   874→      "pageTypeRaw": "Guide (blog)",
+   875→      "url": "/en/guide/best-time-hot-air-balloon-marrakech/",
+   876→      "parent": "en-blog",
+   877→      "primaryKeyword": "best time for hot air balloon marrakech",
+   878→      "primaryVolume": 30,
+   879→      "secondaryKeywords": [
+   880→        {
+   881→          "kw": "marrakech balloon season",
+   882→          "volume": null
+   883→        },
+   884→        {
+   885→          "kw": "hot air balloon marrakech in winter",
+   886→          "volume": null
+   887→        },
+   888→        {
+   889→          "kw": "hot air balloon marrakech in summer",
+   890→          "volume": null
+   891→        },
+   892→        {
+   893→          "kw": "sunrise time marrakech",
+   894→          "volume": null
+   895→        }
+   896→      ],
+   897→      "intent": "Informational",
+   898→      "metaTitle": "Best Time for a Hot Air Balloon in Marrakech (Month by Month)",
+   899→      "metaDescription": "Month-by-month guide to sunrise times, temperatures and visibility for balloon flights in Marrakech and Agadir.",
+   900→      "h1": "Best Time to Fly a Hot Air Balloon in Marrakech",
+   901→      "wordCount": {
+   902→        "min": 1500,
+   903→        "max": 2200
+   904→      },
+   905→      "schema": [
+   906→        "BreadcrumbList",
+   907→        "FAQPage"
+   908→      ],
+   909→      "linksOut": [
+   910→        "/en/",
+   911→        "/en/marrakech/sunrise-balloon-flight/",
+   912→        "/en/hot-air-balloon-morocco/",
+   913→        "/en/hot-air-balloon-marrakech-price/",
+   914→        "/en/guide/"
+   915→      ],
+   916→      "alternates": {
+   917→        "fr": "/fr/guide/meilleure-periode-montgolfiere-marrakech/"
+   918→      },
+   919→      "whatsapp": {
+   920→        "number": "212XXXXXXXXX",
+   921→        "message": "Hi! I want to book: Best Time to Fly a Hot Air Balloon in Marrakech"
+   922→      }
+   923→    },
+   924→    {
+   925→      "id": "en-g-wear",
+   926→      "lang": "en",
+   927→      "priority": "P2",
+   928→      "pageType": "guide",
+   929→      "pageTypeRaw": "Guide (blog)",
+   930→      "url": "/en/guide/what-to-wear-hot-air-balloon/",
+   931→      "parent": "en-blog",
+   932→      "primaryKeyword": "what to wear hot air balloon ride",
+   933→      "primaryVolume": 50,
+   934→      "secondaryKeywords": [
+   935→        {
+   936→          "kw": "what to wear hot air balloon marrakech",
+   937→          "volume": null
+   938→        },
+   939→        {
+   940→          "kw": "hot air balloon dress code",
+   941→          "volume": null
+   942→        },
+   943→        {
+   944→          "kw": "hot air balloon photos outfit",
+   945→          "volume": null
+   946→        }
+   947→      ],
+   948→      "intent": "Informational",
+   949→      "metaTitle": "What to Wear on a Hot Air Balloon Ride in Marrakech",
+   950→      "metaDescription": "Layers, shoes, hats and photo tips for your sunrise balloon flight over Marrakech. Packing checklist included.",
+   951→      "h1": "What to Wear for Your Hot Air Balloon Ride",
+   952→      "wordCount": {
+   953→        "min": 1500,
+   954→        "max": 2200
+   955→      },
+   956→      "schema": [
+   957→        "BreadcrumbList",
+   958→        "FAQPage"
+   959→      ],
+   960→      "linksOut": [
+   961→        "/en/marrakech/sunrise-balloon-flight/",
+   962→        "/en/faq/",
+   963→        "/en/",
+   964→        "/en/guide/"
+   965→      ],
+   966→      "alternates": {
+   967→        "fr": "/fr/guide/comment-s-habiller-vol-montgolfiere/"
+   968→      },
+   969→      "whatsapp": {
+   970→        "number": "212XXXXXXXXX",
+   971→        "message": "Hi! I want to book: What to Wear for Your Hot Air Balloon Ride"
+   972→      }
+   973→    },
+   974→    {
+   975→      "id": "en-g-cost",
+   976→      "lang": "en",
+   977→      "priority": "P2",
+   978→      "pageType": "guide",
+   979→      "pageTypeRaw": "Guide (blog)",
+   980→      "url": "/en/guide/how-much-does-hot-air-balloon-cost/",
+   981→      "parent": "en-blog",
+   982→      "primaryKeyword": "how much does a hot air balloon ride cost",
+   983→      "primaryVolume": 110,
+   984→      "secondaryKeywords": [
+   985→        {
+   986→          "kw": "how expensive are hot air balloon rides",
+   987→          "volume": 140
+   988→        },
+   989→        {
+   990→          "kw": "how much for hot air balloon",
+   991→          "volume": 140
+   992→        },
+   993→        {
+   994→          "kw": "hot air balloon cost",
+   995→          "volume": 110
+   996→        },
+   997→        {
+   998→          "kw": "hot air balloon ride cost",
+   999→          "volume": 90
+  1000→        },
+  1001→        {
+  1002→          "kw": "how much is it to ride a hot air balloon",
+  1003→          "volume": 110
+  1004→        }
+  1005→      ],
+  1006→      "intent": "Informational",
+  1007→      "metaTitle": "How Much Does a Hot Air Balloon Ride Cost? Morocco vs World",
+  1008→      "metaDescription": "Real 2026 prices for hot air balloon rides in Morocco vs Turkey, Europe & USA, and what drives the cost.",
+  1009→      "h1": "How Much Does a Hot Air Balloon Ride Cost?",
+  1010→      "wordCount": {
+  1011→        "min": 1500,
+  1012→        "max": 2200
+  1013→      },
+  1014→      "schema": [
+  1015→        "BreadcrumbList",
+  1016→        "FAQPage"
+  1017→      ],
+  1018→      "linksOut": [
+  1019→        "/en/hot-air-balloon-marrakech-price/",
+  1020→        "/en/",
+  1021→        "/en/guide/marrakech-vs-cappadocia-hot-air-balloon/",
+  1022→        "/en/guide/"
+  1023→      ],
+  1024→      "alternates": {
+  1025→        "fr": "/fr/guide/prix-vol-en-montgolfiere/"
+  1026→      },
+  1027→      "whatsapp": {
+  1028→        "number": "212XXXXXXXXX",
+  1029→        "message": "Hi! I want to book: How Much Does a Hot Air Balloon Ride Cost?"
+  1030→      }
+  1031→    },
+  1032→    {
+  1033→      "id": "en-g-how",
+  1034→      "lang": "en",
+  1035→      "priority": "P2",
+  1036→      "pageType": "guide",
+  1037→      "pageTypeRaw": "Guide (blog)",
+  1038→      "url": "/en/guide/how-do-hot-air-balloons-work/",
+  1039→      "parent": "en-blog",
+  1040→      "primaryKeyword": "how do hot air balloons work",
+  1041→      "primaryVolume": 170,
+  1042→      "secondaryKeywords": [
+  1043→        {
+  1044→          "kw": "how do hot air balloons steer",
+  1045→          "volume": 390
+  1046→        },
+  1047→        {
+  1048→          "kw": "how high can a hot air balloon go",
+  1049→          "volume": 320
+  1050→        },
+  1051→        {
+  1052→          "kw": "can you steer a hot air balloon",
+  1053→          "volume": 210
+  1054→        },
+  1055→        {
+  1056→          "kw": "how to steer a hot air balloon",
+  1057→          "volume": 210
+  1058→        },
+  1059→        {
+  1060→          "kw": "when was the hot air balloon invented",
+  1061→          "volume": 170
+  1062→        }
+  1063→      ],
+  1064→      "intent": "Informational",
+  1065→      "metaTitle": "How Do Hot Air Balloons Work, Steer & How High Do They Fly?",
+  1066→      "metaDescription": "A pilot explains how hot air balloons fly, steer with the wind, and how high they go over Marrakech.",
+  1067→      "h1": "How Do Hot Air Balloons Work?",
+  1068→      "wordCount": {
+  1069→        "min": 1500,
+  1070→        "max": 2200
+  1071→      },
+  1072→      "schema": [
+  1073→        "BreadcrumbList",
+  1074→        "FAQPage"
+  1075→      ],
+  1076→      "linksOut": [
+  1077→        "/en/",
+  1078→        "/en/guide/is-hot-air-balloon-safe-morocco/",
+  1079→        "/en/marrakech/sunrise-balloon-flight/",
+  1080→        "/en/guide/"
+  1081→      ],
+  1082→      "alternates": {},
+  1083→      "whatsapp": {
+  1084→        "number": "212XXXXXXXXX",
+  1085→        "message": "Hi! I want to book: How Do Hot Air Balloons Work?"
+  1086→      }
+  1087→    },
+  1088→    {
+  1089→      "id": "en-g-cappadocia",
+  1090→      "lang": "en",
+  1091→      "priority": "P2",
+  1092→      "pageType": "guide",
+  1093→      "pageTypeRaw": "Guide (blog)",
+  1094→      "url": "/en/guide/marrakech-vs-cappadocia-hot-air-balloon/",
+  1095→      "parent": "en-blog",
+  1096→      "primaryKeyword": "marrakech vs cappadocia hot air balloon",
+  1097→      "primaryVolume": 20,
+  1098→      "secondaryKeywords": [
+  1099→        {
+  1100→          "kw": "cappadocia hot air balloon price",
+  1101→          "volume": 480
+  1102→        },
+  1103→        {
+  1104→          "kw": "hot air balloon turkey price",
+  1105→          "volume": 110
+  1106→        },
+  1107→        {
+  1108→          "kw": "hot air balloon turkey vs morocco",
+  1109→          "volume": null
+  1110→        }
+  1111→      ],
+  1112→      "intent": "Informational",
+  1113→      "metaTitle": "Marrakech vs Cappadocia Hot Air Balloon: Price, Views, Crowds",
+  1114→      "metaDescription": "Honest comparison of hot air ballooning in Marrakech and Cappadocia: prices, scenery, crowds and best season.",
+  1115→      "h1": "Marrakech vs Cappadocia: Which Balloon Ride Is Better?",
+  1116→      "wordCount": {
+  1117→        "min": 1500,
+  1118→        "max": 2200
+  1119→      },
+  1120→      "schema": [
+  1121→        "BreadcrumbList",
+  1122→        "FAQPage"
+  1123→      ],
+  1124→      "linksOut": [
+  1125→        "/en/",
+  1126→        "/en/hot-air-balloon-morocco/",
+  1127→        "/en/hot-air-balloon-marrakech-price/",
+  1128→        "/en/guide/how-much-does-hot-air-balloon-cost/",
+  1129→        "/en/guide/"
+  1130→      ],
+  1131→      "alternates": {},
+  1132→      "whatsapp": {
+  1133→        "number": "212XXXXXXXXX",
+  1134→        "message": "Hi! I want to book: Marrakech vs Cappadocia: Which Balloon Ride Is Better?"
+  1135→      }
+  1136→    },
+  1137→    {
+  1138→      "id": "en-g-proposal",
+  1139→      "lang": "en",
+  1140→      "priority": "P2",
+  1141→      "pageType": "guide",
+  1142→      "pageTypeRaw": "Guide (blog)",
+  1143→      "url": "/en/guide/hot-air-balloon-proposal-marrakech/",
+  1144→      "parent": "en-blog",
+  1145→      "primaryKeyword": "hot air balloon proposal marrakech",
+  1146→      "primaryVolume": 10,
+  1147→      "secondaryKeywords": [
+  1148→        {
+  1149→          "kw": "honeymoon marrakech activities",
+  1150→          "volume": null
+  1151→        },
+  1152→        {
+  1153→          "kw": "romantic things to do marrakech",
+  1154→          "volume": null
+  1155→        }
+  1156→      ],
+  1157→      "intent": "Informational",
+  1158→      "metaTitle": "Hot Air Balloon Marriage Proposal in Marrakech: How to Plan It",
+  1159→      "metaDescription": "Plan the perfect proposal in a private balloon over Marrakech: timing, banners, photographer and ring tips.",
+  1160→      "h1": "Proposing in a Hot Air Balloon Over Marrakech",
+  1161→      "wordCount": {
+  1162→        "min": 1500,
+  1163→        "max": 2200
+  1164→      },
+  1165→      "schema": [
+  1166→        "BreadcrumbList",
+  1167→        "FAQPage"
+  1168→      ],
+  1169→      "linksOut": [
+  1170→        "/en/marrakech/private-balloon-flight/",
+  1171→        "/en/",
+  1172→        "/en/book/",
+  1173→        "/en/guide/"
+  1174→      ],
+  1175→      "alternates": {},
+  1176→      "whatsapp": {
+  1177→        "number": "212XXXXXXXXX",
+  1178→        "message": "Hi! I want to book: Proposing in a Hot Air Balloon Over Marrakech"
+  1179→      }
+  1180→    },
+  1181→    {
+  1182→      "id": "en-g-itinerary",
+  1183→      "lang": "en",
+  1184→      "priority": "P2",
+  1185→      "pageType": "guide",
+  1186→      "pageTypeRaw": "Guide (blog)",
+  1187→      "url": "/en/guide/marrakech-itinerary-with-balloon-ride/",
+  1188→      "parent": "en-blog",
+  1189→      "primaryKeyword": "marrakech itinerary 3 days",
+  1190→      "primaryVolume": 90,
+  1191→      "secondaryKeywords": [
+  1192→        {
+  1193→          "kw": "things to do in marrakech",
+  1194→          "volume": null
+  1195→        },
+  1196→        {
+  1197→          "kw": "marrakech day trips",
+  1198→          "volume": null
+  1199→        },
+  1200→        {
+  1201→          "kw": "marrakech bucket list",
+  1202→          "volume": null
+  1203→        }
+  1204→      ],
+  1205→      "intent": "Informational",
+  1206→      "metaTitle": "3-Day Marrakech Itinerary (with a Sunrise Balloon Ride)",
+  1207→      "metaDescription": "Plan 3 perfect days in Marrakech: medina, Jardin Majorelle, Agafay & a sunrise hot air balloon flight on day 1.",
+  1208→      "h1": "3-Day Marrakech Itinerary Including a Balloon Flight",
+  1209→      "wordCount": {
+  1210→        "min": 1500,
+  1211→        "max": 2200
+  1212→      },
+  1213→      "schema": [
+  1214→        "BreadcrumbList",
+  1215→        "FAQPage"
+  1216→      ],
+  1217→      "linksOut": [
+  1218→        "/en/",
+  1219→        "/en/marrakech/sunrise-balloon-flight/",
+  1220→        "/en/marrakech/agafay-desert-balloon/",
+  1221→        "/en/marrakech/balloon-and-camel-ride/",
+  1222→        "/en/guide/"
+  1223→      ],
+  1224→      "alternates": {},
+  1225→      "whatsapp": {
+  1226→        "number": "212XXXXXXXXX",
+  1227→        "message": "Hi! I want to book: 3-Day Marrakech Itinerary Including a Balloon Flight"
+  1228→      }
+  1229→    },
+  1230→    {
+  1231→      "id": "en-about",
+  1232→      "lang": "en",
+  1233→      "priority": "P2",
+  1234→      "pageType": "about",
+  1235→      "pageTypeRaw": "Trust (E-E-A-T)",
+  1236→      "url": "/en/about/",
+  1237→      "parent": "en-home",
+  1238→      "primaryKeyword": "hot air balloon company marrakech",
+  1239→      "primaryVolume": 10,
+  1240→      "secondaryKeywords": [
+  1241→        {
+  1242→          "kw": "licensed balloon operator morocco",
+  1243→          "volume": null
+  1244→        },
+  1245→        {
+  1246→          "kw": "marrakech balloon pilots",
+  1247→          "volume": null
+  1248→        }
+  1249→      ],
+  1250→      "intent": "Navigational",
+  1251→      "metaTitle": "About Us | Licensed Hot Air Balloon Company in Marrakech",
+  1252→      "metaDescription": "Meet our licensed pilots, our balloons and our safety standards. Flying over Marrakech and Agadir since [YEAR].",
+  1253→      "h1": "About Our Hot Air Balloon Company",
+  1254→      "wordCount": {
+  1255→        "min": 600,
+  1256→        "max": 900
+  1257→      },
+  1258→      "schema": [
+  1259→        "BreadcrumbList"
+  1260→      ],
+  1261→      "linksOut": [
+  1262→        "/en/",
+  1263→        "/en/guide/is-hot-air-balloon-safe-morocco/",
+  1264→        "/en/reviews/",
+  1265→        "/en/book/"
+  1266→      ],
+  1267→      "alternates": {
+  1268→        "fr": "/fr/a-propos/"
+  1269→      },
+  1270→      "whatsapp": {
+  1271→        "number": "212XXXXXXXXX",
+  1272→        "message": "Hi! I want to book: About Our Hot Air Balloon Company"
+  1273→      }
+  1274→    },
+  1275→    {
+  1276→      "id": "fr-home",
+  1277→      "lang": "fr",
+  1278→      "priority": "P0",
+  1279→      "pageType": "home",
+  1280→      "pageTypeRaw": "Accueil / Money page",
+  1281→      "url": "/fr/",
+  1282→      "parent": null,
+  1283→      "primaryKeyword": "montgolfière marrakech",
+  1284→      "primaryVolume": 2400,
+  1285→      "secondaryKeywords": [
+  1286→        {
+  1287→          "kw": "vol en montgolfière marrakech",
+  1288→          "volume": 500
+  1289→        },
+  1290→        {
+  1291→          "kw": "vol montgolfière marrakech",
+  1292→          "volume": 500
+  1293→        },
+  1294→        {
+  1295→          "kw": "marrakech montgolfière",
+  1296→          "volume": 500
+  1297→        },
+  1298→        {
+  1299→          "kw": "montgolfière à marrakech",
+  1300→          "volume": 500
+  1301→        },
+  1302→        {
+  1303→          "kw": "excursion montgolfière marrakech",
+  1304→          "volume": 50
+  1305→        },
+  1306→        {
+  1307→          "kw": "tour montgolfière marrakech",
+  1308→          "volume": 50
+  1309→        }
+  1310→      ],
+  1311→      "intent": "Commercial",
+  1312→      "metaTitle": "Montgolfière Marrakech | Vol au Lever du Soleil dès 1 500 MAD",
+  1313→      "metaDescription": "Survolez Marrakech et l'Atlas en montgolfière au lever du soleil. Pilotes certifiés, transfert hôtel, petit-déjeuner berbère. Réservez sur WhatsApp.",
+  1314→      "h1": "Montgolfière Marrakech – Vol au Lever du Soleil",
+  1315→      "wordCount": {
+  1316→        "min": 1800,
+  1317→        "max": 2500
+  1318→      },
+  1319→      "schema": [
+  1320→        "Organization",
+  1321→        "LocalBusiness",
+  1322→        "WebSite",
+  1323→        "FAQPage"
+  1324→      ],
+  1325→      "linksOut": [
+  1326→        "/fr/marrakech/vol-montgolfiere-lever-du-soleil/",
+  1327→        "/fr/marrakech/vol-montgolfiere-prive/",
+  1328→        "/fr/marrakech/vol-montgolfiere-vip/",
+  1329→        "/fr/marrakech/montgolfiere-et-balade-a-dromadaire/",
+  1330→        "/fr/marrakech/montgolfiere-desert-agafay/",
+  1331→        "/fr/montgolfiere-agadir/",
+  1332→        "/fr/montgolfiere-maroc/",
+  1333→        "/fr/prix-montgolfiere-marrakech/",
+  1334→        "/fr/cadeau-vol-montgolfiere-marrakech/",
+  1335→        "/fr/guide/montgolfiere-maroc-securite/",
+  1336→        "/fr/avis/",
+  1337→        "/fr/faq/",
+  1338→        "/fr/reserver/"
+  1339→      ],
+  1340→      "alternates": {
+  1341→        "en": "/en/",
+  1342→        "de": "/de/",
+  1343→        "es": "/es/",
+  1344→        "nl": "/nl/"
+  1345→      },
+  1346→      "whatsapp": {
+  1347→        "number": "212XXXXXXXXX",
+  1348→        "message": "Bonjour ! Je souhaite réserver : Montgolfière Marrakech – Vol au Lever du Soleil"
+  1349→      }
+  1350→    },
+  1351→    {
+  1352→      "id": "fr-classic",
+  1353→      "lang": "fr",
+  1354→      "priority": "P0",
+  1355→      "pageType": "product",
+  1356→      "pageTypeRaw": "Produit",
+  1357→      "url": "/fr/marrakech/vol-montgolfiere-lever-du-soleil/",
+  1358→      "parent": "fr-home",
+  1359→      "primaryKeyword": "vol en montgolfière marrakech",
+  1360→      "primaryVolume": 500,
+  1361→      "secondaryKeywords": [
+  1362→        {
+  1363→          "kw": "vol montgolfière marrakech",
+  1364→          "volume": 500
+  1365→        },
+  1366→        {
+  1367→          "kw": "vol montgolfiere marrakech",
+  1368→          "volume": 500
+  1369→        },
+  1370→        {
+  1371→          "kw": "montgolfière marrakech lever du soleil",
+  1372→          "volume": null
+  1373→        },
+  1374→        {
+  1375→          "kw": "baptême montgolfière marrakech",
+  1376→          "volume": null
+  1377→        }
+  1378→      ],
+  1379→      "intent": "Transactionnel",
+  1380→      "metaTitle": "Vol en Montgolfière Marrakech au Lever du Soleil | Classique",
+  1381→      "metaDescription": "1h de vol au-dessus de la palmeraie et de l'Atlas. Transfert, petit-déjeuner et certificat de vol inclus. Réservation WhatsApp.",
+  1382→      "h1": "Vol en Montgolfière Classique à Marrakech",
+  1383→      "wordCount": {
+  1384→        "min": 1200,
+  1385→        "max": 1500
+  1386→      },
+  1387→      "schema": [
+  1388→        "Product",
+  1389→        "Offer",
+  1390→        "TouristTrip",
+  1391→        "BreadcrumbList",
+  1392→        "FAQPage"
+  1393→      ],
+  1394→      "linksOut": [
+  1395→        "/fr/",
+  1396→        "/fr/marrakech/vol-montgolfiere-prive/",
+  1397→        "/fr/marrakech/vol-montgolfiere-vip/",
+  1398→        "/fr/marrakech/montgolfiere-et-balade-a-dromadaire/",
+  1399→        "/fr/prix-montgolfiere-marrakech/",
+  1400→        "/fr/guide/comment-s-habiller-vol-montgolfiere/",
+  1401→        "/fr/avis/",
+  1402→        "/fr/reserver/"
+  1403→      ],
+  1404→      "alternates": {
+  1405→        "en": "/en/marrakech/sunrise-balloon-flight/"
+  1406→      },
+  1407→      "whatsapp": {
+  1408→        "number": "212XXXXXXXXX",
+  1409→        "message": "Bonjour ! Je souhaite réserver : Vol en Montgolfière Classique à Marrakech"
+  1410→      }
+  1411→    },
+  1412→    {
+  1413→      "id": "fr-private",
+  1414→      "lang": "fr",
+  1415→      "priority": "P1",
+  1416→      "pageType": "product",
+  1417→      "pageTypeRaw": "Produit",
+  1418→      "url": "/fr/marrakech/vol-montgolfiere-prive/",
+  1419→      "parent": "fr-home",
+  1420→      "primaryKeyword": "vol montgolfière privatif marrakech",
+  1421→      "primaryVolume": 50,
+  1422→      "secondaryKeywords": [
+  1423→        {
+  1424→          "kw": "vol montgolfière privatif",
+  1425→          "volume": 50
+  1426→        },
+  1427→        {
+  1428→          "kw": "vol montgolfière en amoureux",
+  1429→          "volume": 50
+  1430→        },
+  1431→        {
+  1432→          "kw": "vol en montgolfière en couple",
+  1433→          "volume": 50
+  1434→        },
+  1435→        {
+  1436→          "kw": "montgolfière en amoureux",
+  1437→          "volume": 50
+  1438→        },
+  1439→        {
+  1440→          "kw": "demande en mariage montgolfière",
+  1441→          "volume": null
+  1442→        }
+  1443→      ],
+  1444→      "intent": "Transactionnel",
+  1445→      "metaTitle": "Vol en Montgolfière Privé Marrakech | En Amoureux & Demande",
+  1446→      "metaDescription": "Une nacelle rien que pour vous : vol privé au lever du soleil pour couples, familles et demandes en mariage. Réservez sur WhatsApp.",
+  1447→      "h1": "Vol en Montgolfière Privé à Marrakech",
+  1448→      "wordCount": {
+  1449→        "min": 1200,
+  1450→        "max": 1500
+  1451→      },
+  1452→      "schema": [
+  1453→        "Product",
+  1454→        "Offer",
+  1455→        "TouristTrip",
+  1456→        "BreadcrumbList",
+  1457→        "FAQPage"
+  1458→      ],
+  1459→      "linksOut": [
+  1460→        "/fr/",
+  1461→        "/fr/marrakech/vol-montgolfiere-lever-du-soleil/",
+  1462→        "/fr/marrakech/vol-montgolfiere-vip/",
+  1463→        "/fr/cadeau-vol-montgolfiere-marrakech/",
+  1464→        "/fr/prix-montgolfiere-marrakech/",
+  1465→        "/fr/reserver/"
+  1466→      ],
+  1467→      "alternates": {
+  1468→        "en": "/en/marrakech/private-balloon-flight/"
+  1469→      },
+  1470→      "whatsapp": {
+  1471→        "number": "212XXXXXXXXX",
+  1472→        "message": "Bonjour ! Je souhaite réserver : Vol en Montgolfière Privé à Marrakech"
+  1473→      }
+  1474→    },
+  1475→    {
+  1476→      "id": "fr-vip",
+  1477→      "lang": "fr",
+  1478→      "priority": "P1",
+  1479→      "pageType": "product",
+  1480→      "pageTypeRaw": "Produit",
+  1481→      "url": "/fr/marrakech/vol-montgolfiere-vip/",
+  1482→      "parent": "fr-home",
+  1483→      "primaryKeyword": "montgolfière marrakech vip",
+  1484→      "primaryVolume": 30,
+  1485→      "secondaryKeywords": [
+  1486→        {
+  1487→          "kw": "montgolfière marrakech luxe",
+  1488→          "volume": null
+  1489→        },
+  1490→        {
+  1491→          "kw": "vol royal montgolfière marrakech",
+  1492→          "volume": null
+  1493→        },
+  1494→        {
+  1495→          "kw": "montgolfière marrakech petit déjeuner",
+  1496→          "volume": null
+  1497→        }
+  1498→      ],
+  1499→      "intent": "Transactionnel",
+  1500→      "metaTitle": "Montgolfière Marrakech VIP | Vol Royal & Petit-Déjeuner",
+  1501→      "metaDescription": "Vol VIP en petit groupe au-dessus de Marrakech, transfert 4x4, petit-déjeuner gourmet berbère. Réservation rapide sur WhatsApp.",
+  1502→      "h1": "Vol en Montgolfière VIP à Marrakech",
+  1503→      "wordCount": {
+  1504→        "min": 1200,
+  1505→        "max": 1500
+  1506→      },
+  1507→      "schema": [
+  1508→        "Product",
+  1509→        "Offer",
+  1510→        "TouristTrip",
+  1511→        "BreadcrumbList",
+  1512→        "FAQPage"
+  1513→      ],
+  1514→      "linksOut": [
+  1515→        "/fr/",
+  1516→        "/fr/marrakech/vol-montgolfiere-lever-du-soleil/",
+  1517→        "/fr/marrakech/vol-montgolfiere-prive/",
+  1518→        "/fr/prix-montgolfiere-marrakech/",
+  1519→        "/fr/reserver/"
+  1520→      ],
+  1521→      "alternates": {
+  1522→        "en": "/en/marrakech/vip-balloon-flight/"
+  1523→      },
+  1524→      "whatsapp": {
+  1525→        "number": "212XXXXXXXXX",
+  1526→        "message": "Bonjour ! Je souhaite réserver : Vol en Montgolfière VIP à Marrakech"
+  1527→      }
+  1528→    },
+  1529→    {
+  1530→      "id": "fr-camel",
+  1531→      "lang": "fr",
+  1532→      "priority": "P1",
+  1533→      "pageType": "product",
+  1534→      "pageTypeRaw": "Produit (combo)",
+  1535→      "url": "/fr/marrakech/montgolfiere-et-balade-a-dromadaire/",
+  1536→      "parent": "fr-home",
+  1537→      "primaryKeyword": "montgolfière et dromadaire marrakech",
+  1538→      "primaryVolume": 20,
+  1539→      "secondaryKeywords": [
+  1540→        {
+  1541→          "kw": "montgolfière chameau marrakech",
+  1542→          "volume": null
+  1543→        },
+  1544→        {
+  1545→          "kw": "montgolfière quad marrakech",
+  1546→          "volume": null
+  1547→        },
+  1548→        {
+  1549→          "kw": "excursion montgolfière marrakech",
+  1550→          "volume": 50
+  1551→        }
+  1552→      ],
+  1553→      "intent": "Transactionnel",
+  1554→      "metaTitle": "Montgolfière + Balade à Dromadaire Marrakech | Pack Matinée",
+  1555→      "metaDescription": "Vol en montgolfière au lever du soleil + balade à dromadaire dans la palmeraie. Transfert & petit-déjeuner inclus. Réservez sur WhatsApp.",
+  1556→      "h1": "Montgolfière et Balade à Dromadaire à Marrakech",
+  1557→      "wordCount": {
+  1558→        "min": 1200,
+  1559→        "max": 1500
+  1560→      },
+  1561→      "schema": [
+  1562→        "Product",
+  1563→        "Offer",
+  1564→        "TouristTrip",
+  1565→        "BreadcrumbList",
+  1566→        "FAQPage"
+  1567→      ],
+  1568→      "linksOut": [
+  1569→        "/fr/",
+  1570→        "/fr/marrakech/vol-montgolfiere-lever-du-soleil/",
+  1571→        "/fr/marrakech/montgolfiere-desert-agafay/",
+  1572→        "/fr/prix-montgolfiere-marrakech/",
+  1573→        "/fr/reserver/"
+  1574→      ],
+  1575→      "alternates": {
+  1576→        "en": "/en/marrakech/balloon-and-camel-ride/"
+  1577→      },
+  1578→      "whatsapp": {
+  1579→        "number": "212XXXXXXXXX",
+  1580→        "message": "Bonjour ! Je souhaite réserver : Montgolfière et Balade à Dromadaire à Marrakech"
+  1581→      }
+  1582→    },
+  1583→    {
+  1584→      "id": "fr-agafay",
+  1585→      "lang": "fr",
+  1586→      "priority": "P1",
+  1587→      "pageType": "product",
+  1588→      "pageTypeRaw": "Produit",
+  1589→      "url": "/fr/marrakech/montgolfiere-desert-agafay/",
+  1590→      "parent": "fr-home",
+  1591→      "primaryKeyword": "montgolfière marrakech agafay",
+  1592→      "primaryVolume": 50,
+  1593→      "secondaryKeywords": [
+  1594→        {
+  1595→          "kw": "montgolfière agafay",
+  1596→          "volume": null
+  1597→        },
+  1598→        {
+  1599→          "kw": "montgolfière atlas marrakech",
+  1600→          "volume": null
+  1601→        },
+  1602→        {
+  1603→          "kw": "vol montgolfière désert marrakech",
+  1604→          "volume": null
+  1605→        }
+  1606→      ],
+  1607→      "intent": "Transactionnel",
+  1608→      "metaTitle": "Montgolfière Désert d'Agafay & Atlas depuis Marrakech",
+  1609→      "metaDescription": "Survolez le désert d'Agafay face à l'Atlas, à 40 min de Marrakech. Vol au lever du soleil, petit-déjeuner, transfert. Réservation WhatsApp.",
+  1610→      "h1": "Montgolfière au-dessus du Désert d'Agafay",
+  1611→      "wordCount": {
+  1612→        "min": 1200,
+  1613→        "max": 1500
+  1614→      },
+  1615→      "schema": [
+  1616→        "Product",
+  1617→        "Offer",
+  1618→        "TouristTrip",
+  1619→        "BreadcrumbList",
+  1620→        "FAQPage"
+  1621→      ],
+  1622→      "linksOut": [
+  1623→        "/fr/",
+  1624→        "/fr/marrakech/vol-montgolfiere-lever-du-soleil/",
+  1625→        "/fr/marrakech/montgolfiere-et-balade-a-dromadaire/",
+  1626→        "/fr/montgolfiere-maroc/",
+  1627→        "/fr/reserver/"
+  1628→      ],
+  1629→      "alternates": {
+  1630→        "en": "/en/marrakech/agafay-desert-balloon/"
+  1631→      },
+  1632→      "whatsapp": {
+  1633→        "number": "212XXXXXXXXX",
+  1634→        "message": "Bonjour ! Je souhaite réserver : Montgolfière au-dessus du Désert d'Agafay"
+  1635→      }
+  1636→    },
+  1637→    {
+  1638→      "id": "fr-agadir",
+  1639→      "lang": "fr",
+  1640→      "priority": "P0",
+  1641→      "pageType": "city",
+  1642→      "pageTypeRaw": "Page ville",
+  1643→      "url": "/fr/montgolfiere-agadir/",
+  1644→      "parent": "fr-home",
+  1645→      "primaryKeyword": "montgolfière agadir",
+  1646→      "primaryVolume": 500,
+  1647→      "secondaryKeywords": [
+  1648→        {
+  1649→          "kw": "montgolfiere agadir",
+  1650→          "volume": 500
+  1651→        },
+  1652→        {
+  1653→          "kw": "montgolfière agadir prix",
+  1654→          "volume": 50
+  1655→        },
+  1656→        {
+  1657→          "kw": "vol montgolfière agadir",
+  1658→          "volume": null
+  1659→        },
+  1660→        {
+  1661→          "kw": "montgolfière taghazout",
+  1662→          "volume": null
+  1663→        }
+  1664→      ],
+  1665→      "intent": "Commercial",
+  1666→      "metaTitle": "Montgolfière Agadir | Vol au Lever du Soleil Vallée du Souss",
+  1667→      "metaDescription": "Vol en montgolfière près d'Agadir au-dessus de la vallée du Souss et des arganiers. Transfert depuis Agadir & Taghazout. Réservez sur WhatsApp.",
+  1668→      "h1": "Montgolfière à Agadir – Vol au Lever du Soleil",
+  1669→      "wordCount": {
+  1670→        "min": 1500,
+  1671→        "max": 2000
+  1672→      },
+  1673→      "schema": [
+  1674→        "Product",
+  1675→        "Offer",
+  1676→        "BreadcrumbList"
+  1677→      ],
+  1678→      "linksOut": [
+  1679→        "/fr/",
+  1680→        "/fr/montgolfiere-maroc/",
+  1681→        "/fr/prix-montgolfiere-marrakech/",
+  1682→        "/fr/guide/montgolfiere-maroc-securite/",
+  1683→        "/fr/faq/",
+  1684→        "/fr/reserver/"
+  1685→      ],
+  1686→      "alternates": {
+  1687→        "en": "/en/agadir-hot-air-balloon/",
+  1688→        "de": "/de/heissluftballon-agadir/",
+  1689→        "es": "/es/globo-aerostatico-agadir/",
+  1690→        "nl": "/nl/luchtballon-agadir/"
+  1691→      },
+  1692→      "whatsapp": {
+  1693→        "number": "212XXXXXXXXX",
+  1694→        "message": "Bonjour ! Je souhaite réserver : Montgolfière à Agadir – Vol au Lever du Soleil"
+  1695→      }
+  1696→    },
+  1697→    {
+  1698→      "id": "fr-maroc",
+  1699→      "lang": "fr",
+  1700→      "priority": "P0",
+  1701→      "pageType": "pillar",
+  1702→      "pageTypeRaw": "Pilier",
+  1703→      "url": "/fr/montgolfiere-maroc/",
+  1704→      "parent": "fr-home",
+  1705→      "primaryKeyword": "montgolfière maroc",
+  1706→      "primaryVolume": 500,
+  1707→      "secondaryKeywords": [
+  1708→        {
+  1709→          "kw": "montgolfiere maroc",
+  1710→          "volume": 500
+  1711→        },
+  1712→        {
+  1713→          "kw": "maroc montgolfière",
+  1714→          "volume": 500
+  1715→        },
+  1716→        {
+  1717→          "kw": "vol en montgolfière maroc",
+  1718→          "volume": 50
+  1719→        },
+  1720→        {
+  1721→          "kw": "montgolfière au maroc",
+  1722→          "volume": 50
+  1723→        },
+  1724→        {
+  1725→          "kw": "montgolfière ouarzazate",
+  1726→          "volume": 50
+  1727→        },
+  1728→        {
+  1729→          "kw": "montgolfière merzouga",
+  1730→          "volume": 50
+  1731→        },
+  1732→        {
+  1733→          "kw": "montgolfière essaouira",
+  1734→          "volume": 50
+  1735→        },
+  1736→        {
+  1737→          "kw": "montgolfière casablanca",
+  1738→          "volume": 50
+  1739→        },
+  1740→        {
+  1741→          "kw": "montgolfière rabat",
+  1742→          "volume": 50
+  1743→        }
+  1744→      ],
+  1745→      "intent": "Commercial / Info",
+  1746→      "metaTitle": "Montgolfière Maroc : Marrakech, Agadir & Où Voler en 2026",
+  1747→      "metaDescription": "Où faire un vol en montgolfière au Maroc ? Marrakech, Agadir, Agafay, Ouarzazate : prix, saisons, sécurité et réservation.",
+  1748→      "h1": "Vol en Montgolfière au Maroc – Le Guide Complet",
+  1749→      "wordCount": {
+  1750→        "min": 2500,
+  1751→        "max": 3500
+  1752→      },
+  1753→      "schema": [
+  1754→        "Product",
+  1755→        "Offer",
+  1756→        "BreadcrumbList"
+  1757→      ],
+  1758→      "linksOut": [
+  1759→        "/fr/",
+  1760→        "/fr/montgolfiere-agadir/",
+  1761→        "/fr/marrakech/montgolfiere-desert-agafay/",
+  1762→        "/fr/marrakech/vol-montgolfiere-lever-du-soleil/",
+  1763→        "/fr/prix-montgolfiere-marrakech/",
+  1764→        "/fr/guide/meilleure-periode-montgolfiere-marrakech/",
+  1765→        "/fr/guide/montgolfiere-maroc-securite/",
+  1766→        "/fr/faq/",
+  1767→        "/fr/reserver/"
+  1768→      ],
+  1769→      "alternates": {
+  1770→        "en": "/en/hot-air-balloon-morocco/"
+  1771→      },
+  1772→      "whatsapp": {
+  1773→        "number": "212XXXXXXXXX",
+  1774→        "message": "Bonjour ! Je souhaite réserver : Vol en Montgolfière au Maroc – Le Guide Complet"
+  1775→      }
+  1776→    },
+  1777→    {
+  1778→      "id": "fr-prix",
+  1779→      "lang": "fr",
+  1780→      "priority": "P0",
+  1781→      "pageType": "pricing",
+  1782→      "pageTypeRaw": "Tarifs",
+  1783→      "url": "/fr/prix-montgolfiere-marrakech/",
+  1784→      "parent": "fr-home",
+  1785→      "primaryKeyword": "montgolfière marrakech prix",
+  1786→      "primaryVolume": 500,
+  1787→      "secondaryKeywords": [
+  1788→        {
+  1789→          "kw": "prix montgolfière marrakech",
+  1790→          "volume": 50
+  1791→        },
+  1792→        {
+  1793→          "kw": "montgolfière marrakech tarif",
+  1794→          "volume": 50
+  1795→        },
+  1796→        {
+  1797→          "kw": "montgolfière marrakech prix par personne",
+  1798→          "volume": 50
+  1799→        },
+  1800→        {
+  1801→          "kw": "vol montgolfière marrakech prix",
+  1802→          "volume": 50
+  1803→        },
+  1804→        {
+  1805→          "kw": "montgolfière marrakech pas cher",
+  1806→          "volume": 50
+  1807→        },
+  1808→        {
+  1809→          "kw": "montgolfière maroc prix",
+  1810→          "volume": 50
+  1811→        },
+  1812→        {
+  1813→          "kw": "montgolfière prix maroc",
+  1814→          "volume": 50
+  1815→        }
+  1816→      ],
+  1817→      "intent": "Commercial",
+  1818→      "metaTitle": "Prix Montgolfière Marrakech 2026 | Tarifs par Personne",
+  1819→      "metaDescription": "Tous les tarifs 2026 des vols en montgolfière à Marrakech et Agadir : classique, privé, VIP, packs. Ce qui est inclus, sans frais cachés.",
+  1820→      "h1": "Prix Montgolfière Marrakech 2026",
+  1821→      "wordCount": {
+  1822→        "min": 1200,
+  1823→        "max": 1500
+  1824→      },
+  1825→      "schema": [
+  1826→        "Product",
+  1827→        "Offer",
+  1828→        "BreadcrumbList"
+  1829→      ],
+  1830→      "linksOut": [
+  1831→        "/fr/",
+  1832→        "/fr/marrakech/vol-montgolfiere-lever-du-soleil/",
+  1833→        "/fr/marrakech/vol-montgolfiere-prive/",
+  1834→        "/fr/marrakech/vol-montgolfiere-vip/",
+  1835→        "/fr/marrakech/montgolfiere-et-balade-a-dromadaire/",
+  1836→        "/fr/montgolfiere-agadir/",
+  1837→        "/fr/cadeau-vol-montgolfiere-marrakech/",
+  1838→        "/fr/faq/",
+  1839→        "/fr/reserver/"
+  1840→      ],
+  1841→      "alternates": {
+  1842→        "en": "/en/hot-air-balloon-marrakech-price/",
+  1843→        "de": "/de/heissluftballon-marrakesch-preis/",
+  1844→        "es": "/es/precio-globo-aerostatico-marrakech/",
+  1845→        "nl": "/nl/luchtballon-marrakech-prijs/"
+  1846→      },
+  1847→      "whatsapp": {
+  1848→        "number": "212XXXXXXXXX",
+  1849→        "message": "Bonjour ! Je souhaite réserver : Prix Montgolfière Marrakech 2026"
+  1850→      }
+  1851→    },
+  1852→    {
+  1853→      "id": "fr-cadeau",
+  1854→      "lang": "fr",
+  1855→      "priority": "P1",
+  1856→      "pageType": "product",
+  1857→      "pageTypeRaw": "Produit (bon cadeau)",
+  1858→      "url": "/fr/cadeau-vol-montgolfiere-marrakech/",
+  1859→      "parent": "fr-home",
+  1860→      "primaryKeyword": "cadeau vol en montgolfière",
+  1861→      "primaryVolume": 500,
+  1862→      "secondaryKeywords": [
+  1863→        {
+  1864→          "kw": "montgolfière cadeau",
+  1865→          "volume": 500
+  1866→        },
+  1867→        {
+  1868→          "kw": "cadeau montgolfière",
+  1869→          "volume": 500
+  1870→        },
+  1871→        {
+  1872→          "kw": "vol montgolfière anniversaire",
+  1873→          "volume": 500
+  1874→        },
+  1875→        {
+  1876→          "kw": "vol en montgolfière pour 2 personnes (5000*)",
+  1877→          "volume": null
+  1878→        },
+  1879→        {
+  1880→          "kw": "vol montgolfière pour 2",
+  1881→          "volume": 500
+  1882→        },
+  1883→        {
+  1884→          "kw": "baptême montgolfière (5000*)",
+  1885→          "volume": null
+  1886→        }
+  1887→      ],
+  1888→      "intent": "Transactionnel",
+  1889→      "metaTitle": "Bon Cadeau Vol en Montgolfière Marrakech | Pour 2 Personnes",
+  1890→      "metaDescription": "Offrez un vol en montgolfière à Marrakech : anniversaire, couple, baptême de l'air. Bon cadeau envoyé par WhatsApp en 5 minutes.",
+  1891→      "h1": "Offrir un Vol en Montgolfière à Marrakech",
+  1892→      "wordCount": {
+  1893→        "min": 1200,
+  1894→        "max": 1500
+  1895→      },
+  1896→      "schema": [
+  1897→        "Product",
+  1898→        "Offer",
+  1899→        "TouristTrip",
+  1900→        "BreadcrumbList",
+  1901→        "FAQPage"
+  1902→      ],
+  1903→      "linksOut": [
+  1904→        "/fr/",
+  1905→        "/fr/marrakech/vol-montgolfiere-prive/",
+  1906→        "/fr/marrakech/vol-montgolfiere-lever-du-soleil/",
+  1907→        "/fr/prix-montgolfiere-marrakech/",
+  1908→        "/fr/reserver/"
+  1909→      ],
+  1910→      "alternates": {},
+  1911→      "whatsapp": {
+  1912→        "number": "212XXXXXXXXX",
+  1913→        "message": "Bonjour ! Je souhaite réserver : Offrir un Vol en Montgolfière à Marrakech"
+  1914→      }
+  1915→    },
+  1916→    {
+  1917→      "id": "fr-avis",
+  1918→      "lang": "fr",
+  1919→      "priority": "P1",
+  1920→      "pageType": "reviews",
+  1921→      "pageTypeRaw": "Confiance",
+  1922→      "url": "/fr/avis/",
+  1923→      "parent": "fr-home",
+  1924→      "primaryKeyword": "montgolfière marrakech avis",
+  1925→      "primaryVolume": 50,
+  1926→      "secondaryKeywords": [
+  1927→        {
+  1928→          "kw": "vol en montgolfière marrakech avis",
+  1929→          "volume": 50
+  1930→        },
+  1931→        {
+  1932→          "kw": "meilleure montgolfière marrakech",
+  1933→          "volume": null
+  1934→        }
+  1935→      ],
+  1936→      "intent": "Commercial",
+  1937→      "metaTitle": "Avis Montgolfière Marrakech | Témoignages Clients Vérifiés",
+  1938→      "metaDescription": "Lisez les avis vérifiés de nos passagers à Marrakech et Agadir : photos, notes et retours honnêtes.",
+  1939→      "h1": "Avis de nos Passagers",
+  1940→      "wordCount": {
+  1941→        "min": 800,
+  1942→        "max": 1200
+  1943→      },
+  1944→      "schema": [
+  1945→        "BreadcrumbList"
+  1946→      ],
+  1947→      "linksOut": [
+  1948→        "/fr/",
+  1949→        "/fr/marrakech/vol-montgolfiere-lever-du-soleil/",
+  1950→        "/fr/montgolfiere-agadir/",
+  1951→        "/fr/reserver/"
+  1952→      ],
+  1953→      "alternates": {
+  1954→        "en": "/en/reviews/"
+  1955→      },
+  1956→      "whatsapp": {
+  1957→        "number": "212XXXXXXXXX",
+  1958→        "message": "Bonjour ! Je souhaite réserver : Avis de nos Passagers"
+  1959→      }
+  1960→    },
+  1961→    {
+  1962→      "id": "fr-faq",
+  1963→      "lang": "fr",
+  1964→      "priority": "P1",
+  1965→      "pageType": "faq",
+  1966→      "pageTypeRaw": "FAQ",
+  1967→      "url": "/fr/faq/",
+  1968→      "parent": "fr-home",
+  1969→      "primaryKeyword": "montgolfière marrakech questions",
+  1970→      "primaryVolume": 10,
+  1971→      "secondaryKeywords": [
+  1972→        {
+  1973→          "kw": "montgolfière enceinte",
+  1974→          "volume": null
+  1975→        },
+  1976→        {
+  1977→          "kw": "montgolfière personne âgée",
+  1978→          "volume": 50
+  1979→        },
+  1980→        {
+  1981→          "kw": "vol en montgolfière enfant",
+  1982→          "volume": null
+  1983→        },
+  1984→        {
+  1985→          "kw": "montgolfière annulation météo",
+  1986→          "volume": null
+  1987→        }
+  1988→      ],
+  1989→      "intent": "Informationnel",
+  1990→      "metaTitle": "FAQ Montgolfière Marrakech | Horaires, Sécurité, Enfants",
+  1991→      "metaDescription": "Heure de prise en charge, âge minimum, grossesse, annulation météo, paiement : toutes les réponses sur votre vol.",
+  1992→      "h1": "Questions Fréquentes – Montgolfière Marrakech",
+  1993→      "wordCount": {
+  1994→        "min": 1500,
+  1995→        "max": 2000
+  1996→      },
+  1997→      "schema": [
+  1998→        "BreadcrumbList",
+  1999→        "FAQPage"
+  2000→      ],
+
+[showing lines 1-2000 of 3201; use offset=2001 with limit to continue reading]

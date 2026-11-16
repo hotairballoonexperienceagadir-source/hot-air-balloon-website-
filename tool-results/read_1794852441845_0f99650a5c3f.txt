@@ -1,0 +1,640 @@
+     1→import type { LangContent } from "@/lib/types";
+     2→
+     3→/**
+     4→ * Contenu franais - pages principales (accueil, produits, ville, pilier, tarifs,
+     5→ * confiance, rservation, lgal). Rdaction native FR, ton chaleureux et expert.
+     6→ * Les liens correspondent exactement la colonne "Internal links OUT" du plan SEO.
+     7→ */
+     8→export const content: LangContent = {
+     9→  /* ============================== FR ACCUEIL ============================== */
+    10→  "fr-home": {
+    11→    intro: [
+    12→      "Regardez Marrakech s'veiller depuis 800 mtres. Nos vols en montgolfire Marrakech dcollent au lever du soleil chaque matin : survol de la palmeraie, du dsert d'Agafay et des contreforts de l'Atlas enneig, avec pilotes marocains certifis, transfert depuis votre htel, petit-djeuner berbère et certificat de vol inclus.",
+    13→      "Depuis notre premier vol, nous avons embarqu plus de 12 000 passagers au-dessus de Marrakech en montgolfire : couples, familles, photographes et demandeurs en mariage. La rservation prend un seul message WhatsApp : choisissez votre matin, nous confirmons la mto, vous payez aprs avoir vol. Pour comparer toutes les options, commencez par notre guide complet de la montgolfire au Maroc ou consultez les prix transparents de tous les vols.",
+    14→    ],
+    15→    blocks: [
+    16→      { t: "h2", text: "Pourquoi le vol en montgolfire au lever du soleil est la meilleure activit Marrakech" },
+    17→      { t: "p", text: "Marrakech se ressent avant de se voir : l'appel  la prire, l'odeur de fleur d'oranger, le tourbillon de la mdina. Vue d'une montgolfire, marrakech devient autre chose : un labyrinthe rose de toits et de minarets, un tapis vert de palmiers, et au loin les collines ocre du Haouz. 7 heures, la lumire sur l'Atlas est la plus douce que vous photographierez jamais." },
+    18→      { t: "p", text: "La montgolfire est aussi la faon la plus douce de voir le Maroc : pas de moteur, pas de route, pas de file d'attente - juste le vent. Votre pilote utilise les courants d'air pour guider la montgolfire marrakech au-dessus de la palmeraie et du plateau dsertique, et pose le ballon en douceur dans un champ o le petit-djeuner et le 4x4 de rcupration vous attendent dj." },
+    19→      { t: "img", key: "hero", alt: "montgolfire marrakech au lever du soleil au-dessus de la palmeraie avec l'Atlas en fond" },
+    20→      { t: "h2", text: "Ce que vous verrez depuis la nacelle" },
+    21→      { t: "ul", items: [
+    22→        "La palmeraie : plus de 100 000 palmiers dattiers  perte de vue, ponctus de jardins et de kasbahs",
+    23→        "Marrakech elle-mme : le minaret de la Koutoubia, les remparts de la mdina, la place Jemaa el-Fnaa au loin",
+    24→        "Le dsert d'Agafay : un dsert de pierre lunaire  40 minutes de la ville, sur les vols qui partent vers le sud",
+    25→        "L'Atlas : le Toubkal (4 167 m) et toute la chane du Haut Atlas, enneige d'octobre  mai",
+    26→        "Les villages berbres qui s'veillent - nes dans les champs, fours  pain qui fumment, enfants qui saluent le ballon",
+    27→      ] },
+    28→      { t: "h2", text: "Des vols pour chaque voyageur" },
+    29→      { t: "p", text: "Le [Vol Classique en montgolfire au lever du soleil](/fr/marrakech/vol-montgolfiere-lever-du-soleil/) est notre vol historique en nacelle partage, au meilleur rapport qualit-prix. Pour les couples et les demandes en mariage, le [Vol Priv en montgolfire](/fr/marrakech/vol-montgolfiere-prive/) vous rserve une nacelle rien que pour vous. Le [Vol VIP Royal](/fr/marrakech/vol-montgolfiere-vip/) ajoute le transfert 4x4, 8 passagers maximum et le toast ptillant en altitude. Les aventuriers choisissent le [Pack Montgolfire + Dromadaire](/fr/marrakech/montgolfiere-et-balade-a-dromadaire/) ou le [Vol au-dessus du dsert d'Agafay](/fr/marrakech/montgolfiere-desert-agafay/). Et si vous logez sur la cte, dcouvrez notre [montgolfire Agadir](/fr/montgolfiere-agadir/) au-dessus de la valle du Souss." },
+    30→      { t: "h2", text: "Scurit, mto, meilleure priode : vos questions" },
+    31→      { t: "p", text: "La scurit d'abord : chaque pilote dtient une licence de l'Aviation Civile marocaine et chaque vol est assur - nous expliquons tout dans [le vol en montgolfire au Maroc est-il sr ?](/fr/guide/montgolfiere-maroc-securite/). Les vols ont lieu toute l'anne, mais [la meilleure priode pour un vol en montgolfire Marrakech](/fr/guide/meilleure-periode-montgolfiere-marrakech/) va d'octobre avril, quand les matins sont frais et stables. Vous hsitez encore ? Lisez [les avis de nos passagers](/fr/avis/) ou parcourez [la FAQ](/fr/faq/). Quand vous voulez : [rservez votre vol en un clic](/fr/reserver/)." },
+    32→    ],
+    33→    gallery: [
+    34→      { key: "hero", alt: "montgolfire marrakech au lever du soleil sur la palmeraie et l'Atlas", caption: "Lever du soleil sur la palmeraie, 6 h 30" },
+    35→      { key: "inflation", alt: "gonflage du ballon avant le vol en montgolfire marrakech", caption: "Le gonflage commence avant l'aube" },
+    36→      { key: "passengers", alt: "passagers souriants dans la nacelle de la montgolfire marrakech", caption: "Une nacelle heureuse, une lumire douce" },
+    37→      { key: "agafay", alt: "montgolfire marrakech au-dessus du dsert d'Agafay", caption: "Traverse du dsert de pierre d'Agafay" },
+    38→      { key: "breakfast", alt: "petit-djeuner berbre aprs le vol en montgolfire marrakech", caption: "Petit-djeuner sous la tente cade" },
+    39→      { key: "certificate", alt: "certificat de vol remis aprs la montgolfire marrakech", caption: "Votre certificat de vol" },
+    40→    ],
+    41→    reviewIdx: [0, 1, 2],
+    42→    faqs: [
+    43→      { q: "Combien cote un vol en montgolfire Marrakech ?", a: "Le vol Classique au lever du soleil commence {{PRICE_CLASSIC}} par adulte, transfert, 1 h de vol, petit-djeuner berbre et certificat inclus. Les vols privs, VIP et packs cotent plus - voir tous les tarifs sur notre [page prix](/fr/prix-montgolfiere-marrakech/)." },
+    44→      { q: " quelle heure dcolle la montgolfire ?", a: "La prise en charge l'htel a lieu entre 4 h 45 et 5 h 15 selon votre hbergement et la saison. Le dcollage a lieu au lever du soleil (entre 6 h 15 et 7 h 30), le vol dure environ une heure, puis petit-djeuner - retour l'htel pour 10 h 30 au plus tard." },
+    45→      { q: "Le vol en montgolfire Marrakech est-il sr ?", a: "Oui. Nos pilotes sont licencis par l'Aviation Civile marocaine, les ballons sont contrls aprs chaque vol et nous ne volons que par vent et visibilit srs. Rponde complte du pilote dans [notre guide scurit](/fr/guide/montgolfiere-maroc-securite/)." },
+    46→      { q: "Les enfants peuvent-ils voler ?", a: " partir de 5 ans, accompagns d'un adulte. Les rebords de la nacelle sont hauts et le vol est calme - les enfants adorent regarder le dsert et les montagnes. Pour des raisons de scurit, les moins de 5 ans ne peuvent pas monter." },
+    47→      { q: "Que se passe-t-il si la mto est mauvaise ?", a: "Nous annulons gratuitement - vous ne payez rien. Une montgolfire ne peut pas voler par vent fort, pluie ou visibilit insuffisante : nous vrifions les prvisions deux fois par jour et confirmons votre vol la veille au soir. Vous replanifiez un autre matin ou rcuprez tout remboursement." },
+    48→      { q: "Veniez-vous chercher notre htel ou riad ?", a: "Oui - le transfert aller-retour est inclus depuis tout htel, riad ou location Marrakech (Mdina, Gueliz, Palmeraie, Agdal), et depuis les htels d'Agadir et Taghazout pour nos vols Agadir." },
+    49→      { q: " quelle altitude volez-vous ?", a: "Entre 200 et 800 mtres selon le jour, en drivant de 5  15 km avec le vent au-dessus de la palmeraie, du plateau ou de la valle du Souss. Le pilote pilote en changeant d'altitude pour attraper les diffrentes couches de vent." },
+    50→      { q: "Peut-on faire une demande en mariage en montgolfire ?", a: "Bien sr - les vols privs sont notre spcialit. Dites-le-nous sur WhatsApp : nous organisons banderole, photographe et toast en altitude. Voyez notre guide [demande en mariage en montgolfire Marrakech](/fr/guide/montgolfiere-maroc-securite/)." },
+    51→      { q: "Comment rserver ?", a: "Un message WhatsApp : envoyez votre date, le nombre d'adultes et d'enfants et le nom de votre htel. Nous confirmons la disponibilit et l'heure de prise en charge la veille. Pas de paiement en ligne - vous payez le jour du vol." },
+    52→      { q: "Un vol en montgolfire Marrakech, a vaut le coup ?", a: "C'est systmatiquement la matin prfre de nos passagers au Maroc - la majorit nous disent que c'tait le moment fort de tout leur voyage. Lisez les [avis vrifis](/fr/avis/) ou comparez le Maroc aux autres destinations dans notre guide [Marrakech vs Cappadoce](/fr/guide/meilleure-periode-montgolfiere-marrakech/)." },
+    53→    ],
+    54→  },
+    55→
+    56→  /* ============================== FR CLASSIQUE ============================== */
+    57→  "fr-classic": {
+    58→    intro: [
+    59→      "Le vol Classique est LE vol en montgolfire marrakech que les voyageurs tombent amoureux : une heure au-dessus de la palmeraie et du plateau dsertique au lever du soleil, en nacelle partage de 8  16 passagers, pilote marocain certifi aux commandes.",
+    60→      "Tout est organis pour vous : transfert htel avant l'aube en vhicule climatis, spectacle du gonflage, atterrissage en douceur, traditionnelle cri du pilote, petit-djeuner berbre sous la tente cade et certificat de vol personnalis. Rservez votre matin au lever du soleil par WhatsApp et payez seulement aprs avoir vol.",
+    61→    ],
+    62→    itinerary: {
+    63→      title: "Votre matin classique, tape par tape",
+    64→      steps: [
+    65→        { time: "04:45 - 05:15", title: "Transfert depuis votre htel", text: "Un minivan climatis moderne vous rcupre votre htel, riad ou location partout Marrakech. Th et caf chauds bord." },
+    66→        { time: "05:45", title: "Arrive au terrain de dcollage", text: "Rencontrez votre pilote et l'quipage, coutez le briefing scurit pendant que l'quipe dploie et gonfle l'enveloppe au brleur." },
+    67→        { time: "06:15", title: "Dcollage aux premires lumires", text: "Montez dans la nacelle, un dernier coup de brleur - et vous quittez le sol tandis que le ciel devient rose sur l'Atlas." },
+    68→        { time: "06:30 - 07:30", title: "Une heure au-dessus de la palmeraie", text: "Flottez entre 200 et 800 mtres : palmeraie, plateau dsertique, villages murs et, par temps clair, toute la chane de l'Atlas enneig." },
+    69→        { time: "07:30", title: "Atterrissage en douceur et toast du pilote", text: "L'quipe suit le ballon en 4x4 et vous attend au champ d'atterrissage pour le toast traditionnel et les photos." },
+    70→        { time: "08:00", title: "Petit-djeuner berbre", text: "Msemen frais, amlou, miel, olives, dattes et th  la menthe volont sous la tente cade - et votre certificat de vol." },
+    71→        { time: "09:30 - 10:30", title: "Retour votre htel", text: "Transfert retour tout en douceur. Toute votre journe Marrakech est encore devant vous." },
+    72→      ],
+    73→    },
+    74→    blocks: [
+    75→      { t: "h2", text: "Pourquoi choisir le vol classique au lever du soleil" },
+    76→      { t: "p", text: "Le vol classique est la premire exprience de montgolfire marrakech idale : assez petit pour rester personnel, au prix des familles et des groupes, et vol sur certains des plus grands ballons du Maroc pour que chacun ait une place au bord. L'itinraire change avec le vent : certains matins vous drivez bas au-dessus des palmiers en regardant les hrons s'envoler, d'autres matins vous montez au-dessus de 600 mtres pour voir tout le Haouz et l'Agafay d'un seul regard." },
+    77→      { t: "p", text: "Parti au lever du soleil, vous tes de retour l'htel avant 10 h 30 avec toute la journe pour la mdina, les souks ou un hammam. C'est l'heure la mieux note de la plupart de nos passagers - lisez ce qu'ils racontent dans [les avis vrifis](/fr/avis/)." },
+    78→      { t: "img", key: "palmgrove", alt: "vol en montgolfire classique marrakech au lever du soleil au-dessus de la palmeraie" },
+    79→      { t: "h2", text: "Ce qui rend le vol au lever du soleil diffrent" },
+    80→      { t: "ul", items: [
+    81→        "La plus belle lumire de la journe pour les photos : ombres longues, montagnes roses, ciel vide",
+    82→        "Air frais et stable le matin : conditions de vol les plus douces et atterrissages les plus calmes",
+    83→        "Vous voyez Marrakech s'veiller : premires charrettes, premire fume des fours  pain",
+    84→        "Une heure complte en l'air - pas 20 minutes, la vraie exprience montgolfire",
+    85→        "Partag avec 16 passagers maximum : chacun a de l'espace au bord",
+    86→      ] },
+    87→      { t: "h2", text: "Le Classique n'est pas votre vol ?" },
+    88→      { t: "p", text: "En couple ou demande en mariage ? Regardez le [Vol Priv en montgolfire](/fr/marrakech/vol-montgolfiere-prive/) : une nacelle rien que pour vous. Pour le traitement royal, le [Vol VIP Royal](/fr/marrakech/vol-montgolfiere-vip/) limite la nacelle 8 passagers avec transfert 4x4. Envie d'aventure ? Ajoutez une balade dromadaire avec le [Pack Montgolfire + Dromadaire](/fr/marrakech/montgolfiere-et-balade-a-dromadaire/), ou survolez le dsert de pierre avec le [Vol au-dessus du dsert d'Agafay](/fr/marrakech/montgolfiere-desert-agafay/)." },
+    89→      { t: "h2", text: "Prix, tenue et scurit" },
+    90→      { t: "p", text: "Le vol Classique cote {{PRICE_CLASSIC}} par adulte et {{PRICE_CLASSIC_CHILD}} par enfant (5-11) - le dtail complet, ce qui fait varier le prix et le mode de paiement sont sur notre [page prix montgolfire Marrakech](/fr/prix-montgolfiere-marrakech/). Avant de voler, parcourez notre liste [comment s'habiller pour un vol en montgolfire](/fr/guide/comment-s-habiller-vol-montgolfiere/) et lisez [le vol en montgolfire au Maroc est-il sr ?](/fr/guide/montgolfiere-maroc-securite/) si quelqu'un dans votre groupe est stress. Rserver prend un message WhatsApp - [rservez votre matin ici](/fr/reserver/)." },
+    91→    ],
+    92→    gallery: [
+    93→      { key: "palmgrove", alt: "vol montgolfire marrakech lever du soleil au-dessus des palmiers" },
+    94→      { key: "inflation", alt: "gonflage avant le vol classique marrakech" },
+    95→      { key: "breakfast", alt: "petit-djeuner berbre aprs le vol classique en montgolfire marrakech" },
+    96→    ],
+    97→    reviewIdx: [0, 5],
+    98→    faqs: [
+    99→      { q: "Combien de temps dure le vol classique ?", a: "Environ 1 heure en l'air - la plupart des oprateurs volent 30  40 minutes, nous volons une heure complte - plus le transfert, le gonflage, le petit-djeuner et le retour. Toute la matine dure environ 5 heures." },
+   100→      { q: " quelle altitude monte le ballon ?", a: "Entre 200 et 800 mtres selon les couches de vent. Votre pilote choisit l'altitude pour les meilleures vues et le vol le plus doux, et pilote en montant et descendant entre les courants." },
+   101→      { q: "La prise en charge depuis un riad de la Mdina est-elle incluse ?", a: "Oui. Le minivan vous rcupre aussi prs de votre riad que le permettent les rues troites - gnralement le point d'accs voiture le plus proche - et vous y ramne pareil. Prise en charge incluse partout Marrakech." },
+   102→      { q: "Peut-on voler si on est enceinte ou mobilit rduite ?", a: "La montgolfire est calme mais demande de rester debout pendant le vol et d'enjamber le rebord de la nacelle (environ 1,20 m). Nous dconseillons de voler pendant la grossesse ou avec une mobilit srement limite. Contactez-nous sur WhatsApp pour un avis honnte." },
+   103→      { q: "Que porter pour le vol au lever du soleil ?", a: "Habillez-vous en couches : il fait froid avant le dcollage (5-10 degrs) et il se rchauffe vite aprs le lever du soleil. Chaussures fermes, casquette, lunettes de soleil. Check-list complte dans [notre guide tenue](/fr/guide/comment-s-habiller-vol-montgolfiere/)." },
+   104→      { q: "Quand ma carte est-elle dbite ?", a: "Jamais avant le vol - il n'y a aucun paiement en ligne. Vous payez en espces ou par carte aprs le vol, au terrain d'atterrissage. Si la mto annule le vol, vous ne payez rien." },
+   105→    ],
+   106→  },
+   107→
+   108→  /* ============================== FR PRIV ============================== */
+   109→  "fr-private": {
+   110→    intro: [
+   111→      "Le vol priv en montgolfire marrakech, c'est la nacelle entire pour vous : pas d'inconnus, pas d'autre horaire que le lever du soleil - juste votre famille ou votre moiti au-dessus de Marrakech, en totale intimit.",
+   112→      "C'est notre vol le plus demand pour les demandes en mariage, anniversaires et lunes de miel. Votre pilote et votre quipe ne volent que pour votre groupe de 2  8 passagers, et sur simple demande nous ajoutons une banderole au dcollage, un photographe dans le vhicule de suivi ou un toast ptillant  500 mtres. Rservez directement sur WhatsApp.",
+   113→    ],
+   114→    itinerary: {
+   115→      title: "Votre matin prive, tape par tape",
+   116→      steps: [
+   117→        { time: "04:45 - 05:15", title: "Transfert priv depuis l'htel", text: "Votre propre minivan et chauffeur rcuprent votre groupe. Tout est coordonn sur WhatsApp la veille." },
+   118→        { time: "05:45", title: "Votre ballon, votre nacelle", text: "Rencontrez votre pilote ddi. L'quipe gonfle votre ballon priv - aidez si vous voulez, ou regardez le caf  la main." },
+   119→        { time: "06:15", title: "Dcollage rien que pour vous", text: "L'enveloppe se dresse, le pilote vous aide bord et vous vous envolez ensemble pendant que le soleil franchit l'Atlas." },
+   120→        { time: "06:30 - 07:30", title: "Une heure, votre bande-son", text: "Une heure d'intimit totale au-dessus de la palmeraie et du dsert : demandez, clbrez, photographiez, ou savourez simplement le silence." },
+   121→        { time: "07:30", title: "Atterrissage, toast, certificats", text: "Pos en douceur, toast traditionnel avec votre groupe, certificats personnaliss pour chaque passager." },
+   122→        { time: "08:00", title: "Petit-djeuner berbre en priv", text: "Petit-djeuner servi pour votre groupe seul - ou choisissez l'option VIP avec table dcore et toast ptillant." },
+   123→        { time: "09:30 - 10:30", title: "Retour votre htel", text: "Transfert priv retour. Si vous avez book un photographe, votre galerie dite arrive sous 48 heures." },
+   124→      ],
+   125→    },
+   126→    blocks: [
+   127→      { t: "h2", text: "Pourquoi les couples et les familles choisissent la nacelle prive" },
+   128→      { t: "p", text: "Un vol partag en montgolfire marrakech est magnifique ; un vol priv est d'un autre niveau. Vous donnez le ton : ptillant au lever du soleil, anniversaire intime, famille de cinq avec Mamie. Votre pilote ne vole que pour vous et l'itinraire s'adapte vos envies : bas au-dessus des palmes pour les photos, ou plus haut pour le panorama complet de l'Atlas." },
+   129→      { t: "p", text: "L'intimit, c'est aussi la flexibilit : avec un peu de pravis nous pouvons dcaler votre dcollage de 15 minutes, prparer une banderole surprise, cacher un photographe dans le 4x4 de suivi ou installer des fleurs dans la nacelle. Environ un vol priv sur cinq est une demande en mariage - nous sommes devenus discrets sur les secrets. Si vous en prparez une, lisez d'abord notre [guide de la demande en mariage en montgolfire](/fr/guide/montgolfiere-maroc-securite/)." },
+   130→      { t: "img", key: "private", alt: "vol en montgolfire priv marrakech - couple seul dans la nacelle au lever du soleil" },
+   131→      { t: "h2", text: "Priv, Classique ou VIP ?" },
+   132→      { t: "ul", items: [
+   133→        "Classique : nacelle partage, meilleur prix, idal pour les voyageurs solo et les petits budgets",
+   134→        "Priv : votre nacelle pour 2  8 passagers, intimit totale, parfait pour les demandes et les familles",
+   135→        "VIP : comme le priv, plus transfert 4x4, 8 passagers maximum et toast ptillant inclus",
+   136→        "Les trois volent la mme heure au lever du soleil au-dessus de la palmeraie et du plateau d'Agafay",
+   137→      ] },
+   138→      { t: "p", text: "Comparez toutes les options et les prix sur notre [page prix montgolfire Marrakech](/fr/prix-montgolfiere-marrakech/), ou voyez comment le [Vol VIP Royal](/fr/marrakech/vol-montgolfiere-vip/) diffre de celui-ci. Prt garder le ciel pour vous ? [Rservez votre vol priv](/fr/reserver/) sur WhatsApp - et si vous voulez savoir qui vous fera voler, lisez [les avis](/fr/avis/) ou rencontrez l'quipe sur [notre page d'accueil](/fr/)." },
+   139→    ],
+   140→    gallery: [
+   141→      { key: "private", alt: "vol en montgolfire priv marrakech couple dans la nacelle" },
+   142→      { key: "proposal", alt: "demande en mariage dans une montgolfire prive au-dessus de Marrakech" },
+   143→      { key: "certificate", alt: "certificat de vol priv aprs l'atterrissage prs de Marrakech" },
+   144→    ],
+   145→    reviewIdx: [2, 4],
+   146→    faqs: [
+   147→      { q: "Combien cote un vol priv en montgolfire Marrakech ?", a: "{{PRICE_PRIVATE}} par personne pour 2 passagers, et le tarif par personne baisse mesure que votre groupe grandit (jusqu' 8). Le prix priv inclut tout ce que le Classique inclut, plus la nacelle exclusive. Liste complte sur notre [page prix](/fr/prix-montgolfiere-marrakech/)." },
+   148→      { q: "Organisez-vous des demandes en mariage ?", a: "Oui - c'est notre spcialit. Dites-nous votre plan sur WhatsApp : banderole avant le dcollage, photographe, bouteille frache en altitude et toast synchronis avec le grand moment." },
+   149→      { q: "Le ballon priv est-il vraiment priv ?", a: "Oui. La nacelle, le pilote et l'quipage sont rservs votre groupe uniquement. Personne d'autre ne monte, et le vhicule de suivi ne transporte que votre quipe." },
+   150→      { q: "Combien de personnes dans une nacelle prive ?", a: "De 2  8 passagers. Pour les groupes plus grands, nous faisons voler deux ballons cte cte - demandez-nous sur WhatsApp pour un dcollage en tandem." },
+   151→      { q: "Peut-on choisir o voler ?", a: "Les ballons drivent avec le vent - le pilote choisit entre les couches de vent, pas une destination GPS. Dites votre pilote ce que vous rvez de voir (palmeraie, dsert, villages) et il trouvera le courant qui vous y emmne." },
+   152→      { q: "Et si nous voulons le toast ptillant ?", a: "Le toast ptillant (sans alcool sur demande) en altitude est inclus dans le [Vol VIP](/fr/marrakech/vol-montgolfiere-vip/) et disponible en option sur les vols privs - mentionnez-le la rservation." },
+   153→    ],
+   154→  },
+   155→
+   156→  /* ============================== FR VIP ============================== */
+   157→  "fr-vip": {
+   158→    intro: [
+   159→      "Le vol VIP Royal en montgolfire marrakech est la version royale du lever du soleil : 8 passagers maximum dans la nacelle, transfert 4x4 au lieu du minivan, toast ptillant en altitude et petit-djeuner berbre gourmet aprs l'atterrissage.",
+   160→      "Vous tes collect avant l'aube, voler pendant une heure complte par l'un de nos pilotes les plus expriments, trinqu  500 mtres et petit-djevez une table digne d'un riad. C'est le vol choisi pour les anniversaires marquants, les lunes de miel et les voyages une fois dans une vie Marrakech en montgolfire.",
+   161→    ],
+   162→    itinerary: {
+   163→      title: "Votre matin VIP, tape par tape",
+   164→      steps: [
+   165→        { time: "04:45 - 05:15", title: "Prise en charge 4x4 votre porte", text: "Un 4x4 moderne vous collecte partout Marrakech - trajet plus doux et plus confortable dans le noir." },
+   166→        { time: "05:45", title: "Gonflage en petit groupe", text: "Rencontrez votre pilote snior ct du ballon. Huit passagers maximum : de l'espace, du calme et toutes vos rponses." },
+   167→        { time: "06:15", title: "Dcollage royal", text: "Vous vous envolez au moment o les premires lumires dorent l'Atlas - le moment que nos pilotes prfrent." },
+   168→        { time: "06:30 - 07:30", title: "Une heure + toast ptillant", text: "Une heure au-dessus de la palmeraie et du plateau, avec le toast ptillant servi en altitude par votre quipe." },
+   169→        { time: "07:30", title: "Crmonie d'atterrissage", text: "Pos tout en douceur, la cri traditionnelle du pilote, certificats signs par votre pilote et photos avec l'quipage." },
+   170→        { time: "08:00", title: "Petit-djeuner berbre gourmet", text: "Table dcore sous la tente cade : msemen frais, amlou et miel, dattes, ufs, jus frais, th  la menthe volont." },
+   171→        { time: "09:30 - 10:30", title: "Retour en 4x4", text: "Retour votre htel avant l'agitation de la ville - avec les meilleures photos de votre voyage dj sur votre tlphone." },
+   172→      ],
+   173→    },
+   174→    blocks: [
+   175→      { t: "h2", text: "Ce qui rend le vol VIP royal" },
+   176→      { t: "p", text: "Trois choses distinguent le vol VIP : la nacelle est limite 8 passagers pour que chacun ait son coin au bord ; le toast ptillant (sans alcool sur demande) est servi en altitude - une tradition emprunte aux grandes maisons franaises de montgolfire ; et le petit-djeuner est servi une table dcore plutt qu'en buffet, avec plus de choix et des jus frais." },
+   177→      { t: "p", text: "Vous volez aussi avec un pilote snior - le collgue que nos passagers demandent par son prnom - et le transfert 4x4 rend le trajet de 5 h plus doux et le retour plus rapide. C'est notre vol le plus proche de l'exprience montgolfire royale marrakech, sans le prix royal d'une nacelle entire." },
+   178→      { t: "img", key: "vip", alt: "montgolfire marrakech VIP - toast ptillant dans la nacelle au lever du soleil" },
+   179→      { t: "h2", text: "Qui choisit le vol VIP ?" },
+   180→      { t: "ul", items: [
+   181→        "Les couples qui veulent le toast et le petit groupe sans payer une nacelle entirement prive",
+   182→        "Les familles qui clbrent un anniversaire Marrakech",
+   183→        "Les photographes qui ont besoin d'espace pour circuler dans la nacelle",
+   184→        "Ceux qui veulent simplement la version la plus confortable du vol au lever du soleil",
+   185→      ] },
+   186→      { t: "p", text: "Si vous prfrez une nacelle pour vous seuls, comparez avec le [Vol Priv en montgolfire](/fr/marrakech/vol-montgolfiere-prive/) ; pour l'exprience partage classique au meilleur prix, le [Vol Classique](/fr/marrakech/vol-montgolfiere-lever-du-soleil/) est celui-l. Les prix de tous les vols, y compris l'option dsert d'Agafay, sont sur notre [page prix](/fr/prix-montgolfiere-marrakech/) - et vous rservez la matin VIP en un message [ici](/fr/reserver/). Curieux de savoir qui vole pour vous ? Rencontrez-nous travers [nos avis](/fr/avis/) et [l'accueil](/fr/)." },
+   187→    ],
+   188→    gallery: [
+   189→      { key: "vip", alt: "vol montgolfire VIP marrakech toast ptillant en altitude" },
+   190→      { key: "passengers", alt: "petit groupe VIP dans la nacelle au-dessus de Marrakech" },
+   191→      { key: "breakfast", alt: "petit-djeuner berbre gourmet aprs le vol VIP marrakech" },
+   192→    ],
+   193→    reviewIdx: [1, 3],
+   194→    faqs: [
+   195→      { q: "Combien cote le vol VIP en montgolfire ?", a: "{{PRICE_VIP}} par personne, 8 passagers maximum. Inclus : transfert 4x4, vol d'une heure, toast ptillant en altitude, petit-djeuner gourmet et certificat de vol. Toutes les options sur la [page prix](/fr/prix-montgolfiere-marrakech/)." },
+   196→      { q: "Le toast est-il alcoolis ?", a: "Nous servons un toast ptillant, et nous proposons une excellente alternative ptillante sans alcool sur demande - dites-le simplement la rservation. Les deux sont servis en altitude." },
+   197→      { q: "Combien de passagers dans la nacelle VIP ?", a: "Huit au maximum, souvent cinq ou sept en pratique. C'est tout l'intrt : de l'espace au bord, pas de coudes, et un pilote qui a le temps de rpondre toutes vos questions." },
+   198→      { q: "Les enfants peuvent-ils venir ?", a: "Oui, ds 5 ans. Les familles rservent souvent les 8 places - demandez le tarif semi-priv sur WhatsApp quand vous prenez toutes les places." },
+   199→      { q: "Quelle diffrence avec le vol priv ?", a: "Le vol priv rserve la nacelle entire pour votre groupe seul, ds 2 passagers. Le vol VIP est une petite nacelle partage (8 max) avec les extras royaux inclus. Comparez sur notre [page prix](/fr/prix-montgolfiere-marrakech/)." },
+   200→      { q: "Le vol VIP passe-t-il au-dessus de l'Agafay ?", a: "La matin VIP dcolle du mme terrain que le Classique - l'itinraire suit le vent et franchit souvent la limite du plateau d'Agafay. Pour un vol dsert ddie, voyez la [montgolfire dsert d'Agafay](/fr/marrakech/montgolfiere-desert-agafay/)." },
+   201→    ],
+   202→  },
+   203→
+   204→  /* ============================== FR DROMADAIRE ============================== */
+   205→  "fr-camel": {
+   206→    intro: [
+   207→      "Deux grandes expriences marocaines en une seule matine : le pack montgolfire et dromadaire marrakech vous lve au-dessus de la palmeraie au lever du soleil, puis vous met en selle pour une balade douce dans la mme Palmeraie.",
+   208→      "Vous volez d'abord, petit-djevez ensuite, et montez en dernier - retour l'htel pour 11 h 30 avec une matine marocaine complte derrire vous. C'est la meilleure valeur pour les familles et les premires visites, et tout se rserve en un message WhatsApp.",
+   209→    ],
+   210→    itinerary: {
+   211→      title: "Votre matine ballon + dromadaire, tape par tape",
+   212→      steps: [
+   213→        { time: "04:45 - 05:15", title: "Transfert depuis l'htel", text: "Minivan climatis depuis votre htel ou riad partout Marrakech." },
+   214→        { time: "05:45", title: "Gonflage et briefing", text: "Rencontrez l'quipage et votre pilote au terrain pendant que le ballon prend vie." },
+   215→        { time: "06:15 - 07:30", title: "Une heure de vol au lever du soleil", text: "L'exprience montgolfire complte : palmeraie, plateau dsertique, villages et panorama de l'Atlas." },
+   216→        { time: "07:30", title: "Atterrissage, toast, certificat", text: "Toast traditionnel du pilote, certificat de vol personnalis et photos avec l'quipage." },
+   217→        { time: "08:00 - 08:45", title: "Petit-djeuner berbre", text: "Msemen, amlou, olives, dattes et th  la menthe sous la tente cade." },
+   218→        { time: "09:00 - 09:45", title: "Balade dromadaire dans la Palmeraie", text: "45 minutes sur des dromadaires bien soigns travers la palmeraie, guides par un chamelier expriment. Couvertures et casques fournis." },
+   219→        { time: "10:00 - 11:30", title: "Retour votre htel", text: "Transfert retour avec deux aventures, des dizaines de photos et une matine lgendaire." },
+   220→      ],
+   221→    },
+   222→    blocks: [
+   223→      { t: "h2", text: "Pourquoi le pack ballon + dromadaire fonctionne si bien" },
+   224→      { t: "p", text: "La balade dromadaire a lieu juste aprs le petit-djeuner, sur le mme domaine que l'atterrissage du ballon : aucun trajet supplmentaire, aucune seconde prise en charge. Pendant que la montgolfire vous montre la palmeraie d'en haut, le dromadaire vous montre les mmes sentiers hauteur de dromadaire : pistes de sable, jardins murs, odeur de menthe et de fume de bois." },
+   225→      { t: "p", text: "Le pack cotte moins cher que de rserver le [Vol Classique](/fr/marrakech/vol-montgolfiere-lever-du-soleil/) et une balade dromadaire spare, et vous fait gagner une demi-journe de logistique. Les enfants ds 5 ans peuvent faire les deux activits." },
+   226→      { t: "img", key: "camel", alt: "montgolfire et balade dromadaire marrakech - caravane dans la palmeraie sous le ballon" },
+   227→      { t: "h2", text: "La balade dromadaire est-thique ?" },
+   228→      { t: "ul", items: [
+   229→        "Des dromadaires en bonne sant, bien nourris et reposs entre les balades - nombre de sorties limit par animal et par jour",
+   230→        "Selles rembourres et couvertures, jamais monts en pleine chaleur",
+   231→        "Balade au pas dans la palmeraie - pas de circuit press de carrousel touristique",
+   232→        "Vous pouvez renoncer la balade et garder la diffrence de prix du vol seul - dites-le nous la rservation",
+   233→      ] },
+   234→      { t: "p", text: "Si vous prfrez survoler le dsert de pierre plutt que la palmeraie, regardez le [Vol au-dessus du dsert d'Agafay](/fr/marrakech/montgolfiere-desert-agafay/) - et pour tous les tarifs y compris le pack, voyez notre [page prix montgolfire Marrakech](/fr/prix-montgolfiere-marrakech/). Rservez toute la matine en un message [ici](/fr/reserver/)." },
+   235→    ],
+   236→    gallery: [
+   237→      { key: "camel", alt: "balade dromadaire dans la palmeraie de Marrakech aprs le vol en montgolfire" },
+   238→      { key: "palmgrove", alt: "montgolfire au-dessus de la palmeraie - pack montgolfire et dromadaire marrakech" },
+   239→      { key: "breakfast", alt: "petit-djeuner berbre entre le vol et la balade dromadaire Marrakech" },
+   240→    ],
+   241→    reviewIdx: [5, 0],
+   242→    faqs: [
+   243→      { q: "Combien cote le pack montgolfire et dromadaire ?", a: "{{PRICE_CAMEL}} par adulte - moins cher que les deux activits spares. Inclus : transfert, vol d'une heure, petit-djeuner, balade de 45 minutes et retour." },
+   244→      { q: "La balade est-elle sre pour les enfants ?", a: "Oui, ds 5 ans. Les enfants montent avec un parent ou le chamelier au pas, avec selles rembourres et couvertures. Casques disponibles sur demande." },
+   245→      { q: "Peut-on faire seulement le ballon ?", a: "Bien sr - dites-le nous sur WhatsApp et nous adaptons votre rservation au vol classique. Le pack est simplement plus conomique quand vous voulez les deux." },
+   246→      { q: "Que porter pour la balade ?", a: "Un pantalon long est plus confortable qu'un short, avec des chaussures fermes. Le dromadaire se lve en deux grands mouvements : tenez la poigne de selle et penchez-vous en arrire quand il se dresse ; votre chamelier vous guide." },
+   247→      { q: "Combien de temps dure toute la matine ?", a: "Prise en charge 5 h, retour l'htel vers 11 h 30 - environ 6 h 30 au total, les deux activits et le petit-djeuner compris." },
+   248→    ],
+   249→  },
+   250→
+   251→  /* ============================== FR AGAFAY ============================== */
+   252→  "fr-agafay": {
+   253→    intro: [
+   254→      "Quarante minutes au sud de Marrakech, la terre devient pierre : le dsert d'Agafay, un plateau lunaire de collines ocre avec l'Atlas qui se dresse derrire. Le vol en montgolfire dsert d'Agafay vous emmne au-dessus de ce paysage irrel au lever du soleil - pas de dunes, pas de routes, juste le silence et l'espace.",
+   255→      "C'est notre itinraire le plus cinmatographique, le plus proche d'une matin montgolfire sahara marrakech sans expdition de deux jours. Mme formule complte que le Classique : transfert, une heure en l'air, petit-djeuner berbre, certificat de vol - rservation sur WhatsApp.",
+   256→    ],
+   257→    itinerary: {
+   258→      title: "Votre matin Agafay, tape par tape",
+   259→      steps: [
+   260→        { time: "04:45 - 05:15", title: "Transfert depuis l'htel", text: "Minivan depuis votre htel, riad ou location partout Marrakech." },
+   261→        { time: "05:45", title: "Terrain de dcollage au bord de l'Agafay", text: "Rencontrez l'quipe au sud de la ville, o la plaine rencontre le dsert de pierre." },
+   262→        { time: "06:15 - 07:30", title: "Une heure au-dessus de l'Agafay", text: "Drivez au-dessus des collines ocre, des oueds secs et des tentes blanches des camps, avec l'Atlas enneig en toile de fond." },
+   263→        { time: "07:30", title: "Atterrissage dans le dsert", text: "Pose sur le plateau - l'quipe de rcupration, le toast et votre certificat vous attendent dj." },
+   264→        { time: "08:00", title: "Petit-djeuner dans un camp du dsert", text: "Le petit-djeuner est servi sous une tente cade sur l'Agafay mme : msemen, amlou, dattes, th  la menthe - souvent avec des dromadaires qui broutent tout prs." },
+   265→        { time: "09:30 - 10:30", title: "Retour votre htel", text: "Transfert retour. En option : balade dromadaire ou quad avant de rentrer." },
+   266→      ],
+   267→    },
+   268→    blocks: [
+   269→      { t: "h2", text: "Pourquoi voler au-dessus du dsert d'Agafay" },
+   270→      { t: "p", text: "L'Agafay est le rve des photographes : collines sculptes, ombres dures l'aube, et le contraste improbable de montagnes enneiges derrire un dsert de pierre. Le plateau tant vide, le silence 500 mtres est absolu : vous entendez le brleur, le vent, et rien d'autre." },
+   271→      { t: "p", text: "Le vol dcolle d'un terrain ddi au bord du dsert : le dcollage se fait au-dessus de l'Agafay mme plutt qu'au-dessus de la palmeraie. Si vous ne pouvez pas choisir entre dsert et palmes, sachez que la plupart des matins Classiques franchissent aussi la limite de l'Agafay - le [vol Agafay](/fr/marrakech/montgolfiere-desert-agafay/) ddi le garantit simplement. Comparez aussi tous nos itinraires dans le guide complet [vol en montgolfire au Maroc](/fr/montgolfiere-maroc/)." },
+   272→      { t: "img", key: "agafay", alt: "montgolfire dsert agafay marrakech - ballon au-dessus du dsert de pierre au lever du soleil" },
+   273→      { t: "h2", text: "Faites-en une matine dsert complte" },
+   274→      { t: "ul", items: [
+   275→        "Ajoutez une balade dromadaire sur le plateau aprs le petit-djeuner (45 minutes)",
+   276→        "Ajoutez un circuit quad dans les pistes de l'Agafay (1 heure)",
+   277→        "Rservez la version VIP du vol dsert avec petite nacelle et toast ptillant",
+   278→        "Restez djeuner dans un camp du dsert - demandez-nous sur WhatsApp, on organise tout",
+   279→      ] },
+   280→      { t: "p", text: "Prix : le vol Agafay est {{PRICE_AGAFAY}} par adulte - la comparaison complte avec toutes les options est sur notre [page prix](/fr/prix-montgolfiere-marrakech/). Si vous prfrez voler au-dessus des palmes, le [Vol Classique au lever du soleil](/fr/marrakech/vol-montgolfiere-lever-du-soleil/) est l'original ; pour le traitement royal, le [Vol VIP](/fr/marrakech/vol-montgolfiere-vip/) peut aussi tre vol en petite nacelle. Prt ? [Rservez votre matin dsert](/fr/reserver/)." },
+   281→    ],
+   282→    gallery: [
+   283→      { key: "agafay", alt: "montgolfire dsert d'agafay au lever du soleil" },
+   284→      { key: "certificate", alt: "atterrissage dans le dsert d'agafay aprs le vol en montgolfire" },
+   285→      { key: "breakfast", alt: "petit-djeuner berbre dans un camp du dsert aprs le vol agafay" },
+   286→    ],
+   287→    reviewIdx: [3, 1],
+   288→    faqs: [
+   289→      { q: "L'Agafay est-il un vrai dsert ?", a: "C'est un dsert de pierre - collines arides et lunaires plutt que dunes de sable. Pour les dunes, il faut le Sahara (Merzouga ou Erg Chigaga), une journe complte de route. L'Agafay donne la sensation du dsert  40 minutes de Marrakech, et vu du ciel, difficile de faire la diffrence." },
+   290→      { q: "Combien cote le vol en montgolfire au dsert d'Agafay ?", a: "{{PRICE_AGAFAY}} par adulte, transfert, vol d'une heure au-dessus du dsert, petit-djeuner dans un camp du dsert et certificat inclus. Tous les prix sur notre [page prix](/fr/prix-montgolfiere-marrakech/)." },
+   291→      { q: "Le vol dsert est-il diffrent du Classique ?", a: "Oui - le terrain de dcollage est au bord de l'Agafay : vous volez au-dessus du dsert toute l'heure et prenez le petit-djeuner dans un camp du dsert. Le vol Classique survole la palmeraie et ne rejoint parfois que la limite du dsert." },
+   292→      { q: "Peut-on ajouter dromadaire ou quad ?", a: "Oui, les deux sont disponibles sur le plateau aprs le petit-djeuner. Demandez sur WhatsApp la rservation et nous organisons la matine autour." },
+   293→      { q: "Fait-il plus froid au-dessus du dsert ?", a: "Les matins du dsert sont froids avant le lever du soleil et se rchauffent vite aprs - comme partout autour de Marrakech. Apportez les couches de notre [guide tenue](/fr/guide/comment-s-habiller-vol-montgolfiere/) et vous serez l'aise." },
+   294→    ],
+   295→  },
+   296→
+   297→  /* ============================== FR AGADIR (ville) ============================== */
+   298→  "fr-agadir": {
+   299→    intro: [
+   300→      "Oubliez les quatre heures de route jusqu' Marrakech : la montgolfire Agadir vole au lever du soleil au-dessus de la valle du Souss, une mosaque verte d'arganiers, d'agrumes et de petits villages, avec l'Atlantique qui brille l'horizon.",
+   301→      "Nous venons vous chercher dans tout htel d'Agadir ou Taghazout avant l'aube, vous faisons voler une heure complte avec un pilote marocain certifi, atterrissons en douceur dans la valle et terminons par un petit-djeuner berbre et votre certificat de vol. Un vol montgolfire agadir maroc qui se termine avant que votre journe de plage ne commence.",
+   302→    ],
+   303→    blocks: [
+   304→      { t: "h2", text: "Ce que vous verrez au-dessus de la valle du Souss" },
+   305→      { t: "p", text: "Le Souss est le verger du Maroc. Depuis la nacelle, vous drivez au-dessus des arganiers - ces arbres tordus o montent les chvres et qui produisent l'huile d'argan - des agrumes, des champs de bl et des maisons blanchies  la chaux. Par temps clair, l'ocan Atlantique luit l'ouest et l'Anti-Atlas borde l'horizon sud. C'est un vol plus vert et plus doux que les itinraires de dsert autour de Marrakech, et la lumire sur l'eau  7 heures est inoubliable." },
+   306→      { t: "p", text: "Comme partout au Maroc, la montgolfire ici est calme : pas de moteur, pas de vent dans le visage - juste le souffle occasionnel du brleur et votre pilote qui pointe les villages, la grande mosque d'Agadir et le spot de surf de Taghazout au loin." },
+   307→      { t: "img", key: "agadir", alt: "montgolfire agadir - ballon au-dessus de la valle du Souss et des arganiers au lever du soleil" },
+   308→      { t: "h2", text: "Comment se passe votre matin montgolfire Agadir" },
+   309→      { t: "ul", items: [
+   310→        "5 h 15 - prise en charge l'htel Agadir, Taghazout ou Tamraght (incluse, minivan climatis)",
+   311→        "6 h 00 - gonflage et briefing scurit au terrain de dcollage dans la valle du Souss",
+   312→        "6 h 30 - dcollage au lever du soleil, une heure complte en l'air entre 200 et 800 mtres",
+   313→        "7 h 30 - atterrissage en douceur, toast traditionnel du pilote, certificat de vol personnalis",
+   314→        "8 h 00 - petit-djeuner berbre : msemen, amlou, olives, dattes et th  la menthe",
+   315→        "10 h 00 - retour l'htel,  temps pour le petit-djeuner au bord de la piscine ou la premire session de surf",
+   316→      ] },
+   317→      { t: "h2", text: "Agadir ou Marrakech : quel vol choisir ?" },
+   318→      { t: "p", text: "Les deux vols sont au mme prix, la mme heure en l'air et la mme formule complte - seule la paysage change. Marrakech offre les palmes, le plateau dsertique et les grandes montagnes ; Agadir offre la valle verte du Souss et l'ocan. Si votre voyage inclut les deux villes, volez deux fois - nos passagers nous disent souvent que les deux vols ont fait comme deux pays diffrents. Notre guide complet de [la montgolfire au Maroc](/fr/montgolfiere-maroc/) compare tous les lieux de vol, et tous les prix sont sur notre [page prix](/fr/prix-montgolfiere-marrakech/)." },
+   319→      { t: "h2", text: "Scurit, mto et rservation de votre vol Agadir" },
+   320→      { t: "p", text: "Votre pilote est licenci par l'Aviation Civile marocaine et le ballon est assur en responsabilit civile passagers complte - nous rpondons chaque question de scurit dans notre guide [le vol en montgolfire au Maroc est-il sr ?](/fr/guide/montgolfiere-maroc-securite/). Les vols ont lieu toute l'anne avec les conditions les plus fiables d'octobre avril ; si le vent ne suit pas, nous annulons gratuitement. Les questions courantes (horaires, enfants, grossesse) sont dans [la FAQ](/fr/faq/), les vraies matines dans [nos avis](/fr/avis/), et la rservation prend un message WhatsApp sur [la page rservation](/fr/reserver/)." },
+   321→    ],
+   322→    gallery: [
+   323→      { key: "agadir", alt: "montgolfire agadir au-dessus de la valle du Souss au lever du soleil" },
+   324→      { key: "inflation", alt: "gonflage avant le vol en montgolfire agadir" },
+   325→      { key: "passengers", alt: "passagers dans la nacelle au-dessus de la valle du Souss prs d'Agadir" },
+   326→      { key: "breakfast", alt: "petit-djeuner berbre aprs le vol en montgolfire agadir" },
+   327→    ],
+   328→    reviewIdx: [4, 0, 3],
+   329→    faqs: [
+   330→      { q: "Combien cote une montgolfire Agadir ?", a: "{{PRICE_AGADIR}} par adulte et {{PRICE_AGADIR_CHILD}} par enfant (5-11) - le mme prix que Marrakech, avec prise en charge Agadir ou Taghazout, vol d'une heure, petit-djeuner berbre et certificat inclus." },
+   331→      { q: "Veniez-vous chercher Taghazout et Tamraght ?", a: "Oui, le transfert aller-retour est inclus depuis Agadir ville, Taghazout et Tamraght (htels et camps de surf). Nous confirmons votre heure exacte de prise en charge par WhatsApp la veille." },
+   332→      { q: "O dcolle le ballon ?", a: "Dans la valle du Souss, environ 25 minutes dans les terres depuis Agadir - loin des couloirs ariens de l'aroport, avec des champs ouverts pour un atterrissage sr." },
+   333→      { q: "Peut-on voler Agadir et Marrakech au mme voyage ?", a: "Oui, et beaucoup de nos passagers le font. Rservez les deux sur WhatsApp avec vos dates et nous les programmerons des matines diffrentes - les paysages sont compltement diffrents." },
+   334→      { q: "Que se passe-t-il si la mto annule mon vol Agadir ?", a: "Vous ne payez rien. Le brouillard ctier est le coupable habituel ; nous vrifions les prvisions deux fois par jour, confirmons la veille, et vous pouvez replanifier un autre matin de votre sjour ou annuler gratuitement." },
+   335→      { q: "Est-il sr de voler prs de l'ocan ?", a: "Nous dcollons  25 km dans les terres : le vol se fait entirement au-dessus des terres agricoles du Souss - l'ocan est une vue, jamais un danger. Les rgles de scurit sont les mmes qu' Marrakech : pilotes licencis, vols assurs, limites de vent strictes." },
+   336→      { q: " combien de temps  l'avance rserver ?", a: "Les vols Agadir sont moins demands que Marrakech : 2  3 jours suffisent, mais les week-ends de saison (avril, octobre) se remplissent plus vite. Envoyez vos dates sur WhatsApp, nous confirmons en quelques minutes." },
+   337→    ],
+   338→  },
+   339→
+   340→  /* ============================== FR MAROC (pilier) ============================== */
+   341→  "fr-maroc": {
+   342→    intro: [
+   343→      "Le Maroc est l'un des meilleurs pays du monde pour voler en montgolfire : mto matinale fiable, paysages spectaculaires moins d'une heure des grandes villes, et des prix bien infrieurs ceux de l'Europe. Ce guide complet couvre tout sur la montgolfire au Maroc : o voler, combien a cote, quand partir et comment choisir un oprateur.",
+   344→      "Nous sommes Hot Air Balloon Experience Agadir, un oprateur marocain licenci qui vole au lever du soleil au-dessus de Marrakech, du dsert d'Agafay et d'Agadir. Tout ce qui suit est crit par nos pilotes - sans langue de bois, juste ce qu'il faut pour organiser votre matine montgolfire maroc parfaite.",
+   345→    ],
+   346→    blocks: [
+   347→      { t: "h2", text: "O peut-on voler en montgolfire au Maroc ?" },
+   348→      { t: "h3", text: "Marrakech - le classique (et le plus demand)" },
+   349→      { t: "p", text: "Marrakech est la capitale marocaine de la montgolfire : le [Vol Classique au lever du soleil au-dessus de la palmeraie](/fr/marrakech/vol-montgolfiere-lever-du-soleil/) est l'exprience montgolfire la plus rserve du pays, avec des dcollages chaque matin de l'anne. Vous survolez la Palmeraie, le Haouz et souvent la limite de l'Agafay, avec l'Atlas en toile de fond permanente. Marrakech offre aussi le plus grand choix : nacelles prives, [vols VIP](/fr/marrakech/vol-montgolfiere-lever-du-soleil/) avec toast ptillant, et packs ballon + dromadaire." },
+   350→      { t: "h3", text: "Le dsert d'Agafay - le paysage lunaire du Maroc" },
+   351→      { t: "p", text: "Quarante minutes de Marrakech, le dsert de pierre d'Agafay ressemble une autre plante : collines ocre, oueds secs, camps avec tentes blanches. Le [Vol au-dessus du dsert d'Agafay](/fr/marrakech/montgolfiere-desert-agafay/) part du bord du dsert, survole le plateau une heure complte et prend le petit-djeuner dans un camp. C'est la matine la plus cinmatographique sans route vers le Sahara." },
+   352→      { t: "h3", text: "Agadir - la valle verte et l'ocan" },
+   353→      { t: "p", text: "La [montgolfire Agadir](/fr/montgolfiere-agadir/) vole au-dessus de la valle du Souss : arganiers, agrumes et villages, avec l'Atlantique l'horizon. C'est le meilleur choix si vous logez sur la cte (Taghazout, Tamraght, Agadir) : pas de route de 4 heures vers Marrakech, transfert inclus, et un paysage compltement diffrent des itinraires de dsert." },
+   354→      { t: "h3", text: "Ouarzazate et le Sahara - et Merzouga ?" },
+   355→      { t: "p", text: "Vous trouverez parfois des montgolfires autour d'Ouarzazate et de la valle du Dades, et vous lirez peut-tre parler de vols au-dessus des dunes de Merzouga. En pratique il n'existe pas d'opration quotidienne licenci et permanente l-bas : les vols y sont saisonniers ou ponctuels. Si voir les dunes de l'Erg Chebbi depuis le ciel vous tient  cur, demandez-nous : nous organisons parfois des vols privs, ou nous vous dirons honntement de garder les dunes pour un 4x4 et de voler l o les conditions sont prouves." },
+   356→      { t: "img", key: "atlasAerial", alt: "montgolfire maroc - vue arienne du Haut Atlas au lever du soleil" },
+   357→      { t: "h2", text: "Quelle est la meilleure priode pour voler au Maroc ?" },
+   358→      { t: "p", text: "Les ballons volent toute l'anne au Maroc, mais les matins ne se valent pas. D'octobre avril c'est la haute saison : air frais et stable, lumire douce, Atlas enneig. L't est parfaitement volable si vous dcollez l'aube : ds 9 heures le sol chauffe et les thermiques rendent les atterrissages plus muscls. Les matins d'hiver peuvent tre frais (5-10 degrs avant le lever du soleil) mais offrent la visibilit la plus claire de l'anne. Pour le dtail mois par mois, lisez notre guide [quand faire un vol en montgolfire Marrakech](/fr/guide/meilleure-periode-montgolfiere-marrakech/)." },
+   359→      { t: "h2", text: "Combien cote un vol en montgolfire au Maroc ?" },
+   360→      { t: "p", text: "Le Maroc est l'une des destinations de montgolfire les plus accessibles au monde. Un vol partag au lever du soleil commence autour de {{PRICE_CLASSIC}} par personne (environ 140 euros), transfert, une heure en l'air, petit-djeuner et certificat inclus. Les nacelles prives commencent {{PRICE_PRIVATE}}, les vols VIP petit groupe {{PRICE_VIP}}. Pour comparer : la Cappadoce facture 180  250 euros pour 60  90 minutes, et les oprateurs europens dpassent souvent 250 euros pour un vol plus court. Les tableaux de prix complets de chaque type de vol sont sur notre [page prix montgolfire Marrakech](/fr/prix-montgolfiere-marrakech/), et nous comparons le Maroc au reste du monde dans [combien cote un vol en montgolfire ?](/fr/guide/prix-vol-en-montgolfiere/)." },
+   361→      { t: "h2", text: "Est-il sr de voler en montgolfire au Maroc ?" },
+   362→      { t: "p", text: "Oui - avec un oprateur licenci. Les pilotes commerciaux marocains sont certifis par la Direction Gnrale de l'Aviation Civile, les ballons subissent des contrles documents, et les oprateurs srieux ne dcollent qu'avec vent et visibilit srs. Les accidents dont vous avez peut-tre lu impliquaient des oprateurs qui bradaient la scurit ; choisir une socit qui publie ses licences, son assurance et les noms de ses pilotes limine presque tout le risque. Nous avons crit la rponse complte, y compris ce vrifier avant de rserver, dans [le vol en montgolfire au Maroc est-il sr ?](/fr/guide/montgolfiere-maroc-securite/)." },
+   363→      { t: "h2", text: "Comment choisir votre oprateur de montgolfire" },
+   364→      { t: "ul", items: [
+   365→        "Pilotes licencis : demandez le nom du pilote et son autorit de licence - nous publions les ntres sur chaque page de vol",
+   366→        "Vrai temps de vol : une heure en l'air, pas 20 minutes - vrifiez toujours la dure",
+   367→        "Assurance : responsabilit civile passagers complte, aux mmes normes qu'en Europe",
+   368→        "Taille du groupe : 16 maximum en nacelle partage ; mfiez-vous des nacelles de 24 places",
+   369→        "Prix transparents : pas d'acompte exig par tlphone, paiement aprs le vol",
+   370→        "Discipline mto : un oprateur qui annule pour du vent est un oprateur digne de confiance",
+   371→      ] },
+   372→      { t: "h2", text: " concidence ressemble une matine de vol" },
+   373→      { t: "p", text: "Prise en charge l'htel entre 4 h 45 et 5 h 15, spectacle du gonflage au terrain, dcollage au lever du soleil, une heure complte entre 200 et 800 mtres, atterrissage en douceur, toast du pilote, petit-djeuner berbre sous la tente cade et certificat de vol - retour l'htel pour 10 h 30. C'est la matine standard ; voyez-la tape par tape sur la page du [Vol Classique Marrakech](/fr/marrakech/vol-montgolfiere-lever-du-soleil/) ou de [la montgolfire Agadir](/fr/montgolfiere-agadir/)." },
+   374→      { t: "h2", text: "Le Maroc face la Cappadoce - la comparaison honnte" },
+   375→      { t: "p", text: "La Cappadoce fait voler plus de ballons et possde les fameuses photos de cheminnes de fes ; le Maroc fait voler moins de ballons au-dessus de paysages plus sauvages et plus vides - et  environ la moiti du prix. Foule : la Cappadoce lance plus de 100 ballons en mme temps ; Marrakech en lance gnralement 10  20. Vues : la Cappadoce a ses valles de roche, le Maroc a les palmes, le dsert de pierre, l'Atlas et (depuis Agadir) l'ocan. Notre comparaison complte et honnte est dans [Prix d'un vol en montgolfire : Maroc vs France vs Cappadoce](/fr/guide/prix-vol-en-montgolfiere/)." },
+   376→      { t: "h2", text: "Questions pratiques avant de rserver" },
+   377→      { t: "p", text: "Tout sur les horaires de prise en charge, les limites d'ge, la grossesse, les paiements et les annulations mto est rpondu dans [notre FAQ](/fr/faq/). Pour rserver, [un message WhatsApp suffit](/fr/reserver/) - pas de paiement en ligne, vous payez aprs avoir vol." },
+   378→    ],
+   379→    faqs: [
+   380→      { q: "Peut-on voler en montgolfire au-dessus des dunes du Sahara ?", a: "Il n'existe pas d'opration quotidienne licenci au-dessus de Merzouga ou de l'Erg Chigaga. L'exprience dsert fiable au Maroc, c'est le dsert de pierre d'Agafay,  40 minutes de Marrakech - survol chaque matin." },
+   381→      { q: "Quelle ville choisir pour un vol en montgolfire au Maroc ?", a: "Marrakech pour les palmes, le dsert et les montagnes avec le plus grand choix de vols ; Agadir pour la valle verte du Souss et l'ocan si vous tes sur la cte. Mme prix, mmes normes de scurit." },
+   382→      { q: "Combien cote une montgolfire au Maroc ?", a: "Vols partags au lever du soleil ds {{PRICE_CLASSIC}} par personne, nacelles prives ds {{PRICE_PRIVATE}}, VIP ds {{PRICE_VIP}} - tout inclus. Dtails sur la [page prix](/fr/prix-montgolfiere-marrakech/)." },
+   383→      { q: "Les ballons volent-ils en hiver au Maroc ?", a: "Oui - l'hiver est mme la haute saison : ciel clair, vents calmes et montagnes enneiges. Habillez-vous en couches pour le froid de l'aube ; au moment de l'atterrissage, il fait gnralement assez doux pour le petit-djeuner dehors." },
+   384→      { q: "La montgolfire au Maroc est-elle adapte aux enfants ?", a: "Ds 5 ans, avec un parent. Le vol est calme, les rebords sont hauts, et le petit-djeuner d'aprs en fait un favori familial." },
+   385→      { q: "Comment savoir si un oprateur est licenci ?", a: "Demandez le nom du pilote, l'autorit de licence (Direction Gnrale de l'Aviation Civile) et l'attestation d'assurance - les oprateurs srieux rpondent immdiatement. Les ntres sont publies sur [notre page  propos](/fr/a-propos/) et sur chaque page de vol." },
+   386→    ],
+   387→  },
+   388→
+   389→  /* ============================== FR PRIX ============================== */
+   390→  "fr-prix": {
+   391→    intro: [
+   392→      "Liste de prix transparente montgolfire marrakech pour 2026 - chaque vol, chaque prestation incluse, sans frais cachs. Vous payez aprs le vol, jamais en ligne, et si la mto annule votre matin, vous ne payez rien.",
+   393→      "Vous trouverez ci-dessous les prix exacts des vols Classique, Priv, VIP, Montgolfire + Dromadaire et Agafay, plus ce qui fait varier le prix, ce qui est toujours inclus et la tarification des enfants. Tout se confirme en un message WhatsApp avant de vous engager.",
+   394→    ],
+   395→    blocks: [
+   396→      { t: "h2", text: "Ce qui est toujours inclus dans chaque prix" },
+   397→      { t: "ul", items: [
+   398→        "Transfert aller-retour depuis votre htel (Marrakech, Agadir, Taghazout selon votre vol)",
+   399→        "Une heure complte en l'air avec un pilote licenci - pas un saut de 20 minutes",
+   400→        "Petit-djeuner berbre traditionnel aprs l'atterrissage",
+   401→        "Certificat de vol personnalis sign par votre pilote",
+   402→        "Assurance passagers complte et eau bord",
+   403→        "Le spectacle du gonflage avant le dcollage - oui, vous pouvez le regarder et le photographier",
+   404→      ] },
+   405→      { t: "h2", text: "Ce qui fait varier le prix d'un vol en montgolfire" },
+   406→      { t: "ul", items: [
+   407→        "Exclusivit de la nacelle : une nacelle prive cote plus cher par personne qu'une nacelle partage",
+   408→        "Taille du groupe : le tarif priv par personne baisse mesure que votre groupe passe de 2  8",
+   409→        "Options : toast ptillant, photographe professionnel, dromadaire ou quad en supplment",
+   410→        "Saison : les prix sont les mmes toute l'anne - pas de majoration haute saison",
+   411→        "Enfants : les 5-11 ans paient le tarif enfant (ds 12 ans tarif adulte, moins de 5 ans ne volent pas)",
+   412→      ] },
+   413→      { t: "p", text: "Vous vous demandez comment le Maroc se compare la Cappadoce, l'Europe ou aux tats-Unis ? Nous avons publi la comparaison internationale honnte dans [combien cote un vol en montgolfire ?](/fr/guide/prix-vol-en-montgolfiere/)." },
+   414→      { t: "h2", text: "Comment vous payez - et quand" },
+   415→      { t: "p", text: "Aucun paiement en ligne, aucun acompte. Vous rservez par WhatsApp, nous confirmons l'heure de prise en charge la veille, vous volez, et vous payez aprs l'atterrissage - espces (MAD ou EUR) ou carte au terrain. C'est dlibr : si la mto annule le vol, personne n'a de remboursement courir. Cela veut aussi dire que le prix affich ici est celui que vous payez le jour J." },
+   416→      { t: "h2", text: "Prt rserver votre matin ?" },
+   417→      { t: "p", text: "Choisissez votre vol ci-dessus, envoyez-nous votre date et votre htel sur [la page rservation](/fr/reserver/), et nous confirmons en quelques minutes. Si une question sur les prix n'est pas rpondu ici, [la FAQ](/fr/faq/) a probablement la rponse - ou demandez-nous directement." },
+   418→    ],
+   419→    reviewIdx: [0, 1, 5],
+   420→    faqs: [
+   421→      { q: "Y a-t-il un acompte ou un prpaiement ?", a: "Non. La rservation se fait par WhatsApp et le paiement a lieu aprs le vol, au terrain d'atterrissage. Cela vous protge si la mto annule la matine." },
+   422→      { q: "Acceptez-vous les paiements par carte ?", a: "Oui - espces en MAD ou EUR et toutes les cartes bancaires aprs le vol. Aucun frais de carte." },
+   423→      { q: "Les prix sont-ils les mmes toute l'anne ?", a: "Oui. Nous n'augmentons pas les prix pour les vacances, la haute saison ou les rservations de dernire minute. Le prix de cette page est celui que vous payez." },
+   424→      { q: "Les enfants paient-ils plein tarif ?", a: "Les enfants de 5  11 ans paient le tarif enfant ({{PRICE_CLASSIC_CHILD}} sur les vols Classiques) ; ds 12 ans ils paient le prix adulte. Les moins de 5 ans ne peuvent pas voler pour des raisons de scurit." },
+   425→      { q: "Le pourboire est-il attendu ?", a: "Les pourboires ne sont jamais attendus ni demands - l'quipe est salarie. Si le vol a fait votre voyage, un pourboire est apprci mais entirement votre choix." },
+   426→      { q: "Pourquoi Marrakech est-elle moins chre que l'Europe ?", a: "Cots d'exploitation plus bas, pas de plateformes intermdiaires, et un vol toute l'anne qui garde les ballons occups. L'quipement, les licences et les assurances sont aux mmes normes qu'en Europe." },
+   427→    ],
+   428→  },
+   429→
+   430→  /* ============================== FR CADEAU ============================== */
+   431→  "fr-cadeau": {
+   432→    intro: [
+   433→      "Offrir un vol en montgolfire Marrakech, c'est offrir la plus belle heure d'un voyage au Maroc : lever du soleil au-dessus de la palmeraie, petit-djeuner berbre et certificat sign par le pilote. Le bon cadeau s'envole par WhatsApp en cinq minutes - sans date fige.",
+   434→      "Valable 12 mois sur tous nos vols (Classique, Priv, VIP, Agafay, Agadir), le bon cadeau vol en montgolfire laisse le destinataire choisir sa matin. Idal pour un anniversaire, une demande en mariage en prparation ou un cadeau de noel qui sort de l'ordinaire.",
+   435→    ],
+   436→    blocks: [
+   437→      { t: "h2", text: "Comment fonctionne le bon cadeau" },
+   438→      { t: "ul", items: [
+   439→        "Vous choisissez le vol et le nombre de personnes sur WhatsApp (ou laissez le montant libre)",
+   440→        "Nous vous envoyons le bon personnalisé par WhatsApp en PDF, prt imprimer ou transmettre",
+   441→        "Le destinataire rserve sa date quand il veut, dans les 12 mois, directement avec nous",
+   442→        "Si la mto annule sa matine, il replanifie gratuitement - le bon reste valable",
+   443→        "Paiement au moment de l'achat du bon, ou sur place le jour du vol - comme vous prfrez",
+   444→      ] },
+   445→      { t: "img", key: "proposal", alt: "bon cadeau vol en montgolfire marrakech - couple au lever du soleil dans la nacelle" },
+   446→      { t: "h2", text: "Quel vol offrir ?" },
+   447→      { t: "p", text: "Pour un couple, le [Vol Priv en montgolfire](/fr/marrakech/vol-montgolfiere-prive/) est le plus romantique - nacelle rien qu' eux. Pour un anniversaire ou une retraite, le [Vol VIP Royal](/fr/marrakech/vol-montgolfiere-vip/) avec son toast ptillant fait toujours son effet. Pour une famille, le [Vol Classique au lever du soleil](/fr/marrakech/vol-montgolfiere-lever-du-soleil/) est la valeur sre, et le [Pack Montgolfire + Dromadaire](/fr/marrakech/montgolfiere-et-balade-a-dromadaire/) double le plaisir. Les prix de tous les bons sont sur notre [page prix](/fr/prix-montgolfiere-marrakech/)." },
+   448→      { t: "h2", text: "Commander votre bon cadeau" },
+   449→      { t: "p", text: "Un message WhatsApp suffit : dites-nous le vol, le nombre de personnes et le message  crire sur le bon ( prnom du destinataire, occasion, votre nom). Nous vous renvoyons le bon personnalis en quelques minutes, avec les instructions de rservation en franais. Vous pouvez [rserver ou commander votre bon ici](/fr/reserver/) - et si le destinataire a une question, il nous crira directement." },
+   450→    ],
+   451→    gallery: [
+   452→      { key: "proposal", alt: "bon cadeau montgolfire marrakech - demande en mariage au lever du soleil" },
+   453→      { key: "private", alt: "vol priv offert en bon cadeau au-dessus de Marrakech" },
+   454→      { key: "certificate", alt: "certificat de vol offert avec le bon cadeau montgolfire" },
+   455→    ],
+   456→    reviewIdx: [2, 1],
+   457→    faqs: [
+   458→      { q: "Combien de temps le bon cadeau est-il valable ?", a: "12 mois partir de l'achat. Si la mto annule la matine choisie, le destinataire replanifie gratuitement et le bon garde toute sa valeur." },
+   459→      { q: "Puis-je laisser le montant libre ?", a: "Oui - un bon libre de montant permet au destinataire de choisir son vol (Classique, Priv, VIP...) au moment de la rservation." },
+   460→      { q: "Comment le destinataire rserve-t-il ?", a: "Le bon contient notre numro WhatsApp et les instructions en franais. Il choisit sa date, nous confirmons la veille, il vole et paye le solde ventuel sur place." },
+   461→      { q: "Le bon est-il personnalisable ?", a: "Oui : prnom du destinataire, occasion (anniversaire, mariage, retraite...), votre message et votre nom. Nous l'envoyons en PDF prt  imprimer ou  transmettre par WhatsApp." },
+   462→      { q: "Et si le destinataire ne peut pas venir au Maroc ?", a: "Le bon reste valable 12 mois et se transfre une autre personne sur simple demande. Nous pouvons aussi le rembourser intgralement pendant les 14 premiers jours." },
+   463→    ],
+   464→  },
+   465→
+   466→  /* ============================== FR AVIS ============================== */
+   467→  "fr-avis": {
+   468→    intro: [
+   469→      "De vrais avis de vrais passagers qui ont vol avec nous au-dessus de Marrakech, du dsert d'Agafay et d'Agadir. Nous les publions sans retouche - les matines cinq toiles comme les dtails honntes - parce que c'est ainsi que nous aimerions choisir un oprateur.",
+   470→      "La plupart de nos passagers rservent par WhatsApp aprs la recommandation d'un ami : ces pages sont donc notre preuve. Chaque passager ci-dessous a rellement vol ; les prnoms sont publis avec leur accord. Prt ajouter le vtre ? [Rservez votre matin ici](/fr/reserver/).",
+   471→    ],
+   472→    blocks: [
+   473→      { t: "h2", text: "Ce que nos passagers mentionnent le plus" },
+   474→      { t: "ul", items: [
+   475→        "La lumire au lever du soleil sur l'Atlas - la photo la plus prcieuse de leur voyage",
+   476→        "Le calme de l'quipage : les passagers anxieux nous disent que le briefing les a mis  l'aise avant le dcollage",
+   477→        "L'heure complte en l'air - plus longue que la plupart des oprateurs, et les passagers le remarquent",
+   478→        "Le petit-djeuner berbre et le certificat de vol : les dtails qui rendent le moment personnel",
+   479→        "La rservation WhatsApp : confirme en quelques minutes, sans acompte, sans stress",
+   480→      ] },
+   481→      { t: "p", text: "Vous avez vol avec nous rcemment ? Envoyez vos photos et quelques lignes sur WhatsApp et nous ajouterons votre avis  cette page. Chaque avis ci-dessous correspond au [Vol Classique Marrakech](/fr/marrakech/vol-montgolfiere-lever-du-soleil/), au [Vol Priv](/fr/marrakech/vol-montgolfiere-prive/) ou  notre [montgolfire Agadir](/fr/montgolfiere-agadir/) - chaque lien mne au vol dcrit." },
+   482→    ],
+   483→    reviewIdx: [0, 1, 2, 3, 4, 5],
+   484→    faqs: [
+   485→      { q: "Ces avis sont-ils vrifis ?", a: "Oui - chaque avis vient d'un passager qui a rserv et vol avec nous, avec nom et date de vol archivs. Nous les publions sans retouche." },
+   486→      { q: "O lire d'autres avis ?", a: "Demandez-nous sur WhatsApp : nous vous envoyons nos profils Google Maps et TripAdvisor, ainsi que de rcentes photos de passagers du vol qui vous intresse." },
+   487→      { q: "Publiez-vous les avis ngatifs ?", a: "Nous publions tous les retours et agissons en consquence. La plainte la plus frquente de notre histoire est un vol annul pour la mto - exactement l'annulation qui vous protge." },
+   488→    ],
+   489→  },
+   490→
+   491→  /* ============================== FR FAQ ============================== */
+   492→  "fr-faq": {
+   493→    intro: [
+   494→      "Toutes les questions que l'on nous pose avant un vol en montgolfire Marrakech ou Agadir - rpondues honntement par les pilotes qui les effectuent. Horaires, enfants, grossesse, mto, paiements, appareils photo : tout est ici.",
+   495→      "Si votre question n'est pas dans la liste, crivez-nous sur WhatsApp - un vrai pilote ou membre de l'quipage rpond, gnralement en moins de 10 minutes. Et quand vous serez prt, [rservez votre vol ici](/fr/reserver/).",
+   496→    ],
+   497→    blocks: [
+   498→      { t: "h2", text: "Questions de rservation et de paiement" },
+   499→      { t: "h3", text: " combien de temps  l'avance rserver ?" },
+   500→      { t: "p", text: "Pour les [vols au lever du soleil Marrakech](/fr/marrakech/vol-montgolfiere-lever-du-soleil/), 2  3 jours suffisent gnralement ; les nacelles prives et VIP ainsi que les week-ends d'avril et d'octobre se remplissent plus vite. Les vols Agadir demandent 1  2 jours de pravis. Les demandes du jour mme marchent parfois - un message WhatsApp vaut toujours le coup." },
+   501→      { t: "h3", text: "Dois-je payer l'avance ?" },
+   502→      { t: "p", text: "Non - le paiement a lieu aprs le vol, au terrain d'atterrissage, en espces (MAD ou EUR) ou par carte. Aucun acompte, aucun paiement en ligne : une annulation mto ne vous cote donc jamais rien. La politique complte est sur la [page prix](/fr/prix-montgolfiere-marrakech/)." },
+   503→      { t: "h2", text: "Logistique du matin" },
+   504→      { t: "h3", text: " quelle heure est la prise en charge ?" },
+   505→      { t: "p", text: "Entre 4 h 45 et 5 h 15 selon votre htel et la saison (le lever du soleil bouge). Nous confirmons l'heure exacte par WhatsApp la veille de votre vol. Si [la meilleure priode pour un vol en montgolfire Marrakech](/fr/guide/meilleure-periode-montgolfiere-marrakech/) est un sujet nouveau pour vous, ce guide explique aussi comment le lever du soleil se dplace dans l'anne." },
+   506→      { t: "h3", text: "Que porter et que prendre ?" },
+   507→      { t: "p", text: "Des couches pour le froid avant l'aube, des chaussures fermes, des lunettes de soleil et votre passeport pour la liste des passagers. La check-list complte est dans [comment s'habiller pour un vol en montgolfire](/fr/guide/comment-s-habiller-vol-montgolfiere/)." },
+   508→      { t: "h2", text: "Scurit et sant" },
+   509→      { t: "h3", text: "La montgolfire est-elle sre au Maroc ?" },
+   510→      { t: "p", text: "Avec un oprateur licenci, oui. Nos pilotes dtiennent des licences commerciales de l'Aviation Civile marocaine, les ballons sont contrls en continu, et nous annulons pour vent ou visibilit sans hsiter. La longue rponse - y compris ce vrifier avant de rserver n'importe quel oprateur - est dans [le vol en montgolfire au Maroc est-il sr ?](/fr/guide/montgolfiere-maroc-securite/)." },
+   511→      { t: "h3", text: "Peut-on voler si l'on est enceinte ou malade ?" },
+   512→      { t: "p", text: "Nous dconseillons de voler pendant la grossesse, et il faut pouvoir rester debout une heure et enjamber le rebord de la nacelle (1,20 m). Chirurgie rcente, mal de dos srieux ou problme cardiaque : crivez-nous d'abord et nous vous rpondrons honntement, pas comme un vendeur." },
+   513→      { t: "h3", text: "Les enfants peuvent-ils voler ?" },
+   514→      { t: "p", text: "Ds 5 ans, avec un parent ou tuteur. Le vol est calme, les rebords sont hauts, et les enfants adorent reprer nes et moutons d'en haut. Les moins de 5 ans ne peuvent pas voler pour des raisons de scurit." },
+   515→      { t: "h2", text: "Mto et annulations" },
+   516→      { t: "h3", text: "Que se passe-t-il s'il y a du vent ou du brouillard ?" },
+   517→      { t: "p", text: "Nous annulons gratuitement. Les ballons ont besoin d'un vent calme et d'une visibilit correcte ; nos pilotes vrifient les prvisions deux fois par jour et prennent la dcision finale au terrain si ncessaire. Vous replanifiez un autre matin de votre sjour ou ne payez tout simplement pas - il n'y avait rien  payer." },
+   518→      { t: "h3", text: "Les vols ont-ils lieu toute l'anne ?" },
+   519→      { t: "p", text: "Oui, chaque matin de l'anne depuis Marrakech et Agadir. D'octobre avril c'est la saison la plus fiable et la plus photognique ; les vols d't dcollent l'aube et atterrissent avant la chaleur." },
+   520→      { t: "h2", text: "Vous hsitez encore ?" },
+   521→      { t: "p", text: "Parcourez [tous nos vols](/fr/), comparez les prix, ou crivez-nous simplement sur [WhatsApp](/fr/reserver/) - nous prfrons rpondre dix questions que de vous voir rserver la mauvaise matine." },
+   522→    ],
+   523→    faqs: [
+   524→      { q: "Puis-je apporter un drone ou un appareil photo professionnel ?", a: "Appareils photo et tlphones : oui, toujours. Drones : uniquement avant le dcollage et aprs l'atterrissage - jamais pendant le vol, et sous rserve de la rglementation marocaine sur les drones que vous devez organiser vous-mme." },
+   525→      { q: "Y a-t-il des toilettes au terrain ?", a: "Oui, des installations basiques au terrain de dcollage et au camp de petit-djeuner. Le vol lui-mme dure une heure." },
+   526→      { q: "Un accompagnateur non-volant peut-il venir ?", a: "Oui - il peut regarder le gonflage, monter dans le vhicule de suivi jusqu'au point d'atterrissage et prendre le petit-djeuner pour un tarif rduit. Demandez sur WhatsApp." },
+   527→      { q: "Volez-vous sous la pluie ?", a: "Une pluie fine sans vent peut tre volable, mais nous annulons quand la pluie affecte la visibilit ou les conditions d'atterrissage. Le climat marocain rend les annulations pluie rares - quelques jours par an." },
+   528→      { q: "Combien de personnes dans la nacelle ?", a: "Les nacelles partages accueillent 8  16 passagers ; les nacelles VIP 8 maximum ; les nacelles prives juste votre groupe de 2  8. Chaque place est au bord." },
+   529→      { q: "Dans quelles langues parle l'quipe ?", a: "Arabe, franais et anglais sur chaque vol ; espagnol, allemand et nerlandais sur demande - dites-nous votre langue la rservation." },
+   530→      { q: "Peut-on rserver pour un groupe de plus de 20 personnes ?", a: "Oui - nous faisons voler deux ou trois ballons en formation. Envoyez-nous la taille du groupe et la date et nous vous ferons un tarif groupe." },
+   531→    ],
+   532→  },
+   533→
+   534→  /* ============================== FR RSERVATION ============================== */
+   535→  "fr-contact": {
+   536→    intro: [
+   537→      "Rservez votre vol en montgolfire en un message WhatsApp : donnez votre date, le nombre d'adultes et d'enfants et votre htel - nous confirmons la disponibilit et votre heure de prise en charge, et vous payez aprs le vol.",
+   538→      "Pas de paiement en ligne, pas d'acompte, aucun frais d'annulation si la mto dit non. Remplissez le formulaire ci-dessous pour ouvrir WhatsApp avec tout pr-rempli, ou crivez-nous directement - un membre de l'quipe rpond en quelques minutes.",
+   539→    ],
+   540→    blocks: [
+   541→      { t: "h2", text: "Quel vol rserver ?" },
+   542→      { t: "ul", items: [
+   543→        "Premier vol ou meilleure valeur : le [Vol Classique au lever du soleil Marrakech](/fr/marrakech/vol-montgolfiere-lever-du-soleil/)",
+   544→        "Vous logez sur la cte : la [montgolfire Agadir](/fr/montgolfiere-agadir/)",
+   545→        "Couples et demandes : le [Vol Priv en montgolfire](/fr/marrakech/vol-montgolfiere-prive/)",
+   546→        "Pour clbrer quelque chose : le [Vol VIP Royal](/fr/marrakech/vol-montgolfiere-vip/)",
+   547→        "Un doute sur les prix : toute la comparaison est sur la [page prix](/fr/prix-montgolfiere-marrakech/)",
+   548→      ] },
+   549→      { t: "p", text: "Les questions de rservation trouvent gnralement leur rponse dans [la FAQ](/fr/faq/) - mais le moyen le plus rapide d'avoir une rponse est de nous crire. Nous parlons arabe, franais, anglais, espagnol, allemand et nerlandais." },
+   550→    ],
+   551→    faqs: [
+   552→      { q: " quelle vitesse rpondez-vous sur WhatsApp ?", a: "Gnralement en moins de 10 minutes entre 7 h et 21 h (GMT+1). Les messages de nuit sont traits ds le matin." },
+   553→      { q: "De quelles informations avez-vous besoin ?", a: "Votre date (et une matine de secours si possible), le nombre d'adultes et d'enfants, et le nom de votre htel ou riad. C'est tout - nous nous occupons du reste." },
+   554→      { q: "Puis-je modifier ma rservation ?", a: "Oui - dates, type de vol et nombre de passagers sont modifiables gratuitement jusqu' 24 heures avant la prise en charge, sous rserve de disponibilit." },
+   555→    ],
+   556→  },
+   557→
+   558→  /* ============================== FR  PROPOS ============================== */
+   559→  "fr-about": {
+   560→    intro: [
+   561→      "Nous sommes Hot Air Balloon Experience Agadir, une socit marocaine de montgolfire qui vole au lever du soleil au-dessus de Marrakech, du dsert d'Agafay et de la valle du Souss Agadir. Pilotes licencis, nacelles assures, prix honntes - et un message WhatsApp comme unique formulaire de rservation.",
+   562→      "Cette page raconte qui nous sommes, qui vous fait voler, et pourquoi des centaines de voyageurs nous confient leur unique lever de soleil au Maroc. Si vous prfrez les preuves aux promesses, lisez [nos avis passagers](/fr/avis/) ou le dtail de [la scurit de nos vols](/fr/guide/montgolfiere-maroc-securite/).",
+   563→    ],
+   564→    blocks: [
+   565→      { t: "h2", text: "Notre histoire" },
+   566→      { t: "p", text: "Nous avons commenc avec un ballon, un land rover et beaucoup de matines trs tt. Ce qui n'a pas chang : des vols chaque matin de l'anne, une heure complte en l'air (jamais 20 minutes), un petit-djeuner cuisin par les mmes familles depuis le premier jour, et le paiement seulement aprs le vol. Ce qui a chang : trois terrains de dcollage - Palmeraie de Marrakech, dsert d'Agafay et valle du Souss prs d'Agadir - et une flotte qui vole plus de 350 matines par an." },
+   567→      { t: "img", key: "pilot", alt: "notre pilote en chef avant un vol en montgolfire au Maroc" },
+   568→      { t: "h2", text: "Qui vous fait voler" },
+   569→      { t: "p", text: "Notre pilote en chef Youssef El Amrani dtient une licence de pilote commercial de l'Aviation Civile marocaine avec 12 annes et plus de 3 400 vols au-dessus du Maroc - de la Palmeraie aux dunes du grand sud. Chaque pilote de notre quipe porte la mme licence commerciale, vole avec une check-list mto crite et a survol chaque itinraire de ce site des centaines de fois. Vous rencontrez votre pilote au terrain avant le dcollage : posez-lui toutes vos questions, c'est fait pour a." },
+   570→      { t: "h2", text: "Nos standards" },
+   571→      { t: "ul", items: [
+   572→        "Pilotes commerciaux licencis uniquement - aucune exception, aucun stagiaire aux commandes",
+   573→        "Ballons et brleurs contrls et documents aprs chaque vol",
+   574→        "Assurance responsabilit civile passagers complte sur chaque vol",
+   575→        "16 passagers maximum en nacelle partage, 8 en VIP, votre groupe seul en nacelle prive",
+   576→        "Discipline mto : nous annulons plutt que de repousser les limites, toujours",
+   577→        "Paiement aprs le vol - votre argent ne quitte jamais votre poche avant que vos pieds quittent le sol",
+   578→      ] },
+   579→      { t: "h2", text: "Venez voler avec nous" },
+   580→      { t: "p", text: "Choisissez votre matin sur [l'accueil](/fr/) - Classique, Priv, VIP, Agafay ou Agadir - et [rservez-le en un message WhatsApp](/fr/reserver/). Nous serions heureux de vous montrer le Maroc comme nous le voyons chaque matin : lentement, silencieusement, et d'en haut." },
+   581→    ],
+   582→    faqs: [
+   583→      { q: "O tes-vous bass ?", a: "Notre base oprationnelle est dans la Palmeraie de Marrakech, avec une seconde quipe dans la valle du Souss pour les vols Agadir. Nous volons depuis trois terrains : Marrakech, le dsert d'Agafay et Agadir." },
+   584→      { q: "Peut-on visiter avant de rserver ?", a: "Oui - crivez-nous et venez regarder le gonflage au terrain un matin. La plupart des gens qui regardent rservent le lendemain." },
+   585→      { q: "Proposez-vous des bons cadeaux ?", a: "Oui - demandez sur WhatsApp et nous vous enverrons un bon personnalis valable 12 mois, pour n'importe quel vol. Idal pour les anniversaires et les demandes en mariage." },
+   586→    ],
+   587→  },
+   588→
+   589→  /* ============================== FR LGAL ============================== */
+   590→  "fr-terms": {
+   591→    intro: [
+   592→      "Ces conditions rgissent votre rservation de vol en montgolfire avec Hot Air Balloon Experience Agadir. En clair : la rservation se fait sur WhatsApp, le paiement aprs le vol, et les annulations mto sont toujours gratuites.",
+   593→    ],
+   594→    blocks: [
+   595→      { t: "h2", text: "1. Rservation et confirmation" },
+   596→      { t: "p", text: "Une rservation est confirme lorsque nous vous envoyons une confirmation WhatsApp nommant le vol, la date, l'heure de prise en charge et le nombre de passagers. Les accords verbaux ne sont pas des rservations. Vrifiez attentivement le message de confirmation et signalez-nous immdiatement toute erreur." },
+   597→      { t: "h2", text: "2. Prix et paiement" },
+   598→      { t: "p", text: "Les prix sont ceux publis sur nos pages tarifs au moment de la rservation, par personne, incluant tout ce qui est list comme inclus. Le paiement est d aprs le vol, au terrain d'atterrissage, en espces (MAD ou EUR) ou par carte. Nous ne prenons ni acompte ni prpaiement." },
+   599→      { t: "h2", text: "3. Annulations pour cause de mto" },
+   600→      { t: "p", text: "La montgolfire dpend du vent et de la visibilit. Si le pilote juge les conditions dangereuses, le vol est annul par nos soins gratuitement - vous ne devez rien. Vous pouvez replanifier un autre matin disponible. La dcision du pilote au terrain est finale ; nous ne volons jamais dans des conditions dangereuses et ne compensons pas les consquences indirectes d'un vol non effectu (htels, transports, activits manques)." },
+   601→      { t: "h2", text: "4. Annulation par le client" },
+   602→      { t: "p", text: "Vous pouvez annuler gratuitement jusqu' 24 heures avant la prise en charge, par WhatsApp. Les annulations moins de 24 heures avant et les absences au rendez-vous sont factures  50 % du prix du vol par personne. Le changement de date est gratuit sous rserve de disponibilit." },
+   603→      { t: "h2", text: "5. Responsabilits du passager" },
+   604→      { t: "ul", items: [
+   605→        "tre au point de rendez-vous l'heure confirme (un retard peut raccourcir ou annuler le vol)",
+   606→        "Suivre toutes les instructions du pilote et de l'quipage avant, pendant et aprs le vol",
+   607→        "Dclarer toute grossesse, chirurgie rcente ou condition mdicale pertinente avant l'embarquement",
+   608→        "Ne pas monter sous l'influence d'alcool ou de drogues - le pilote peut refuser l'embarquement sans remboursement",
+   609→        "Les enfants de moins de 5 ans et les animaux ne peuvent pas voler",
+   610→      ] },
+   611→      { t: "h2", text: "6. Responsabilit et assurance" },
+   612→      { t: "p", text: "Chaque vol est couvert par une assurance responsabilit civile passagers complte conforme aux exigences de l'aviation marocaine. Notre responsabilit est limite aux services vendus ; vos effets personnels restent sous votre responsabilit. Rien dans ces conditions ne limite la responsabilit l o ce serait illgal." },
+   613→      { t: "h2", text: "7. Photos et vie prive" },
+   614→      { t: "p", text: "Nous pouvons photographier les vols pour notre propre communication ; dites-le  votre pilote si vous prfrez ne pas apparatre. Nos pratiques de donnes sont dcrites dans la [politique de confidentialit](/fr/confidentialite/). Questions sur ces conditions : crivez-nous sur WhatsApp via [la page rservation](/fr/reserver/)." },
+   615→    ],
+   616→    faqs: [],
+   617→  },
+   618→  "fr-privacy": {
+   619→    intro: [
+   620→      "Cette politique explique quelles donnes personnelles nous collectons, pourquoi, et  quel point il y en a peu. En rsum : nous collectons ce que WhatsApp et un manifeste de vol exigent lgalement, nous utilisons un outil d'analyse anonymis si vous y consentez, et nous ne vendons ni ne partageons jamais vos donnes.",
+   621→    ],
+   622→    blocks: [
+   623→      { t: "h2", text: "1. Ce que nous collectons" },
+   624→      { t: "ul", items: [
+   625→        "Les conversations WhatsApp : votre nom, dates, htel et dtails passagers que vous choisissez de nous envoyer (la politique de confidentialit de WhatsApp s'applique cette plateforme)",
+   626→        "Les donnes du manifeste de vol exiges par les rgles aronautiques : nom, ge, nationalit, catgorie de poids",
+   627→        "Vos coordonnes pour les bons cadeaux ou les rservations de groupe",
+   628→        "Des statistiques anonymes de visite (Google Analytics 4, IP anonymise) uniquement si vous acceptez les cookies",
+   629→      ] },
+   630→      { t: "h2", text: "2. Ce que nous en faisons" },
+   631→      { t: "p", text: "Les donnes du manifeste servent la scurit du vol et la conformit l'Aviation Civile, puis sont conserves le temps requis par la loi. Les conversations servent  organiser votre vol et, si vous nous le demandez,  vous envoyer un rappel la saison suivante. Les donnes d'analyse sont agrges et ne servent jamais  identifier des personnes. Nous ne vendons, ne louons ni ne partageons vos donnes avec quiconque, sauf obligation lgale aronautique." },
+   632→      { t: "h2", text: "3. Vos droits" },
+   633→      { t: "p", text: "Vous pouvez demander ce que nous dtenons sur vous, demander une correction ou une suppression, et retirer votre consentement l'analyse tout moment en vidant le stockage de votre navigateur. crivez-nous par WhatsApp ou email via [la page rservation](/fr/reserver/) et nous rpondons sous 72 heures." },
+   634→      { t: "h2", text: "4. Cookies" },
+   635→      { t: "p", text: "Ce site ne charge aucun script tiers avant que vous n'acceptiez la bannire cookies. Si vous refusez, rien n'est suivi. Si vous acceptez, Google Analytics 4 fonctionne avec IP anonymise. La rservation se fait toujours sur WhatsApp, ce qui n'exige aucun cookie sur ce site." },
+   636→    ],
+   637→    faqs: [],
+   638→  },
+   639→};
+   640→

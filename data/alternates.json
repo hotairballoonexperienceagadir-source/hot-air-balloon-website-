@@ -1,0 +1,312 @@
+{
+ "/en/": {
+  "en": "/en/",
+  "fr": "/fr/",
+  "de": "/de/",
+  "es": "/es/",
+  "nl": "/nl/"
+ },
+ "/en/marrakech/sunrise-balloon-flight/": {
+  "en": "/en/marrakech/sunrise-balloon-flight/",
+  "fr": "/fr/marrakech/vol-montgolfiere-lever-du-soleil/"
+ },
+ "/en/marrakech/private-balloon-flight/": {
+  "en": "/en/marrakech/private-balloon-flight/",
+  "fr": "/fr/marrakech/vol-montgolfiere-prive/"
+ },
+ "/en/marrakech/vip-balloon-flight/": {
+  "en": "/en/marrakech/vip-balloon-flight/",
+  "fr": "/fr/marrakech/vol-montgolfiere-vip/"
+ },
+ "/en/marrakech/balloon-and-camel-ride/": {
+  "en": "/en/marrakech/balloon-and-camel-ride/",
+  "fr": "/fr/marrakech/montgolfiere-et-balade-a-dromadaire/"
+ },
+ "/en/marrakech/agafay-desert-balloon/": {
+  "en": "/en/marrakech/agafay-desert-balloon/",
+  "fr": "/fr/marrakech/montgolfiere-desert-agafay/"
+ },
+ "/en/agadir-hot-air-balloon/": {
+  "en": "/en/agadir-hot-air-balloon/",
+  "fr": "/fr/montgolfiere-agadir/",
+  "de": "/de/heissluftballon-agadir/",
+  "es": "/es/globo-aerostatico-agadir/",
+  "nl": "/nl/luchtballon-agadir/"
+ },
+ "/en/hot-air-balloon-morocco/": {
+  "en": "/en/hot-air-balloon-morocco/",
+  "fr": "/fr/montgolfiere-maroc/"
+ },
+ "/en/hot-air-balloon-marrakech-price/": {
+  "en": "/en/hot-air-balloon-marrakech-price/",
+  "fr": "/fr/prix-montgolfiere-marrakech/",
+  "de": "/de/heissluftballon-marrakesch-preis/",
+  "es": "/es/precio-globo-aerostatico-marrakech/",
+  "nl": "/nl/luchtballon-marrakech-prijs/"
+ },
+ "/en/reviews/": {
+  "en": "/en/reviews/",
+  "fr": "/fr/avis/"
+ },
+ "/en/faq/": {
+  "en": "/en/faq/",
+  "fr": "/fr/faq/",
+  "de": "/de/faq/",
+  "es": "/es/preguntas-frecuentes/",
+  "nl": "/nl/veelgestelde-vragen/"
+ },
+ "/en/book/": {
+  "en": "/en/book/",
+  "fr": "/fr/reserver/",
+  "de": "/de/buchen/",
+  "es": "/es/reservar/",
+  "nl": "/nl/boeken/"
+ },
+ "/en/guide/": {
+  "en": "/en/guide/",
+  "fr": "/fr/guide/"
+ },
+ "/en/guide/is-hot-air-balloon-safe-morocco/": {
+  "en": "/en/guide/is-hot-air-balloon-safe-morocco/",
+  "fr": "/fr/guide/montgolfiere-maroc-securite/"
+ },
+ "/en/guide/best-time-hot-air-balloon-marrakech/": {
+  "en": "/en/guide/best-time-hot-air-balloon-marrakech/",
+  "fr": "/fr/guide/meilleure-periode-montgolfiere-marrakech/"
+ },
+ "/en/guide/what-to-wear-hot-air-balloon/": {
+  "en": "/en/guide/what-to-wear-hot-air-balloon/",
+  "fr": "/fr/guide/comment-s-habiller-vol-montgolfiere/"
+ },
+ "/en/guide/how-much-does-hot-air-balloon-cost/": {
+  "en": "/en/guide/how-much-does-hot-air-balloon-cost/",
+  "fr": "/fr/guide/prix-vol-en-montgolfiere/"
+ },
+ "/en/guide/how-do-hot-air-balloons-work/": {
+  "en": "/en/guide/how-do-hot-air-balloons-work/"
+ },
+ "/en/guide/marrakech-vs-cappadocia-hot-air-balloon/": {
+  "en": "/en/guide/marrakech-vs-cappadocia-hot-air-balloon/"
+ },
+ "/en/guide/hot-air-balloon-proposal-marrakech/": {
+  "en": "/en/guide/hot-air-balloon-proposal-marrakech/"
+ },
+ "/en/guide/marrakech-itinerary-with-balloon-ride/": {
+  "en": "/en/guide/marrakech-itinerary-with-balloon-ride/"
+ },
+ "/en/about/": {
+  "en": "/en/about/",
+  "fr": "/fr/a-propos/"
+ },
+ "/fr/": {
+  "fr": "/fr/",
+  "en": "/en/",
+  "de": "/de/",
+  "es": "/es/",
+  "nl": "/nl/"
+ },
+ "/fr/marrakech/vol-montgolfiere-lever-du-soleil/": {
+  "fr": "/fr/marrakech/vol-montgolfiere-lever-du-soleil/",
+  "en": "/en/marrakech/sunrise-balloon-flight/"
+ },
+ "/fr/marrakech/vol-montgolfiere-prive/": {
+  "fr": "/fr/marrakech/vol-montgolfiere-prive/",
+  "en": "/en/marrakech/private-balloon-flight/"
+ },
+ "/fr/marrakech/vol-montgolfiere-vip/": {
+  "fr": "/fr/marrakech/vol-montgolfiere-vip/",
+  "en": "/en/marrakech/vip-balloon-flight/"
+ },
+ "/fr/marrakech/montgolfiere-et-balade-a-dromadaire/": {
+  "fr": "/fr/marrakech/montgolfiere-et-balade-a-dromadaire/",
+  "en": "/en/marrakech/balloon-and-camel-ride/"
+ },
+ "/fr/marrakech/montgolfiere-desert-agafay/": {
+  "fr": "/fr/marrakech/montgolfiere-desert-agafay/",
+  "en": "/en/marrakech/agafay-desert-balloon/"
+ },
+ "/fr/montgolfiere-agadir/": {
+  "fr": "/fr/montgolfiere-agadir/",
+  "en": "/en/agadir-hot-air-balloon/",
+  "de": "/de/heissluftballon-agadir/",
+  "es": "/es/globo-aerostatico-agadir/",
+  "nl": "/nl/luchtballon-agadir/"
+ },
+ "/fr/montgolfiere-maroc/": {
+  "fr": "/fr/montgolfiere-maroc/",
+  "en": "/en/hot-air-balloon-morocco/"
+ },
+ "/fr/prix-montgolfiere-marrakech/": {
+  "fr": "/fr/prix-montgolfiere-marrakech/",
+  "en": "/en/hot-air-balloon-marrakech-price/",
+  "de": "/de/heissluftballon-marrakesch-preis/",
+  "es": "/es/precio-globo-aerostatico-marrakech/",
+  "nl": "/nl/luchtballon-marrakech-prijs/"
+ },
+ "/fr/cadeau-vol-montgolfiere-marrakech/": {
+  "fr": "/fr/cadeau-vol-montgolfiere-marrakech/"
+ },
+ "/fr/avis/": {
+  "fr": "/fr/avis/",
+  "en": "/en/reviews/"
+ },
+ "/fr/faq/": {
+  "fr": "/fr/faq/",
+  "en": "/en/faq/",
+  "de": "/de/faq/",
+  "es": "/es/preguntas-frecuentes/",
+  "nl": "/nl/veelgestelde-vragen/"
+ },
+ "/fr/reserver/": {
+  "fr": "/fr/reserver/",
+  "en": "/en/book/",
+  "de": "/de/buchen/",
+  "es": "/es/reservar/",
+  "nl": "/nl/boeken/"
+ },
+ "/fr/guide/": {
+  "fr": "/fr/guide/",
+  "en": "/en/guide/"
+ },
+ "/fr/guide/montgolfiere-maroc-securite/": {
+  "fr": "/fr/guide/montgolfiere-maroc-securite/",
+  "en": "/en/guide/is-hot-air-balloon-safe-morocco/"
+ },
+ "/fr/guide/meilleure-periode-montgolfiere-marrakech/": {
+  "fr": "/fr/guide/meilleure-periode-montgolfiere-marrakech/",
+  "en": "/en/guide/best-time-hot-air-balloon-marrakech/"
+ },
+ "/fr/guide/comment-s-habiller-vol-montgolfiere/": {
+  "fr": "/fr/guide/comment-s-habiller-vol-montgolfiere/",
+  "en": "/en/guide/what-to-wear-hot-air-balloon/"
+ },
+ "/fr/guide/prix-vol-en-montgolfiere/": {
+  "fr": "/fr/guide/prix-vol-en-montgolfiere/",
+  "en": "/en/guide/how-much-does-hot-air-balloon-cost/"
+ },
+ "/fr/a-propos/": {
+  "fr": "/fr/a-propos/",
+  "en": "/en/about/"
+ },
+ "/de/": {
+  "de": "/de/",
+  "en": "/en/",
+  "fr": "/fr/",
+  "es": "/es/",
+  "nl": "/nl/"
+ },
+ "/de/heissluftballon-agadir/": {
+  "de": "/de/heissluftballon-agadir/",
+  "en": "/en/agadir-hot-air-balloon/",
+  "fr": "/fr/montgolfiere-agadir/",
+  "es": "/es/globo-aerostatico-agadir/",
+  "nl": "/nl/luchtballon-agadir/"
+ },
+ "/de/heissluftballon-marrakesch-preis/": {
+  "de": "/de/heissluftballon-marrakesch-preis/",
+  "en": "/en/hot-air-balloon-marrakech-price/",
+  "fr": "/fr/prix-montgolfiere-marrakech/",
+  "es": "/es/precio-globo-aerostatico-marrakech/",
+  "nl": "/nl/luchtballon-marrakech-prijs/"
+ },
+ "/de/faq/": {
+  "de": "/de/faq/",
+  "en": "/en/faq/",
+  "fr": "/fr/faq/",
+  "es": "/es/preguntas-frecuentes/",
+  "nl": "/nl/veelgestelde-vragen/"
+ },
+ "/de/buchen/": {
+  "de": "/de/buchen/",
+  "en": "/en/book/",
+  "fr": "/fr/reserver/",
+  "es": "/es/reservar/",
+  "nl": "/nl/boeken/"
+ },
+ "/es/": {
+  "es": "/es/",
+  "en": "/en/",
+  "fr": "/fr/",
+  "de": "/de/",
+  "nl": "/nl/"
+ },
+ "/es/globo-aerostatico-agadir/": {
+  "es": "/es/globo-aerostatico-agadir/",
+  "en": "/en/agadir-hot-air-balloon/",
+  "fr": "/fr/montgolfiere-agadir/",
+  "de": "/de/heissluftballon-agadir/",
+  "nl": "/nl/luchtballon-agadir/"
+ },
+ "/es/precio-globo-aerostatico-marrakech/": {
+  "es": "/es/precio-globo-aerostatico-marrakech/",
+  "en": "/en/hot-air-balloon-marrakech-price/",
+  "fr": "/fr/prix-montgolfiere-marrakech/",
+  "de": "/de/heissluftballon-marrakesch-preis/",
+  "nl": "/nl/luchtballon-marrakech-prijs/"
+ },
+ "/es/preguntas-frecuentes/": {
+  "es": "/es/preguntas-frecuentes/",
+  "en": "/en/faq/",
+  "fr": "/fr/faq/",
+  "de": "/de/faq/",
+  "nl": "/nl/veelgestelde-vragen/"
+ },
+ "/es/reservar/": {
+  "es": "/es/reservar/",
+  "en": "/en/book/",
+  "fr": "/fr/reserver/",
+  "de": "/de/buchen/",
+  "nl": "/nl/boeken/"
+ },
+ "/nl/": {
+  "nl": "/nl/",
+  "en": "/en/",
+  "fr": "/fr/",
+  "de": "/de/",
+  "es": "/es/"
+ },
+ "/nl/luchtballon-agadir/": {
+  "nl": "/nl/luchtballon-agadir/",
+  "en": "/en/agadir-hot-air-balloon/",
+  "fr": "/fr/montgolfiere-agadir/",
+  "de": "/de/heissluftballon-agadir/",
+  "es": "/es/globo-aerostatico-agadir/"
+ },
+ "/nl/luchtballon-marrakech-prijs/": {
+  "nl": "/nl/luchtballon-marrakech-prijs/",
+  "en": "/en/hot-air-balloon-marrakech-price/",
+  "fr": "/fr/prix-montgolfiere-marrakech/",
+  "de": "/de/heissluftballon-marrakesch-preis/",
+  "es": "/es/precio-globo-aerostatico-marrakech/"
+ },
+ "/nl/veelgestelde-vragen/": {
+  "nl": "/nl/veelgestelde-vragen/",
+  "en": "/en/faq/",
+  "fr": "/fr/faq/",
+  "de": "/de/faq/",
+  "es": "/es/preguntas-frecuentes/"
+ },
+ "/nl/boeken/": {
+  "nl": "/nl/boeken/",
+  "en": "/en/book/",
+  "fr": "/fr/reserver/",
+  "de": "/de/buchen/",
+  "es": "/es/reservar/"
+ },
+ "/en/terms/": {
+  "en": "/en/terms/",
+  "fr": "/fr/conditions/"
+ },
+ "/en/privacy/": {
+  "en": "/en/privacy/",
+  "fr": "/fr/confidentialite/"
+ },
+ "/fr/conditions/": {
+  "fr": "/fr/conditions/",
+  "en": "/en/terms/"
+ },
+ "/fr/confidentialite/": {
+  "fr": "/fr/confidentialite/",
+  "en": "/en/privacy/"
+ }
+}

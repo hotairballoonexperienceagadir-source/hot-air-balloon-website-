@@ -1,0 +1,56 @@
+{
+  "brand": "Hot Air Balloon Experience Agadir",
+  "brandShort": "HAB Experience",
+  "domain": "https://www.hotairballoonexperienceagadir.com",
+  "whatsappNumber": "212661234567",
+  "phoneDisplay": "+212 661 23 45 67",
+  "phoneIntl": "+212661234567",
+  "email": "hello@hotairballoonexperienceagadir.com",
+  "gaMeasurementId": "",
+  "year": 2026,
+  "currency": {
+    "madSymbol": "MAD",
+    "eurSymbol": "EUR",
+    "madPerEur": 10.8
+  },
+  "prices": {
+    "classic": 1500,
+    "private": 2200,
+    "vip": 3500,
+    "camel": 1900,
+    "agafay": 1700,
+    "agadir": 1500,
+    "classicChild": 900,
+    "agadirChild": 900
+  },
+  "flightsPerYear": 350,
+  "businessHours": "05:00 - 10:30 (flight mornings), office 09:00 - 19:00",
+  "reviews": {
+    "note": "PLACEHOLDER reviews - replace with your real reviews before launch. aggregateRating is only emitted in schema when reviews.aggregateRating.enabled is true.",
+    "aggregateRating": { "enabled": false, "ratingValue": 4.9, "reviewCount": 187 }
+  },
+  "locations": {
+    "marrakech": {
+      "name": "Marrakech launch site",
+      "area": "Palmeraie, route de Fes, Marrakech 40000, Morocco",
+      "geo": { "lat": 31.667, "lng": -8.009 },
+      "cityName": "Marrakech"
+    },
+    "agadir": {
+      "name": "Agadir launch site",
+      "area": "Souss valley, route de Taroudant, Agadir 80000, Morocco",
+      "geo": { "lat": 30.42, "lng": -9.58 },
+      "cityName": "Agadir"
+    }
+  },
+  "sameAs": [
+    "https://www.instagram.com/hotairballoonexperienceagadir",
+    "https://www.facebook.com/hotairballoonexperienceagadir",
+    "https://www.tripadvisor.com/Attraction_Review-g293832-YOUR-TRIPADVISOR-LINK"
+  ],
+  "author": {
+    "name": "Youssef El Amrani",
+    "jobTitle": "Chief pilot, Hot Air Balloon Experience Agadir",
+    "licence": "Commercial balloon pilot licence, Moroccan CAA - 12 years and 3,400+ flights over Morocco"
+  }
+}

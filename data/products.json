@@ -1,0 +1,83 @@
+{
+  "note": "Product catalogue shared across languages. Display names per language live in src/lib/i18n.ts. Prices are injected from data/config.json at render time.",
+  "products": [
+    {
+      "id": "classic",
+      "city": "marrakech",
+      "flightKey": "classic",
+      "durationFlight": 60,
+      "pickupTime": "05:00",
+      "returnTime": "10:30",
+      "groupSize": "8-16",
+      "minAge": 5,
+      "images": ["palmgrove", "inflation", "breakfast"],
+      "pageByLang": { "en": "/en/marrakech/sunrise-balloon-flight/", "fr": "/fr/marrakech/vol-montgolfiere-lever-du-soleil/" },
+      "siblingIds": ["private", "vip", "camel", "agafay"]
+    },
+    {
+      "id": "private",
+      "city": "marrakech",
+      "flightKey": "private",
+      "durationFlight": 60,
+      "pickupTime": "05:00",
+      "returnTime": "10:30",
+      "groupSize": "2-8 (private basket)",
+      "minAge": 5,
+      "images": ["private", "palmgrove", "breakfast"],
+      "pageByLang": { "en": "/en/marrakech/private-balloon-flight/", "fr": "/fr/marrakech/vol-montgolfiere-prive/" },
+      "siblingIds": ["classic", "vip", "camel", "agafay"]
+    },
+    {
+      "id": "vip",
+      "city": "marrakech",
+      "flightKey": "vip",
+      "durationFlight": 60,
+      "pickupTime": "05:00",
+      "returnTime": "10:30",
+      "groupSize": "max 8",
+      "minAge": 5,
+      "images": ["vip", "palmgrove", "breakfast"],
+      "pageByLang": { "en": "/en/marrakech/vip-balloon-flight/", "fr": "/fr/marrakech/vol-montgolfiere-vip/" },
+      "siblingIds": ["classic", "private", "camel", "agafay"]
+    },
+    {
+      "id": "camel",
+      "city": "marrakech",
+      "flightKey": "camel",
+      "durationFlight": 60,
+      "pickupTime": "05:00",
+      "returnTime": "11:30",
+      "groupSize": "8-16",
+      "minAge": 5,
+      "images": ["camel", "palmgrove", "breakfast"],
+      "pageByLang": { "en": "/en/marrakech/balloon-and-camel-ride/", "fr": "/fr/marrakech/montgolfiere-et-balade-a-dromadaire/" },
+      "siblingIds": ["classic", "private", "vip", "agafay"]
+    },
+    {
+      "id": "agafay",
+      "city": "marrakech",
+      "flightKey": "agafay",
+      "durationFlight": 60,
+      "pickupTime": "05:00",
+      "returnTime": "10:30",
+      "groupSize": "8-16",
+      "minAge": 5,
+      "images": ["agafay", "inflation", "breakfast"],
+      "pageByLang": { "en": "/en/marrakech/agafay-desert-balloon/", "fr": "/fr/marrakech/montgolfiere-desert-agafay/" },
+      "siblingIds": ["classic", "private", "vip", "camel"]
+    },
+    {
+      "id": "agadir",
+      "city": "agadir",
+      "flightKey": "agadir",
+      "durationFlight": 60,
+      "pickupTime": "05:15",
+      "returnTime": "10:00",
+      "groupSize": "8-16",
+      "minAge": 5,
+      "images": ["agadir", "inflation", "breakfast"],
+      "pageByLang": { "en": "/en/agadir-hot-air-balloon/", "fr": "/fr/montgolfiere-agadir/", "de": "/de/heissluftballon-agadir/", "es": "/es/globo-aerostatico-agadir/", "nl": "/nl/luchtballon-agadir/" },
+      "siblingIds": ["classic", "private", "vip", "agafay"]
+    }
+  ]
+}
