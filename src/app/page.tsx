@@ -1,6 +1,7 @@
 import { Header } from "@/components/site/Header";
 import { Hero } from "@/components/site/Hero";
 import { CtaSection, Experience, PickupStrip, WhyUs, AgadirPackages, Gallery, Stats } from "@/components/site/sections";
+import { InstagramReels } from "@/components/site/InstagramReels";
 import { Reviews } from "@/components/site/Reviews";
 import { FaqSection } from "@/components/site/FaqSection";
 import { Footer } from "@/components/site/Footer";
@@ -82,6 +83,8 @@ export default function Page() {
         <Reviews />
         <FaqSection />
         <CtaSection />
+        {/* Instagram Reels showcase: Agadir homepage only, never on Marrakech. */}
+        <InstagramReels />
       </main>
       <Footer />
       {/* Spacer so the mobile sticky bar never covers the footer bottom line */}

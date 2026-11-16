@@ -33,11 +33,58 @@ export const site = {
  * rendered only on the Agadir homepage (footer and closing CTA) and must
  * NEVER be displayed on the Marrakech page. Update the URLs here only.
  */
+export const instagramProfileUrl = "https://www.instagram.com/hotairballoon_experience/";
+
 export const socialLinks = [
   { name: "Facebook", url: "https://www.facebook.com/hotairballoonexperienceagadir" },
   { name: "TikTok", url: "https://www.tiktok.com/@hotairballoonagadir" },
-  { name: "Instagram", url: "https://www.instagram.com/hotairballoon_experience/" },
+  { name: "Instagram", url: instagramProfileUrl },
 ] as const;
+
+export const instagramHandle = "@hotairballoon_experience";
+
+/**
+ * Instagram Reels showcase, shown ONLY on the Agadir homepage.
+ *
+ * REAL CONTENT POLICY: every entry must be a real Reel from the official
+ * account above, with its real thumbnail image and its original link.
+ * Never invent reel links, thumbnails or view counts, and never use
+ * another company's media.
+ *
+ * HOW TO ADD THE REAL REELS: for each of the 4 entries set `reelUrl` to the
+ * original Reel link and `thumbnail` to an image path under /public/images
+ * (vertical 9:16 crop works best, about 720x1280). While an entry is empty
+ * the card renders a branded sunrise gradient with the Instagram glyph and
+ * links to the official profile, mirroring the design reference.
+ */
+export type InstagramReel = {
+  reelUrl: string;
+  thumbnail: string;
+  alt: string;
+};
+
+export const instagramReels: InstagramReel[] = [
+  {
+    reelUrl: "",
+    thumbnail: "",
+    alt: "Sunrise hot air balloon launch over the Souss Valley in Agadir",
+  },
+  {
+    reelUrl: "",
+    thumbnail: "",
+    alt: "Balloon basket view over the Agadir countryside and Atlas Mountains",
+  },
+  {
+    reelUrl: "",
+    thumbnail: "",
+    alt: "Berber breakfast in the Caïdal tent after the Agadir flight",
+  },
+  {
+    reelUrl: "",
+    thumbnail: "",
+    alt: "Balloons drifting above the Souss Valley at golden hour",
+  },
+];
 
 export function waLink(message: string): string {
   return `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(message)}`;
