@@ -81,10 +81,10 @@ export default function Page() {
         <PickupStrip />
         <Gallery />
         <Reviews />
-        <FaqSection />
-        <CtaSection />
         {/* Instagram Reels showcase: Agadir homepage only, never on Marrakech. */}
         <InstagramReels />
+        <FaqSection />
+        <CtaSection />
       </main>
       <Footer />
       {/* Spacer so the mobile sticky bar never covers the footer bottom line */}
