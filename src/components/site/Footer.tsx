@@ -1,104 +1,151 @@
-import Link from "next/link";
-import { config } from "@/lib/config";
-import { pagesByLang, pageByUrl } from "@/lib/pages";
-import { ui } from "@/lib/i18n";
-import { LANGS, type Lang, type PageMeta } from "@/lib/types";
-import { BalloonMark } from "./icons";
+import Image from "next/image";
+import { Clock, Mail, MapPin, Phone } from "lucide-react";
+import { cities, offers, offerWaMessage, site, waLink, defaultWaMessage } from "@/lib/site";
+import { WhatsAppIcon } from "./icons";
 
-export function Footer({ lang, home }: { lang: Lang; home: PageMeta }) {
-  const t = ui(lang);
-  const all = pagesByLang(lang);
-  const byUrl = (u: string) => pageByUrl(u);
+const quickLinks = [
+  { href: "#home", label: "Home" },
+  { href: "#marrakech", label: "Marrakech Flights" },
+  { href: "#agadir", label: "Agadir Flights" },
+  { href: "#experience", label: "Flight Day Experience" },
+  { href: "#packages", label: "Special Packages" },
+  { href: "#gallery", label: "Gallery" },
+];
 
-  const flightPages = all.filter((p) => p.pageType === "product" || p.pageType === "city");
-  const hub = pageByUrl(`/${lang}/guide/`);
-  const guidePages = all.filter((p) => p.pageType === "guide");
-  const companyPages = all.filter((p) => p.pageType === "about" || p.pageType === "reviews" || p.pageType === "faq" || p.pageType === "booking");
-  const legalPages = all.filter((p) => p.pageType === "legal");
+const supportLinks = [
+  { href: "#reviews", label: "Guest Reviews" },
+  { href: "#faq", label: "FAQ" },
+  { href: "#book", label: "Book Your Flight" },
+  { href: site.googleReviewsUrl, label: "Google Business Profile", external: true },
+];
 
+export function Footer() {
   return (
-    <footer className="mt-auto border-t border-night-light bg-night-dark text-sand">
-      <div className="container-site grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-5">
-        <div className="lg:col-span-2">
-          <Link href={home.url} className="mb-4 flex items-center gap-2.5">
-            <BalloonMark className="h-10 w-9" />
-            <span className="flex flex-col leading-tight">
-              <span className="font-display text-base font-bold text-white">Hot Air Balloon</span>
-              <span className="text-[10px] font-medium uppercase tracking-[0.18em] text-gold">Experience Morocco</span>
-            </span>
-          </Link>
-          <p className="mb-4 max-w-sm text-sm leading-relaxed text-sand/75">{t.footer.blurb}</p>
-          <p className="mb-1 text-sm font-semibold text-gold">{t.footer.contactCol}</p>
-          <address className="not-italic text-sm leading-relaxed text-sand/75">
-            {config.locations.marrakech.area}
-            <br />
-            <a href={`tel:${config.phoneIntl}`} className="hover:text-gold">{config.phoneDisplay}</a>
-            <br />
-            <a href={`mailto:${config.email}`} className="hover:text-gold">{config.email}</a>
-          </address>
-          <p className="mt-2 text-xs text-sand/60">{t.footer.hours}</p>
-          <p className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-white/5 px-3 py-1.5 text-xs text-gold">
-            <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3Z" /><path d="m9 12 2 2 4-4" strokeLinecap="round" strokeLinejoin="round" /></svg>
-            {t.footer.licensed}
-          </p>
-        </div>
-
-        <nav aria-label="Flights">
-          <p className="mb-3 text-sm font-bold uppercase tracking-wide text-gold">{t.footer.flights}</p>
-          <ul className="space-y-2 text-sm">
-            {flightPages.map((p) => (
-              <li key={p.id}><Link href={p.url} className="text-sand/75 hover:text-white hover:underline">{p.h1}</Link></li>
-            ))}
-          </ul>
-        </nav>
-
-        <nav aria-label={t.footer.company}>
-          <p className="mb-3 text-sm font-bold uppercase tracking-wide text-gold">{t.footer.company}</p>
-          <ul className="space-y-2 text-sm">
-            {companyPages.map((p) => (
-              <li key={p.id}><Link href={p.url} className="text-sand/75 hover:text-white hover:underline">{p.h1}</Link></li>
-            ))}
-          </ul>
-          <p className="mb-2 mt-4 text-sm font-bold uppercase tracking-wide text-gold">{t.footer.legal}</p>
-          <ul className="space-y-2 text-sm">
-            {legalPages.map((p) => (
-              <li key={p.id}><Link href={p.url} className="text-sand/75 hover:text-white hover:underline">{p.h1}</Link></li>
-            ))}
-          </ul>
-        </nav>
-
-        <nav aria-label={t.footer.guides}>
-          <p className="mb-3 text-sm font-bold uppercase tracking-wide text-gold">{t.footer.guides}</p>
-          {hub && (
-            <ul className="space-y-2 text-sm">
-              {guidePages.slice(0, 6).map((p) => (
-                <li key={p.id}><Link href={p.url} className="text-sand/75 hover:text-white hover:underline">{p.h1}</Link></li>
-              ))}
-              <li><Link href={hub.url} className="font-medium text-gold hover:underline">{t.misc.guidesHub}</Link></li>
-            </ul>
-          )}
-          <p className="mb-2 mt-4 text-sm font-bold uppercase tracking-wide text-gold">{t.footer.languages}</p>
-          <ul className="flex flex-wrap gap-2">
-            {LANGS.map((l) => (
-              <li key={l}>
-                <Link
-                  href={`/${l}/`}
-                  lang={l}
-                  hrefLang={l}
-                  className={`inline-block rounded-full px-3 py-1.5 text-xs font-semibold uppercase ${l === lang ? "bg-terracotta text-white" : "border border-white/20 text-sand/80 hover:bg-white/10"}`}
-                >
-                  {l}
-                </Link>
+    <footer id="contact" className="bg-navy-950 text-cream-100">
+      <div className="mx-auto max-w-7xl px-4 py-14 md:px-6">
+        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+          {/* Brand and contact */}
+          <div>
+            <Image
+              src="/images/logo.jpg"
+              alt="Hot Air Balloon Experience Agadir logo"
+              width={1000}
+              height={630}
+              loading="lazy"
+              className="h-16 w-auto rounded-lg bg-white px-2 py-1.5"
+            />
+            <p className="mt-4 text-sm leading-relaxed text-cream-100/75">
+              Licensed sunrise hot air balloon flights over Marrakech and Agadir. Same pilots, same safety, two
+              unforgettable landscapes.
+            </p>
+            <ul className="mt-5 space-y-3 text-sm">
+              <li>
+                <a href={`tel:${site.phoneTel}`} className="flex items-center gap-2.5 text-cream-100/85 transition hover:text-brand-300">
+                  <Phone className="h-4 w-4 shrink-0 text-brand-400" aria-hidden="true" />
+                  {site.phoneDisplay}
+                </a>
               </li>
-            ))}
-          </ul>
-        </nav>
+              <li>
+                <a
+                  href={waLink(defaultWaMessage)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2.5 text-cream-100/85 transition hover:text-brand-300"
+                >
+                  <WhatsAppIcon className="h-4 w-4 shrink-0 text-whatsapp" />
+                  WhatsApp us anytime
+                </a>
+              </li>
+              <li className="flex items-center gap-2.5 text-cream-100/85">
+                <Mail className="h-4 w-4 shrink-0 text-brand-400" aria-hidden="true" />
+                <a href="mailto:contact@hotairballoonexperienceagadir.com" className="transition hover:text-brand-300">
+                  contact@hotairballoonexperienceagadir.com
+                </a>
+              </li>
+              <li className="flex items-start gap-2.5 text-cream-100/85">
+                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-brand-400" aria-hidden="true" />
+                <span>
+                  {site.address}
+                  <span className="block text-xs text-cream-100/60">Plus code {site.plusCode}</span>
+                </span>
+              </li>
+              <li className="flex items-center gap-2.5 text-cream-100/85">
+                <Clock className="h-4 w-4 shrink-0 text-brand-400" aria-hidden="true" />
+                {site.hours}
+              </li>
+            </ul>
+          </div>
+
+          {/* Quick links */}
+          <nav aria-label="Footer quick links">
+            <h3 className="font-display text-lg font-bold text-white">Quick Links</h3>
+            <ul className="mt-4 space-y-2.5 text-sm">
+              {quickLinks.map((link) => (
+                <li key={link.href}>
+                  <a href={link.href} className="text-cream-100/75 transition hover:text-brand-300">
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          {/* Flights */}
+          <nav aria-label="Footer flight offers">
+            <h3 className="font-display text-lg font-bold text-white">Our Flights</h3>
+            <ul className="mt-4 space-y-2.5 text-sm">
+              {offers.map((offer) => (
+                <li key={offer.id}>
+                  <a
+                    href={waLink(offerWaMessage(offer.name, offer.cityName))}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-cream-100/75 transition hover:text-brand-300"
+                  >
+                    {offer.name} <span className="text-cream-100/50">in {offer.cityName}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          {/* Support */}
+          <nav aria-label="Footer support links">
+            <h3 className="font-display text-lg font-bold text-white">Support</h3>
+            <ul className="mt-4 space-y-2.5 text-sm">
+              {supportLinks.map((link) => (
+                <li key={link.label}>
+                  <a
+                    href={link.href}
+                    target={link.external ? "_blank" : undefined}
+                    rel={link.external ? "noopener noreferrer" : undefined}
+                    className="text-cream-100/75 transition hover:text-brand-300"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-6 rounded-xl border border-white/10 bg-white/5 p-4">
+              <p className="text-xs font-bold uppercase tracking-widest text-brand-300">Sunrise flights daily</p>
+              <p className="mt-1.5 text-xs leading-relaxed text-cream-100/70">
+                Marrakech: Palmeraie desert launch site.
+                <br />
+                Agadir: Souss valley launch site.
+                <br />
+                {site.hours}
+              </p>
+            </div>
+          </nav>
+        </div>
       </div>
 
       <div className="border-t border-white/10">
-        <div className="container-site flex flex-col items-center justify-between gap-2 py-4 text-xs text-sand/60 sm:flex-row">
-          <p>(c) {config.year} {config.brand}. {t.footer.rights}</p>
-          <p>{t.footer.follow}: <a href={config.sameAs[0]} rel="noopener noreferrer" target="_blank" className="hover:text-gold">Instagram</a> - <a href={config.sameAs[1]} rel="noopener noreferrer" target="_blank" className="hover:text-gold">Facebook</a> - <a href={config.sameAs[2]} rel="noopener noreferrer" target="_blank" className="hover:text-gold">TripAdvisor</a></p>
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-4 py-5 text-xs text-cream-100/60 sm:flex-row md:px-6">
+          <p>
+            © {new Date().getFullYear()} {site.brand}. All rights reserved.
+          </p>
+          <p>Marrakech and Agadir sunrise balloon flights in Morocco.</p>
         </div>
       </div>
     </footer>

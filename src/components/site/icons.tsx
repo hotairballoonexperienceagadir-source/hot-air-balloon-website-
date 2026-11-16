@@ -1,146 +1,42 @@
-import React from "react";
-
-/** Full WhatsApp glyph (drawn inline, no external asset). */
 export function WhatsAppIcon({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="currentColor">
-      <path d="M12.04 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.75.46 3.45 1.32 4.94L2 22l5.3-1.39c1.43.78 3.04 1.2 4.74 1.2 5.46 0 9.9-4.44 9.9-9.9S17.5 2 12.04 2zm0 18.03c-1.5 0-2.98-.4-4.27-1.17l-.31-.18-3.12.82.83-3.04-.2-.33a8.03 8.03 0 0 1-1.23-4.27c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8.17-8 8.17zm4.38-5.9c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1-.37-1.9-1.18-.7-.62-1.17-1.38-1.31-1.62-.14-.24-.02-.37.1-.5.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.47-.4-.4-.54-.41h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2 0 1.18.86 2.32.98 2.48.12.16 1.7 2.6 4.12 3.64.58.25 1.03.4 1.38.51.58.18 1.1.16 1.52.1.46-.07 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28z" />
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className={className}>
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
     </svg>
   );
 }
 
-/** Hot air balloon logo mark. */
-export function BalloonMark({ className }: { className?: string }) {
+export function GoogleIcon({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 48 56" aria-hidden="true" className={className} fill="none">
-      <path d="M24 2C13 2 5 10.5 5 21c0 10 9.5 17.5 13 21.5h12C33.5 38.5 43 31 43 21 43 10.5 35 2 24 2Z" fill="url(#balloonGrad)" stroke="#9A3412" strokeWidth="1.5" />
-      <path d="M24 2v40.5M15 6c-2 4.5-3.5 9.5-3.5 15S13.5 34 16.5 37M33 6c2 4.5 3.5 9.5 3.5 15S34.5 34 31.5 37" stroke="#F5E6D3" strokeOpacity="0.7" strokeWidth="1.2" />
-      <rect x="17" y="45" width="14" height="9" rx="2.5" fill="#1E293B" stroke="#D4A24C" strokeWidth="1.5" />
-      <path d="M17.5 45 15 42M30.5 45 33 42" stroke="#D4A24C" strokeWidth="1.5" />
-      <defs>
-        <linearGradient id="balloonGrad" x1="5" y1="2" x2="43" y2="43" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#EA580C" />
-          <stop offset="1" stopColor="#C2410C" />
-        </linearGradient>
-      </defs>
+    <svg viewBox="0 0 24 24" aria-hidden="true" className={className}>
+      <path
+        fill="#4285F4"
+        d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.27-4.74 3.27-8.1z"
+      />
+      <path
+        fill="#34A853"
+        d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+      />
+      <path
+        fill="#FBBC05"
+        d="M5.84 14.1c-.22-.66-.35-1.36-.35-2.1s.13-1.44.35-2.1V7.06H2.18A10.97 10.97 0 001 12c0 1.77.43 3.45 1.18 4.94l3.66-2.84z"
+      />
+      <path
+        fill="#EA4335"
+        d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"
+      />
     </svg>
   );
 }
 
-export function Star({ className }: { className?: string }) {
+export function Stars({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 20 20" aria-hidden="true" className={className} fill="currentColor">
-      <path d="M10 1.5l2.6 5.3 5.9.9-4.2 4.1 1 5.8L10 14.9l-5.3 2.7 1-5.8L1.5 7.7l5.9-.9L10 1.5z" />
-    </svg>
-  );
-}
-
-export function Chevron({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 20 20" aria-hidden="true" className={className} fill="none" stroke="currentColor" strokeWidth="2">
-      <path d="M5 7.5 10 12.5 15 7.5" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-export function ArrowRight({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 20 20" aria-hidden="true" className={className} fill="none" stroke="currentColor" strokeWidth="2">
-      <path d="M3 10h13m0 0-5-5m5 5-5 5" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-export function PhoneIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="none" stroke="currentColor" strokeWidth="2">
-      <path d="M3 5.5C3 4.7 3.7 4 4.5 4h3l1.6 4-2 1.5a12 12 0 0 0 5.4 5.4L14 13l4 1.6v3c0 .8-.7 1.5-1.5 1.5C9.6 19 3 12.4 3 5.5Z" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-export function GlobeIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="none" stroke="currentColor" strokeWidth="1.8">
-      <circle cx="12" cy="12" r="9" />
-      <path d="M3 12h18M12 3c2.5 2.6 4 5.6 4 9s-1.5 6.4-4 9c-2.5-2.6-4-5.6-4-9s1.5-6.4 4-9Z" />
-    </svg>
-  );
-}
-
-export function MapPinIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="none" stroke="currentColor" strokeWidth="1.8">
-      <path d="M12 21s-7-6-7-11a7 7 0 1 1 14 0c0 5-7 11-7 11Z" />
-      <circle cx="12" cy="10" r="2.5" />
-    </svg>
-  );
-}
-
-export function ClockIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="none" stroke="currentColor" strokeWidth="1.8">
-      <circle cx="12" cy="12" r="9" />
-      <path d="M12 7v5l3.5 2" strokeLinecap="round" />
-    </svg>
-  );
-}
-
-export function ShieldIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="none" stroke="currentColor" strokeWidth="1.8">
-      <path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3Z" strokeLinejoin="round" />
-      <path d="m9 12 2 2 4-4" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-export function UsersIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="none" stroke="currentColor" strokeWidth="1.8">
-      <circle cx="9" cy="8" r="3.2" />
-      <path d="M3.5 19a5.5 5.5 0 0 1 11 0M15.5 5.5a3.2 3.2 0 0 1 0 5.8M16.5 13.7a5.5 5.5 0 0 1 4 5.3" strokeLinecap="round" />
-    </svg>
-  );
-}
-
-export function CheckIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="none" stroke="currentColor" strokeWidth="2.2">
-      <path d="m5 12.5 4.5 4.5L19 7.5" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-export function CrossIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="none" stroke="currentColor" strokeWidth="2.2">
-      <path d="m6.5 6.5 11 11m0-11-11 11" strokeLinecap="round" />
-    </svg>
-  );
-}
-
-export function MenuIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="none" stroke="currentColor" strokeWidth="2">
-      <path d="M4 7h16M4 12h16M4 17h16" strokeLinecap="round" />
-    </svg>
-  );
-}
-
-export function CloseIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="none" stroke="currentColor" strokeWidth="2">
-      <path d="m6 6 12 12M18 6 6 18" strokeLinecap="round" />
-    </svg>
-  );
-}
-
-export function CertificateIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="none" stroke="currentColor" strokeWidth="1.8">
-      <rect x="4" y="4" width="16" height="13" rx="2" />
-      <path d="M8 9h8M8 12.5h5M12 17v4l2.5-1.5L17 21v-4" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
+    <span className={`inline-flex items-center gap-0.5 ${className ?? ""}`} aria-label="Five star rating">
+      {[0, 1, 2, 3, 4].map((i) => (
+        <svg key={i} viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" className="h-4 w-4">
+          <path d="M10 1.5l2.6 5.3 5.9.9-4.2 4.1 1 5.8L10 14.9l-5.3 2.7 1-5.8L1.5 7.7l5.9-.9L10 1.5z" />
+        </svg>
+      ))}
+    </span>
   );
 }

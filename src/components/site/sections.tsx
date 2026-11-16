@@ -1,510 +1,498 @@
 import Image from "next/image";
-import Link from "next/link";
-import { config, priceEur, priceMad } from "@/lib/config";
-import { productOfPage, reviews, reviewText, type PageMeta, type Product } from "@/lib/pages";
-import { image } from "@/lib/images";
-import { priceFmt, ui, renderTokens } from "@/lib/i18n";
-import type { GalleryItem, Lang, PageContent } from "@/lib/types";
-import { BookWhatsApp } from "@/components/booking/BookWhatsApp";
-import { Star, CheckIcon, CrossIcon, ShieldIcon, ClockIcon, MapPinIcon, UsersIcon, CertificateIcon, ArrowRight } from "./icons";
-import { FaqList } from "./FaqList";
+import {
+  BadgeCheck,
+  Bus,
+  Camera,
+  Clock,
+  Coffee,
+  Flame,
+  Heart,
+  Mountain,
+  ShieldCheck,
+  Sparkles,
+  Sun,
+  Users,
+  type LucideIcon,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { cities, offers, offerWaMessage, packages, stats, timeline, waLink, defaultWaMessage, whyUs, type CityId, type Offer } from "@/lib/site";
+import { Stars, WhatsAppIcon } from "./icons";
 
-/* ---------------------------------- Heading ---------------------------------- */
-export function SectionHeading({ title, sub, align = "center", light = false }: { title: string; sub?: string; align?: "center" | "left"; light?: boolean }) {
+const featureIcons: Record<string, LucideIcon> = {
+  clock: Clock,
+  users: Users,
+  bus: Bus,
+  coffee: Coffee,
+  award: Sparkles,
+  camera: Camera,
+  mountain: Mountain,
+  heart: Heart,
+  flame: Flame,
+  sun: Sun,
+};
+
+const statIcons: Record<string, LucideIcon> = {
+  users: Users,
+  sun: Sun,
+  star: Sparkles,
+  shield: ShieldCheck,
+};
+
+const whyIcons: Record<string, LucideIcon> = {
+  badge: BadgeCheck,
+  shield: ShieldCheck,
+  bus: Bus,
+  sparkles: Sparkles,
+};
+
+/* ------------------------------------------------------------------ */
+/* Stats band                                                          */
+/* ------------------------------------------------------------------ */
+
+export function Stats() {
   return (
-    <div className={`mb-8 ${align === "center" ? "text-center" : ""}`}>
-      <h2 className={`text-2xl font-bold sm:text-3xl lg:text-4xl ${light ? "text-white" : "text-night"}`}>{title}</h2>
-      {sub && <p className={`mt-3 max-w-2xl text-base leading-relaxed ${align === "center" ? "mx-auto" : ""} ${light ? "text-sand/80" : "text-muted-foreground"}`}>{sub}</p>}
-    </div>
+    <section aria-label="Company statistics" className="border-b border-white/5 bg-navy-900">
+      <div className="mx-auto grid max-w-7xl grid-cols-2 gap-6 px-4 py-10 md:grid-cols-4 md:gap-0 md:px-6 md:py-12 lg:grid-cols-4">
+        {stats.map((stat) => {
+          const Icon = statIcons[stat.icon] ?? Sparkles;
+          return (
+            <div key={stat.label} className="flex flex-col items-center gap-3 text-center md:border-r md:border-white/10 md:last:border-none">
+              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-500/15 text-brand-400">
+                <Icon className="h-5 w-5" aria-hidden="true" />
+              </span>
+              <span className="font-display text-3xl font-bold text-white md:text-4xl">{stat.value}</span>
+              <span className="text-xs font-semibold uppercase tracking-widest text-cream-100/70">{stat.label}</span>
+            </div>
+          );
+        })}
+      </div>
+    </section>
   );
 }
 
-/* ---------------------------------- Trust badges ---------------------------------- */
-export function TrustBadges({ lang }: { lang: Lang }) {
-  const t = ui(lang);
-  const items = [
-    { icon: <ShieldIcon className="h-5 w-5" />, label: t.misc.licensedBadge },
-    { icon: <ShieldIcon className="h-5 w-5" />, label: t.misc.insuranceBadge },
-    { icon: <UsersIcon className="h-5 w-5" />, label: t.misc.smallGroups },
-    { icon: <CertificateIcon className="h-5 w-5" />, label: t.misc.freeCancellation },
-  ];
-  const ar = config.reviews.aggregateRating;
+/* ------------------------------------------------------------------ */
+/* Flight offers per city                                              */
+/* ------------------------------------------------------------------ */
+
+function OfferCard({ offer }: { offer: Offer }) {
   return (
-    <div className="flex flex-wrap items-center justify-center gap-2">
-      {ar.enabled && (
-        <span className="inline-flex items-center gap-1 rounded-full bg-white/15 px-3 py-1.5 text-xs font-semibold text-white backdrop-blur">
-          <Star className="h-4 w-4 text-gold" /> {ar.ratingValue}/5 - {ar.reviewCount} {lang === "fr" ? "avis" : lang === "de" ? "Bewertungen" : lang === "es" ? "opiniones" : lang === "nl" ? "beoordelingen" : "reviews"}
+    <article
+      className={`group relative flex flex-col overflow-hidden rounded-2xl bg-card shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${
+        offer.popular ? "ring-2 ring-brand-500" : "border border-border"
+      }`}
+    >
+      {offer.popular && (
+        <span className="absolute left-1/2 top-4 z-10 -translate-x-1/2 rounded-full bg-brand-500 px-4 py-1 text-xs font-bold uppercase tracking-wider text-white shadow-lg">
+          Most Popular
         </span>
       )}
-      {items.map((it, i) => (
-        <span key={i} className="inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1.5 text-xs font-semibold text-white backdrop-blur">
-          {it.icon} {it.label}
-        </span>
-      ))}
-    </div>
-  );
-}
-
-/* ---------------------------------- Hero ---------------------------------- */
-export function Hero({ page, lang, imageKey, priceKey, bookMsg, fromLabel, badge, children }: {
-  page: PageMeta;
-  lang: Lang;
-  imageKey: string;
-  priceKey: string;
-  bookMsg: string;
-  fromLabel: string;
-  badge?: string;
-  children?: React.ReactNode;
-}) {
-  const img = image(imageKey);
-  const t = ui(lang);
-  return (
-    <section className="relative isolate">
-      <div className="absolute inset-0 -z-10">
+      <div className="relative h-56 overflow-hidden">
         <Image
-          src={img.src}
-          alt={page.h1}
-          width={img.width}
-          height={img.height}
-          priority
-          fetchPriority="high"
-          className="h-full w-full object-cover"
-          sizes="100vw"
+          src={offer.image}
+          alt={offer.imageAlt}
+          width={offer.imageWidth}
+          height={offer.imageHeight}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
         />
-        <div className="hero-overlay absolute inset-0" aria-hidden="true" />
+        <span className="absolute bottom-3 left-3 rounded-full bg-navy-950/75 px-3 py-1 text-xs font-semibold text-cream-100 backdrop-blur">
+          {offer.cityName}
+        </span>
       </div>
-      <div className="container-site flex min-h-[560px] flex-col items-center justify-center py-24 text-center sm:min-h-[620px]">
-        <p className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-white/15 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-gold-light backdrop-blur">
-          <Star className="h-3.5 w-3.5 text-gold" /> {badge || `${config.locations.marrakech.cityName} - ${lang === "fr" ? "Maroc" : lang === "de" ? "Marokko" : lang === "es" ? "Marruecos" : lang === "nl" ? "Marokko" : "Morocco"}`} - {config.year}
-        </p>
-        <h1 className="max-w-3xl text-balance font-display text-4xl font-bold leading-tight text-white drop-shadow-md sm:text-5xl lg:text-6xl">{page.h1}</h1>
-        {children}
-        <div className="mt-6 flex flex-col items-center gap-3">
-          <span className="inline-flex items-baseline gap-2 rounded-full bg-night-dark/70 px-5 py-2 text-white backdrop-blur">
-            <span className="text-sm text-sand/80">{fromLabel}</span>
-            <span className="font-display text-xl font-bold text-gold">{priceFmt(lang, priceMad(priceKey))}</span>
-            <span className="text-sm text-sand/80">/ {t.facts.perPerson}</span>
-          </span>
-          <BookWhatsApp lang={lang} flight={priceKey} page={page.id} message={bookMsg} variant="hero" label={t.btn.bookWhatsapp} />
-          <TrustBadges lang={lang} />
+
+      <div className="flex flex-1 flex-col gap-4 p-5">
+        <div className="flex items-center gap-2">
+          <Stars className="text-gold-500" />
+          <span className="text-xs text-muted-foreground">5.0 rated on Google</span>
         </div>
-      </div>
-    </section>
-  );
-}
 
-/* ---------------------------------- Flight cards ---------------------------------- */
-export function FlightCards({ lang, cards }: { lang: Lang; cards: { page: PageMeta; product?: Product }[] }) {
-  const t = ui(lang);
-  return (
-    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {cards.map(({ page, product }) => {
-        const key = product?.images[0] || "hero";
-        const img = image(key);
-        const flightKey = product?.flightKey || "classic";
-        const msg = page.whatsapp?.message || `${page.h1}`;
-        return (
-          <article key={page.id} className="group flex flex-col overflow-hidden rounded-3xl border border-border bg-card shadow-sm transition hover:shadow-xl">
-            <Link href={page.url} className="relative block aspect-[16/9] overflow-hidden">
-              <Image src={img.src} alt={page.h1} width={img.width} height={img.height} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />
-              <span className="absolute left-3 top-3 rounded-full bg-night-dark/80 px-3 py-1 text-xs font-semibold text-gold backdrop-blur">
-                {t.misc.from} {priceFmt(lang, priceMad(flightKey))}
-              </span>
-            </Link>
-            <div className="flex flex-1 flex-col p-5">
-              <h3 className="mb-1.5 text-lg font-bold text-night">
-                <Link href={page.url} className="hover:text-terracotta">{page.h1}</Link>
-              </h3>
-              <p className="mb-4 flex-1 text-sm leading-relaxed text-muted-foreground">
-                {product ? t.products[product.id]?.tagline : ""}
-              </p>
-              <div className="flex items-center justify-between gap-3">
-                <BookWhatsApp lang={lang} flight={flightKey} page={page.id} message={msg} variant="card" />
-                <Link href={page.url} className="inline-flex items-center gap-1 text-sm font-semibold text-terracotta hover:underline">
-                  {t.btn.discover} <ArrowRight className="h-4 w-4" />
-                </Link>
-              </div>
-            </div>
-          </article>
-        );
-      })}
-    </div>
-  );
-}
-
-/* ---------------------------------- How it works ---------------------------------- */
-export function HowItWorks({ lang }: { lang: Lang }) {
-  const t = ui(lang);
-  return (
-    <ol className="mx-auto grid max-w-4xl gap-0 sm:grid-cols-2 lg:grid-cols-4">
-      {t.howItWorks.map((s, i) => (
-        <li key={i} className="relative flex flex-col items-center gap-3 rounded-3xl bg-card p-5 text-center shadow-sm ring-1 ring-border m-2">
-          <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-terracotta px-3.5 py-1 text-xs font-bold text-white shadow">{s.time}</span>
-          <span className="mt-2 flex h-10 w-10 items-center justify-center rounded-full bg-sand font-display text-base font-bold text-terracotta">{i + 1}</span>
-          <h3 className="text-sm font-bold text-night">{s.title}</h3>
-          <p className="text-xs leading-relaxed text-muted-foreground">{s.text}</p>
-        </li>
-      ))}
-    </ol>
-  );
-}
-
-/* ---------------------------------- Why us ---------------------------------- */
-export function WhyUs({ lang }: { lang: Lang }) {
-  const t = ui(lang);
-  return (
-    <div className="mx-auto grid max-w-5xl gap-5 sm:grid-cols-2">
-      {t.whyUs.map((w, i) => (
-        <div key={i} className="flex gap-4 rounded-3xl border border-border bg-card p-5 shadow-sm">
-          <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-terracotta/10 text-terracotta">
-            <ShieldIcon className="h-6 w-6" />
-          </span>
-          <div>
-            <h3 className="mb-1 font-bold text-night">{w.title}</h3>
-            <p className="text-sm leading-relaxed text-muted-foreground">{w.text}</p>
-          </div>
+        <div>
+          <h3 className="font-display text-xl font-bold text-foreground">{offer.name}</h3>
+          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{offer.description}</p>
         </div>
-      ))}
-    </div>
-  );
-}
 
-/* ---------------------------------- Gallery ---------------------------------- */
-export function GalleryGrid({ items, lang }: { items: GalleryItem[]; lang: Lang }) {
-  return (
-    <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-      {items.map((g, i) => {
-        const img = image(g.key);
-        const tall = i % 5 === 0;
-        return (
-          <figure key={i} className={`group relative overflow-hidden rounded-2xl ${tall ? "col-span-2 row-span-2 aspect-square" : "aspect-square"}`}>
-            <Image src={img.src} alt={g.alt} width={img.width} height={img.height} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw" loading="lazy" />
-            {g.caption && (
-              <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-night-dark/80 to-transparent p-3 text-xs font-medium text-white opacity-0 transition group-hover:opacity-100">
-                {g.caption}
-              </figcaption>
-            )}
-          </figure>
-        );
-      })}
-    </div>
-  );
-}
-
-/* ---------------------------------- Reviews ---------------------------------- */
-export function ReviewsRow({ lang, idx }: { lang: Lang; idx?: number[] }) {
-  const t = ui(lang);
-  const list = (idx && idx.length ? idx.map((i) => reviews[i]).filter(Boolean) : reviews.slice(0, 3));
-  return (
-    <div className="grid gap-5 md:grid-cols-3">
-      {list.map((r, i) => (
-        <figure key={i} className="flex flex-col rounded-3xl border border-border bg-card p-6 shadow-sm">
-          <div className="mb-3 flex items-center gap-0.5" aria-label={`${r.rating}/5`}>
-            {Array.from({ length: r.rating }).map((_, s) => <Star key={s} className="h-4 w-4 text-gold" />)}
-          </div>
-          <blockquote className="flex-1 text-sm leading-relaxed text-foreground/85">&ldquo;{reviewText(r, lang)}&rdquo;</blockquote>
-          <figcaption className="mt-4 flex items-center gap-3">
-            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-terracotta/10 font-display text-sm font-bold text-terracotta">{r.name.charAt(0)}</span>
-            <span className="text-sm">
-              <span className="block font-semibold text-night">{r.name}</span>
-              <span className="block text-xs text-muted-foreground">{r.country[lang] || r.country.en} - {r.date.slice(0, 7)}</span>
-            </span>
-          </figcaption>
-        </figure>
-      ))}
-    </div>
-  );
-}
-
-/* ---------------------------------- Meeting point / map ---------------------------------- */
-export function MeetingPoint({ lang, city }: { lang: Lang; city: "marrakech" | "agadir" }) {
-  const t = ui(lang);
-  const loc = config.locations[city];
-  const q = city === "marrakech" ? "Palmeraie+Marrakech" : "Souss+valley+Agadir";
-  return (
-    <div className="mx-auto grid max-w-5xl items-center gap-6 lg:grid-cols-2">
-      <div className="overflow-hidden rounded-3xl border border-border shadow-sm">
-        <iframe
-          title={`Map - ${loc.name}`}
-          src={`https://maps.google.com/maps?q=${q}&z=10&output=embed`}
-          width="600"
-          height="340"
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-          className="h-[340px] w-full border-0"
-        />
-      </div>
-      <div className="space-y-4">
-        <h3 className="flex items-center gap-2 text-lg font-bold text-night"><MapPinIcon className="h-5 w-5 text-terracotta" /> {loc.name}</h3>
-        <p className="text-sm leading-relaxed text-muted-foreground">{loc.area}</p>
-        <ul className="space-y-2 text-sm text-foreground/85">
-          <li className="flex items-center gap-2"><ClockIcon className="h-4 w-4 text-terracotta" /> {t.footer.hours}</li>
-          <li className="flex items-center gap-2"><ShieldIcon className="h-4 w-4 text-terracotta" /> {t.misc.weatherText}</li>
-        </ul>
-        <p className="rounded-2xl bg-sand-light p-4 text-sm leading-relaxed text-foreground/80 ring-1 ring-sand-dark">
-          {city === "marrakech"
-            ? (lang === "fr" ? "Nous venons vous chercher gratuitement à votre hôtel ou riad dans et autour de Marrakech (Médina, Guéliz, Palmeraie, Agdal). Sinon, retrouvez-nous directement au terrain de décollage 30 minutes avant le lever du soleil." : lang === "de" ? "Wir holen Sie kostenlos in Ihrem Hotel oder Riad in und um Marrakesch ab (Medina, Gueliz, Palmeraie, Agdal). Oder treffen Sie uns direkt 30 Minuten vor Sonnenaufgang auf dem Startfeld." : lang === "es" ? "Te recogemos gratis en tu hotel o riad en Marrakech y alrededores (Medina, Gueliz, Palmeraie, Agdal). O reúnete con nosotros en el campo de despegue 30 minutos antes del amanecer." : lang === "nl" ? "We halen je gratis op in je hotel of riad in en rond Marrakech (Medina, Gueliz, Palmeraie, Agdal). Of ontmoet ons 30 minuten voor zonsopgang op het startveld." : "We pick you up free of charge at your hotel or riad anywhere in and around Marrakech (Medina, Gueliz, Palmeraie, Agdal). Or meet us directly at the launch field 30 minutes before sunrise.")
-            : (lang === "fr" ? "Transfert gratuit depuis votre hôtel à Agadir ou Taghazout. Sinon, retrouvez-nous au terrain de décollage dans la vallée du Souss, 30 minutes avant le lever du soleil." : lang === "de" ? "Kostenloser Transfer von Ihrem Hotel in Agadir oder Taghazout. Oder treffen Sie uns 30 Minuten vor Sonnenaufgang auf dem Startfeld im Souss-Tal." : lang === "es" ? "Traslado gratuito desde tu hotel en Agadir o Taghazout. O reúnete con nosotros en el campo de despegue en el valle del Souss 30 minutos antes del amanecer." : lang === "nl" ? "Gratis transfer vanaf je hotel in Agadir of Taghazout. Of ontmoet ons 30 minuten voor zonsopgang op het startveld in de Souss-vallei." : "Free transfer from your hotel in Agadir or Taghazout. Or meet us at the launch field in the Souss Valley 30 minutes before sunrise.")}
-        </p>
-      </div>
-    </div>
-  );
-}
-
-/* ---------------------------------- CTA box ---------------------------------- */
-export function CtaSection({ lang, page, title, text, message }: { lang: Lang; page: PageMeta; title: string; text: string; message: string }) {
-  const t = ui(lang);
-  return (
-    <section className="pattern-zellige-dark relative overflow-hidden rounded-[2rem] bg-night px-6 py-14 text-center shadow-xl">
-      <div className="mx-auto max-w-2xl">
-        <h2 className="mb-3 font-display text-2xl font-bold text-white sm:text-3xl">{title}</h2>
-        <p className="mb-6 leading-relaxed text-sand/85">{text}</p>
-        <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <BookWhatsApp lang={lang} flight="generic" page={page.id} message={message} variant="hero" />
-          <Link href={`/${lang}/`} className="inline-flex items-center gap-1.5 rounded-full border border-sand/30 px-6 py-3 text-sm font-semibold text-sand transition hover:bg-white/10">
-            {t.btn.viewAll} <ArrowRight className="h-4 w-4" />
-          </Link>
-        </div>
-        <p className="mt-4 text-xs text-sand/60">{t.booking.payNote}</p>
-      </div>
-    </section>
-  );
-}
-
-/* ---------------------------------- Key facts (product) ---------------------------------- */
-export function KeyFacts({ lang, product, page }: { lang: Lang; product: Product; page: PageMeta }) {
-  const t = ui(lang);
-  const rows = [
-    { icon: <ClockIcon className="h-4 w-4" />, label: `${t.facts.duration} (${t.facts.flightTime})`, value: `${product.durationFlight} ${t.misc.minutes}` },
-    { icon: <ClockIcon className="h-4 w-4" />, label: t.facts.pickup, value: product.pickupTime },
-    { icon: <ClockIcon className="h-4 w-4" />, label: t.facts.back, value: product.returnTime },
-    { icon: <UsersIcon className="h-4 w-4" />, label: t.facts.group, value: product.groupSize },
-    { icon: <UsersIcon className="h-4 w-4" />, label: t.facts.minAge, value: `${product.minAge}+` },
-  ];
-  const included = [...t.includedBase, ...(t.includedExtra[product.id] || [])];
-  const msg = page.whatsapp?.message || page.h1;
-  return (
-    <div className="grid gap-6 lg:grid-cols-5">
-      <div className="rounded-3xl border border-border bg-card p-6 shadow-sm lg:col-span-2">
-        <h2 className="mb-4 text-lg font-bold text-night">{t.sec.keyFacts}</h2>
-        <dl className="mb-5 space-y-2.5 text-sm">
-          {rows.map((r, i) => (
-            <div key={i} className="flex items-center justify-between gap-3 border-b border-border/60 pb-2.5 last:border-0">
-              <dt className="flex items-center gap-2 text-muted-foreground"><span className="text-terracotta">{r.icon}</span>{r.label}</dt>
-              <dd className="font-semibold text-night">{r.value}</dd>
-            </div>
-          ))}
-          <div className="flex items-center justify-between gap-3 bg-sand-light rounded-xl px-3 py-3 ring-1 ring-sand-dark">
-            <dt className="font-semibold text-night">{t.facts.price}</dt>
-            <dd className="text-right">
-              <span className="font-display text-xl font-bold text-terracotta">{priceFmt(lang, priceMad(product.flightKey))}</span>
-              <span className="block text-xs text-muted-foreground">~ {priceFmt(lang, priceEur(product.flightKey), "EUR")} / {t.facts.perPerson}</span>
-            </dd>
-          </div>
-        </dl>
-        <BookWhatsApp lang={lang} flight={product.flightKey} page={page.id} message={msg} variant="primary" withForm="compact" className="w-full" />
-      </div>
-      <div className="rounded-3xl border border-border bg-card p-6 shadow-sm lg:col-span-3">
-        <h2 className="mb-4 text-lg font-bold text-night">{t.sec.included}</h2>
-        <ul className="mb-6 grid gap-2.5 sm:grid-cols-2">
-          {included.map((item, i) => (
-            <li key={i} className="flex items-start gap-2.5 text-sm text-foreground/85">
-              <CheckIcon className="mt-0.5 h-4 w-4 shrink-0 text-whatsapp-dark" /> {item}
-            </li>
-          ))}
-        </ul>
-        <h3 className="mb-3 text-sm font-bold uppercase tracking-wide text-muted-foreground">{t.sec.notIncluded}</h3>
-        <ul className="grid gap-2 sm:grid-cols-2">
-          {t.notIncluded.map((item, i) => (
-            <li key={i} className="flex items-start gap-2.5 text-sm text-muted-foreground">
-              <CrossIcon className="mt-0.5 h-3.5 w-3.5 shrink-0 text-terracotta/70" /> {item}
-            </li>
-          ))}
-        </ul>
-        <p className="mt-5 rounded-2xl bg-sand-light p-4 text-sm leading-relaxed text-foreground/80 ring-1 ring-sand-dark">
-          <strong className="text-night">{t.misc.weatherTitle}: </strong>{t.misc.weatherText}
-        </p>
-      </div>
-    </div>
-  );
-}
-
-/* ---------------------------------- Itinerary timeline ---------------------------------- */
-export function ItineraryTimeline({ lang, content }: { lang: Lang; content: PageContent }) {
-  const t = ui(lang);
-  if (!content.itinerary) return null;
-  return (
-    <ol className="relative mx-auto max-w-3xl border-l-2 border-sand-dark pl-6 sm:pl-10">
-      {content.itinerary.steps.map((s, i) => (
-        <li key={i} className="relative pb-8 last:pb-0">
-          <span className="absolute -left-[35px] top-0 flex h-6 w-6 items-center justify-center rounded-full bg-terracotta text-[10px] font-bold text-white sm:-left-[51px]">{i + 1}</span>
-          <div className="rounded-2xl border border-border bg-card p-4 shadow-sm sm:p-5">
-            <p className="mb-1 flex items-center gap-2 text-xs font-bold uppercase tracking-wide text-terracotta"><ClockIcon className="h-3.5 w-3.5" /> {s.time}</p>
-            <h3 className="mb-1.5 font-bold text-night">{s.title}</h3>
-            <p className="text-sm leading-relaxed text-muted-foreground">{s.text}</p>
-          </div>
-        </li>
-      ))}
-    </ol>
-  );
-}
-
-/* ---------------------------------- What to bring + cancellation ---------------------------------- */
-export function BringAndCancellation({ lang }: { lang: Lang }) {
-  const t = ui(lang);
-  return (
-    <div className="mx-auto grid max-w-5xl gap-6 lg:grid-cols-2">
-      <div className="rounded-3xl border border-border bg-card p-6 shadow-sm">
-        <h2 className="mb-4 text-lg font-bold text-night">{t.sec.bring}</h2>
-        <ul className="space-y-2.5">
-          {t.bring.map((b, i) => (
-            <li key={i} className="flex items-start gap-2.5 text-sm leading-relaxed text-foreground/85">
-              <CheckIcon className="mt-0.5 h-4 w-4 shrink-0 text-terracotta" /> {b}
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div className="rounded-3xl border border-border bg-card p-6 shadow-sm">
-        <h2 className="mb-4 text-lg font-bold text-night">{t.sec.cancellation}</h2>
-        <p className="text-sm leading-relaxed text-foreground/85">{t.cancellation}</p>
-      </div>
-    </div>
-  );
-}
-
-/* ---------------------------------- Compare flights ---------------------------------- */
-export function CompareFlights({ lang, pages }: { lang: Lang; pages: PageMeta[] }) {
-  const t = ui(lang);
-  return (
-    <div className="mx-auto grid max-w-5xl gap-4 sm:grid-cols-2">
-      {pages.map((p) => {
-        const prod = productOfPage(p);
-        const key = prod?.images[0] || "palmgrove";
-        const img = image(key);
-        return (
-          <Link key={p.id} href={p.url} className="group flex items-center gap-4 rounded-3xl border border-border bg-card p-4 shadow-sm transition hover:border-terracotta/40 hover:shadow-md">
-            <span className="relative h-20 w-24 shrink-0 overflow-hidden rounded-2xl">
-              <Image src={img.src} alt={p.h1} width={img.width} height={img.height} className="h-full w-full object-cover" loading="lazy" />
-            </span>
-            <span className="flex-1">
-              <span className="block font-semibold text-night group-hover:text-terracotta">{p.h1}</span>
-              <span className="mt-0.5 block text-xs text-muted-foreground">{t.misc.from} {priceFmt(lang, priceMad(prod?.flightKey || "classic"))}</span>
-            </span>
-            <ArrowRight className="h-4 w-4 text-terracotta" />
-          </Link>
-        );
-      })}
-    </div>
-  );
-}
-
-/* ---------------------------------- Pricing table ---------------------------------- */
-export function PricingTable({ lang, page, rows }: { lang: Lang; page: PageMeta; rows: { page: PageMeta; product: Product }[] }) {
-  const t = ui(lang);
-  return (
-    <div className="overflow-x-auto rounded-3xl border border-border bg-card shadow-sm scrollbar-thin">
-      <table className="w-full min-w-[720px] text-left text-sm">
-        <thead>
-          <tr className="border-b border-border bg-sand-light text-xs uppercase tracking-wide text-muted-foreground">
-            <th className="px-4 py-3.5 font-semibold">{t.sec.flights}</th>
-            <th className="px-4 py-3.5 font-semibold">{t.facts.adult}</th>
-            <th className="px-4 py-3.5 font-semibold">{t.facts.child}</th>
-            <th className="px-4 py-3.5 font-semibold">{t.facts.flightTime}</th>
-            <th className="px-4 py-3.5 font-semibold">{t.btn.bookNow}</th>
-          </tr>
-        </thead>
-        <tbody className="divide-y divide-border/70">
-          {rows.map(({ page: p, product }) => {
-            const childKey = product.flightKey === "agadir" ? "agadirChild" : "classicChild";
-            const msg = p.whatsapp?.message || p.h1;
+        <ul className="grid grid-cols-2 gap-2">
+          {offer.features.map((feature) => {
+            const Icon = featureIcons[feature.icon] ?? Sparkles;
             return (
-              <tr key={p.id} className="hover:bg-sand-light/50">
-                <td className="px-4 py-4">
-                  <Link href={p.url} className="font-semibold text-night hover:text-terracotta">{p.h1}</Link>
-                  {product.city === "agadir" && <span className="ml-2 rounded-full bg-sand px-2 py-0.5 text-[10px] font-semibold uppercase text-terracotta">{t.misc.agadir}</span>}
-                </td>
-                <td className="px-4 py-4">
-                  <span className="font-display font-bold text-night">{priceFmt(lang, priceMad(product.flightKey))}</span>
-                  <span className="block text-xs text-muted-foreground">~ {priceFmt(lang, priceEur(product.flightKey), "EUR")}</span>
-                </td>
-                <td className="px-4 py-4 text-muted-foreground">
-                  {product.flightKey === "classic" || product.flightKey === "agadir" ? priceFmt(lang, priceMad(childKey)) : "-"}
-                </td>
-                <td className="px-4 py-4 text-muted-foreground">{product.durationFlight} {t.misc.minutes}</td>
-                <td className="px-4 py-4">
-                  <BookWhatsApp lang={lang} flight={product.flightKey} page={page.id} message={msg} variant="table" />
-                </td>
-              </tr>
+              <li key={feature.label} className="flex items-center gap-2 text-xs font-medium text-foreground/80">
+                <Icon className="h-3.5 w-3.5 shrink-0 text-brand-500" aria-hidden="true" />
+                {feature.label}
+              </li>
             );
           })}
-        </tbody>
-      </table>
-    </div>
+        </ul>
+
+        <div className="mt-auto flex items-end justify-between gap-3 border-t border-border pt-4">
+          <div>
+            <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">From</p>
+            <p className="font-display text-2xl font-bold text-foreground">
+              {offer.priceMad.toLocaleString("en-US")} MAD
+              <span className="ml-1 text-xs font-normal text-muted-foreground">/ person</span>
+            </p>
+          </div>
+          <Button asChild className="rounded-full bg-brand-500 px-5 font-bold text-white hover:bg-brand-600">
+            <a href={waLink(offerWaMessage(offer.name, offer.cityName))} target="_blank" rel="noopener noreferrer">
+              <WhatsAppIcon className="h-4 w-4" />
+              Book
+            </a>
+          </Button>
+        </div>
+      </div>
+    </article>
   );
 }
 
-/* ---------------------------------- Guide cards ---------------------------------- */
-export function GuideCards({ lang, guides }: { lang: Lang; guides: PageMeta[] }) {
-  const t = ui(lang);
-  const keys = ["burner", "medinaAerial", "pilot", "breakfast", "passengers", "atlasAerial"];
+export function FlightSections() {
   return (
-    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {guides.map((g, i) => {
-        const img = image(keys[i % keys.length]);
+    <>
+      {(Object.keys(cities) as CityId[]).map((cityId) => {
+        const city = cities[cityId];
+        const cityOffers = offers.filter((offer) => offer.city === cityId);
         return (
-          <article key={g.id} className="group flex flex-col overflow-hidden rounded-3xl border border-border bg-card shadow-sm transition hover:shadow-lg">
-            <Link href={g.url} className="relative block aspect-[16/10] overflow-hidden">
-              <Image src={img.src} alt={g.h1} width={img.width} height={img.height} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" loading="lazy" />
-            </Link>
-            <div className="flex flex-1 flex-col p-5">
-              <h3 className="mb-2 text-base font-bold text-night">
-                <Link href={g.url} className="hover:text-terracotta">{g.h1}</Link>
-              </h3>
-              <p className="mb-3 flex-1 text-sm leading-relaxed text-muted-foreground">{g.metaDescription}</p>
-              <Link href={g.url} className="inline-flex items-center gap-1 text-sm font-semibold text-terracotta hover:underline">
-                {t.btn.readGuide} <ArrowRight className="h-4 w-4" />
-              </Link>
+          <section key={cityId} id={cityId} className="bg-background py-16 md:py-24">
+            <div className="mx-auto max-w-7xl px-4 md:px-6">
+              <div className="mx-auto max-w-2xl text-center">
+                <span className="inline-flex items-center gap-2 rounded-full bg-secondary px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-secondary-foreground">
+                  <Sun className="h-3.5 w-3.5" aria-hidden="true" /> {city.name} Balloon Flights
+                </span>
+                <h2 className="mt-4 font-display text-3xl font-bold text-foreground text-balance md:text-4xl">
+                  {city.headline}
+                </h2>
+                <p className="mt-4 text-base leading-relaxed text-muted-foreground">{city.intro}</p>
+                <p className="mt-2 inline-flex items-center gap-2 text-sm font-semibold text-brand-700">
+                  <MapPinSmall /> {city.launchSite}
+                </p>
+              </div>
+
+              <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {cityOffers.map((offer) => (
+                  <OfferCard key={offer.id} offer={offer} />
+                ))}
+              </div>
+
+              <p className="mt-8 text-center text-sm text-muted-foreground">
+                Children from 6 years fly at a reduced price in {city.name}.{" "}
+                <a
+                  href={waLink(`Hello! I have a question about balloon flights in ${city.name}.`)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold text-brand-600 underline-offset-4 hover:underline"
+                >
+                  Ask us on WhatsApp
+                </a>
+              </p>
             </div>
-          </article>
+          </section>
         );
       })}
-    </div>
+    </>
   );
 }
 
-/* ---------------------------------- Author box ---------------------------------- */
-export function AuthorBox({ lang, label }: { lang: Lang; label: string }) {
+function MapPinSmall() {
   return (
-    <aside className="mx-auto mt-10 flex max-w-3xl flex-col items-start gap-4 rounded-3xl border border-sand-dark bg-sand-light p-5 sm:flex-row sm:items-center">
-      <Image src={image("pilot").src} alt={config.author.name} width={72} height={96} className="h-24 w-[4.5rem] rounded-2xl object-cover" />
-      <div>
-        <p className="text-xs font-semibold uppercase tracking-wide text-terracotta">{label} {config.author.name}</p>
-        <p className="mt-1 font-bold text-night">{config.author.jobTitle}</p>
-        <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{config.author.licence}</p>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-4 w-4" aria-hidden="true">
+      <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1116 0Z" />
+      <circle cx="12" cy="10" r="3" />
+    </svg>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Why us                                                              */
+/* ------------------------------------------------------------------ */
+
+export function WhyUs() {
+  return (
+    <section id="why-us" className="bg-cream-100 py-16 md:py-24">
+      <div className="mx-auto max-w-7xl px-4 md:px-6">
+        <div className="mx-auto max-w-2xl text-center">
+          <span className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-brand-700 shadow-sm">
+            <Sparkles className="h-3.5 w-3.5" aria-hidden="true" /> Why Us
+          </span>
+          <h2 className="mt-4 font-display text-3xl font-bold text-foreground text-balance md:text-4xl">
+            Your Trust Is Our Greatest Asset
+          </h2>
+          <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+            From the balloons we fly to the crew we train, every decision is built around your safety and your experience.
+          </p>
+        </div>
+
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {whyUs.map((item) => {
+            const Icon = whyIcons[item.icon] ?? Sparkles;
+            return (
+              <div
+                key={item.title}
+                className="rounded-2xl bg-white p-6 text-center shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg"
+              >
+                <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-brand-500/10 text-brand-500">
+                  <Icon className="h-6 w-6" aria-hidden="true" />
+                </span>
+                <h3 className="mt-4 font-display text-lg font-bold text-foreground">{item.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.text}</p>
+              </div>
+            );
+          })}
+        </div>
       </div>
-    </aside>
-  );
-}
-
-/* ---------------------------------- FAQ section wrapper ---------------------------------- */
-export function FaqSection({ lang, faqs, title, sub }: { lang: Lang; faqs: { q: string; a: string }[]; title: string; sub?: string }) {
-  return (
-    <section aria-labelledby="faq-heading">
-      <SectionHeading title={title} sub={sub} />
-      <FaqList faqs={faqs} lang={lang} />
     </section>
   );
 }
 
-/* ---------------------------------- Weather guarantee strip ---------------------------------- */
-export function WeatherStrip({ lang }: { lang: Lang }) {
-  const t = ui(lang);
+/* ------------------------------------------------------------------ */
+/* Experience: story + day timeline                                    */
+/* ------------------------------------------------------------------ */
+
+export function Experience() {
   return (
-    <div className="mx-auto flex max-w-3xl items-start gap-3 rounded-2xl bg-whatsapp/10 p-4 ring-1 ring-whatsapp/30">
-      <ShieldIcon className="mt-0.5 h-5 w-5 shrink-0 text-whatsapp-dark" />
-      <p className="text-sm leading-relaxed text-foreground/85"><strong className="text-night">{t.misc.weatherTitle}:</strong> {t.misc.weatherText}</p>
-    </div>
+    <section id="experience" className="bg-navy-900 py-16 md:py-24">
+      <div className="mx-auto max-w-7xl px-4 md:px-6">
+        {/* Story */}
+        <div className="grid items-center gap-10 lg:grid-cols-2">
+          <div className="relative">
+            <div className="relative overflow-hidden rounded-2xl">
+              <Image
+                src="/images/burner-flame.jpg"
+                alt="Balloon burner flame lighting up the envelope in the dark before sunrise"
+                width={768}
+                height={1344}
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="h-[420px] w-full object-cover md:h-[520px]"
+              />
+            </div>
+            <span className="absolute left-4 top-4 rounded-xl bg-brand-500 px-4 py-2 text-center font-display text-lg font-bold leading-tight text-white shadow-lg">
+              12+
+              <span className="block text-[10px] font-semibold uppercase tracking-widest text-white/85">Years in the sky</span>
+            </span>
+          </div>
+
+          <div>
+            <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-brand-300">
+              <Flame className="h-3.5 w-3.5" aria-hidden="true" /> Our Story
+            </span>
+            <h2 className="mt-4 font-display text-3xl font-bold text-white text-balance md:text-4xl">
+              The Friendliest Sunrise in Moroccan Skies
+            </h2>
+            <p className="mt-4 text-base leading-relaxed text-cream-100/85">
+              Hot Air Balloon Experience Agadir was born in the Souss valley, flying guests over argan groves and the
+              Atlas foothills. Years later we added our Marrakech operation in the Palmeraie desert, so every visitor to
+              Morocco can live the same sunrise from a different sky.
+            </p>
+            <p className="mt-3 text-base leading-relaxed text-cream-100/85">
+              Our team of licensed Moroccan pilots flies every single morning with one rule only: never compromise on
+              safety.
+            </p>
+
+            <ul className="mt-6 space-y-3">
+              {[
+                "Licensed pilots with thousands of flight hours",
+                "Full passenger insurance on every flight",
+                "Complimentary hotel pickup and drop off",
+                "Daily safety inspections, zero compromise",
+              ].map((line) => (
+                <li key={line} className="flex items-start gap-3 text-sm text-cream-100/90">
+                  <BadgeCheck className="mt-0.5 h-4 w-4 shrink-0 text-brand-400" aria-hidden="true" />
+                  {line}
+                </li>
+              ))}
+            </ul>
+
+            <Button asChild className="mt-8 rounded-full bg-brand-500 px-7 py-3 font-bold text-white hover:bg-brand-600">
+              <a href={waLink(defaultWaMessage)} target="_blank" rel="noopener noreferrer">
+                <WhatsAppIcon className="h-4 w-4" />
+                Plan Your Flight
+              </a>
+            </Button>
+          </div>
+        </div>
+
+        {/* Timeline */}
+        <div className="mt-20">
+          <div className="mx-auto max-w-2xl text-center">
+            <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-brand-300">
+              <Clock className="h-3.5 w-3.5" aria-hidden="true" /> Flight Day
+            </span>
+            <h3 className="mt-4 font-display text-3xl font-bold text-white text-balance md:text-4xl">
+              How Your Balloon Morning Works
+            </h3>
+            <p className="mt-4 text-base leading-relaxed text-cream-100/80">
+              The same careful routine in Marrakech and Agadir, from the first knock on your hotel door to the last sip of mint tea.
+            </p>
+          </div>
+
+          <ol className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {timeline.map((step, index) => (
+              <li key={step.title} className="relative rounded-2xl border border-white/10 bg-white/5 p-5">
+                <span className="absolute right-4 top-4 font-display text-4xl font-bold text-white/10" aria-hidden="true">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <span className="inline-block rounded-full bg-brand-500/15 px-3 py-1 text-xs font-bold tracking-wider text-brand-300">
+                  {step.time}
+                </span>
+                <h4 className="mt-3 font-semibold text-white">{step.title}</h4>
+                <p className="mt-1.5 text-sm leading-relaxed text-cream-100/75">{step.text}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </div>
+    </section>
   );
 }
 
-export { renderTokens };
+/* ------------------------------------------------------------------ */
+/* Special packages                                                    */
+/* ------------------------------------------------------------------ */
+
+export function Packages() {
+  return (
+    <section id="packages" className="bg-navy-950 py-16 md:py-24">
+      <div className="mx-auto max-w-7xl px-4 md:px-6">
+        <div className="mx-auto max-w-2xl text-center">
+          <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-brand-300">
+            <Heart className="h-3.5 w-3.5" aria-hidden="true" /> Special Packages
+          </span>
+          <h2 className="mt-4 font-display text-3xl font-bold text-white text-balance md:text-4xl">
+            Beyond an Ordinary Balloon Ride
+          </h2>
+          <p className="mt-4 text-base leading-relaxed text-cream-100/80">
+            Curated experiences for the moments you will remember forever, available in both Marrakech and Agadir.
+          </p>
+        </div>
+
+        <div className="mt-12 grid gap-6 md:grid-cols-3">
+          {packages.map((pkg) => (
+            <article key={pkg.title} className="group relative overflow-hidden rounded-2xl">
+              <Image
+                src={pkg.image}
+                alt={pkg.imageAlt}
+                width={1200}
+                height={800}
+                sizes="(max-width: 768px) 100vw, 33vw"
+                className="h-72 w-full object-cover transition duration-500 group-hover:scale-105 md:h-80"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/40 to-transparent" aria-hidden="true" />
+              <div className="absolute inset-x-0 bottom-0 p-5">
+                <span className="inline-block rounded-full bg-brand-500 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-white">
+                  {pkg.tag}
+                </span>
+                <h3 className="mt-3 font-display text-xl font-bold text-white">{pkg.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-cream-100/85">{pkg.text}</p>
+                <a
+                  href={waLink(`Hello! I am interested in the ${pkg.title} package. Please send me details.`)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-3 inline-flex items-center gap-2 text-sm font-bold text-brand-300 transition hover:text-brand-200"
+                >
+                  Learn More
+                  <span aria-hidden="true">→</span>
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Gallery                                                             */
+/* ------------------------------------------------------------------ */
+
+const galleryImages = [
+  { src: "/images/gallery-1.jpg", w: 1800, h: 1350, alt: "Dozens of hot air balloons flying over a Moroccan town at dawn" },
+  { src: "/images/gallery-2.jpg", w: 1200, h: 780, alt: "Colorful hot air balloons rising into a clear blue sky" },
+  { src: "/images/gallery-3.jpg", w: 736, h: 1104, alt: "Green and red Moroccan balloons inflating in the desert" },
+  { src: "/images/gallery-4.jpg", w: 1024, h: 1024, alt: "Moroccan mint tea being poured into traditional glasses" },
+  { src: "/images/gallery-5.jpg", w: 1800, h: 982, alt: "Fresh msemen flatbread served with honey and mint tea" },
+  { src: "/images/gallery-6.jpg", w: 841, h: 1051, alt: "Guest watching hot air balloons fill the sunrise sky" },
+];
+
+export function Gallery() {
+  return (
+    <section id="gallery" className="bg-cream-100 py-16 md:py-24">
+      <div className="mx-auto max-w-7xl px-4 md:px-6">
+        <div className="mx-auto max-w-2xl text-center">
+          <span className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-brand-700 shadow-sm">
+            <Camera className="h-3.5 w-3.5" aria-hidden="true" /> Gallery
+          </span>
+          <h2 className="mt-4 font-display text-3xl font-bold text-foreground text-balance md:text-4xl">
+            Moments Above Morocco
+          </h2>
+          <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+            A glimpse of the landscapes, flights and mornings that are waiting for you in the skies of Marrakech and Agadir.
+          </p>
+        </div>
+
+        <div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-3">
+          {galleryImages.map((img, i) => (
+            <div key={img.src} className="group relative overflow-hidden rounded-2xl">
+              <Image
+                src={img.src}
+                alt={img.alt}
+                width={img.w}
+                height={img.h}
+                loading="lazy"
+                sizes="(max-width: 768px) 50vw, 33vw"
+                className="h-48 w-full object-cover transition duration-500 group-hover:scale-105 md:h-64"
+              />
+              <span className="absolute bottom-3 right-3 rounded-full bg-navy-950/70 px-3 py-1 text-[11px] font-semibold text-cream-100 opacity-0 backdrop-blur transition group-hover:opacity-100">
+                {i % 2 === 0 ? "Marrakech" : "Agadir"}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Final CTA                                                           */
+/* ------------------------------------------------------------------ */
+
+export function CtaSection() {
+  return (
+    <section id="book" className="relative isolate overflow-hidden bg-navy-950 py-20 md:py-28">
+      <Image
+        src="/images/vip-basket.jpg"
+        alt="Guests enjoying breakfast in a hot air balloon basket at sunrise over Morocco"
+        fill
+        loading="lazy"
+        sizes="100vw"
+        className="object-cover object-center opacity-45"
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-navy-950/85 via-navy-950/60 to-navy-950/90" aria-hidden="true" />
+      <div className="relative mx-auto max-w-3xl px-4 text-center md:px-6">
+        <span className="inline-flex items-center gap-2 rounded-full bg-brand-500/90 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-white">
+          Ready for Adventure?
+        </span>
+        <h2 className="mt-5 font-display text-3xl font-bold text-white text-balance md:text-5xl">
+          Ready for Your Moroccan Sunrise Adventure?
+        </h2>
+        <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-cream-100/85">
+          Do not miss the experience of a lifetime. Send us a message today and fly over Marrakech or Agadir at sunrise.
+        </p>
+        <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <Button asChild size="lg" className="w-full rounded-full bg-brand-500 px-8 py-4 text-base font-bold text-white shadow-xl shadow-brand-900/40 hover:bg-brand-600 sm:w-auto">
+            <a href={waLink(defaultWaMessage)} target="_blank" rel="noopener noreferrer">
+              <WhatsAppIcon className="h-5 w-5" />
+              Book on WhatsApp
+            </a>
+          </Button>
+          <Button
+            asChild
+            size="lg"
+            variant="outline"
+            className="w-full rounded-full border-white/40 bg-white/10 px-8 py-4 text-base font-bold text-white backdrop-blur hover:bg-white/20 hover:text-white sm:w-auto"
+          >
+            <a href="#marrakech">Compare Flights</a>
+          </Button>
+        </div>
+      </div>
+    </section>
+  );
+}
