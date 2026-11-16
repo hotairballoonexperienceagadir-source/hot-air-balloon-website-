@@ -12,7 +12,7 @@ export const site = {
   phoneTel: "+212609488493",
   whatsappNumber: "212609488493",
   googleRating: 5.0,
-  googleReviewsUrl: "https://maps.app.goo.gl/ceP7bmDyUCGpDFMr8",
+  googleReviewsUrl: "https://share.google/usziGz8xr4d8qD8av",
   address: "Agadir 80000, Morocco",
   plusCode: "CC4W+7Q Agadir, Morocco",
   hours: "Open 24 hours",
@@ -289,46 +289,22 @@ export const packages = [
 ] as const;
 
 /* ------------------------------------------------------------------ */
-/* Reviews                                                             */
+/* Reviews. Real data from the Google Business Profile (rating 5.0).   */
+/* The profile currently holds a single public review, quoted below    */
+/* together with the owner reply. Add more reviews here as they come   */
+/* in on Google and the section will keep the same layout.             */
 /* ------------------------------------------------------------------ */
-/**
- * The rating (5.0) and the Google Maps link are real, taken from the business
- * profile. NOTE FOR THE OWNER: Google blocks automatic reading of the exact
- * review texts, so the quotes below are editable placeholders. Replace them
- * with the real reviews you can copy from your Google Business Profile.
- */
 export const reviews = [
   {
-    name: "Sarah M.",
-    country: "United Kingdom",
-    text: "Absolutely breathtaking. We floated over the valley at sunrise and the crew made us feel safe and welcome from the first minute. The Berber breakfast after landing was the perfect ending.",
-  },
-  {
-    name: "Julien R.",
-    country: "France",
-    text: "Reservation on WhatsApp took two minutes and the pickup was on time. The pilot explained everything with patience and the flight was pure magic. Worth every dirham.",
-  },
-  {
-    name: "Emma and Tom",
-    country: "Netherlands",
-    text: "We booked the private flight for our anniversary. Decorated basket, photos, champagne and the most beautiful sunrise we have ever seen. Thank you for everything!",
-  },
-  {
-    name: "Karim B.",
-    country: "Casablanca, Morocco",
-    text: "I brought my parents who were scared of heights. The team reassured them, the takeoff was so smooth and they landed with huge smiles. Highly recommended.",
-  },
-  {
-    name: "Laura G.",
-    country: "Spain",
-    text: "Perfect organization, professional pilot and incredible views of the Atlas mountains. The whole experience from pickup to drop off felt premium.",
-  },
-  {
-    name: "Michael T.",
-    country: "United States",
-    text: "One of the best mornings of my life. Watching the sun rise from a balloon over Morocco is something everyone should do once. The certificate and photos were a nice touch.",
+    name: "wai mei poon",
+    meta: "8 reviews · 5 photos on Google",
+    time: "2 weeks ago",
+    text: "Amazing air balloon ride over Agadir with sunrise view! Professional pilot and take us for a safe flight! Also it serves us a Great breakfast!!",
   },
 ] as const;
+
+export const ownerReply =
+  "Thank you for your kind review! We're glad you enjoyed the experience and hope to see you again!";
 
 /* ------------------------------------------------------------------ */
 /* FAQ                                                                 */
