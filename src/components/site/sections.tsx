@@ -36,6 +36,7 @@ import {
   type Offer,
 } from "@/lib/site";
 import { Stars, WhatsAppIcon } from "./icons";
+import { SocialLinks } from "./SocialLinks";
 
 const featureIcons: Record<string, LucideIcon> = {
   clock: Clock,
@@ -486,6 +487,14 @@ export function CtaSection() {
               <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
             </Link>
           </Button>
+        </div>
+
+        {/* Agadir official social media: this section renders on the Agadir homepage only. */}
+        <div className="mt-12 flex flex-col items-center gap-4 border-t border-white/10 pt-8">
+          <p className="text-xs font-bold uppercase tracking-widest text-gold-400">
+            Follow our Agadir adventures
+          </p>
+          <SocialLinks className="justify-center" />
         </div>
       </div>
     </section>

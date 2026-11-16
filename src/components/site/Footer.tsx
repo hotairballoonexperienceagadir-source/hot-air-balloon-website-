@@ -11,6 +11,7 @@ import {
   waLink,
 } from "@/lib/site";
 import { WhatsAppIcon } from "./icons";
+import { SocialLinks } from "./SocialLinks";
 
 type FooterVariant = "home" | "marrakech";
 
@@ -118,6 +119,17 @@ export function Footer({ variant = "home" }: { variant?: FooterVariant }) {
                 {site.hours}
               </li>
             </ul>
+
+          {/* Agadir official social media: homepage variant only, never on Marrakech. */}
+          {variant === "home" && (
+            <div className="mt-7 border-t border-white/10 pt-6">
+              <h3 className="font-display text-base font-bold text-white">Follow Our Agadir Adventures</h3>
+              <p className="mt-1.5 text-xs leading-relaxed text-cream-100/65">
+                Real sunrise flights, real mornings over the Souss Valley.
+              </p>
+              <SocialLinks className="mt-4" />
+            </div>
+          )}
           </div>
 
           {/* Quick links */}

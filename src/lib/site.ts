@@ -26,6 +26,19 @@ export const site = {
   marrakechPath: "/marrakech-flights",
 } as const;
 
+/**
+ * Official Agadir social media accounts.
+ *
+ * IMPORTANT: these profiles belong EXCLUSIVELY to the Agadir brand. They are
+ * rendered only on the Agadir homepage (footer and closing CTA) and must
+ * NEVER be displayed on the Marrakech page. Update the URLs here only.
+ */
+export const socialLinks = [
+  { name: "Facebook", url: "https://www.facebook.com/hotairballoonexperienceagadir" },
+  { name: "TikTok", url: "https://www.tiktok.com/@hotairballoonagadir" },
+  { name: "Instagram", url: "https://www.instagram.com/hotairballoon_experience/" },
+] as const;
+
 export function waLink(message: string): string {
   return `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(message)}`;
 }

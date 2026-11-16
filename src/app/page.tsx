@@ -5,7 +5,7 @@ import { Reviews } from "@/components/site/Reviews";
 import { FaqSection } from "@/components/site/FaqSection";
 import { Footer } from "@/components/site/Footer";
 import { FloatingActions } from "@/components/site/FloatingActions";
-import { agadirOffers, faqs, site } from "@/lib/site";
+import { agadirOffers, faqs, site, socialLinks } from "@/lib/site";
 
 /** JSON-LD structured data: local business, Agadir offers and FAQ. */
 function StructuredData() {
@@ -32,6 +32,8 @@ function StructuredData() {
         },
         openingHours: "Mo-Su 00:00-24:00",
         url: site.googleReviewsUrl,
+        /* Official Agadir social profiles, homepage structured data only. */
+        sameAs: socialLinks.map((social) => social.url),
       },
       ...agadirOffers.map((offer) => ({
         "@type": "Product",
