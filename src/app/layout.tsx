@@ -17,26 +17,28 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.hotairballoonexperienceagadir.com"),
   title: {
-    default: "Hot Air Balloon Marrakech and Agadir | Sunrise Flights in Morocco",
+    default: "Hot Air Balloon Agadir | Sunrise Flights Over the Souss Valley, Morocco",
     template: "%s | Hot Air Balloon Experience Agadir",
   },
   description:
-    "Licensed sunrise hot air balloon flights in Marrakech and Agadir. Hotel pickup, Berber breakfast, flight certificate and a 5.0 Google rating. Book directly on WhatsApp.",
+    "Licensed sunrise hot air balloon flights in Agadir, Morocco. Fly over the Souss Valley and the Atlas Mountains, enjoy a Berber breakfast in a Caïdal tent and your flight certificate. Book on WhatsApp.",
   keywords: [
-    "hot air balloon marrakech",
     "hot air balloon agadir",
-    "montgolfiere marrakech",
+    "hot air balloon experience agadir",
+    "agadir balloon flight",
+    "hot air balloon souss valley",
+    "sunrise balloon flight agadir",
+    "balloon ride morocco",
     "montgolfiere agadir",
-    "hot air balloon morocco",
-    "sunrise balloon flight morocco",
   ],
+  alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     siteName: "Hot Air Balloon Experience Agadir",
-    title: "Hot Air Balloon Marrakech and Agadir | Sunrise Flights in Morocco",
+    title: "Hot Air Balloon Agadir | Sunrise Flights Over the Souss Valley",
     description:
-      "Licensed sunrise hot air balloon flights in Marrakech and Agadir. Hotel pickup, Berber breakfast, flight certificate and a 5.0 Google rating. Book directly on WhatsApp.",
-    images: [{ url: "/images/hero-sunrise.jpg", width: 2560, height: 1600, alt: "Hot air balloons at sunrise over Morocco" }],
+      "Licensed sunrise balloon flights in Agadir. Fly over the Souss Valley and the Atlas Mountains with a Berber breakfast in a Caïdal tent included. Book directly on WhatsApp.",
+    images: [{ url: "/images/agadir-hero.jpg", width: 2048, height: 1152, alt: "Hot air balloons at sunrise over the Souss Valley near Agadir" }],
   },
   robots: { index: true, follow: true },
 };
@@ -49,7 +51,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${manrope.variable} ${playfair.variable}`}>
+    <html lang="en" data-scroll-behavior="smooth" className={`${manrope.variable} ${playfair.variable}`}>
       <body>{children}</body>
     </html>
   );

@@ -1,17 +1,20 @@
+"use client";
+
 import { Phone } from "lucide-react";
-import { site, waLink, defaultWaMessage } from "@/lib/site";
+import { defaultWaMessage, marrakechWaMessage, site, waLink } from "@/lib/site";
 import { WhatsAppIcon } from "./icons";
 
 /**
  * Desktop: floating WhatsApp bubble above the sticky bar area.
  * Mobile: sticky bottom bar with Call and WhatsApp actions.
  */
-export function FloatingActions() {
+export function FloatingActions({ city = "agadir" }: { city?: "agadir" | "marrakech" }) {
+  const message = city === "marrakech" ? marrakechWaMessage : defaultWaMessage;
   return (
     <>
       {/* Floating WhatsApp bubble, desktop only */}
       <a
-        href={waLink(defaultWaMessage)}
+        href={waLink(message)}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat with us on WhatsApp"
@@ -39,7 +42,7 @@ export function FloatingActions() {
             Call
           </a>
           <a
-            href={waLink(defaultWaMessage)}
+            href={waLink(message)}
             target="_blank"
             rel="noopener noreferrer"
             className="flex h-11 flex-[1.4] items-center justify-center gap-2 rounded-full bg-whatsapp text-sm font-bold text-white shadow-lg shadow-whatsapp/25 transition active:bg-whatsapp-dark"
