@@ -148,11 +148,11 @@ export const agadirOffers: Offer[] = [
     priceMad: 2200,
     duration: "About 60 minutes airborne",
     groupSize: "Shared basket",
-    image: "/images/agadir-classic.jpg",
-    imageWidth: 1500,
-    imageHeight: 1001,
+    image: "/images/classic-flight-sunrise.webp",
+    imageWidth: 1448,
+    imageHeight: 1086,
     imageAlt:
-      "Colorful hot air balloons flying over the green Souss Valley near Agadir with the Atlas Mountains behind",
+      "Passengers in the wicker basket of a hot air balloon with the burner glowing at sunrise over the Souss Valley near Agadir",
     features: [
       { icon: "bus", label: "Round-trip transportation from Agadir" },
       { icon: "coffee", label: "Welcome coffee and Moroccan tea" },
@@ -174,11 +174,11 @@ export const agadirOffers: Offer[] = [
     minGuests: 2,
     duration: "About 60 minutes airborne",
     groupSize: "Private basket, minimum 2 guests",
-    image: "/images/private-argan.jpg",
-    imageWidth: 1824,
-    imageHeight: 1216,
+    image: "/images/private-flight-souss-valley.webp",
+    imageWidth: 1448,
+    imageHeight: 1086,
     imageAlt:
-      "Couple enjoying a private hot air balloon flight over the argan groves of the Souss Valley at sunrise",
+      "Couple and pilot flying in a private hot air balloon basket above the Souss Valley landscape at sunrise",
     features: [
       { icon: "bus", label: "Private transportation" },
       { icon: "heart", label: "Exclusive private balloon" },
