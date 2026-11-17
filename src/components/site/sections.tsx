@@ -366,8 +366,8 @@ export function PickupStrip() {
               Hotel Pickup and Transportation in Agadir
             </h2>
             <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-              Round-trip transportation from your hotel is included in every Agadir flight. Our main operating
-              area is Agadir and the Souss Valley.
+              Round-trip transportation from your hotel is included in every Agadir flight across
+              Agadir city, Taghazout and Tamraght.
             </p>
           </div>
           <div className="grid w-full gap-3 sm:grid-cols-3 lg:w-auto">

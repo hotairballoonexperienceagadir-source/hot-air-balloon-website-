@@ -353,8 +353,8 @@ export const weatherNote =
 
 export const pickupAreas = [
   { name: "Agadir city", note: "Round-trip hotel pickup included", included: true },
-  { name: "Taghazout", note: "Contact us on WhatsApp to arrange pickup", included: false },
-  { name: "Tamraght", note: "Contact us on WhatsApp to arrange pickup", included: false },
+  { name: "Taghazout", note: "Round-trip hotel pickup included", included: true },
+  { name: "Tamraght", note: "Round-trip hotel pickup included", included: true },
 ] as const;
 
 /* Timeline used on the Marrakech page. */
