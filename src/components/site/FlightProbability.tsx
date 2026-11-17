@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { AlertTriangle, ChartLine, Flame, RefreshCw } from "lucide-react";
+import { AlertTriangle, ChartLine, Flame, RefreshCw, ShieldCheck } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -29,23 +29,26 @@ import type { ForecastDay, ForecastPayload, FlightStatus, WeatherCityId } from "
 
 const REFRESH_INTERVAL_MS = 15 * 60 * 1000;
 
-const STATUS_META: Record<FlightStatus, { label: string; stroke: string; pill: string }> = {
+const STATUS_META: Record<FlightStatus, { label: string; stroke: string; text: string }> = {
   likely: {
     label: "Likely",
     stroke: "#4ade80",
-    pill: "border-green-400/30 bg-green-400/10 text-green-300",
+    text: "text-green-300",
   },
   uncertain: {
     label: "Uncertain",
     stroke: "#fbbf24",
-    pill: "border-amber-400/30 bg-amber-400/10 text-amber-300",
+    text: "text-amber-300",
   },
   high_risk: {
     label: "High Risk",
     stroke: "#f87171",
-    pill: "border-red-400/30 bg-red-400/10 text-red-300",
+    text: "text-red-300",
   },
 };
+
+const SAFETY_DISCLAIMER =
+  "Flight probability is an indicative weather estimate, not a flight guarantee. Final approval always depends on the pilot’s safety assessment.";
 
 function weekdayLabel(date: string): string {
   return new Date(`${date}T12:00:00Z`).toLocaleDateString("en", { weekday: "short" }).toUpperCase();
@@ -146,7 +149,15 @@ export function FlightProbability({ city }: { city: WeatherCityId }) {
           ) : null}
         </div>
 
-        <div className="mt-10 flex flex-col items-center gap-3 sm:mt-12">
+        {/* Elegant safety disclaimer below the 7 day forecast cards. */}
+        <div className="mx-auto mt-6 flex max-w-2xl items-start justify-center gap-2.5 px-2 md:mt-8">
+          <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-gold-400" aria-hidden="true" />
+          <p className="text-center text-xs leading-relaxed text-white/55 md:text-[13px]">
+            {SAFETY_DISCLAIMER}
+          </p>
+        </div>
+
+        <div className="mt-8 flex flex-col items-center gap-3 sm:mt-10">
           {data && <ForecastDialog data={data} />}
           <p aria-live="polite" className="text-xs text-white/45">
             {data
@@ -195,12 +206,11 @@ function DayCard({ day }: { day: ForecastDay }) {
           <ProbabilityRing score={day.score} status={day.status} />
         </div>
 
-        <div className="mt-3 flex justify-center">
-          <span
-            className={`inline-flex items-center rounded-full border px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider ${meta.pill}`}
-          >
-            {meta.label}
-          </span>
+        <div className="mt-3 flex h-[30px] items-center justify-center">
+          <p className="text-center text-[11px] leading-snug">
+            <span className="text-white/55">Flight Conditions: </span>
+            <span className={`font-bold ${meta.text}`}>{meta.label}</span>
+          </p>
         </div>
 
         <div className="mt-3.5 grid grid-cols-3 gap-1.5">
@@ -356,6 +366,12 @@ function ForecastDialog({ data }: { data: ForecastPayload }) {
               </div>
             </section>
           )}
+
+          {/* Safety disclaimer inside the dialog. */}
+          <div className="flex items-start gap-3 rounded-xl border border-gold-400/25 bg-gold-400/[0.08] p-4">
+            <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-gold-400" aria-hidden="true" />
+            <p className="text-xs leading-relaxed text-white/80 md:text-[13px]">{SAFETY_DISCLAIMER}</p>
+          </div>
 
           <section className="rounded-xl border border-white/10 bg-white/[0.04] p-4 md:p-5">
             <h3 className="text-sm font-bold text-white">How the score is calculated</h3>
