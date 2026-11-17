@@ -21,6 +21,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { agadirExperienceSlides } from "@/lib/experience-slides";
 import {
   agadirOffers,
   defaultWaMessage,
@@ -34,6 +35,7 @@ import {
   whyUs,
   type Offer,
 } from "@/lib/site";
+import { ExperienceSlideshow } from "./ExperienceSlideshow";
 import { GalleryGrid } from "./gallery-grid";
 import { Stars, WhatsAppIcon } from "./icons";
 import { SocialLinks } from "./SocialLinks";
@@ -285,17 +287,13 @@ export function Experience() {
   return (
     <section id="experience" className="bg-navy-900 py-16 md:py-24">
       <div className="mx-auto max-w-7xl px-4 md:px-6">
-        {/* Intro with the Caïdal tent image */}
+        {/* Intro with the experience slideshow */}
         <div className="grid items-center gap-10 lg:grid-cols-2">
           <div className="relative">
-            <div className="relative overflow-hidden rounded-2xl">
-              <Image
-                src="/images/breakfast-caidal.jpg"
-                alt="Traditional Berber breakfast with mint tea served inside a Caïdal tent at sunrise in the Souss Valley"
-                width={1824}
-                height={1216}
+            <div className="relative h-[320px] w-full overflow-hidden rounded-2xl md:h-[440px]">
+              <ExperienceSlideshow
+                slides={agadirExperienceSlides}
                 sizes="(max-width: 1024px) 100vw, 50vw"
-                className="h-[320px] w-full object-cover md:h-[440px]"
               />
             </div>
             <span className="absolute left-4 top-4 rounded-xl bg-brand-500 px-4 py-2 text-center font-display text-lg font-bold leading-tight text-white shadow-lg">

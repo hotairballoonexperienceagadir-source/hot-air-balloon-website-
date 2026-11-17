@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Clock, Flame, MapPin, Mountain, Sparkles, Sun, Tent, Wind, type LucideIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { marrakechExperienceSlides } from "@/lib/experience-slides";
 import {
   cities,
   marrakechOffers,
@@ -13,6 +14,7 @@ import {
   weatherNote,
   type Offer,
 } from "@/lib/site";
+import { ExperienceSlideshow } from "./ExperienceSlideshow";
 import { Stars, WhatsAppIcon } from "./icons";
 
 const mkFeatureIcons: Record<string, LucideIcon> = {
@@ -153,14 +155,10 @@ export function MarrakechExperience() {
       <div className="mx-auto max-w-7xl px-4 md:px-6">
         <div className="grid items-center gap-10 lg:grid-cols-2">
           <div className="relative">
-            <div className="relative overflow-hidden rounded-2xl">
-              <Image
-                src="/images/burner-flame.jpg"
-                alt="Balloon burner flame lighting up the envelope in the Palmeraie desert before sunrise"
-                width={768}
-                height={1344}
+            <div className="relative h-[420px] w-full overflow-hidden rounded-2xl md:h-[520px]">
+              <ExperienceSlideshow
+                slides={marrakechExperienceSlides}
                 sizes="(max-width: 1024px) 100vw, 50vw"
-                className="h-[420px] w-full object-cover md:h-[520px]"
               />
             </div>
             <span className="absolute left-4 top-4 rounded-xl bg-brand-500 px-4 py-2 text-center font-display text-lg font-bold leading-tight text-white shadow-lg">
