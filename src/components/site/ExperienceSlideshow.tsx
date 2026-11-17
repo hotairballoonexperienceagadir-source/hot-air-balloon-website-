@@ -4,8 +4,11 @@
 /* ExperienceSlideshow                                                 */
 /*                                                                     */
 /* A smart slideshow for the Experience section images on the Agadir   */
-/* homepage and the Marrakech page. It rotates through a curated list  */
-/* of shared gallery photos, but ONLY while the section is outside     */
+/* homepage and the Marrakech page. Its slide list comes straight from */
+/* the shared gallery configuration (src/lib/gallery.ts), which is the */
+/* single source of truth: every gallery photo joins both slideshows   */
+/* automatically, and removed photos drop out automatically. It        */
+/* rotates through the photos, but ONLY while the section is outside   */
 /* the viewport.                                                       */
 /*                                                                     */
 /* Behavior:                                                           */
@@ -45,7 +48,7 @@ const FADE_DURATION_MS = 900;
 const FADE_FINALIZE_MS = FADE_DURATION_MS + 120;
 
 type ExperienceSlideshowProps = {
-  /** Curated, ordered gallery photos for this page. */
+  /** Ordered gallery photos derived from the shared gallery configuration. */
   slides: ExperienceSlide[];
   /** next/image sizes matching the Experience section layout. */
   sizes: string;

@@ -21,7 +21,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { agadirExperienceSlides } from "@/lib/experience-slides";
+import { galleryExperienceSlides } from "@/lib/experience-slides";
 import {
   agadirOffers,
   defaultWaMessage,
@@ -292,7 +292,7 @@ export function Experience() {
           <div className="relative">
             <div className="relative h-[320px] w-full overflow-hidden rounded-2xl md:h-[440px]">
               <ExperienceSlideshow
-                slides={agadirExperienceSlides}
+                slides={galleryExperienceSlides}
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </div>
