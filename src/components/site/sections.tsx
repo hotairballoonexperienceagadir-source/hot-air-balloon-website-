@@ -7,11 +7,13 @@ import {
   Camera,
   Clock,
   Coffee,
+  ExternalLink,
   Flame,
   Heart,
   MapPin,
   Mountain,
   Palmtree,
+  Play,
   ShieldCheck,
   Sparkles,
   Sun,
@@ -25,7 +27,6 @@ import {
   agadirOffers,
   defaultWaMessage,
   experienceSteps,
-  galleryImages,
   offerWaMessage,
   pickupAreas,
   site,
@@ -35,6 +36,7 @@ import {
   whyUs,
   type Offer,
 } from "@/lib/site";
+import { GOOGLE_BUSINESS_PROFILE_URL, galleryItems } from "@/lib/gallery";
 import { Stars, WhatsAppIcon } from "./icons";
 import { SocialLinks } from "./SocialLinks";
 
@@ -399,38 +401,77 @@ export function PickupStrip() {
 /* Gallery                                                             */
 /* ------------------------------------------------------------------ */
 
-export function Gallery() {
+type GalleryProps = {
+  /** Section eyebrow chip text. */
+  eyebrow?: string;
+  /** Section heading. */
+  title?: string;
+  /** Section intro paragraph. */
+  description?: string;
+};
+
+/* Shared, manually curated gallery driven entirely by src/lib/gallery.ts.
+   Rendered on both the Agadir homepage and the Marrakech page. Every item
+   opens the Google Business Profile in a new tab, so there is no lightbox
+   and no inline video player. */
+export function Gallery({
+  eyebrow = "Gallery",
+  title = "Agadir and the Souss Valley From Above",
+  description = "A glimpse of the landscapes, flights and mornings waiting for you in the skies of Agadir.",
+}: GalleryProps) {
   return (
     <section id="gallery" className="bg-cream-100 py-16 md:py-24">
       <div className="mx-auto max-w-7xl px-4 md:px-6">
         <div className="mx-auto max-w-2xl text-center">
           <span className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-brand-700 shadow-sm">
-            <Camera className="h-3.5 w-3.5" aria-hidden="true" /> Gallery
+            <Camera className="h-3.5 w-3.5" aria-hidden="true" /> {eyebrow}
           </span>
           <h2 className="mt-4 font-display text-3xl font-bold text-foreground text-balance md:text-4xl">
-            Agadir and the Souss Valley From Above
+            {title}
           </h2>
           <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-            A glimpse of the landscapes, flights and mornings waiting for you in the skies of Agadir.
+            {description}
           </p>
         </div>
 
         <div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-3">
-          {galleryImages.map((img) => (
-            <div key={img.src} className="group relative overflow-hidden rounded-2xl">
+          {galleryItems.map((item) => (
+            <a
+              key={item.src}
+              href={GOOGLE_BUSINESS_PROFILE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${item.caption ?? item.alt ?? "Gallery media"}: see more photos and videos on our Google Business Profile (opens in a new tab)`}
+              className="group relative block overflow-hidden rounded-2xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500"
+            >
               <Image
-                src={img.src}
-                alt={img.alt}
-                width={img.w}
-                height={img.h}
+                src={item.type === "video" ? (item.poster ?? item.src) : item.src}
+                alt={item.alt ?? (item.type === "video" ? "Gallery video clip" : "Gallery photo")}
+                width={item.width ?? 1200}
+                height={item.height ?? 800}
                 loading="lazy"
                 sizes="(max-width: 768px) 50vw, 33vw"
                 className="h-48 w-full object-cover transition duration-500 group-hover:scale-105 md:h-64"
               />
-              <span className="absolute bottom-3 right-3 rounded-full bg-navy-950/70 px-3 py-1 text-[11px] font-semibold text-cream-100 opacity-0 backdrop-blur transition group-hover:opacity-100">
-                {img.label}
+              {item.type === "video" && (
+                <span className="absolute inset-0 flex items-center justify-center" aria-hidden="true">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-full bg-white/90 shadow-lg backdrop-blur transition duration-300 group-hover:scale-110 md:h-14 md:w-14">
+                    <Play className="ml-0.5 h-5 w-5 fill-brand-600 text-brand-600 md:h-6 md:w-6" />
+                  </span>
+                </span>
+              )}
+              {item.caption && (
+                <span className="absolute bottom-3 right-3 rounded-full bg-navy-950/70 px-3 py-1 text-[11px] font-semibold text-cream-100 opacity-0 backdrop-blur transition group-hover:opacity-100">
+                  {item.caption}
+                </span>
+              )}
+              <span
+                className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-full bg-white/90 text-brand-700 opacity-0 shadow-sm backdrop-blur transition duration-300 group-hover:opacity-100"
+                aria-hidden="true"
+              >
+                <ExternalLink className="h-4 w-4" />
               </span>
-            </div>
+            </a>
           ))}
         </div>
       </div>

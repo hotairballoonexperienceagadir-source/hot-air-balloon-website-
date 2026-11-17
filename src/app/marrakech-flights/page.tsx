@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Header } from "@/components/site/Header";
 import { MarrakechHero } from "@/components/site/MarrakechHero";
 import { MarrakechCta, MarrakechExperience, MarrakechPackages } from "@/components/site/MarrakechSections";
+import { Gallery } from "@/components/site/sections";
 import { Reviews } from "@/components/site/Reviews";
 import { FlightProbability } from "@/components/site/FlightProbability";
 import { FaqSection } from "@/components/site/FaqSection";
@@ -80,6 +81,11 @@ export default function MarrakechFlightsPage() {
         <MarrakechHero />
         <MarrakechPackages />
         <MarrakechExperience />
+        {/* Shared curated gallery: same media as the Agadir homepage, Marrakech heading. */}
+        <Gallery
+          title="Marrakech and the Palmeraie From Above"
+          description="A glimpse of the landscapes, flights and mornings waiting for you in the skies of Marrakech."
+        />
         <Reviews />
         {/* Live 7 day flight outlook: Marrakech data only, independent from Agadir. */}
         <FlightProbability city="marrakech" />

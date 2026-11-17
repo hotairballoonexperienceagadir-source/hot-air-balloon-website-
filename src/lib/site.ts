@@ -468,14 +468,4 @@ export const marrakechFaqs: Faq[] = [
 ];
 
 /* ------------------------------------------------------------------ */
-/* Gallery                                                             */
-/* ------------------------------------------------------------------ */
-
-export const galleryImages = [
-  { src: "/images/gallery-1.jpg", w: 1800, h: 1350, alt: "Dozens of hot air balloons flying over the Souss Valley at dawn", label: "Dawn over the Souss Valley" },
-  { src: "/images/gallery-2.jpg", w: 1200, h: 780, alt: "Colorful hot air balloons rising into a clear sky above Agadir", label: "Balloons in first light" },
-  { src: "/images/burner-flame.jpg", w: 768, h: 1344, alt: "Balloon burner flame lighting up the envelope before dawn in the Souss Valley", label: "Inflation before dawn" },
-  { src: "/images/gallery-4.jpg", w: 1024, h: 1024, alt: "Moroccan mint tea being poured into traditional glasses", label: "Moroccan mint tea" },
-  { src: "/images/breakfast-caidal.jpg", w: 1824, h: 1216, alt: "Traditional Berber breakfast with mint tea served inside a Caïdal tent", label: "Berber breakfast" },
-  { src: "/images/gallery-6.jpg", w: 841, h: 1051, alt: "Guest watching hot air balloons fill the sunrise sky above the Souss Valley", label: "Morning full of balloons" },
-] as const;
+/* Gallery media now lives in the single shared configuration file src/lib/gallery.ts. */
