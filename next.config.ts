@@ -3,6 +3,10 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   output: "standalone",
   trailingSlash: true,
+  images: {
+    /* Allow sharper-than-default delivery for the brand logo (quality={90}). */
+    qualities: [75, 90],
+  },
   async redirects() {
     return [
       { source: "/en", destination: "/", permanent: true },

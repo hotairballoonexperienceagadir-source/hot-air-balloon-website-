@@ -46,7 +46,18 @@ export function MarrakechHero() {
         priority
         fetchPriority="high"
         sizes="100vw"
-        className="object-cover object-[24%_center] md:object-center"
+        className="invisible object-cover object-[24%_center] md:visible md:object-center"
+      />
+      {/* Mobile-only hero art direction. The uploaded max-quality file is served
+          raw (no optimizer re-encoding) and, being a CSS background on an
+          md:hidden element, it is never downloaded on desktop. The desktop
+          Image is hidden with visibility (not display) so its layout box and
+          next/image sizes check stay intact. */}
+      <div
+        role="img"
+        aria-label="Colorful hot air balloons drifting over the Palmeraie desert of Marrakech at sunrise with the Atlas mountains behind"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat md:hidden"
+        style={{ backgroundImage: "url('/images/hero-marrakech-mobile.webp')" }}
       />
       <div className="absolute inset-0 bg-gradient-to-b from-navy-950/80 via-navy-950/45 to-navy-950" aria-hidden="true" />
 

@@ -72,12 +72,13 @@ export function Footer({ variant = "home" }: { variant?: FooterVariant }) {
           {/* Brand and contact */}
           <div>
             <Image
-              src="/images/logo.jpg"
+              src="/images/logo.webp"
               alt="Hot Air Balloon Experience Agadir logo"
-              width={1000}
-              height={630}
+              width={1536}
+              height={1024}
               loading="lazy"
-              className="h-16 w-auto rounded-lg bg-white px-2 py-1.5"
+              quality={90}
+              className="h-16 w-auto object-contain"
             />
             <p className="mt-4 text-sm leading-relaxed text-cream-100/75">
               Agadir based licensed sunrise hot air balloon flights over the Souss Valley. Same pilots, same

@@ -108,12 +108,13 @@ export function Header({ variant = "home" }: { variant?: HeaderVariant }) {
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 md:px-6">
           <Link href={site.homePath} className="flex items-center" aria-label="Hot Air Balloon Experience Agadir, home">
             <Image
-              src="/images/logo.jpg"
+              src="/images/logo.webp"
               alt="Hot Air Balloon Experience Agadir logo"
-              width={1000}
-              height={630}
+              width={1536}
+              height={1024}
               priority
-              className="h-12 w-auto rounded-lg bg-white px-1.5 py-1 md:h-14"
+              quality={90}
+              className="h-12 w-auto object-contain md:h-14"
             />
           </Link>
 
