@@ -60,8 +60,8 @@ function MarrakechOfferCard({ offer }: { offer: Offer }) {
         </span>
       </div>
 
-      <div className="flex flex-1 flex-col gap-4 p-5">
-        <div className="flex items-center gap-2">
+      <div className="flex flex-1 flex-col gap-4 p-4 sm:p-5">
+        <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
           <Stars className="text-gold-500" />
           <span className="text-xs text-muted-foreground">{site.googleRating.toFixed(1)} rated company on Google</span>
         </div>
@@ -71,7 +71,7 @@ function MarrakechOfferCard({ offer }: { offer: Offer }) {
           <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{offer.description}</p>
         </div>
 
-        <ul className="grid grid-cols-2 gap-2">
+        <ul className="grid grid-cols-1 gap-2 sm:grid-cols-2">
           {offer.features.map((feature) => {
             const Icon = mkFeatureIcons[feature.icon] ?? Sparkles;
             return (
@@ -83,7 +83,7 @@ function MarrakechOfferCard({ offer }: { offer: Offer }) {
           })}
         </ul>
 
-        <div className="mt-auto flex items-end justify-between gap-3 border-t border-border pt-4">
+        <div className="mt-auto flex flex-col items-stretch gap-3 border-t border-border pt-4 sm:flex-row sm:items-end sm:justify-between sm:gap-3">
           <div>
             <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">From</p>
             <p className="font-display text-2xl font-bold text-foreground">
@@ -125,7 +125,7 @@ export function MarrakechPackages() {
           </p>
         </div>
 
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-3">
           {marrakechOffers.map((offer) => (
             <MarrakechOfferCard key={offer.id} offer={offer} />
           ))}

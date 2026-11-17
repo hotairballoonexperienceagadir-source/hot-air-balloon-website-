@@ -119,7 +119,7 @@ export const cities: Record<
     headline: "Hot Air Balloon Flights in Agadir",
     intro:
       "Our home base and the heart of everything we do. Every morning we lift off from the Souss Valley, drifting over green fields, argan groves and Berber villages with the Atlas Mountains glowing on the horizon.",
-    launchSite: "Souss Valley launch site, about 30 minutes from central Agadir",
+    launchSite: "Souss Valley launch site, approximately 50 minutes to 1 hour from central Agadir",
     isMain: true,
   },
   marrakech: {
@@ -406,7 +406,7 @@ export const faqs: Faq[] = [
   },
   {
     q: "Where do the balloon flights take off?",
-    a: "Our launch sites are in the Souss Valley, about 30 minutes from central Agadir. The exact field depends on the wind direction of the morning and is always chosen by your pilot with safety first.",
+    a: "Our launch sites are in the Souss Valley, approximately 50 minutes to 1 hour from central Agadir. The exact field depends on the wind direction of the morning and is always chosen by your pilot with safety first.",
   },
   {
     q: "Is transportation included from my hotel?",

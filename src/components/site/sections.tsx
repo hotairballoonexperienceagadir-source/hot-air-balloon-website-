@@ -132,14 +132,14 @@ function AgadirOfferCard({ offer, tall }: { offer: Offer; tall?: boolean }) {
         </span>
       </div>
 
-      <div className="flex flex-1 flex-col gap-4 p-6 md:p-7">
-        <div className="flex items-center gap-2">
+      <div className="flex flex-1 flex-col gap-4 p-4 sm:p-6 md:p-7">
+        <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
           <Stars className="text-gold-500" />
           <span className="text-xs text-muted-foreground">{site.googleRating.toFixed(1)} rated on Google</span>
         </div>
 
         <div>
-          <h3 className="font-display text-2xl font-bold text-foreground">{offer.name}</h3>
+          <h3 className="font-display text-xl font-bold text-foreground sm:text-2xl">{offer.name}</h3>
           <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{offer.description}</p>
         </div>
 
@@ -159,10 +159,10 @@ function AgadirOfferCard({ offer, tall }: { offer: Offer; tall?: boolean }) {
           <Clock className="h-3.5 w-3.5 text-brand-500" aria-hidden="true" /> {offer.duration} | {offer.groupSize}
         </p>
 
-        <div className="mt-auto flex items-end justify-between gap-3 border-t border-border pt-4">
+        <div className="mt-auto flex flex-col items-stretch gap-3 border-t border-border pt-4 sm:flex-row sm:items-end sm:justify-between sm:gap-3">
           <div>
             <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">From</p>
-            <p className="font-display text-3xl font-bold text-foreground">
+            <p className="font-display text-2xl font-bold text-foreground sm:text-3xl">
               {offer.priceMad.toLocaleString("en-US")} MAD
               <span className="ml-1 text-xs font-normal text-muted-foreground">/ person</span>
             </p>
@@ -208,11 +208,11 @@ export function AgadirPackages() {
             breakfast.
           </p>
           <p className="mt-2 inline-flex items-center gap-2 text-sm font-semibold text-brand-700">
-            <MapPin className="h-4 w-4" aria-hidden="true" /> Souss Valley launch site, about 30 minutes from central Agadir
+            <MapPin className="h-4 w-4" aria-hidden="true" /> Souss Valley launch site, approximately 50 minutes to 1 hour from central Agadir
           </p>
         </div>
 
-        <div className="mx-auto mt-12 grid max-w-5xl gap-8 lg:grid-cols-2">
+        <div className="mx-auto mt-12 grid max-w-5xl grid-cols-2 gap-4 sm:gap-8">
           {agadirOffers.map((offer) => (
             <AgadirOfferCard key={offer.id} offer={offer} tall />
           ))}
