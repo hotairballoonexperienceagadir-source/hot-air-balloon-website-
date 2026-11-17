@@ -299,7 +299,7 @@ export function Experience() {
               />
             </div>
             <span className="absolute left-4 top-4 rounded-xl bg-brand-500 px-4 py-2 text-center font-display text-lg font-bold leading-tight text-white shadow-lg">
-              03:00 to 04:00
+              04:00 to 05:00
               <span className="block text-[10px] font-semibold uppercase tracking-widest text-white/85">Hotel pickup</span>
             </span>
           </div>

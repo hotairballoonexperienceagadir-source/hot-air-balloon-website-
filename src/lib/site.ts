@@ -302,7 +302,7 @@ export const whyUs = [
 /* The complete Agadir experience, from pickup to drop off. */
 export const experienceSteps = [
   {
-    time: "03:00 to 04:00",
+    time: "04:00 to 05:00",
     title: "Hotel pickup in Agadir",
     text: "Your driver collects you from your hotel while the city is still asleep. The exact time depends on the season and your hotel location.",
   },
