@@ -3,6 +3,7 @@ import { Header } from "@/components/site/Header";
 import { MarrakechHero } from "@/components/site/MarrakechHero";
 import { MarrakechCta, MarrakechExperience, MarrakechPackages } from "@/components/site/MarrakechSections";
 import { Reviews } from "@/components/site/Reviews";
+import { FlightProbability } from "@/components/site/FlightProbability";
 import { FaqSection } from "@/components/site/FaqSection";
 import { Footer } from "@/components/site/Footer";
 import { FloatingActions } from "@/components/site/FloatingActions";
@@ -80,6 +81,8 @@ export default function MarrakechFlightsPage() {
         <MarrakechPackages />
         <MarrakechExperience />
         <Reviews />
+        {/* Live 7 day flight outlook: Marrakech data only, independent from Agadir. */}
+        <FlightProbability city="marrakech" />
         <FaqSection
           items={marrakechFaqs}
           waMessage="Hello! I have a question about the balloon flights in Marrakech."

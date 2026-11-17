@@ -41,22 +41,6 @@ export const socialLinks = [
   { name: "Instagram", url: instagramProfileUrl },
 ] as const;
 
-export const instagramHandle = "@hotairballoon_experience";
-
-/**
- * Instagram Reels showcase, shown ONLY on the Agadir homepage.
- *
- * LIVE DATA: the showcase is fed automatically by /api/instagram/reels,
- * which connects to the official Instagram Graph API, reads every published
- * Reel of the account above with its verified view count and keeps the TOP 4
- * in a cache that refreshes every 6 hours. Real thumbnails, real permalinks,
- * real counts only. When the API is not configured the section renders
- * nothing at all instead of placeholder content.
- *
- * Setup lives in server environment variables (never in this file and never
- * in frontend code): see src/lib/instagram/reels-service.ts for the exact
- * INSTAGRAM_ACCESS_TOKEN requirements and permissions.
- */
 
 export function waLink(message: string): string {
   return `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(message)}`;

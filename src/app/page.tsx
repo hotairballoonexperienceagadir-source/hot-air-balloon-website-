@@ -1,7 +1,7 @@
 import { Header } from "@/components/site/Header";
 import { Hero } from "@/components/site/Hero";
 import { CtaSection, Experience, PickupStrip, WhyUs, AgadirPackages, Gallery, Stats } from "@/components/site/sections";
-import { InstagramReels } from "@/components/site/InstagramReels";
+import { FlightProbability } from "@/components/site/FlightProbability";
 import { Reviews } from "@/components/site/Reviews";
 import { FaqSection } from "@/components/site/FaqSection";
 import { Footer } from "@/components/site/Footer";
@@ -81,8 +81,8 @@ export default function Page() {
         <PickupStrip />
         <Gallery />
         <Reviews />
-        {/* Instagram Reels showcase: Agadir homepage only, never on Marrakech. */}
-        <InstagramReels />
+        {/* Live 7 day flight outlook: Agadir homepage only, never on Marrakech. */}
+        <FlightProbability city="agadir" />
         <FaqSection />
         <CtaSection />
       </main>
