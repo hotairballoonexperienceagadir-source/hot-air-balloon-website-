@@ -290,7 +290,7 @@ export const whyUs = [
   {
     icon: "bus",
     title: "Hotel Pickup in Agadir",
-    text: "Complimentary round-trip transportation from every hotel and riad in Agadir. Staying in Taghazout or Tamraght? Contact us and we will arrange your pickup.",
+    text: "Enjoy complimentary round-trip hotel transportation from Agadir City, Taghazout and Tamraght.",
   },
   {
     icon: "sparkles",
@@ -410,7 +410,7 @@ export const faqs: Faq[] = [
   },
   {
     q: "Is transportation included from my hotel?",
-    a: "Yes. Round-trip transportation from all Agadir hotels and riads is included in every booking. If you are staying in Taghazout or Tamraght, message us on WhatsApp and we will arrange your pickup together.",
+    a: "Yes! Round-trip hotel pickup is included for guests staying in Agadir City, Taghazout and Tamraght. Our team will coordinate your exact pickup location and time with you via WhatsApp.",
   },
   {
     q: "What does the price include?",
