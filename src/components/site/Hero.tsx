@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useSyncExternalStore } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, CalendarDays, MapPin, Minus, Plus, ShieldCheck, Users } from "lucide-react";
@@ -13,13 +13,25 @@ import { Stars, WhatsAppIcon } from "./icons";
  * Agadir packages. Choosing Marrakech sends visitors to the dedicated
  * Marrakech page, as requested.
  */
+
+/* Today in UTC, read through useSyncExternalStore so the server rendered HTML
+   and the hydration pass use the identical (empty) snapshot. A render-time or
+   effect-time clock read made SSR and hydration diverge whenever they
+   straddled UTC midnight, which tripped React hydration recovery and cascaded
+   into Radix aria attribute mismatches on triggers rendered through Button. */
+const subscribeToClock = () => () => {};
+const getClientToday = () => new Date().toISOString().slice(0, 10);
+const getServerToday = () => "";
+
 export function Hero() {
   const [date, setDate] = useState("");
   const [guests, setGuests] = useState(2);
   const [city, setCity] = useState<"Agadir" | "Marrakech">("Agadir");
   const [packageId, setPackageId] = useState(agadirOffers[0].id);
 
-  const today = useMemo(() => new Date().toISOString().slice(0, 10), []);
+  /* Deterministic today: SSR and hydration both render without min, the real
+     date is applied right after mount. */
+  const today = useSyncExternalStore(subscribeToClock, getClientToday, getServerToday);
   const selectedOffer = agadirOffers.find((o) => o.id === packageId) ?? agadirOffers[0];
   const isMarrakech = city === "Marrakech";
 
@@ -95,7 +107,7 @@ export function Hero() {
               </span>
               <input
                 type="date"
-                min={today}
+                min={today || undefined}
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
                 aria-label="Flight date"

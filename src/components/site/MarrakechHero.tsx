@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useSyncExternalStore } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, CalendarDays, MapPin, Minus, Plus, ShieldCheck, Users } from "lucide-react";
@@ -12,11 +12,21 @@ import { Stars, WhatsAppIcon } from "./icons";
 /* Marrakech hero                                                      */
 /* ------------------------------------------------------------------ */
 
+/* Today in UTC, read through useSyncExternalStore so the server rendered HTML
+   and the hydration pass use the identical (empty) snapshot. Reading the clock
+   during render diverged whenever SSR and hydration straddled UTC midnight and
+   tripped React hydration recovery. */
+const subscribeToClock = () => () => {};
+const getClientToday = () => new Date().toISOString().slice(0, 10);
+const getServerToday = () => "";
+
 export function MarrakechHero() {
   const [date, setDate] = useState("");
   const [guests, setGuests] = useState(2);
 
-  const today = useMemo(() => new Date().toISOString().slice(0, 10), []);
+  /* Deterministic today: SSR and hydration both render without min, the real
+     date is applied right after mount. */
+  const today = useSyncExternalStore(subscribeToClock, getClientToday, getServerToday);
 
   const waHref = useMemo(() => {
     const parts = [marrakechWaMessage];
@@ -86,7 +96,7 @@ export function MarrakechHero() {
               </span>
               <input
                 type="date"
-                min={today}
+                min={today || undefined}
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
                 aria-label="Flight date"
