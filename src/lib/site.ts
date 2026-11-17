@@ -402,7 +402,7 @@ export interface Faq {
 export const faqs: Faq[] = [
   {
     q: "What time is the hotel pickup in Agadir?",
-    a: "Pickup from your Agadir hotel happens early in the morning, between 3:00 AM and 4:00 AM, depending on the season and your hotel location. The full experience finishes around 10:00 AM with drop off at your hotel.",
+    a: "Pickup from your Agadir hotel happens early in the morning, between 4:00 AM and 5:00 AM, depending on the season and your hotel location. The full experience finishes around 10:00 AM with drop off at your hotel.",
   },
   {
     q: "Where do the balloon flights take off?",
@@ -422,7 +422,7 @@ export const faqs: Faq[] = [
   },
   {
     q: "How long do we stay in the air?",
-    a: "The balloon flies for approximately 60 minutes. Plan the whole morning from pickup between 3:00 and 4:00 AM until drop off around 10:00 AM.",
+    a: "The balloon flies for approximately 60 minutes. Plan the whole morning from pickup between 4:00 and 5:00 AM until drop off around 10:00 AM.",
   },
   {
     q: "What should I wear and bring?",
