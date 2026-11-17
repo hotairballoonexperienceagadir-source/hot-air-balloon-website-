@@ -220,14 +220,14 @@ export function AgadirPackages() {
 
         <p className="mx-auto mt-8 max-w-3xl text-center text-sm text-muted-foreground">
           Sunrise over the Souss Valley and panoramic views of the Atlas Mountains are included in every flight.
-          Children from 6 years old can fly with an adult,{" "}
+          Children from 3 years old can fly with an adult.{" "}
           <a
             href={waLink("Hello! I have a question about balloon flights in Agadir.")}
             target="_blank"
             rel="noopener noreferrer"
             className="font-semibold text-brand-600 underline-offset-4 hover:underline"
           >
-            ask us on WhatsApp
+            Ask us on WhatsApp
           </a>{" "}
           for family pricing.
         </p>

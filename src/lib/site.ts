@@ -430,7 +430,7 @@ export const faqs: Faq[] = [
   },
   {
     q: "Are there age or weight limits?",
-    a: "Children from 6 years old can fly with an adult. For guests above 100 kg, contact us on WhatsApp so we can arrange the right basket and seats.",
+    a: "Children from 3 years old can fly with an adult. For guests above 100 kg, contact us on WhatsApp so we can arrange the right basket and seats.",
   },
   {
     q: "Do you also fly in Marrakech?",

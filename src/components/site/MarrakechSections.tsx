@@ -131,6 +131,19 @@ export function MarrakechPackages() {
           ))}
         </div>
 
+        <p className="mx-auto mt-8 max-w-3xl text-center text-sm text-muted-foreground">
+          Children from 3 years old can fly with an adult.{" "}
+          <a
+            href={waLink("Hello! I have a question about balloon flights in Marrakech.")}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-semibold text-brand-600 underline-offset-4 hover:underline"
+          >
+            Ask us on WhatsApp
+          </a>{" "}
+          for family pricing.
+        </p>
+
         <p className="mt-8 text-center text-sm text-muted-foreground">
           Looking for our main destination?{" "}
           <Link
