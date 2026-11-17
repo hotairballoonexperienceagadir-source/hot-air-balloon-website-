@@ -451,7 +451,7 @@ export function Gallery({
                 height={item.height ?? 800}
                 loading="lazy"
                 sizes="(max-width: 768px) 50vw, 33vw"
-                className="h-48 w-full object-cover transition duration-500 group-hover:scale-105 md:h-64"
+                className="aspect-[4/5] w-full object-cover transition duration-500 group-hover:scale-105"
               />
               {item.type === "video" && (
                 <span className="absolute inset-0 flex items-center justify-center" aria-hidden="true">
