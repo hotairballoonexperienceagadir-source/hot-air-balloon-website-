@@ -63,21 +63,18 @@ export type GalleryItem = {
 
 /* The manually curated AGADIR gallery. Used by the Agadir homepage
  * gallery grid and the Agadir Experience slideshow ONLY. Marrakech has
- * its own separate collection and slideshow in marrakech-gallery.ts. */
+ * its own separate collection and slideshow in marrakech-gallery.ts.
+ *
+ * Order note: the lookalike red balloon shots are deliberately spread
+ * across the whole list (positions 1, 5, 8, 11, 13, 15) so similar
+ * photos never sit next to each other. One leads the gallery and one
+ * closes it, with people, food and camp scenes in between. */
 export const galleryItems: GalleryItem[] = [
   {
     type: "image",
     src: "/images/gallery-kasbah-takeoff.jpg",
     alt: "Red and green hot air balloon rising behind a traditional Moroccan kasbah at dawn",
     caption: "Takeoff by the kasbah",
-    width: 1080,
-    height: 1350,
-  },
-  {
-    type: "image",
-    src: "/images/gallery-palm-camp-view.jpg",
-    alt: "Hot air balloon floating behind palm fronds above the Berber camp at sunrise",
-    caption: "Behind the palms",
     width: 1080,
     height: 1350,
   },
@@ -91,9 +88,25 @@ export const galleryItems: GalleryItem[] = [
   },
   {
     type: "image",
-    src: "/images/gallery-guests-launch-morning.jpg",
-    alt: "Guests gathered together at the balloon launch site in the early morning",
-    caption: "Guests before the flight",
+    src: "/images/gallery-tagine-ceramics.jpg",
+    alt: "Hand painted Moroccan tagine pots with blue and white patterns waiting on the breakfast table",
+    caption: "Moroccan tagines",
+    width: 918,
+    height: 1224,
+  },
+  {
+    type: "image",
+    src: "/images/gallery-golden-balloon-argan-trees.jpg",
+    alt: "Golden and red checkered hot air balloon floating above the argan trees at sunrise",
+    caption: "Above the argan trees",
+    width: 1080,
+    height: 1350,
+  },
+  {
+    type: "image",
+    src: "/images/gallery-palm-camp-view.jpg",
+    alt: "Hot air balloon floating behind palm fronds above the Berber camp at sunrise",
+    caption: "Behind the palms",
     width: 1080,
     height: 1350,
   },
@@ -107,25 +120,41 @@ export const galleryItems: GalleryItem[] = [
   },
   {
     type: "image",
+    src: "/images/gallery-argan-camp-arrival.jpg",
+    alt: "Argan tree shading the Berber camp with a 4x4 parked by the wall in the hazy morning",
+    caption: "Arrival at the camp",
+    width: 918,
+    height: 1224,
+  },
+  {
+    type: "image",
+    src: "/images/gallery-balloon-terrace-view.jpg",
+    alt: "Red and green hot air balloon seen from the shaded terrace between dark wooden beams",
+    caption: "View from the terrace",
+    width: 1080,
+    height: 1350,
+  },
+  {
+    type: "image",
+    src: "/images/gallery-campfire-night.jpg",
+    alt: "Guests sharing mint tea around lanterns and a crackling campfire under the argan trees at night",
+    caption: "Evening around the fire",
+    width: 1086,
+    height: 1448,
+  },
+  {
+    type: "image",
+    src: "/images/gallery-guests-launch-morning.jpg",
+    alt: "Guests gathered together at the balloon launch site in the early morning",
+    caption: "Guests before the flight",
+    width: 1080,
+    height: 1350,
+  },
+  {
+    type: "image",
     src: "/images/gallery-balloon-window-view.jpg",
     alt: "Red and green hot air balloon with a golden patterned band seen through an open window at dawn",
     caption: "Through the window",
-    width: 1080,
-    height: 1350,
-  },
-  {
-    type: "image",
-    src: "/images/gallery-red-balloon-flight.jpg",
-    alt: "Red and green hot air balloon flying over the Souss Valley near Agadir in the early morning",
-    caption: "Morning flight",
-    width: 1080,
-    height: 1350,
-  },
-  {
-    type: "image",
-    src: "/images/gallery-golden-balloon-argan-trees.jpg",
-    alt: "Golden and red checkered hot air balloon floating above the argan trees at sunrise",
-    caption: "Above the argan trees",
     width: 1080,
     height: 1350,
   },
@@ -139,9 +168,25 @@ export const galleryItems: GalleryItem[] = [
   },
   {
     type: "image",
-    src: "/images/gallery-balloon-terrace-view.jpg",
-    alt: "Red and green hot air balloon seen from the shaded terrace between dark wooden beams",
-    caption: "View from the terrace",
+    src: "/images/gallery-inflation-dawn-fire.jpg",
+    alt: "Crew holding the basket of a giant red hot air balloon at dawn beside a blazing fire pit",
+    caption: "Dawn inflation",
+    width: 896,
+    height: 1600,
+  },
+  {
+    type: "image",
+    src: "/images/gallery-balloon-camp-frame.jpg",
+    alt: "Golden and red checkered hot air balloon framed by the dark silhouette of the camp at dawn",
+    caption: "Balloon from the camp",
+    width: 918,
+    height: 1224,
+  },
+  {
+    type: "image",
+    src: "/images/gallery-red-balloon-flight.jpg",
+    alt: "Red and green hot air balloon flying over the Souss Valley near Agadir in the early morning",
+    caption: "Morning flight",
     width: 1080,
     height: 1350,
   },
