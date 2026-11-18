@@ -86,7 +86,10 @@ export default function MarrakechFlightsPage() {
           title="Marrakech and the Palmeraie From Above"
           description="A glimpse of the landscapes, flights and mornings waiting for you in the skies of Marrakech."
         />
-        {/* Marrakech reviews only: its own Google profile, never Agadir data. */}
+        {/* Guest reviews: ONE single Google Business Profile serves BOTH
+         * destinations, so this renders the same official profile data and
+         * the same Google links as the homepage. Owner replies are never
+         * displayed. */}
         <Reviews city="marrakech" />
         {/* Live 7 day flight outlook: Marrakech data only, independent from Agadir. */}
         <FlightProbability city="marrakech" />

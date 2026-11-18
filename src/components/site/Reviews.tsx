@@ -3,21 +3,29 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { cityGoogleConfig, reviews as staticReviews, site, type CityKey } from "@/lib/site";
-import { GoogleIcon, Stars, WhatsAppIcon } from "./icons";
+import {
+  cityGoogleConfig,
+  reviewHighlights,
+  reviews as staticReviews,
+  site,
+  type CityKey,
+} from "@/lib/site";
+import { GoogleIcon, Stars } from "./icons";
 
 /**
- * Guest reviews section, strictly per destination.
+ * Guest reviews section, identical for both destinations.
  *
- * Agadir renders reviews of the Agadir Google Business Profile only,
- * Marrakech renders reviews of the Marrakech Google Business Profile only.
- * The two destinations are never mixed.
+ * The owner confirmed that Agadir and Marrakech share ONE Google Business
+ * Profile, so both pages render reviews of that same profile and both use
+ * the exact same official Google links. No destination ever shows a
+ * different Google profile.
  *
- * Data flow: the section renders verified static data immediately, then
- * /api/google-reviews upgrades it to live Google Places API data for the
- * city when the official integration is configured. When the API reports
- * the static fallback, the verified static data stays. No review is ever
- * invented, and owner replies are never displayed.
+ * Data flow: the section renders the verified static profile data
+ * immediately, then /api/google-reviews upgrades it to live Google Places
+ * API data for the shared profile when the official integration is
+ * configured. When the API reports the static fallback, the verified
+ * static data stays. No review is ever invented, and owner replies are
+ * never displayed anywhere.
  */
 
 interface DisplayReview {
@@ -34,15 +42,13 @@ interface ReviewsState {
   reviews: DisplayReview[];
 }
 
-/* Verified static data per city: the genuine Agadir review, nothing for
- * Marrakech until its own Google data is connected. */
-const STATIC_STATE: Record<CityKey, ReviewsState> = {
-  agadir: {
-    rating: site.googleRating,
-    reviewCount: null,
-    reviews: staticReviews.map((r) => ({ name: r.name, rating: 5, text: r.text, date: r.time })),
-  },
-  marrakech: { rating: null, reviewCount: null, reviews: [] },
+/* Verified static data of the single shared Google Business Profile: the
+ * genuine published reviews, rendered instantly on both pages until the
+ * live Places API integration takes over. */
+const SHARED_STATIC_STATE: ReviewsState = {
+  rating: site.googleRating,
+  reviewCount: null,
+  reviews: staticReviews.map((r) => ({ name: r.name, rating: 5, text: r.text, date: r.time })),
 };
 
 const SECTION_TITLE: Record<CityKey, string> = {
@@ -51,7 +57,7 @@ const SECTION_TITLE: Record<CityKey, string> = {
 };
 
 export function Reviews({ city = "agadir" }: { city?: CityKey }) {
-  const [data, setData] = useState<ReviewsState>(STATIC_STATE[city]);
+  const [data, setData] = useState<ReviewsState>(SHARED_STATIC_STATE);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -70,6 +76,7 @@ export function Reviews({ city = "agadir" }: { city?: CityKey }) {
     return () => controller.abort();
   }, [city]);
 
+  /* The single Google Business Profile shared by both destinations. */
   const google = cityGoogleConfig[city];
   const featured = data.reviews[0] ?? null;
   const more = data.reviews.slice(1);
@@ -98,19 +105,20 @@ export function Reviews({ city = "agadir" }: { city?: CityKey }) {
               )}
             </div>
           )}
-          {google && (
-            <div className="mt-6">
-              <Button
-                asChild
-                className="rounded-full bg-brand-500 px-7 py-3 font-display text-base font-bold text-white shadow-lg shadow-brand-900/25 hover:bg-brand-600"
-              >
-                <a href={google.reviewUrl} target="_blank" rel="noopener noreferrer">
-                  <GoogleIcon className="h-5 w-5" />
-                  Write a Google Review
-                </a>
-              </Button>
-            </div>
-          )}
+          {/* Prominent call to action: opens Google's own review-writing
+           * interface for our official profile in a new tab. Customers
+           * publish directly on Google; there is no on-site review form. */}
+          <div className="mt-6">
+            <Button
+              asChild
+              className="rounded-full bg-brand-500 px-7 py-3 font-display text-base font-bold text-white shadow-lg shadow-brand-900/25 hover:bg-brand-600"
+            >
+              <a href={google.reviewUrl} target="_blank" rel="noopener noreferrer">
+                <GoogleIcon className="h-5 w-5" />
+                Write a Google Review
+              </a>
+            </Button>
+          </div>
         </div>
 
         {featured ? (
@@ -146,7 +154,7 @@ export function Reviews({ city = "agadir" }: { city?: CityKey }) {
                 </figcaption>
               </figure>
 
-              {/* Rating breakdown and calls to action */}
+              {/* Rating summary and calls to action */}
               <div className="flex flex-col gap-6">
                 {data.rating !== null && (
                   <div className="rounded-2xl bg-white p-6 shadow-sm">
@@ -160,33 +168,25 @@ export function Reviews({ city = "agadir" }: { city?: CityKey }) {
                         <p className="mt-1 text-xs text-muted-foreground">Based on verified Google reviews</p>
                       </div>
                     </div>
-                    {city === "agadir" && (
-                      <ul className="mt-5 space-y-3 text-sm text-foreground/80">
-                        {[
-                          "Professional licensed pilot",
-                          "Safe and smooth sunrise flight",
-                          "Great breakfast after landing",
-                        ].map((line) => (
-                          <li key={line} className="flex items-start gap-2.5">
-                            <span className="mt-1 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-brand-500/15">
-                              <span className="h-1.5 w-1.5 rounded-full bg-brand-500" aria-hidden="true" />
-                            </span>
-                            {line}
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                    {google && (
-                      <a
-                        href={google.profileUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="mt-4 inline-flex items-center gap-1.5 text-xs font-semibold text-brand-600 underline-offset-4 hover:underline"
-                      >
-                        View our Google Business Profile
-                        <span aria-hidden="true">→</span>
-                      </a>
-                    )}
+                    <ul className="mt-5 space-y-3 text-sm text-foreground/80">
+                      {reviewHighlights.map((line) => (
+                        <li key={line} className="flex items-start gap-2.5">
+                          <span className="mt-1 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-brand-500/15">
+                            <span className="h-1.5 w-1.5 rounded-full bg-brand-500" aria-hidden="true" />
+                          </span>
+                          {line}
+                        </li>
+                      ))}
+                    </ul>
+                    <a
+                      href={google.profileUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-4 inline-flex items-center gap-1.5 text-xs font-semibold text-brand-600 underline-offset-4 hover:underline"
+                    >
+                      View our Google Business Profile
+                      <span aria-hidden="true">→</span>
+                    </a>
                   </div>
                 )}
 
@@ -195,33 +195,15 @@ export function Reviews({ city = "agadir" }: { city?: CityKey }) {
                   <p className="mt-1.5 text-sm leading-relaxed text-cream-100/80">
                     Your review helps other travelers choose their sunrise adventure.
                   </p>
-                  {google ? (
-                    <Button
-                      asChild
-                      className="mt-4 w-full rounded-full bg-brand-500 px-5 py-2.5 text-sm font-bold text-white hover:bg-brand-600"
-                    >
-                      <a href={google.reviewUrl} target="_blank" rel="noopener noreferrer">
-                        <GoogleIcon className="h-4 w-4" />
-                        Write a Google Review
-                      </a>
-                    </Button>
-                  ) : (
-                    <Button
-                      asChild
-                      className="mt-4 w-full rounded-full bg-brand-500 px-5 py-2.5 text-sm font-bold text-white hover:bg-brand-600"
-                    >
-                      <a
-                        href={`https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(
-                          `Hello! I would like to share a review about my balloon flight in ${city === "marrakech" ? "Marrakech" : "Agadir"}.`,
-                        )}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <WhatsAppIcon className="h-4 w-4" />
-                        Share Your Experience
-                      </a>
-                    </Button>
-                  )}
+                  <Button
+                    asChild
+                    className="mt-4 w-full rounded-full bg-brand-500 px-5 py-2.5 text-sm font-bold text-white hover:bg-brand-600"
+                  >
+                    <a href={google.reviewUrl} target="_blank" rel="noopener noreferrer">
+                      <GoogleIcon className="h-4 w-4" />
+                      Write a Google Review
+                    </a>
+                  </Button>
                 </div>
               </div>
             </div>
@@ -262,8 +244,8 @@ export function Reviews({ city = "agadir" }: { city?: CityKey }) {
             )}
           </>
         ) : (
-          /* No verified Google review data connected yet for this
-           * destination: show only the genuine call to action, never
+          /* Defensive fallback if Google ever reports no reviews for the
+           * shared profile: show only the genuine call to action, never
            * invented reviews. */
           <div className="mx-auto mt-12 max-w-md">
             <div className="rounded-2xl bg-navy-900 p-6 text-center text-cream-100 shadow-sm md:p-8">
@@ -275,15 +257,9 @@ export function Reviews({ city = "agadir" }: { city?: CityKey }) {
                 asChild
                 className="mt-4 w-full rounded-full bg-brand-500 px-5 py-2.5 text-sm font-bold text-white hover:bg-brand-600"
               >
-                <a
-                  href={`https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(
-                    `Hello! I would like to share a review about my balloon flight in ${city === "marrakech" ? "Marrakech" : "Agadir"}.`,
-                  )}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <WhatsAppIcon className="h-4 w-4" />
-                  Share Your Experience
+                <a href={google.reviewUrl} target="_blank" rel="noopener noreferrer">
+                  <GoogleIcon className="h-4 w-4" />
+                  Write a Google Review
                 </a>
               </Button>
             </div>

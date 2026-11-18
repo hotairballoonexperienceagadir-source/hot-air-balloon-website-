@@ -18,7 +18,10 @@ export const site = {
   phoneTel: "+212609488493",
   whatsappNumber: "212609488493",
   googleRating: 5.0,
-  googleReviewsUrl: "https://share.google/usziGz8xr4d8qD8av",
+  /* Official Google Business Profile link. ONE single profile serves BOTH
+   * the Agadir and Marrakech pages (owner confirmed), so every Google
+   * Business Profile reference on the website points to this same URL. */
+  googleReviewsUrl: "https://share.google/V4QKDqSaXmN6ySAhl",
   address: "Agadir 80000, Morocco",
   plusCode: "CC4W+7Q Agadir, Morocco",
   hours: "Open 24 hours",
@@ -370,7 +373,10 @@ export const marrakechTimeline = [
 ] as const;
 
 /* ------------------------------------------------------------------ */
-/* Reviews. Real data from the Google Business Profile (rating 5.0).   */
+/* Reviews. Genuine published data of THE single Google Business       */
+/* Profile that serves both the Agadir and Marrakech pages. Rendered   */
+/* instantly while /api/google-reviews tries the official Places API.  */
+/* Never invented and owner replies are never displayed.               */
 /* ------------------------------------------------------------------ */
 export const reviews = [
   {
@@ -388,14 +394,24 @@ export const reviewHighlights = [
 ] as const;
 
 /* ------------------------------------------------------------------ */
-/* Google Business Profile configuration, strictly per destination.    */
+/* Google Business Profile configuration.                              */
 /*                                                                     */
-/* Each destination uses ONLY its own official Google links:           */
-/* reviewUrl  = official Google review submission link (new tab).      */
+/* ONE SINGLE Google Business Profile serves BOTH destinations: the    */
+/* owner confirmed that Agadir and Marrakech do NOT have separate      */
+/* Google Business Profiles. Both pages therefore use the exact same   */
+/* official links:                                                     */
+/*                                                                     */
+/* reviewUrl  = official Google review submission link. Opens Google's */
+/*              own review-writing interface in a new tab, where the   */
+/*              customer selects a star rating and publishes directly  */
+/*              on Google. There is no on-site review form and reviews */
+/*              are never submitted programmatically on behalf of      */
+/*              customers.                                             */
 /* profileUrl = official Google Business Profile link.                 */
 /*                                                                     */
-/* Marrakech is null until the owner provides its verified Google      */
-/* links. NEVER reuse the Agadir links for Marrakech.                  */
+/* Published reviews are read back from this same profile through the  */
+/* official Google Places API (see /api/google-reviews) and shown on   */
+/* both pages. Owner replies are never displayed anywhere.             */
 /* ------------------------------------------------------------------ */
 export type CityKey = "agadir" | "marrakech";
 
@@ -404,13 +420,14 @@ export interface CityGoogleConfig {
   profileUrl: string;
 }
 
-export const cityGoogleConfig: Record<CityKey, CityGoogleConfig | null> = {
-  agadir: {
-    reviewUrl: "https://g.page/r/CTpAykunXGoYEAE/review",
-    profileUrl: "https://share.google/V4QKDqSaXmN6ySAhl",
-  },
-  /* AWAITING OWNER INPUT: verified Marrakech Google links. */
-  marrakech: null,
+const singleProfileConfig: CityGoogleConfig = {
+  reviewUrl: "https://g.page/r/CTpAykunXGoYEAE/review",
+  profileUrl: "https://share.google/V4QKDqSaXmN6ySAhl",
+};
+
+export const cityGoogleConfig: Record<CityKey, CityGoogleConfig> = {
+  agadir: singleProfileConfig,
+  marrakech: singleProfileConfig,
 };
 
 /* ------------------------------------------------------------------ */

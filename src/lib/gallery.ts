@@ -34,8 +34,10 @@
 /* Gallery media format: Instagram portrait, 1080 x 1350 px (4:5).     */
 /* ------------------------------------------------------------------ */
 
-/** Google Business Profile: opened in a new tab when any gallery item is clicked. */
-export const GOOGLE_BUSINESS_PROFILE_URL = "https://share.google/MskrWRpaSVK8HGEHs";
+/** Google Business Profile: opened in a new tab when any gallery item is clicked.
+ * ONE single Google Business Profile serves both destinations (owner confirmed),
+ * so this is the exact same official profile link used everywhere on the site. */
+export const GOOGLE_BUSINESS_PROFILE_URL = "https://share.google/V4QKDqSaXmN6ySAhl";
 
 export type GalleryMediaType = "image" | "video";
 

@@ -3,22 +3,35 @@ import type { NextRequest } from "next/server";
 import { reviews, site, type CityKey } from "@/lib/site";
 
 /**
- * Guest reviews API with strict per-destination separation.
+ * Guest reviews API backed by THE single Google Business Profile.
+ *
+ * The owner confirmed that Agadir and Marrakech share ONE Google Business
+ * Profile, so both pages read reviews from that same profile and requests
+ * for city=agadir and city=marrakech resolve to the same place on Google.
  *
  * LIVE MODE (official Google integration):
- *   When GOOGLE_PLACES_API_KEY and the destination place ID
- *   (GOOGLE_PLACE_ID_AGADIR / GOOGLE_PLACE_ID_MARRAKECH) are configured in
- *   .env, reviews are fetched from the official Google Places API (New)
- *   place details endpoint with the server side API key, then cached in
- *   local memory. Newly published Google reviews therefore appear on the
- *   website within the cache lifetime (or immediately after a restart).
+ *   When GOOGLE_PLACES_API_KEY and GOOGLE_PLACE_ID are configured in .env,
+ *   reviews are fetched from the official Google Places API (New) place
+ *   details endpoint with the server side API key, then cached in local
+ *   memory. A review published on Google therefore appears on BOTH pages
+ *   within the cache lifetime (3 hours) or immediately after a restart.
  *
  * FALLBACK MODE (current state, no credentials configured yet):
- *   The route returns the static review already verified from the Agadir
- *   Google Business Profile. For Marrakech, whose Google links and data are
- *   not configured yet, it returns an empty review list instead of inventing
- *   content. Every response declares its source so nobody can mistake the
- *   fallback for live Google synchronization.
+ *   The route returns the verified static data of the same profile. Every
+ *   response declares its source ("static-fallback") so nobody can mistake
+ *   the fallback for live Google synchronization, and "missing" names the
+ *   exact environment variables still required.
+ *
+ * Integrity rules enforced here:
+ *   - Reviews are only ever READ from Google. Nothing is ever published
+ *     programmatically on behalf of a customer; publishing happens on
+ *     Google's own review interface opened by the "Write a Google Review"
+ *     button.
+ *   - No review is invented, filtered to look better than it is, or
+ *     replaced with placeholder content.
+ *   - Owner replies are never part of the payload. The Places API review
+ *     resource contains customer reviews only and no owner response is
+ *     ever synthesized or displayed.
  */
 
 /* Shape returned to the client for every review. */
@@ -34,9 +47,9 @@ interface ReviewsPayload {
   city: CityKey;
   /** "google-places-api" = live official Google data, "static-fallback" = verified static data. */
   source: "google-places-api" | "static-fallback";
-  /** True when the Places API integration is fully configured for this city. */
+  /** True when the Places API integration is fully configured and answered. */
   liveConfigured: boolean;
-  /** Names of the missing environment variables, empty when fully configured. */
+  /** Names of the missing environment variables (or the live error), empty when fully live. */
   missing: string[];
   rating: number | null;
   reviewCount: number | null;
@@ -45,27 +58,24 @@ interface ReviewsPayload {
 
 const VALID_CITIES: CityKey[] = ["agadir", "marrakech"];
 
+/* The ONE environment variables required for live synchronization. Both
+ * cities share them because both pages share one profile. */
+const REQUIRED_ENV_VARS = ["GOOGLE_PLACES_API_KEY", "GOOGLE_PLACE_ID"] as const;
+
 /* Local memory cache (per project stack policy, no external middleware). */
 const CACHE_TTL_MS = 3 * 60 * 60 * 1000; /* 3 hours. */
 const cache = new Map<string, { expiresAt: number; payload: ReviewsPayload }>();
 
-const PLACE_ID_ENV: Record<CityKey, string> = {
-  agadir: "GOOGLE_PLACE_ID_AGADIR",
-  marrakech: "GOOGLE_PLACE_ID_MARRAKECH",
-};
-
-/* Static fallback: the genuine review already verified from the Agadir
- * profile. Marrakech has no verified static review yet, so it stays empty
- * instead of inventing one. */
-const STATIC_RATING: Record<CityKey, number | null> = {
-  agadir: site.googleRating,
-  marrakech: null,
-};
-
-const STATIC_REVIEWS: Record<CityKey, ApiReview[]> = {
-  agadir: reviews.map((r) => ({ name: r.name, rating: 5, text: r.text, date: r.time })),
-  marrakech: [],
-};
+/* Static fallback: the genuine review already verified from the single
+ * Google Business Profile. Because one profile serves both destinations,
+ * the same verified data honestly serves both cities instead of inventing
+ * a separate Marrakech review. */
+const STATIC_REVIEWS: ApiReview[] = reviews.map((r) => ({
+  name: r.name,
+  rating: 5,
+  text: r.text,
+  date: r.time,
+}));
 
 function staticPayload(city: CityKey, missing: string[]): ReviewsPayload {
   return {
@@ -73,29 +83,33 @@ function staticPayload(city: CityKey, missing: string[]): ReviewsPayload {
     source: "static-fallback",
     liveConfigured: false,
     missing,
-    rating: STATIC_RATING[city],
+    rating: site.googleRating,
     reviewCount: null,
-    reviews: STATIC_REVIEWS[city],
+    reviews: STATIC_REVIEWS,
   };
 }
 
-/* Fetch place details (rating + reviews) from the Google Places API (New). */
-async function fetchFromPlacesApi(city: CityKey): Promise<ReviewsPayload> {
-  const apiKey = process.env.GOOGLE_PLACES_API_KEY;
-  const placeId = process.env[PLACE_ID_ENV[city]];
+/* Environment variables still missing for live mode, computed truthfully. */
+function currentlyMissing(): string[] {
+  return REQUIRED_ENV_VARS.filter((name) => !process.env[name]);
+}
 
-  if (!apiKey || !placeId) {
-    const missing: string[] = [];
-    if (!apiKey) missing.push("GOOGLE_PLACES_API_KEY");
-    if (!placeId) missing.push(PLACE_ID_ENV[city]);
+/* Fetch place details (rating + reviews) of the shared profile from the
+ * Google Places API (New). */
+async function fetchFromPlacesApi(city: CityKey): Promise<ReviewsPayload> {
+  const missing = currentlyMissing();
+  if (missing.length > 0) {
     return staticPayload(city, missing);
   }
 
+  const apiKey = process.env.GOOGLE_PLACES_API_KEY;
+  const placeId = process.env.GOOGLE_PLACE_ID;
+
   const response = await fetch(
-    `https://places.googleapis.com/v1/places/${encodeURIComponent(placeId)}?languageCode=en`,
+    `https://places.googleapis.com/v1/places/${encodeURIComponent(placeId ?? "")}?languageCode=en`,
     {
       headers: {
-        "X-Goog-Api-Key": apiKey,
+        "X-Goog-Api-Key": apiKey ?? "",
         "X-Goog-FieldMask": "rating,userRatingCount,reviews,googleMapsUri",
       },
       signal: AbortSignal.timeout(8000),
@@ -160,7 +174,15 @@ export async function GET(request: NextRequest) {
     payload = await fetchFromPlacesApi(city);
   } catch (error) {
     console.error(`[google-reviews] live fetch failed for ${city}:`, error);
-    payload = staticPayload(city, [PLACE_ID_ENV[city], "GOOGLE_PLACES_API_KEY"]);
+    /* Report truthfully what is missing: either the environment variables
+     * themselves or, when they exist, a live API failure to investigate. */
+    const missing = currentlyMissing();
+    payload = staticPayload(
+      city,
+      missing.length > 0
+        ? missing
+        : ["GOOGLE_PLACES_API_KEY and GOOGLE_PLACE_ID are set but the live Places API call failed, check the server logs"],
+    );
   }
 
   cache.set(city, { expiresAt: Date.now() + CACHE_TTL_MS, payload });
