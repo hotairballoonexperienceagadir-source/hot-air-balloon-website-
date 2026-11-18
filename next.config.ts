@@ -6,6 +6,8 @@ const nextConfig: NextConfig = {
   images: {
     /* Allow sharper-than-default delivery for the brand logo (quality={90}). */
     qualities: [75, 90],
+    /* Google reviewer profile photos returned by the Places API. */
+    remotePatterns: [{ protocol: "https", hostname: "lh3.googleusercontent.com" }],
   },
   async redirects() {
     return [

@@ -80,7 +80,7 @@ export default function Page() {
         <Experience />
         <PickupStrip />
         <Gallery />
-        <Reviews />
+        <Reviews city="agadir" />
         {/* Live 7 day flight outlook: Agadir homepage only, never on Marrakech. */}
         <FlightProbability city="agadir" />
         <FaqSection />

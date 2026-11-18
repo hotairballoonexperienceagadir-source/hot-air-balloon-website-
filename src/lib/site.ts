@@ -381,14 +381,37 @@ export const reviews = [
   },
 ] as const;
 
-export const ownerReply =
-  "Thank you for your kind review! We're glad you enjoyed the experience and hope to see you again!";
-
 export const reviewHighlights = [
   "Professional licensed pilot",
   "Safe and smooth sunrise flight",
   "Great breakfast after landing",
 ] as const;
+
+/* ------------------------------------------------------------------ */
+/* Google Business Profile configuration, strictly per destination.    */
+/*                                                                     */
+/* Each destination uses ONLY its own official Google links:           */
+/* reviewUrl  = official Google review submission link (new tab).      */
+/* profileUrl = official Google Business Profile link.                 */
+/*                                                                     */
+/* Marrakech is null until the owner provides its verified Google      */
+/* links. NEVER reuse the Agadir links for Marrakech.                  */
+/* ------------------------------------------------------------------ */
+export type CityKey = "agadir" | "marrakech";
+
+export interface CityGoogleConfig {
+  reviewUrl: string;
+  profileUrl: string;
+}
+
+export const cityGoogleConfig: Record<CityKey, CityGoogleConfig | null> = {
+  agadir: {
+    reviewUrl: "https://g.page/r/CTpAykunXGoYEAE/review",
+    profileUrl: "https://share.google/V4QKDqSaXmN6ySAhl",
+  },
+  /* AWAITING OWNER INPUT: verified Marrakech Google links. */
+  marrakech: null,
+};
 
 /* ------------------------------------------------------------------ */
 /* FAQ. Homepage FAQ is Agadir focused.                                */
