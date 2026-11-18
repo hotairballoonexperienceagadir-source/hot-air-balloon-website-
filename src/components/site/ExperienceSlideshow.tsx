@@ -4,12 +4,14 @@
 /* ExperienceSlideshow                                                 */
 /*                                                                     */
 /* A smart slideshow for the Experience section images on the Agadir   */
-/* homepage and the Marrakech page. Its slide list comes straight from */
-/* the shared gallery configuration (src/lib/gallery.ts), which is the */
-/* single source of truth: every gallery photo joins both slideshows   */
-/* automatically, and removed photos drop out automatically. It        */
-/* rotates through the photos, but ONLY while the section is outside   */
-/* the viewport.                                                       */
+/* homepage and the Marrakech page. Its slide list is passed in by the */
+/* destination and is derived from that destination's own gallery      */
+/* collection (Agadir: src/lib/gallery.ts, Marrakech:                  */
+/* src/lib/marrakech-gallery.ts, both derived in                       */
+/* src/lib/experience-slides.ts): every gallery photo joins its        */
+/* destination's slideshow automatically, and removed photos drop out  */
+/* automatically. It rotates through the photos, but ONLY while the    */
+/* section is outside the viewport.                                    */
 /*                                                                     */
 /* Behavior:                                                           */
 /* - While any part of the enclosing Experience section is on screen,  */

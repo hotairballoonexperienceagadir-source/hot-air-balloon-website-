@@ -4,6 +4,7 @@ import { MarrakechHero } from "@/components/site/MarrakechHero";
 import { MarrakechCta, MarrakechExperience, MarrakechPackages } from "@/components/site/MarrakechSections";
 import { Gallery } from "@/components/site/sections";
 import { Reviews } from "@/components/site/Reviews";
+import { marrakechGalleryItems } from "@/lib/marrakech-gallery";
 import { FlightProbability } from "@/components/site/FlightProbability";
 import { FaqSection } from "@/components/site/FaqSection";
 import { Footer } from "@/components/site/Footer";
@@ -81,10 +82,12 @@ export default function MarrakechFlightsPage() {
         <MarrakechHero />
         <MarrakechPackages />
         <MarrakechExperience />
-        {/* Shared curated gallery: same media as the Agadir homepage, Marrakech heading. */}
+        {/* Marrakech gallery: its own completely separate collection
+         * (src/lib/marrakech-gallery.ts), never mixed with Agadir media. */}
         <Gallery
           title="Marrakech and the Palmeraie From Above"
           description="A glimpse of the landscapes, flights and mornings waiting for you in the skies of Marrakech."
+          items={marrakechGalleryItems}
         />
         {/* Guest reviews: ONE single Google Business Profile serves BOTH
          * destinations, so this renders the same official profile data and

@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Clock, Flame, MapPin, Mountain, Sparkles, Sun, Tent, Wind, type LucideIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { galleryExperienceSlides } from "@/lib/experience-slides";
+import { marrakechExperienceSlides } from "@/lib/experience-slides";
 import {
   cities,
   marrakechOffers,
@@ -170,7 +170,7 @@ export function MarrakechExperience() {
           <div className="relative">
             <div className="relative h-[420px] w-full overflow-hidden rounded-2xl md:h-[520px]">
               <ExperienceSlideshow
-                slides={galleryExperienceSlides}
+                slides={marrakechExperienceSlides}
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </div>

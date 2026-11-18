@@ -1,6 +1,11 @@
 "use client";
 
-/* Interactive gallery grid shared by the Agadir homepage and the Marrakech page.
+/* Interactive gallery grid used by the Agadir homepage and the Marrakech page.
+
+   The grid renders the destination's OWN gallery collection passed via the
+   items prop: the Agadir homepage uses galleryItems (src/lib/gallery.ts) and
+   the Marrakech page uses marrakechGalleryItems
+   (src/lib/marrakech-gallery.ts). The two collections are never mixed.
 
    Shows the first 8 photos initially (4 columns x 2 rows on desktop,
    2 columns x 4 rows on mobile) and a centered "Voir plus" button below
@@ -14,17 +19,19 @@ import Image from "next/image";
 import { useState } from "react";
 import { ChevronDown, ChevronUp, ExternalLink, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { GOOGLE_BUSINESS_PROFILE_URL, galleryItems } from "@/lib/gallery";
+import { GOOGLE_BUSINESS_PROFILE_URL, galleryItems, type GalleryItem } from "@/lib/gallery";
 
 /* Number of photos displayed before the visitor expands the gallery. */
 const INITIAL_VISIBLE_COUNT = 8;
 
-export function GalleryGrid() {
+/* items defaults to the Agadir gallery so the Agadir homepage keeps its
+ * exact previous behavior; the Marrakech page passes its own collection. */
+export function GalleryGrid({ items = galleryItems }: { items?: GalleryItem[] }) {
   const [expanded, setExpanded] = useState(false);
-  const hasMore = galleryItems.length > INITIAL_VISIBLE_COUNT;
+  const hasMore = items.length > INITIAL_VISIBLE_COUNT;
   const visibleItems = expanded
-    ? galleryItems
-    : galleryItems.slice(0, INITIAL_VISIBLE_COUNT);
+    ? items
+    : items.slice(0, INITIAL_VISIBLE_COUNT);
 
   return (
     <>

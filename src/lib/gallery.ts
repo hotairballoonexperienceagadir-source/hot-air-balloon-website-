@@ -1,8 +1,11 @@
 /* ------------------------------------------------------------------ */
-/* Shared gallery configuration                                        */
+/* Agadir gallery configuration                                        */
 /*                                                                     */
 /* This is the SINGLE place to manage every photo and video shown in   */
-/* the gallery on both the Agadir homepage and the Marrakech page.     */
+/* the gallery on the AGADIR HOMEPAGE. The Marrakech page has its own  */
+/* completely separate gallery collection in                           */
+/* src/lib/marrakech-gallery.ts; the two destinations never share      */
+/* gallery media.                                                      */
 /*                                                                     */
 /* How to manage the gallery (no component changes ever needed):       */
 /*                                                                     */
@@ -58,7 +61,9 @@ export type GalleryItem = {
   height?: number;
 };
 
-/* The manually curated gallery. Same media on Agadir and Marrakech. */
+/* The manually curated AGADIR gallery. Used by the Agadir homepage
+ * gallery grid and the Agadir Experience slideshow ONLY. Marrakech has
+ * its own separate collection and slideshow in marrakech-gallery.ts. */
 export const galleryItems: GalleryItem[] = [
   {
     type: "image",

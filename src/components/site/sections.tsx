@@ -22,6 +22,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { galleryExperienceSlides } from "@/lib/experience-slides";
+import type { GalleryItem } from "@/lib/gallery";
 import {
   agadirOffers,
   defaultWaMessage,
@@ -404,16 +405,20 @@ type GalleryProps = {
   title?: string;
   /** Section intro paragraph. */
   description?: string;
+  /** Destination gallery collection. Defaults to the Agadir gallery; the
+   * Marrakech page passes its own separate marrakechGalleryItems. */
+  items?: GalleryItem[];
 };
 
-/* Shared, manually curated gallery driven entirely by src/lib/gallery.ts.
-   Rendered on both the Agadir homepage and the Marrakech page. Every item
-   opens the Google Business Profile in a new tab, so there is no lightbox
-   and no inline video player. */
+/* Destination gallery driven entirely by its own gallery collection file
+ * (src/lib/gallery.ts for Agadir, src/lib/marrakech-gallery.ts for
+ * Marrakech). Every item opens the Google Business Profile in a new tab,
+ * so there is no lightbox and no inline video player. */
 export function Gallery({
   eyebrow = "Gallery",
   title = "Agadir and the Souss Valley From Above",
   description = "A glimpse of the landscapes, flights and mornings waiting for you in the skies of Agadir.",
+  items,
 }: GalleryProps) {
   return (
     <section id="gallery" className="bg-cream-100 py-16 md:py-24">
@@ -430,7 +435,7 @@ export function Gallery({
           </p>
         </div>
 
-        <GalleryGrid />
+        <GalleryGrid items={items} />
       </div>
     </section>
   );
