@@ -23,7 +23,7 @@
 
 import type { GalleryItem } from "./gallery";
 
-/* The Marrakech gallery: exactly the 11 owner provided photos. */
+/* The Marrakech gallery: exactly the 15 owner provided photos. */
 export const marrakechGalleryItems: GalleryItem[] = [
   {
     type: "image",
@@ -112,5 +112,37 @@ export const marrakechGalleryItems: GalleryItem[] = [
     caption: "Green balloon and the Atlas",
     width: 678,
     height: 452,
+  },
+  {
+    type: "image",
+    src: "/images/marrakech-basket-passengers-burner.jpg",
+    alt: "Happy passengers standing in a large wicker balloon basket while the burner fires into the orange envelope above against a clear sky",
+    caption: "Passengers and the burner",
+    width: 678,
+    height: 452,
+  },
+  {
+    type: "image",
+    src: "/images/marrakech-balloons-morning-fields.jpg",
+    alt: "Dozens of colorful hot air balloons scattered across a blue morning sky above green and gold fields with hills on the horizon",
+    caption: "Morning fleet",
+    width: 678,
+    height: 452,
+  },
+  {
+    type: "image",
+    src: "/images/marrakech-checkered-balloon-descent.jpg",
+    alt: "Checkered hot air balloon descending toward the desert with a white and orange balloon behind and the chase vehicle waiting below",
+    caption: "Gentle landing",
+    width: 494,
+    height: 619,
+  },
+  {
+    type: "image",
+    src: "/images/marrakech-star-balloon-inflight.jpg",
+    alt: "Red hot air balloon with the green Moroccan star floating over the desert village at sunrise seen from a nearby balloon",
+    caption: "Moroccan star in flight",
+    width: 486,
+    height: 411,
   },
 ];
