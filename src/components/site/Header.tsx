@@ -148,7 +148,7 @@ export function Header({ variant = "home" }: { variant?: HeaderVariant }) {
               priority
               quality={90}
               className="h-12 w-auto object-contain transition-transform duration-300 ease-out motion-reduce:transition-none md:h-14"
-              style={{ transform: atTop ? "scale(1.15)" : "scale(1)" }}
+              style={{ transform: atTop ? "scale(1.45)" : "scale(1)" }}
             />
           </Link>
 
