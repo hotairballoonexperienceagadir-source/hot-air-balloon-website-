@@ -104,8 +104,8 @@ export function Footer({ variant = "home" }: { variant?: FooterVariant }) {
               </li>
               <li className="flex items-center gap-2.5 text-cream-100/85">
                 <Mail className="h-4 w-4 shrink-0 text-brand-400" aria-hidden="true" />
-                <a href="mailto:contact@hotairballoonexperienceagadir.com" className="transition hover:text-brand-300">
-                  contact@hotairballoonexperienceagadir.com
+                <a href="mailto:hotairballoonexperienceagadir@gmail.com" className="transition hover:text-brand-300">
+                  hotairballoonexperienceagadir@gmail.com
                 </a>
               </li>
               <li className="flex items-start gap-2.5 text-cream-100/85">
