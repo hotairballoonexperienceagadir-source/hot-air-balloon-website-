@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, type MouseEvent } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Menu, Phone } from "lucide-react";
@@ -70,6 +70,23 @@ export function Header({ variant = "home" }: { variant?: HeaderVariant }) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  /* Logo click behaviour. While on the homepage the URL often carries a hash
+     such as #reviews (set by the nav links). A plain Link to "/" from a hash
+     URL is a same page navigation for Next.js: it keeps the hash and the
+     scroll position, so the visitor stays mid page. To avoid that we take
+     over the click when already on "/": clear the hash with replaceState and
+     scroll back to the very top. From the Marrakech page we do nothing and
+     let the Link navigate normally, which lands on "/" and scrolls to the
+     top of the Agadir homepage. */
+  function onLogoClick(e: MouseEvent<HTMLAnchorElement>) {
+    if (window.location.pathname !== "/") return;
+    e.preventDefault();
+    if (window.location.hash) {
+      window.history.replaceState(null, "", window.location.pathname + window.location.search);
+    }
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
   return (
     <header className="absolute inset-x-0 top-0 z-50">
       {/* Top contact strip */}
@@ -106,7 +123,12 @@ export function Header({ variant = "home" }: { variant?: HeaderVariant }) {
         }`}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 md:px-6">
-          <Link href={site.homePath} className="flex items-center" aria-label="Hot Air Balloon Experience Agadir, home">
+          <Link
+            href={site.homePath}
+            onClick={onLogoClick}
+            className="flex items-center"
+            aria-label="Hot Air Balloon Experience Agadir, home"
+          >
             <Image
               src="/images/logo.webp"
               alt="Hot Air Balloon Experience Agadir logo"
