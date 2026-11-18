@@ -60,11 +60,19 @@ const navByVariant: Record<
 
 export function Header({ variant = "home" }: { variant?: HeaderVariant }) {
   const [scrolled, setScrolled] = useState(false);
+  /* Logo emphasis state: the painted logo grows gently only while the page
+     rests at the very top and shrinks back to its exact regular size as soon
+     as the visitor scrolls. Pure CSS transform, so the layout box and the
+     header height never change. */
+  const [atTop, setAtTop] = useState(true);
   const [open, setOpen] = useState(false);
   const nav = navByVariant[variant];
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 40);
+      setAtTop(window.scrollY <= 0);
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -129,6 +137,9 @@ export function Header({ variant = "home" }: { variant?: HeaderVariant }) {
             className="flex items-center"
             aria-label="Hot Air Balloon Experience Agadir, home"
           >
+            {/* Transform scale only: the layout box keeps its exact size, so
+                the header height, spacing and alignment never shift while the
+                painted logo gently grows at the top of the page. */}
             <Image
               src="/images/logo.webp"
               alt="Hot Air Balloon Experience Agadir logo"
@@ -136,7 +147,8 @@ export function Header({ variant = "home" }: { variant?: HeaderVariant }) {
               height={1024}
               priority
               quality={90}
-              className="h-12 w-auto object-contain md:h-14"
+              className="h-12 w-auto object-contain transition-transform duration-300 ease-out motion-reduce:transition-none md:h-14"
+              style={{ transform: atTop ? "scale(1.15)" : "scale(1)" }}
             />
           </Link>
 
