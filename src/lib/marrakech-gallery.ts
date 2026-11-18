@@ -23,7 +23,7 @@
 
 import type { GalleryItem } from "./gallery";
 
-/* The Marrakech gallery: exactly the 5 owner provided photos. */
+/* The Marrakech gallery: exactly the 6 owner provided photos. */
 export const marrakechGalleryItems: GalleryItem[] = [
   {
     type: "image",
@@ -64,5 +64,13 @@ export const marrakechGalleryItems: GalleryItem[] = [
     caption: "Moroccan star balloon",
     width: 447,
     height: 447,
+  },
+  {
+    type: "image",
+    src: "/images/marrakech-green-balloon-atlas.jpg",
+    alt: "Green and red striped hot air balloon floating above a rocky desert hill with the snowy High Atlas mountains on the horizon under a clear blue sky",
+    caption: "Green balloon over the Atlas",
+    width: 678,
+    height: 452,
   },
 ];
