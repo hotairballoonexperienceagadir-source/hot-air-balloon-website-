@@ -23,7 +23,7 @@
 
 import type { GalleryItem } from "./gallery";
 
-/* The Marrakech gallery: exactly the 6 owner provided photos. */
+/* The Marrakech gallery: exactly the 11 owner provided photos. */
 export const marrakechGalleryItems: GalleryItem[] = [
   {
     type: "image",
@@ -70,6 +70,46 @@ export const marrakechGalleryItems: GalleryItem[] = [
     src: "/images/marrakech-green-balloon-atlas.jpg",
     alt: "Green and red striped hot air balloon floating above a rocky desert hill with the snowy High Atlas mountains on the horizon under a clear blue sky",
     caption: "Green balloon over the Atlas",
+    width: 678,
+    height: 452,
+  },
+  {
+    type: "image",
+    src: "/images/marrakech-red-balloon-hazy-sunset.jpg",
+    alt: "Red hot air balloon flying high above a hazy desert plain at sunset with distant mountains and smaller balloons around",
+    caption: "Red balloon at sunset",
+    width: 547,
+    height: 365,
+  },
+  {
+    type: "image",
+    src: "/images/marrakech-balloons-green-plains.jpg",
+    alt: "Many colorful hot air balloons drifting over green fields and a traditional village with mountains on the horizon under a clear blue sky",
+    caption: "Balloons over the plains",
+    width: 738,
+    height: 414,
+  },
+  {
+    type: "image",
+    src: "/images/marrakech-yellow-balloon-green-fields.jpg",
+    alt: "Yellow hot air balloon glowing at golden sunrise with many colorful balloons around and green fields stretching below",
+    caption: "Golden hour balloons",
+    width: 447,
+    height: 447,
+  },
+  {
+    type: "image",
+    src: "/images/marrakech-launch-site-dawn.jpg",
+    alt: "Hot air balloons standing on the desert launch ground at dawn with a large red balloon with the green Moroccan star in front and pink skies above",
+    caption: "Dawn at the launch site",
+    width: 452,
+    height: 678,
+  },
+  {
+    type: "image",
+    src: "/images/marrakech-green-balloon-palms.jpg",
+    alt: "Green and red striped hot air balloon landing among palm trees with the snow covered Atlas mountains rising behind under a blue sky",
+    caption: "Green balloon and the Atlas",
     width: 678,
     height: 452,
   },
