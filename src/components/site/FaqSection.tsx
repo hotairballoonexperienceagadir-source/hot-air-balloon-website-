@@ -49,15 +49,26 @@ export function FaqSection({
               </AccordionTrigger>
               <AccordionContent className="pb-5 text-sm leading-relaxed text-muted-foreground">
                 {faq.a}
-                {faq.link && (
-                  <Link
-                    href={faq.link.href}
-                    className="mt-2 inline-flex items-center gap-1.5 font-semibold text-brand-600 underline-offset-4 hover:underline"
-                  >
-                    {faq.link.label}
-                    <span aria-hidden="true">→</span>
-                  </Link>
-                )}
+                {faq.link &&
+                  (faq.link.href.startsWith("https://wa.me") ? (
+                    <a
+                      href={faq.link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-2 inline-flex items-center gap-1.5 font-semibold text-brand-600 underline-offset-4 hover:underline"
+                    >
+                      <WhatsAppIcon className="h-3.5 w-3.5" aria-hidden="true" />
+                      {faq.link.label}
+                    </a>
+                  ) : (
+                    <Link
+                      href={faq.link.href}
+                      className="mt-2 inline-flex items-center gap-1.5 font-semibold text-brand-600 underline-offset-4 hover:underline"
+                    >
+                      {faq.link.label}
+                      <span aria-hidden="true">→</span>
+                    </Link>
+                  ))}
               </AccordionContent>
             </AccordionItem>
           ))}

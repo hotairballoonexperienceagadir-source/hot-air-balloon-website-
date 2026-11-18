@@ -406,7 +406,7 @@ export const faqs: Faq[] = [
   },
   {
     q: "Where do the balloon flights take off?",
-    a: "Our launch sites are in the Souss Valley, approximately 50 minutes to 1 hour from central Agadir. The exact field depends on the wind direction of the morning and is always chosen by your pilot with safety first.",
+    a: "Our launch sites are in the Souss Valley, approximately 50 minutes to 1 hour from central Agadir.",
   },
   {
     q: "Is transportation included from my hotel?",
@@ -430,7 +430,13 @@ export const faqs: Faq[] = [
   },
   {
     q: "Are there age or weight limits?",
-    a: "Children from 3 years old can fly with an adult. For guests above 100 kg, contact us on WhatsApp so we can arrange the right basket and seats.",
+    a: "Children from 3 years old can fly with an adult. For guests weighing 140 kg or more, please contact us on WhatsApp so we can check whether it is possible to accommodate you safely.",
+    link: {
+      href: waLink(
+        "Hello! I weigh 140 kg or more and I have a question about the balloon flights in Agadir. Can you check whether it is possible to accommodate me safely?",
+      ),
+      label: "Contact us on WhatsApp",
+    },
   },
   {
     q: "Do you also fly in Marrakech?",
