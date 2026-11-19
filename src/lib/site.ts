@@ -131,7 +131,7 @@ export const cities: Record<
     headline: "Hot Air Balloon Flights in Marrakech",
     intro:
       "Our second destination, operated by the same Agadir based team. Lift off from the Palmeraie desert on the edge of the red city and watch the Atlas mountains turn gold at sunrise.",
-    launchSite: "Palmeraie desert, about 20 minutes from central Marrakech",
+    launchSite: "Palmeraie area, about 30 minutes from central Marrakech",
     isMain: false,
   },
 };
@@ -492,7 +492,7 @@ export const faqs: Faq[] = [
 export const marrakechFaqs: Faq[] = [
   {
     q: "Where do Marrakech balloon flights take off?",
-    a: "Marrakech flights launch from the Palmeraie desert, about 20 minutes from central Marrakech. The exact field depends on the wind of the morning and is chosen by your pilot.",
+    a: "Marrakech flights launch from the Palmeraie area, about 30 minutes from central Marrakech. The exact field depends on the wind of the morning and is chosen by your pilot.",
   },
   {
     q: "What time is the hotel pickup in Marrakech?",
