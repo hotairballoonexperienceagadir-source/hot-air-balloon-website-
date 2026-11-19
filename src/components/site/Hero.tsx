@@ -1,17 +1,18 @@
 "use client";
 
 import Image from "next/image";
-import { MapPin, ShieldCheck } from "lucide-react";
+import { MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { site } from "@/lib/site";
 import { BookingButton } from "./BookingModal";
-import { Stars, WhatsAppIcon } from "./icons";
+import { BookingBar } from "./BookingBar";
+import { WhatsAppIcon } from "./icons";
 
 /**
  * Agadir hero. "Book Your Agadir Flight" opens THE shared booking modal
  * (BookingModal) with Agadir preselected as destination and only the real
- * Agadir packages selectable. The former inline booking bar moved into that
- * modal so the site keeps exactly one booking form.
+ * Agadir packages selectable. The original inline booking bar (BookingBar)
+ * stands right below the CTAs and shares its logic, validation and WhatsApp
+ * message with that modal: Agadir default, Agadir packages only.
  */
 
 export function Hero() {
@@ -73,22 +74,9 @@ export function Hero() {
           </div>
         </div>
 
-        {/* Trust badges. The booking form itself lives in the shared modal. */}
-        <div className="mt-8 md:mt-10">
-          <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-cream-100/85">
-            <span className="inline-flex items-center gap-2">
-              <Stars className="text-gold-400" /> {site.googleRating.toFixed(1)} on Google Reviews
-            </span>
-            <span className="hidden h-4 w-px bg-white/25 sm:block" aria-hidden="true" />
-            <span className="inline-flex items-center gap-2">
-              <ShieldCheck className="h-4 w-4 text-brand-400" aria-hidden="true" /> Licensed pilots and full insurance
-            </span>
-            <span className="hidden h-4 w-px bg-white/25 sm:block" aria-hidden="true" />
-            <span className="inline-flex items-center gap-2">
-              <WhatsAppIcon className="h-4 w-4 text-whatsapp" /> Instant booking on WhatsApp
-            </span>
-          </div>
-        </div>
+        {/* Original inline booking bar, sharing its logic with the modal that
+            every other booking CTA opens. */}
+        <BookingBar page="Agadir" />
       </div>
     </section>
   );
