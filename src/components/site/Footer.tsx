@@ -36,7 +36,7 @@ const quickLinksByVariant: Record<FooterVariant, { href: string; label: string }
 
 const offerListByVariant: Record<
   FooterVariant,
-  { title: string; offers: typeof agadirOffers; path: string; secondary?: { title: string; offers: typeof marrakechOffers; path: string; showPrices?: boolean } }
+  { title: string; offers: typeof agadirOffers; path: string; secondary?: { title: string; offers: typeof marrakechOffers; path: string } }
 > = {
   home: {
     title: "Agadir Flights | Main Destination",
@@ -56,7 +56,6 @@ const offerListByVariant: Record<
       title: "Agadir Flights | Main Destination",
       offers: agadirOffers,
       path: site.homePath,
-      showPrices: true,
     },
   },
 };
@@ -176,11 +175,7 @@ export function Footer({ variant = "home" }: { variant?: FooterVariant }) {
                         className="text-cream-100/75 transition hover:text-brand-300"
                       >
                         {offer.name}
-                        {lists.secondary!.showPrices ? (
-                          <span className="text-cream-100/50"> | {offer.priceMad.toLocaleString("en-US")} MAD</span>
-                        ) : (
-                          <span className="text-cream-100/50"> in {offer.cityName}</span>
-                        )}
+                        <span className="text-cream-100/50"> in {offer.cityName}</span>
                       </Link>
                     </li>
                   ))}
