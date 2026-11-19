@@ -17,6 +17,9 @@ export const site = {
   phoneDisplay: "+212 609 488 493",
   phoneTel: "+212609488493",
   whatsappNumber: "212609488493",
+  /* Business contact email. The footer email button opens the contact form
+   * modal and /api/contact delivers the message to this inbox. */
+  contactEmail: "hotairballoonexperienceagadir@gmail.com",
   googleRating: 5.0,
   /* Official Google Business Profile link. ONE single profile serves BOTH
    * the Agadir and Marrakech pages (owner confirmed), so every Google

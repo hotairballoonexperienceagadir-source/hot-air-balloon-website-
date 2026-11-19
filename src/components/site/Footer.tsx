@@ -11,6 +11,7 @@ import {
   waLink,
 } from "@/lib/site";
 import { WhatsAppIcon } from "./icons";
+import { ContactButton, ContactModal } from "./ContactModal";
 import { SocialLinks } from "./SocialLinks";
 
 type FooterVariant = "home" | "marrakech";
@@ -66,7 +67,8 @@ export function Footer({ variant = "home" }: { variant?: FooterVariant }) {
   const homeMessage = variant === "marrakech" ? marrakechWaMessage : defaultWaMessage;
 
   return (
-    <footer id="contact" className="bg-navy-950 text-cream-100">
+    <>
+      <footer id="contact" className="bg-navy-950 text-cream-100">
       <div className="mx-auto max-w-7xl px-4 py-14 md:px-6">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand and contact */}
@@ -104,9 +106,9 @@ export function Footer({ variant = "home" }: { variant?: FooterVariant }) {
               </li>
               <li className="flex items-center gap-2.5 text-cream-100/85">
                 <Mail className="h-4 w-4 shrink-0 text-brand-400" aria-hidden="true" />
-                <a href="mailto:hotairballoonexperienceagadir@gmail.com" className="transition hover:text-brand-300">
-                  hotairballoonexperienceagadir@gmail.com
-                </a>
+                <ContactButton className="text-left transition hover:text-brand-300">
+                  {site.contactEmail}
+                </ContactButton>
               </li>
               <li className="flex items-start gap-2.5 text-cream-100/85">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-brand-400" aria-hidden="true" />
@@ -228,6 +230,10 @@ export function Footer({ variant = "home" }: { variant?: FooterVariant }) {
           <p>Agadir sunrise balloon flights over the Souss Valley, Morocco.</p>
         </div>
       </div>
-    </footer>
+      </footer>
+      {/* THE shared contact form. One instance per page, opened by every
+          email contact option through the contact store. */}
+      <ContactModal />
+    </>
   );
 }
