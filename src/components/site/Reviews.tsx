@@ -277,7 +277,7 @@ export function ReviewsBanner() {
       <div className="mx-auto max-w-7xl px-4 md:px-6">
         <div className="relative h-40 overflow-hidden rounded-2xl md:h-56">
           <Image
-            src="/images/gallery-3.jpg"
+            src="/images/gallery-3.webp"
             alt="Green and red hot air balloons inflating in the Moroccan desert at dawn"
             fill
             loading="lazy"

@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     description:
       "Sunrise hot air balloon flights in Marrakech over the Palmeraie desert, operated by our Agadir based licensed team. Book directly on WhatsApp.",
     images: [
-      { url: "/images/hero-marrakech.png", width: 1537, height: 1023, alt: "Hot air balloons over the Palmeraie desert of Marrakech at sunrise" },
+      { url: "/images/hero-marrakech.webp", width: 1537, height: 1023, alt: "Hot air balloons over the Palmeraie desert of Marrakech at sunrise" },
     ],
   },
   robots: { index: true, follow: true },

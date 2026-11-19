@@ -27,7 +27,7 @@ import type { GalleryItem } from "./gallery";
 export const marrakechGalleryItems: GalleryItem[] = [
   {
     type: "image",
-    src: "/images/marrakech-sunrise-village.jpg",
+    src: "/images/marrakech-sunrise-village.webp",
     alt: "Colorful hot air balloons floating at sunrise above a traditional clay village in the Marrakech desert with mountains on the horizon",
     caption: "Sunrise over the village",
     width: 1928,
@@ -43,7 +43,7 @@ export const marrakechGalleryItems: GalleryItem[] = [
   },
   {
     type: "image",
-    src: "/images/marrakech-yellow-balloon-sunset.jpg",
+    src: "/images/marrakech-yellow-balloon-sunset.webp",
     alt: "Yellow hot air balloon rising into a golden sunset sky surrounded by other balloons above the desert",
     caption: "Golden hour flight",
     width: 738,
@@ -51,7 +51,7 @@ export const marrakechGalleryItems: GalleryItem[] = [
   },
   {
     type: "image",
-    src: "/images/marrakech-morocco-balloon-atlas.jpg",
+    src: "/images/marrakech-morocco-balloon-atlas.webp",
     alt: "Red, white and green Morocco hot air balloon floating toward the sunrise with the Atlas mountains behind",
     caption: "Morocco balloon at sunrise",
     width: 554,
@@ -91,7 +91,7 @@ export const marrakechGalleryItems: GalleryItem[] = [
   },
   {
     type: "image",
-    src: "/images/marrakech-yellow-balloon-green-fields.jpg",
+    src: "/images/marrakech-yellow-balloon-green-fields.webp",
     alt: "Yellow hot air balloon glowing at golden sunrise with many colorful balloons around and green fields stretching below",
     caption: "Golden hour balloons",
     width: 447,

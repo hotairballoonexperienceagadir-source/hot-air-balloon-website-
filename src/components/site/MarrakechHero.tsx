@@ -40,7 +40,7 @@ export function MarrakechHero() {
   return (
     <section id="home" className="relative isolate overflow-hidden bg-navy-900">
       <Image
-        src="/images/hero-marrakech.png"
+        src="/images/hero-marrakech.webp"
         alt="Colorful hot air balloons drifting over the Palmeraie desert of Marrakech at sunrise with the Atlas mountains behind"
         fill
         priority

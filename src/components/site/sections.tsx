@@ -449,7 +449,7 @@ export function CtaSection() {
   return (
     <section id="book" className="relative isolate overflow-hidden bg-navy-950 py-20 md:py-28">
       <Image
-        src="/images/agadir-hero.jpg"
+        src="/images/agadir-hero.webp"
         alt="Hot air balloons flying over the Souss Valley near Agadir at golden sunrise"
         fill
         loading="lazy"

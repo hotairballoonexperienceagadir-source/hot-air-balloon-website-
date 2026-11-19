@@ -72,7 +72,7 @@ export type GalleryItem = {
 export const galleryItems: GalleryItem[] = [
   {
     type: "image",
-    src: "/images/gallery-kasbah-takeoff.jpg",
+    src: "/images/gallery-kasbah-takeoff.webp",
     alt: "Red and green hot air balloon rising behind a traditional Moroccan kasbah at dawn",
     caption: "Takeoff by the kasbah",
     width: 1080,
@@ -80,7 +80,7 @@ export const galleryItems: GalleryItem[] = [
   },
   {
     type: "image",
-    src: "/images/gallery-berber-breakfast.jpg",
+    src: "/images/gallery-berber-breakfast.webp",
     alt: "Guests sharing a traditional Berber breakfast around a low table after their flight",
     caption: "Berber breakfast",
     width: 1080,
@@ -88,7 +88,7 @@ export const galleryItems: GalleryItem[] = [
   },
   {
     type: "image",
-    src: "/images/gallery-tagine-ceramics.jpg",
+    src: "/images/gallery-tagine-ceramics.webp",
     alt: "Hand painted Moroccan tagine pots with blue and white patterns waiting on the breakfast table",
     caption: "Moroccan tagines",
     width: 918,
@@ -96,7 +96,7 @@ export const galleryItems: GalleryItem[] = [
   },
   {
     type: "image",
-    src: "/images/gallery-golden-balloon-argan-trees.jpg",
+    src: "/images/gallery-golden-balloon-argan-trees.webp",
     alt: "Golden and red checkered hot air balloon floating above the argan trees at sunrise",
     caption: "Above the argan trees",
     width: 1080,
@@ -104,7 +104,7 @@ export const galleryItems: GalleryItem[] = [
   },
   {
     type: "image",
-    src: "/images/gallery-palm-camp-view.jpg",
+    src: "/images/gallery-palm-camp-view.webp",
     alt: "Hot air balloon floating behind palm fronds above the Berber camp at sunrise",
     caption: "Behind the palms",
     width: 1080,
@@ -112,7 +112,7 @@ export const galleryItems: GalleryItem[] = [
   },
   {
     type: "image",
-    src: "/images/gallery-basket-aerial-view.jpg",
+    src: "/images/gallery-basket-aerial-view.webp",
     alt: "View from the balloon basket flying over the Souss Valley countryside at dawn",
     caption: "From the basket",
     width: 1080,
@@ -128,7 +128,7 @@ export const galleryItems: GalleryItem[] = [
   },
   {
     type: "image",
-    src: "/images/gallery-balloon-terrace-view.jpg",
+    src: "/images/gallery-balloon-terrace-view.webp",
     alt: "Red and green hot air balloon seen from the shaded terrace between dark wooden beams",
     caption: "View from the terrace",
     width: 1080,
@@ -144,7 +144,7 @@ export const galleryItems: GalleryItem[] = [
   },
   {
     type: "image",
-    src: "/images/gallery-guests-launch-morning.jpg",
+    src: "/images/gallery-guests-launch-morning.webp",
     alt: "Guests gathered together at the balloon launch site in the early morning",
     caption: "Guests before the flight",
     width: 1080,
@@ -152,7 +152,7 @@ export const galleryItems: GalleryItem[] = [
   },
   {
     type: "image",
-    src: "/images/gallery-balloon-window-view.jpg",
+    src: "/images/gallery-balloon-window-view.webp",
     alt: "Red and green hot air balloon with a golden patterned band seen through an open window at dawn",
     caption: "Through the window",
     width: 1080,
@@ -160,7 +160,7 @@ export const galleryItems: GalleryItem[] = [
   },
   {
     type: "image",
-    src: "/images/gallery-checkered-balloon-closeup.jpg",
+    src: "/images/gallery-checkered-balloon-closeup.webp",
     alt: "Closeup of a golden and red checkered hot air balloon rising into the morning sky",
     caption: "Rising at sunrise",
     width: 1080,
@@ -176,7 +176,7 @@ export const galleryItems: GalleryItem[] = [
   },
   {
     type: "image",
-    src: "/images/gallery-balloon-camp-frame.jpg",
+    src: "/images/gallery-balloon-camp-frame.webp",
     alt: "Golden and red checkered hot air balloon framed by the dark silhouette of the camp at dawn",
     caption: "Balloon from the camp",
     width: 918,
@@ -184,7 +184,7 @@ export const galleryItems: GalleryItem[] = [
   },
   {
     type: "image",
-    src: "/images/gallery-red-balloon-flight.jpg",
+    src: "/images/gallery-red-balloon-flight.webp",
     alt: "Red and green hot air balloon flying over the Souss Valley near Agadir in the early morning",
     caption: "Morning flight",
     width: 1080,
