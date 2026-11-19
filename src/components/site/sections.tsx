@@ -25,9 +25,7 @@ import { galleryExperienceSlides } from "@/lib/experience-slides";
 import type { GalleryItem } from "@/lib/gallery";
 import {
   agadirOffers,
-  defaultWaMessage,
   experienceSteps,
-  offerWaMessage,
   pickupAreas,
   site,
   stats,
@@ -36,6 +34,7 @@ import {
   whyUs,
   type Offer,
 } from "@/lib/site";
+import { BookingButton } from "./BookingModal";
 import { ExperienceSlideshow } from "./ExperienceSlideshow";
 import { GalleryGrid } from "./gallery-grid";
 import { Stars, WhatsAppIcon } from "./icons";
@@ -173,19 +172,14 @@ function AgadirOfferCard({ offer, tall }: { offer: Offer; tall?: boolean }) {
               </p>
             )}
           </div>
-          <Button
-            asChild
+          <BookingButton
+            destination="Agadir"
+            packageId={offer.id}
             className="rounded-full bg-brand-500 px-6 py-3 font-bold text-white hover:bg-brand-600"
           >
-            <a
-              href={waLink(offerWaMessage(offer.name, offer.cityName, offer.priceMad))}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <WhatsAppIcon className="h-4 w-4" />
-              Book
-            </a>
-          </Button>
+            <WhatsAppIcon className="h-4 w-4" />
+            Book
+          </BookingButton>
         </div>
       </div>
     </article>
@@ -322,12 +316,13 @@ export function Experience() {
               </p>
             </div>
 
-            <Button asChild className="mt-7 rounded-full bg-brand-500 px-7 py-3 font-bold text-white hover:bg-brand-600">
-              <a href={waLink(defaultWaMessage)} target="_blank" rel="noopener noreferrer">
-                <WhatsAppIcon className="h-4 w-4" />
-                Plan Your Flight
-              </a>
-            </Button>
+            <BookingButton
+              destination="Agadir"
+              className="mt-7 rounded-full bg-brand-500 px-7 py-3 font-bold text-white hover:bg-brand-600"
+            >
+              <WhatsAppIcon className="h-4 w-4" />
+              Plan Your Flight
+            </BookingButton>
           </div>
         </div>
 
@@ -469,16 +464,14 @@ export function CtaSection() {
           sunrise tomorrow morning.
         </p>
         <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <Button
-            asChild
+          <BookingButton
+            destination="Agadir"
             size="lg"
             className="w-full rounded-full bg-brand-500 px-8 py-4 text-base font-bold uppercase tracking-wide text-white shadow-xl shadow-brand-900/40 hover:bg-brand-600 sm:w-auto"
           >
-            <a href={waLink(defaultWaMessage)} target="_blank" rel="noopener noreferrer">
-              <WhatsAppIcon className="h-5 w-5" />
-              Book Your Agadir Flight
-            </a>
-          </Button>
+            <WhatsAppIcon className="h-5 w-5" />
+            Book Your Agadir Flight
+          </BookingButton>
           <Button
             asChild
             size="lg"

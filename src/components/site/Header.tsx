@@ -12,12 +12,8 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import {
-  defaultWaMessage,
-  marrakechWaMessage,
-  site,
-  waLink,
-} from "@/lib/site";
+import { site } from "@/lib/site";
+import { BookingButton, BookingModal } from "./BookingModal";
 import { WhatsAppIcon } from "./icons";
 
 type HeaderVariant = "home" | "marrakech";
@@ -28,7 +24,7 @@ const navByVariant: Record<
     main: { href: string; label: string; external?: boolean }[];
     secondary: { href: string; label: string };
     strip: string;
-    wa: string;
+    bookingDestination: "Agadir" | "Marrakech";
   }
 > = {
   home: {
@@ -42,7 +38,7 @@ const navByVariant: Record<
     ],
     secondary: { href: site.marrakechPath, label: "Marrakech Flights" },
     strip: "Sunrise flights over the Souss Valley, Agadir",
-    wa: defaultWaMessage,
+    bookingDestination: "Agadir",
   },
   marrakech: {
     main: [
@@ -54,7 +50,7 @@ const navByVariant: Record<
     ],
     secondary: { href: site.homePath, label: "Agadir Flights" },
     strip: "Marrakech flights operated by our Agadir base",
-    wa: marrakechWaMessage,
+    bookingDestination: "Marrakech",
   },
 };
 
@@ -96,7 +92,8 @@ export function Header({ variant = "home" }: { variant?: HeaderVariant }) {
   }
 
   return (
-    <header className="absolute inset-x-0 top-0 z-50">
+    <>
+      <header className="absolute inset-x-0 top-0 z-50">
       {/* Top contact strip */}
       <div className="hidden bg-navy-950/90 text-[13px] text-cream-100/90 md:block">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-1.5">
@@ -173,15 +170,13 @@ export function Header({ variant = "home" }: { variant?: HeaderVariant }) {
           </nav>
 
           <div className="flex items-center gap-2">
-            <Button
-              asChild
+            <BookingButton
+              destination={nav.bookingDestination}
               className="rounded-full bg-brand-500 px-5 py-2.5 text-sm font-bold text-white shadow-lg shadow-brand-500/30 transition hover:bg-brand-600"
             >
-              <a href={waLink(nav.wa)} target="_blank" rel="noopener noreferrer">
-                <WhatsAppIcon className="h-4 w-4" />
-                Book Now
-              </a>
-            </Button>
+              <WhatsAppIcon className="h-4 w-4" />
+              Book Now
+            </BookingButton>
             <Sheet open={open} onOpenChange={setOpen}>
               <SheetTrigger asChild>
                 <Button
@@ -230,6 +225,10 @@ export function Header({ variant = "home" }: { variant?: HeaderVariant }) {
           </div>
         </div>
       </div>
-    </header>
+      </header>
+      {/* THE shared booking form. One instance per page, opened by every
+          booking CTA through the booking store. */}
+      <BookingModal />
+    </>
   );
 }

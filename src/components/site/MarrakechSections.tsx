@@ -7,13 +7,12 @@ import {
   cities,
   marrakechOffers,
   marrakechTimeline,
-  marrakechWaMessage,
-  offerWaMessage,
   site,
   waLink,
   weatherNote,
   type Offer,
 } from "@/lib/site";
+import { BookingButton } from "./BookingModal";
 import { ExperienceSlideshow } from "./ExperienceSlideshow";
 import { Stars, WhatsAppIcon } from "./icons";
 
@@ -91,16 +90,14 @@ function MarrakechOfferCard({ offer }: { offer: Offer }) {
               <span className="ml-1 text-xs font-normal text-muted-foreground">/ person</span>
             </p>
           </div>
-          <Button asChild className="rounded-full bg-brand-500 px-5 font-bold text-white hover:bg-brand-600">
-            <a
-              href={waLink(offerWaMessage(offer.name, offer.cityName, offer.priceMad))}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <WhatsAppIcon className="h-4 w-4" />
-              Book
-            </a>
-          </Button>
+          <BookingButton
+            destination="Marrakech"
+            packageId={offer.id}
+            className="rounded-full bg-brand-500 px-5 font-bold text-white hover:bg-brand-600"
+          >
+            <WhatsAppIcon className="h-4 w-4" />
+            Book
+          </BookingButton>
         </div>
       </div>
     </article>
@@ -199,15 +196,13 @@ export function MarrakechExperience() {
               </p>
             </div>
 
-            <Button
-              asChild
+            <BookingButton
+              destination="Marrakech"
               className="mt-7 rounded-full bg-brand-500 px-7 py-3 font-bold text-white hover:bg-brand-600"
             >
-              <a href={waLink(marrakechWaMessage)} target="_blank" rel="noopener noreferrer">
-                <WhatsAppIcon className="h-4 w-4" />
-                Plan Your Marrakech Flight
-              </a>
-            </Button>
+              <WhatsAppIcon className="h-4 w-4" />
+              Plan Your Marrakech Flight
+            </BookingButton>
           </div>
         </div>
 
@@ -261,16 +256,14 @@ export function MarrakechCta() {
           Send us a message today and fly over the Palmeraie desert and the Atlas mountains tomorrow morning.
         </p>
         <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <Button
-            asChild
+          <BookingButton
+            destination="Marrakech"
             size="lg"
             className="w-full rounded-full bg-brand-500 px-8 py-4 text-base font-bold uppercase tracking-wide text-white shadow-xl shadow-brand-900/40 hover:bg-brand-600 sm:w-auto"
           >
-            <a href={waLink(marrakechWaMessage)} target="_blank" rel="noopener noreferrer">
-              <WhatsAppIcon className="h-5 w-5" />
-              Book Your Marrakech Flight
-            </a>
-          </Button>
+            <WhatsAppIcon className="h-5 w-5" />
+            Book Your Marrakech Flight
+          </BookingButton>
           <Button
             asChild
             size="lg"

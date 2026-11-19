@@ -1,40 +1,25 @@
 "use client";
 
-import { useMemo, useState, useSyncExternalStore } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, CalendarDays, MapPin, Minus, Plus, ShieldCheck, Users } from "lucide-react";
+import { ArrowUpRight, MapPin, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { cities, marrakechWaMessage, site, waLink } from "@/lib/site";
+import { cities, site } from "@/lib/site";
+import { BookingButton } from "./BookingModal";
 import { Stars, WhatsAppIcon } from "./icons";
 
 /* ------------------------------------------------------------------ */
 /* Marrakech hero                                                      */
 /* ------------------------------------------------------------------ */
 
-/* Today in UTC, read through useSyncExternalStore so the server rendered HTML
-   and the hydration pass use the identical (empty) snapshot. Reading the clock
-   during render diverged whenever SSR and hydration straddled UTC midnight and
-   tripped React hydration recovery. */
-const subscribeToClock = () => () => {};
-const getClientToday = () => new Date().toISOString().slice(0, 10);
-const getServerToday = () => "";
+/**
+ * "Book Your Marrakech Flight" opens THE shared booking modal with Marrakech
+ * preselected as destination and only the real Marrakech packages selectable.
+ * The former inline booking bar moved into that modal so the site keeps
+ * exactly one booking form.
+ */
 
 export function MarrakechHero() {
-  const [date, setDate] = useState("");
-  const [guests, setGuests] = useState(2);
-
-  /* Deterministic today: SSR and hydration both render without min, the real
-     date is applied right after mount. */
-  const today = useSyncExternalStore(subscribeToClock, getClientToday, getServerToday);
-
-  const waHref = useMemo(() => {
-    const parts = [marrakechWaMessage];
-    if (date) parts.push(`Date: ${date}`);
-    parts.push(`Guests: ${guests}`);
-    return waLink(parts.join(" | "));
-  }, [date, guests]);
-
   const city = cities.marrakech;
 
   return (
@@ -74,16 +59,14 @@ export function MarrakechHero() {
           </p>
 
           <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-            <Button
-              asChild
+            <BookingButton
               size="lg"
+              destination="Marrakech"
               className="h-13 rounded-full bg-brand-500 px-7 py-3.5 text-sm font-bold uppercase tracking-wide text-white shadow-xl shadow-brand-900/40 transition hover:bg-brand-600"
             >
-              <a href={waHref} target="_blank" rel="noopener noreferrer">
-                <WhatsAppIcon className="h-5 w-5" />
-                Book Your Marrakech Flight
-              </a>
-            </Button>
+              <WhatsAppIcon className="h-5 w-5" />
+              Book Your Marrakech Flight
+            </BookingButton>
             <Button
               asChild
               size="lg"
@@ -98,71 +81,9 @@ export function MarrakechHero() {
           </div>
         </div>
 
-        {/* Simple booking bar for Marrakech */}
+        {/* Trust badges. The booking form itself lives in the shared modal. */}
         <div className="mt-8 md:mt-10">
-          <div className="mx-auto flex max-w-3xl flex-col gap-3 rounded-2xl border border-white/15 bg-navy-950/70 p-4 shadow-2xl shadow-navy-950/60 backdrop-blur-md sm:grid sm:grid-cols-[1fr_1fr_1fr_auto] sm:items-end sm:gap-4 sm:p-5">
-            <label className="block">
-              <span className="mb-1.5 flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gold-400">
-                <CalendarDays className="h-3.5 w-3.5" aria-hidden="true" /> Select Date
-              </span>
-              <input
-                type="date"
-                min={today || undefined}
-                value={date}
-                onChange={(e) => setDate(e.target.value)}
-                aria-label="Flight date"
-                className="h-12 w-full rounded-xl border border-white/15 bg-white/10 px-4 text-white [color-scheme:dark] outline-none transition focus:border-brand-400"
-              />
-            </label>
-
-            <div>
-              <span className="mb-1.5 flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gold-400">
-                <MapPin className="h-3.5 w-3.5" aria-hidden="true" /> Destination
-              </span>
-              <div className="flex h-12 items-center justify-between rounded-xl border border-brand-400/40 bg-brand-500/10 px-4 text-sm font-bold text-brand-200">
-                Marrakech
-                <span className="text-[10px] font-semibold uppercase tracking-wider text-brand-300/80">Palmeraie</span>
-              </div>
-            </div>
-
-            <div>
-              <span className="mb-1.5 flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gold-400">
-                <Users className="h-3.5 w-3.5" aria-hidden="true" /> Guests
-              </span>
-              <div className="flex h-12 items-center justify-between rounded-xl border border-white/15 bg-white/10 px-2">
-                <button
-                  type="button"
-                  aria-label="Remove one guest"
-                  onClick={() => setGuests((g) => Math.max(1, g - 1))}
-                  className="flex h-8 w-8 items-center justify-center rounded-lg text-white transition hover:bg-white/15"
-                >
-                  <Minus className="h-4 w-4" />
-                </button>
-                <span className="text-base font-bold text-white" aria-live="polite">{guests}</span>
-                <button
-                  type="button"
-                  aria-label="Add one guest"
-                  onClick={() => setGuests((g) => Math.min(16, g + 1))}
-                  className="flex h-8 w-8 items-center justify-center rounded-lg text-white transition hover:bg-white/15"
-                >
-                  <Plus className="h-4 w-4" />
-                </button>
-              </div>
-            </div>
-
-            <Button
-              asChild
-              size="lg"
-              className="h-12 rounded-xl bg-brand-500 px-6 text-sm font-bold text-white shadow-lg shadow-brand-900/40 transition hover:bg-brand-600 sm:w-auto"
-            >
-              <a href={waHref} target="_blank" rel="noopener noreferrer">
-                <WhatsAppIcon className="h-4 w-4" aria-hidden="true" />
-                Check Availability
-              </a>
-            </Button>
-          </div>
-
-          <div className="mx-auto mt-4 flex max-w-3xl flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-cream-100/85">
+          <div className="mx-auto flex max-w-3xl flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-cream-100/85">
             <span className="inline-flex items-center gap-2">
               <Stars className="text-gold-400" /> {site.googleRating.toFixed(1)} rated company on Google
             </span>

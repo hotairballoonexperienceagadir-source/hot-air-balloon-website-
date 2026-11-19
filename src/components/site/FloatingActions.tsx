@@ -1,28 +1,29 @@
 "use client";
 
 import { Phone } from "lucide-react";
-import { defaultWaMessage, marrakechWaMessage, site, waLink } from "@/lib/site";
+import { site } from "@/lib/site";
+import { BookingButton } from "./BookingModal";
 import { WhatsAppIcon } from "./icons";
 
 /**
  * Desktop: floating WhatsApp bubble above the sticky bar area.
- * Mobile: sticky bottom bar with Call and WhatsApp actions.
+ * Mobile: sticky bottom bar with Call and booking actions.
+ * Both booking actions open THE shared booking modal, prefilled with the
+ * destination of the current page. The Call action stays a direct tel link.
  */
 export function FloatingActions({ city = "agadir" }: { city?: "agadir" | "marrakech" }) {
-  const message = city === "marrakech" ? marrakechWaMessage : defaultWaMessage;
+  const destination = city === "marrakech" ? "Marrakech" : "Agadir";
   return (
     <>
-      {/* Floating WhatsApp bubble, desktop only */}
-      <a
-        href={waLink(message)}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Chat with us on WhatsApp"
+      {/* Floating booking bubble, desktop only */}
+      <BookingButton
+        destination={destination}
+        aria-label="Book your balloon flight"
         className="fixed bottom-6 right-6 z-50 hidden h-14 w-14 items-center justify-center rounded-full bg-whatsapp text-white shadow-2xl shadow-navy-950/40 transition hover:scale-105 hover:bg-whatsapp-dark md:flex"
       >
         <WhatsAppIcon className="h-7 w-7" />
         <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-whatsapp opacity-20" aria-hidden="true" />
-      </a>
+      </BookingButton>
       <a
         href={`tel:${site.phoneTel}`}
         aria-label={`Call ${site.phoneDisplay}`}
@@ -41,15 +42,13 @@ export function FloatingActions({ city = "agadir" }: { city?: "agadir" | "marrak
             <Phone className="h-4 w-4" aria-hidden="true" />
             Call
           </a>
-          <a
-            href={waLink(message)}
-            target="_blank"
-            rel="noopener noreferrer"
+          <BookingButton
+            destination={destination}
             className="flex h-11 flex-[1.4] items-center justify-center gap-2 rounded-full bg-whatsapp text-sm font-bold text-white shadow-lg shadow-whatsapp/25 transition active:bg-whatsapp-dark"
           >
             <WhatsAppIcon className="h-4 w-4" />
             Book on WhatsApp
-          </a>
+          </BookingButton>
         </div>
       </div>
     </>
