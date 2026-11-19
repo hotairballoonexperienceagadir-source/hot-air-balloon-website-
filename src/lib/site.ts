@@ -492,7 +492,7 @@ export const faqs: Faq[] = [
 export const marrakechFaqs: Faq[] = [
   {
     q: "Where do Marrakech balloon flights take off?",
-    a: "Marrakech flights launch from the Palmeraie area, about 30 minutes from central Marrakech. The exact field depends on the wind of the morning and is chosen by your pilot.",
+    a: "Marrakech flights launch from the Palmeraie area, about 30 minutes from central Marrakech.",
   },
   {
     q: "What time is the hotel pickup in Marrakech?",
