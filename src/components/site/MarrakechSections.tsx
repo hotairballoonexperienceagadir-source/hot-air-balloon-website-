@@ -217,9 +217,13 @@ export function MarrakechExperience() {
               <span className="absolute right-4 top-4 font-display text-4xl font-bold text-white/10" aria-hidden="true">
                 {String(index + 1).padStart(2, "0")}
               </span>
-              <span className="inline-block rounded-full bg-brand-500/15 px-3 py-1 text-xs font-bold tracking-wider text-brand-300">
-                {step.time}
-              </span>
+              {step.time ? (
+                <span className="inline-block rounded-full bg-brand-500/15 px-3 py-1 text-xs font-bold tracking-wider text-brand-300">
+                  {step.time}
+                </span>
+              ) : (
+                <span className="block h-6" aria-hidden="true" />
+              )}
               <h3 className="mt-3 pr-10 font-semibold text-white">{step.title}</h3>
               <p className="mt-1.5 text-sm leading-relaxed text-cream-100/75">{step.text}</p>
             </li>

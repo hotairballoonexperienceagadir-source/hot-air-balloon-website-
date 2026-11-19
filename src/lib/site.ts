@@ -364,17 +364,17 @@ export const pickupAreas = [
   { name: "Tamraght", note: "Round-trip hotel pickup included", included: true },
 ] as const;
 
-/* Timeline used on the Marrakech page. */
-export const marrakechTimeline = [
+/* Timeline used on the Marrakech page. Steps without a time simply show no time badge. */
+export const marrakechTimeline: readonly { time?: string; title: string; text: string }[] = [
   { time: "04:45", title: "Hotel pickup", text: "Your driver collects you from your hotel or riad in Marrakech while the sky is still dark." },
-  { time: "05:30", title: "Inflation and briefing", text: "Watch the balloon come alive in the Palmeraie desert and meet your pilot for the safety briefing." },
-  { time: "06:15", title: "Takeoff at sunrise", text: "The burner roars, the ground falls away and the sun rises with you over the palm groves." },
-  { time: "06:45", title: "45 to 60 minutes in the air", text: "Float over the Palmeraie and the desert plains with the Atlas mountains on the horizon." },
-  { time: "07:45", title: "Landing ceremony", text: "A gentle landing followed by the traditional pilot toast with the crew." },
-  { time: "08:15", title: "Berber breakfast", text: "Fresh msemen, dates, eggs, mint tea and coffee served at the landing site." },
-  { time: "09:00", title: "Flight certificate", text: "You receive your personalized certificate before the drive back." },
-  { time: "10:30", title: "Back at your hotel", text: "Drop off in Marrakech with a camera roll full of memories and stories to tell." },
-] as const;
+  { title: "Inflation and briefing", text: "Watch the balloon come alive in the Palmeraie desert and meet your pilot for the safety briefing." },
+  { title: "Takeoff at sunrise", text: "The burner roars, the ground falls away and the sun rises with you over the palm groves." },
+  { title: "45 to 60 minutes in the air", text: "Float over the Palmeraie and the desert plains with the Atlas mountains on the horizon." },
+  { title: "Landing ceremony", text: "A gentle landing followed by the traditional pilot toast with the crew." },
+  { title: "Berber breakfast", text: "Fresh msemen, dates, eggs, mint tea and coffee served at the landing site." },
+  { title: "Flight certificate", text: "You receive your personalized certificate before the drive back." },
+  { time: "Around 10:00", title: "Back at your hotel", text: "Drop off in Marrakech with a camera roll full of memories and stories to tell." },
+];
 
 /* ------------------------------------------------------------------ */
 /* Reviews. Genuine published data of THE single Google Business       */
