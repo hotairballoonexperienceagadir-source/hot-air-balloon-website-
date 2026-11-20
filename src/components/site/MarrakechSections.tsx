@@ -52,6 +52,7 @@ function MarrakechOfferCard({ offer }: { offer: Offer }) {
           width={offer.imageWidth}
           height={offer.imageHeight}
           sizes="(max-width: 768px) 46vw, (max-width: 1023px) 50vw, 25vw"
+          style={offer.objectPosition ? { objectPosition: offer.objectPosition } : undefined}
           className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
         />
         <span className="absolute bottom-3 left-3 rounded-full bg-navy-950/75 px-3 py-1 text-xs font-semibold text-cream-100 backdrop-blur">

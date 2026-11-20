@@ -62,20 +62,23 @@ src/app/globals.css                  theme tokens (brand palette, fonts, scrollb
 src/lib/site.ts                      SINGLE SOURCE OF TRUTH for all content:
                                      site identity + WhatsApp number + waLink()
                                      message helpers, cities, agadirOffers
-                                     (Classic 2,199 MAD / Private 6,999 MAD /
-                                     Royal 8,999 MAD, Private and Royal min
-                                     2 guests; Private breakfast under an
-                                     argan tree, Royal breakfast served in
-                                     the sky aboard the balloon),
+                                     (exactly two packages: Classic 2,199 MAD /
+                                     Private 6,999 MAD, min 2 guests, private
+                                     breakfast under an argan tree; the former
+                                     Agadir Royal Flight was removed by owner
+                                     decision on 2026-11-20 and must not be
+                                     reintroduced without an explicit owner
+                                     decision),
                                      marrakechOffers (Classic Low Cost 999 /
                                      Classic Flight 1,399 / Private 5,299 /
                                      Royal 6,299 MAD, Private and Royal min
                                      2 guests, Royal breakfast served in the
-                                     sky aboard the balloon; approved by the
-                                     owner on 2026-11-20), stats, whyUs,
-                                     experienceSteps, pickupAreas,
-                                     marrakechTimeline, reviews (static
-                                     fallback), reviewHighlights,
+                                     sky aboard the balloon, Royal card image
+                                     /images/marrakech-royal-flight.webp;
+                                     approved by the owner on 2026-11-20),
+                                     stats, whyUs, experienceSteps,
+                                     pickupAreas, marrakechTimeline, reviews
+                                     (static fallback), reviewHighlights,
                                      cityGoogleConfig, faqs, marrakechFaqs
 src/lib/gallery.ts                   Agadir gallery: 15 items, GalleryItem type
 src/lib/marrakech-gallery.ts         Marrakech gallery: exactly the 15 owner
@@ -110,7 +113,11 @@ public/images/                       all site images
    `rg -n "–|—" src/` and `rg -n "'" src/components src/lib`
 3. **Booking is WhatsApp only.** Every CTA builds a `wa.me` link through
    `waLink()` in site.ts with a prefilled French message. Do not introduce
-   other booking or payment flows.
+   other booking or payment flows. The shared availability message in
+   `use-booking-form.ts` (used by BOTH the BookingModal and the inline
+   BookingBar) ends with a Total line computed at submit time as
+   selectedOffer.priceMad x guests and formatted with thousands separators
+   ("Total: 1,998 MAD"). Never hardcode totals anywhere.
 4. **Reviews integrity.** Reviews are only ever READ from Google. Never
    invent, filter, reorder for vanity, or synthesize owner replies.
 5. **Do not regress the header behaviors** (section 7) or the
@@ -179,6 +186,13 @@ instantly, no controls rendered. Do not make it rotate on screen.
   hidden with `visibility` so the layout box and sizes check stay intact.
 - `src/app/icon.png` must stay PNG: the Next.js favicon convention does not
   accept webp for `icon.*`.
+- `/images/marrakech-royal-flight.webp` (Marrakech Royal Flight card,
+  1536x1024, owner supplied on 2026-11-20) is kept byte for byte from the
+  original upload: a WebP quality 80 re-encode introduced visible sky
+  banding, so the original encoding is preserved. Do not re-encode it.
+- `gallery-basket-aerial-view.webp` (Agadir gallery only) and
+  `marrakech-basket-breakfast.jpg` (Marrakech gallery only) are gallery
+  media and must NOT be used as package card images.
 - Unreferenced legacy files exist in public/images (agadir-premium.jpg,
   agadir-private.jpg, vip-basket.jpg, burner-flame.jpg, breakfast-caidal.jpg,
   hero-sunrise.jpg, logo.jpg, logo.svg). Do not delete or reference them
