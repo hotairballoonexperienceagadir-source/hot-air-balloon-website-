@@ -1,0 +1,598 @@
+     1→     1→/**
+     2→     2→ * Single source of truth for site content.
+     3→     3→ *
+     4→     4→ * POSITIONING: Agadir and the Souss Valley are the home base and the MAIN
+     5→     5→ * destination of the company. The homepage is entirely Agadir focused.
+     6→     6→ * Marrakech is a secondary destination with its own dedicated page at
+     7→     7→ * /marrakech-flights and its own offers, prices and photos.
+     8→     8→ *
+     9→     9→ * WhatsApp number, Google rating and Google profile link are the real ones
+    10→    10→ * from the Hot Air Balloon Experience Agadir business profile.
+    11→    11→ * Edit prices and texts here, the pages read everything from this file.
+    12→    12→ * Reviews are delivered live by /api/google-reviews, never from this file.
+    13→    13→ */
+    14→    14→
+    15→    15→/* ------------------------------------------------------------------ */
+    16→    16→/* Official Google Business Profile links. ONE shared source of truth  */
+    17→    17→/* for the whole website: the reviews section, header, footer, gallery */
+    18→    18→/* and structured data all read these two constants. Never duplicate   */
+    19→    19→/* these URL strings anywhere else.                                    */
+    20→    20→/*                                                                     */
+    21→    21→/* GOOGLE_PROFILE_URL = official "View our Google Business Profile"    */
+    22→    22→/*   link (Google share link of the single shared profile).            */
+    23→    23→/* GOOGLE_REVIEW_URL = official Google review submission link. Opens   */
+    24→    24→/*   Google's own review-writing interface in a new tab, where the     */
+    25→    25→/*   customer selects a star rating and publishes directly on Google.  */
+    26→    26→/*   There is no on-site review form and reviews are never submitted   */
+    27→    27→/*   programmatically on behalf of customers.                          */
+    28→    28→/*                                                                     */
+    29→    29→/* ONE SINGLE Google Business Profile serves BOTH destinations: the    */
+    30→    30→/* owner confirmed that Agadir and Marrakech do NOT have separate      */
+    31→    31→/* profiles, so both pages use these exact same official links.        */
+    32→    32→/* ------------------------------------------------------------------ */
+    33→    33→export const GOOGLE_PROFILE_URL = "https://share.google/XwquPB554mW6IBGgo";
+    34→    34→export const GOOGLE_REVIEW_URL = "https://g.page/r/CTpAykunXGoYEAE/review";
+    35→    35→
+    36→    36→export const site = {
+    37→    37→  brand: "Hot Air Balloon Experience Agadir",
+    38→    38→  brandShort: "HAB Experience",
+    39→    39→  phoneDisplay: "+212 609 488 493",
+    40→    40→  phoneTel: "+212609488493",
+    41→    41→  whatsappNumber: "212609488493",
+    42→    42→  /* Business contact email. The footer email button opens the contact form
+    43→    43→   * modal and /api/contact delivers the message to this inbox. */
+    44→    44→  contactEmail: "hotairballoonexperienceagadir@gmail.com",
+    45→    45→  googleRating: 5.0,
+    46→    46→  /* Official Google Business Profile link, always the shared constant. ONE
+    47→    47→   * single profile serves BOTH the Agadir and Marrakech pages (owner
+    48→    48→   * confirmed), so every Google Business Profile reference on the website
+    49→    49→   * points to this same URL. */
+    50→    50→  googleReviewsUrl: GOOGLE_PROFILE_URL,
+    51→    51→  address: "Agadir 80000, Morocco",
+    52→    52→  plusCode: "CC4W+7Q Agadir, Morocco",
+    53→    53→  hours: "Open 24 hours",
+    54→    54→  homePath: "/",
+    55→    55→  marrakechPath: "/marrakech-flights",
+    56→    56→} as const;
+    57→    57→
+    58→    58→/**
+    59→    59→ * Official Agadir social media accounts.
+    60→    60→ *
+    61→    61→ * IMPORTANT: these profiles belong EXCLUSIVELY to the Agadir brand. They are
+    62→    62→ * rendered only on the Agadir homepage (footer and closing CTA) and must
+    63→    63→ * NEVER be displayed on the Marrakech page. Update the URLs here only.
+    64→    64→ */
+    65→    65→export const instagramProfileUrl = "https://www.instagram.com/hotairballoon_experience/";
+    66→    66→
+    67→    67→export const socialLinks = [
+    68→    68→  { name: "Facebook", url: "https://www.facebook.com/hotairballoonexperienceagadir" },
+    69→    69→  { name: "TikTok", url: "https://www.tiktok.com/@hotairballoonagadir" },
+    70→    70→  { name: "Instagram", url: instagramProfileUrl },
+    71→    71→] as const;
+    72→    72→
+    73→    73→
+    74→    74→export function waLink(message: string): string {
+    75→    75→  return `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(message)}`;
+    76→    76→}
+    77→    77→
+    78→    78→export const defaultWaMessage =
+    79→    79→  "Hello! I would like to book my hot air balloon flight in Agadir. Please send me availability and prices.";
+    80→    80→
+    81→    81→export const marrakechWaMessage =
+    82→    82→  "Hello! I would like to book a hot air balloon flight in Marrakech. Please send me availability and prices.";
+    83→    83→
+    84→    84→export const heroWaMessage =
+    85→    85→  "Hello! I would like to book my Agadir hot air balloon flight. My preferred date and details are:";
+    86→    86→
+    87→    87→export const offerWaMessage = (offerName: string, city: string, priceMad: number) =>
+    88→    88→  `Hello! I would like to book the ${offerName} in ${city} (${priceMad.toLocaleString("en-US")} MAD per person). Please send me availability and pickup details.`;
+    89→    89→
+    90→    90→/* ------------------------------------------------------------------ */
+    91→    91→/* Destination model. Agadir is the main destination, Marrakech is     */
+    92→    92→/* secondary and lives on its own page.                                */
+    93→    93→/* ------------------------------------------------------------------ */
+    94→    94→
+    95→    95→export type CityId = "agadir" | "marrakech";
+    96→    96→
+    97→    97→export interface OfferFeature {
+    98→    98→  icon:
+    99→    99→    | "clock"
+   100→   100→    | "users"
+   101→   101→    | "bus"
+   102→   102→    | "coffee"
+   103→   103→    | "award"
+   104→   104→    | "camera"
+   105→   105→    | "mountain"
+   106→   106→    | "heart"
+   107→   107→    | "flame"
+   108→   108→    | "sun"
+   109→   109→    | "tent"
+   110→   110→    | "sparkles"
+   111→   111→    | "palm";
+   112→   112→  label: string;
+   113→   113→}
+   114→   114→
+   115→   115→export interface Offer {
+   116→   116→  id: string;
+   117→   117→  city: CityId;
+   118→   118→  cityName: string;
+   119→   119→  name: string;
+   120→   120→  description: string;
+   121→   121→  priceMad: number;
+   122→   122→  minGuests?: number;
+   123→   123→  duration: string;
+   124→   124→  groupSize: string;
+   125→   125→  image: string;
+   126→   126→  imageWidth: number;
+   127→   127→  imageHeight: number;
+   128→   128→  imageAlt: string;
+   129→   129→  features: OfferFeature[];
+   130→   130→  badge?: string;
+   131→   131→  popular?: boolean;
+   132→   132→}
+   133→   133→
+   134→   134→export const cities: Record<
+   135→   135→  CityId,
+   136→   136→  {
+   137→   137→    id: CityId;
+   138→   138→    name: string;
+   139→   139→    headline: string;
+   140→   140→    intro: string;
+   141→   141→    launchSite: string;
+   142→   142→    isMain: boolean;
+   143→   143→  }
+   144→   144→> = {
+   145→   145→  agadir: {
+   146→   146→    id: "agadir",
+   147→   147→    name: "Agadir",
+   148→   148→    headline: "Hot Air Balloon Flights in Agadir",
+   149→   149→    intro:
+   150→   150→      "Our home base and the heart of everything we do. Every morning we lift off from the Souss Valley, drifting over green fields, argan groves and Berber villages with the Atlas Mountains glowing on the horizon.",
+   151→   151→    launchSite: "Souss Valley launch site, approximately 50 minutes to 1 hour from central Agadir",
+   152→   152→    isMain: true,
+   153→   153→  },
+   154→   154→  marrakech: {
+   155→   155→    id: "marrakech",
+   156→   156→    name: "Marrakech",
+   157→   157→    headline: "Hot Air Balloon Flights in Marrakech",
+   158→   158→    intro:
+   159→   159→      "Our second destination, operated by the same Agadir based team. Lift off from the Palmeraie desert on the edge of the red city and watch the Atlas mountains turn gold at sunrise.",
+   160→   160→    launchSite: "Palmeraie area, about 30 minutes from central Marrakech",
+   161→   161→    isMain: false,
+   162→   162→  },
+   163→   163→};
+   164→   164→
+   165→   165→/* ------------------------------------------------------------------ */
+   166→   166→/* AGADIR OFFERS. The real packages and prices of our main destination. */
+   167→   167→/* All prices below were approved by the owner on 2026-11-20.           */
+   168→   168→/* ------------------------------------------------------------------ */
+   169→   169→
+   170→   170→export const agadirOffers: Offer[] = [
+   171→   171→  {
+   172→   172→    id: "agadir-classic",
+   173→   173→    city: "agadir",
+   174→   174→    cityName: "Agadir",
+   175→   175→    name: "Classic Flight",
+   176→   176→    description:
+   177→   177→      "Our signature Agadir sunrise. Share a balloon with a small group, drift over the beautiful Souss Valley with panoramic views of the Atlas Mountains, then land to a traditional Berber breakfast in a Caïdal tent.",
+   178→   178→    priceMad: 2199,
+   179→   179→    duration: "About 60 minutes airborne",
+   180→   180→    groupSize: "Shared basket",
+   181→   181→    image: "/images/classic-flight-sunrise.webp",
+   182→   182→    imageWidth: 1448,
+   183→   183→    imageHeight: 1086,
+   184→   184→    imageAlt:
+   185→   185→      "Passengers in the wicker basket of a hot air balloon with the burner glowing at sunrise over the Souss Valley near Agadir",
+   186→   186→    features: [
+   187→   187→      { icon: "bus", label: "Round-trip transportation from Agadir" },
+   188→   188→      { icon: "coffee", label: "Welcome coffee and Moroccan tea" },
+   189→   189→      { icon: "mountain", label: "Souss Valley and Atlas views" },
+   190→   190→      { icon: "tent", label: "Berber breakfast in a Caïdal tent" },
+   191→   191→      { icon: "award", label: "Official flight certificate" },
+   192→   192→    ],
+   193→   193→    badge: "Most Popular",
+   194→   194→    popular: true,
+   195→   195→  },
+   196→   196→  {
+   197→   197→    id: "agadir-private",
+   198→   198→    city: "agadir",
+   199→   199→    cityName: "Agadir",
+   200→   200→    name: "Private Flight",
+   201→   201→    description:
+   202→   202→      "The ultimate exclusive experience. Your own balloon, your own pilot and a personalized morning above the Souss Valley, designed for couples, families, proposals and special occasions.",
+   203→   203→    priceMad: 6999,
+   204→   204→    minGuests: 2,
+   205→   205→    duration: "About 60 minutes airborne",
+   206→   206→    groupSize: "Private basket, minimum 2 guests",
+   207→   207→    image: "/images/private-flight-souss-valley.webp",
+   208→   208→    imageWidth: 1448,
+   209→   209→    imageHeight: 1086,
+   210→   210→    imageAlt:
+   211→   211→      "Couple and pilot flying in a private hot air balloon basket above the Souss Valley landscape at sunrise",
+   212→   212→    features: [
+   213→   213→      { icon: "bus", label: "Private transportation" },
+   214→   214→      { icon: "heart", label: "Exclusive private balloon" },
+   215→   215→      { icon: "sparkles", label: "Personalized experience" },
+   216→   216→      { icon: "award", label: "Flight certificate" },
+   217→   217→      { icon: "tent", label: "Berber breakfast under an argan tree" },
+   218→   218→    ],
+   219→   219→    badge: "Luxury and Exclusive",
+   220→   220→  },
+   221→   221→  {
+   222→   222→    id: "agadir-royal",
+   223→   223→    city: "agadir",
+   224→   224→    cityName: "Agadir",
+   225→   225→    name: "Royal Flight",
+   226→   226→    description:
+   227→   227→      "The royal version of our private flight. Your own balloon, your own pilot and a personalized morning above the Souss Valley, with your private Berber breakfast served in the sky aboard the balloon as the Atlas Mountains turn gold on the horizon.",
+   228→   228→    priceMad: 8999,
+   229→   229→    minGuests: 2,
+   230→   230→    duration: "About 60 minutes airborne",
+   231→   231→    groupSize: "Private basket, minimum 2 guests",
+   232→   232→    image: "/images/gallery-basket-aerial-view.webp",
+   233→   233→    imageWidth: 1080,
+   234→   234→    imageHeight: 1350,
+   235→   235→    imageAlt:
+   236→   236→      "View from the basket of a hot air balloon flying over the Souss Valley countryside at dawn",
+   237→   237→    features: [
+   238→   238→      { icon: "bus", label: "Private transportation" },
+   239→   239→      { icon: "heart", label: "Exclusive private balloon" },
+   240→   240→      { icon: "sparkles", label: "Personalized experience" },
+   241→   241→      { icon: "coffee", label: "Berber breakfast served in the sky aboard the balloon" },
+   242→   242→      { icon: "award", label: "Flight certificate" },
+   243→   243→    ],
+   244→   244→    badge: "Royal Experience",
+   245→   245→  },
+   246→   246→];
+   247→   247→
+   248→   248→/* ------------------------------------------------------------------ */
+   249→   249→/* MARRAKECH OFFERS. Separate packages for the secondary destination,  */
+   250→   250→/* shown only on /marrakech-flights. Never mixed with Agadir.          */
+   251→   251→/* All prices below were approved by the owner on 2026-11-20.          */
+   252→   252→/* ------------------------------------------------------------------ */
+   253→   253→
+   254→   254→export const marrakechOffers: Offer[] = [
+   255→   255→  {
+   256→   256→    id: "mk-classic",
+   257→   257→    city: "marrakech",
+   258→   258→    cityName: "Marrakech",
+   259→   259→    name: "Classic Low Cost",
+   260→   260→    description:
+   261→   261→      "Our most affordable way to fly over the Palmeraie desert. Join a friendly group, enjoy a shared balloon flight of about 40 minutes and finish the morning with a traditional Berber breakfast at a Kasbah. Sunrise and the first flight of the morning are not guaranteed.",
+   262→   262→    priceMad: 999,
+   263→   263→    duration: "About 40 minutes airborne",
+   264→   264→    groupSize: "Shared balloon, maximum 19 people",
+   265→   265→    image: "/images/marrakech-classic.jpg",
+   266→   266→    imageWidth: 1600,
+   267→   267→    imageHeight: 896,
+   268→   268→    imageAlt:
+   269→   269→      "Hot air balloon floating over the Marrakech desert with the snow capped Atlas mountains behind",
+   270→   270→    features: [
+   271→   271→      { icon: "bus", label: "Shared minibus with multiple pickup points" },
+   272→   272→      { icon: "coffee", label: "Coffee and Moroccan tea on arrival" },
+   273→   273→      { icon: "clock", label: "About 40 minute shared balloon flight" },
+   274→   274→      { icon: "users", label: "Shared balloon, maximum 19 people" },
+   275→   275→      { icon: "coffee", label: "Traditional Berber breakfast at a Kasbah" },
+   276→   276→    ],
+   277→   277→    badge: "Most Popular",
+   278→   278→    popular: true,
+   279→   279→  },
+   280→   280→  {
+   281→   281→    id: "mk-comfort",
+   282→   282→    city: "marrakech",
+   283→   283→    cityName: "Marrakech",
+   284→   284→    name: "Classic Flight",
+   285→   285→    description:
+   286→   286→      "Our signature Marrakech balloon morning. Ride through the desert in a 4x4, fly for about 60 minutes with the Atlas mountains on the horizon and land to a traditional Berber breakfast at a Kasbah overlooking the mountains.",
+   287→   287→    priceMad: 1399,
+   288→   288→    duration: "About 60 minutes airborne",
+   289→   289→    groupSize: "Shared balloon",
+   290→   290→    image: "/images/marrakech-comfort.jpg",
+   291→   291→    imageWidth: 1216,
+   292→   292→    imageHeight: 896,
+   293→   293→    imageAlt:
+   294→   294→      "Hot air balloon flying above a Moroccan kasbah village with the Atlas mountains at sunrise",
+   295→   295→    features: [
+   296→   296→      { icon: "bus", label: "Transportation by 4x4 vehicle" },
+   297→   297→      { icon: "coffee", label: "Coffee and Moroccan tea on arrival" },
+   298→   298→      { icon: "clock", label: "About 60 minute balloon flight" },
+   299→   299→      { icon: "award", label: "Official flight certificate" },
+   300→   300→      { icon: "coffee", label: "Berber breakfast at a Kasbah overlooking the Atlas mountains" },
+   301→   301→    ],
+   302→   302→  },
+   303→   303→  {
+   304→   304→    id: "mk-private",
+   305→   305→    city: "marrakech",
+   306→   306→    cityName: "Marrakech",
+   307→   307→    name: "Private Flight",
+   308→   308→    description:
+   309→   309→      "The whole balloon just for your party. Travel in a private 4x4, fly for about 60 minutes over the Palmeraie desert and enjoy a traditional Berber breakfast in a private tent overlooking the Atlas mountains. Ideal for couples, families and special occasions.",
+   310→   310→    priceMad: 5299,
+   311→   311→    minGuests: 2,
+   312→   312→    duration: "About 60 minutes airborne",
+   313→   313→    groupSize: "Private balloon",
+   314→   314→    image: "/images/marrakech-private.jpg",
+   315→   315→    imageWidth: 1152,
+   316→   316→    imageHeight: 768,
+   317→   317→    imageAlt: "Couple standing in a hot air balloon basket above Marrakech at sunrise",
+   318→   318→    features: [
+   319→   319→      { icon: "heart", label: "Private 4x4 transportation" },
+   320→   320→      { icon: "coffee", label: "Coffee and Moroccan tea on arrival" },
+   321→   321→      { icon: "clock", label: "Private balloon flight of about 60 minutes" },
+   322→   322→      { icon: "award", label: "Official flight certificate" },
+   323→   323→      { icon: "coffee", label: "Berber breakfast in a private tent overlooking the Atlas mountains" },
+   324→   324→    ],
+   325→   325→  },
+   326→   326→  {
+   327→   327→    id: "mk-royal",
+   328→   328→    city: "marrakech",
+   329→   329→    cityName: "Marrakech",
+   330→   330→    name: "Royal Flight",
+   331→   331→    description:
+   332→   332→      "The whole balloon just for your party, elevated to the most exclusive Marrakech morning. Travel in a private 4x4, fly for about 60 minutes over the Palmeraie desert and enjoy your Berber breakfast served in the sky aboard the balloon, with the Atlas mountains on the horizon.",
+   333→   333→    priceMad: 6299,
+   334→   334→    minGuests: 2,
+   335→   335→    duration: "About 60 minutes airborne",
+   336→   336→    groupSize: "Private balloon",
+   337→   337→    image: "/images/marrakech-basket-breakfast.jpg",
+   338→   338→    imageWidth: 500,
+   339→   339→    imageHeight: 400,
+   340→   340→    imageAlt:
+   341→   341→      "Breakfast served inside a hot air balloon basket at sunrise with many balloons flying outside",
+   342→   342→    features: [
+   343→   343→      { icon: "heart", label: "Private 4x4 transportation" },
+   344→   344→      { icon: "coffee", label: "Coffee and Moroccan tea on arrival" },
+   345→   345→      { icon: "clock", label: "Private balloon flight of about 60 minutes" },
+   346→   346→      { icon: "coffee", label: "Breakfast served in the sky aboard the balloon" },
+   347→   347→      { icon: "award", label: "Official flight certificate" },
+   348→   348→    ],
+   349→   349→    badge: "Royal Experience",
+   350→   350→  },
+   351→   351→];
+   352→   352→
+   353→   353→/* ------------------------------------------------------------------ */
+   354→   354→/* Marketing sections                                                  */
+   355→   355→/* ------------------------------------------------------------------ */
+   356→   356→
+   357→   357→export const stats = [
+   358→   358→  { value: "5.0", label: "Google Rating", icon: "star" },
+   359→   359→  { value: "60 min", label: "Over the Souss Valley", icon: "sun" },
+   360→   360→  { value: "100%", label: "Safety Record", icon: "shield" },
+   361→   361→  { value: "24/7", label: "Booking on WhatsApp", icon: "users" },
+   362→   362→] as const;
+   363→   363→
+   364→   364→export const whyUs = [
+   365→   365→  {
+   366→   366→    icon: "badge",
+   367→   367→    title: "Agadir Home Base",
+   368→   368→    text: "We are an Agadir company through and through. Our licensed Moroccan pilots fly the Souss Valley every single morning, all year round.",
+   369→   369→  },
+   370→   370→  {
+   371→   371→    icon: "shield",
+   372→   372→    title: "Safety First",
+   373→   373→    text: "Daily equipment checks, full passenger insurance and strict compliance with Moroccan civil aviation rules on every flight.",
+   374→   374→  },
+   375→   375→  {
+   376→   376→    icon: "bus",
+   377→   377→    title: "Hotel Pickup in Agadir",
+   378→   378→    text: "Enjoy complimentary round-trip hotel transportation from Agadir City, Taghazout and Tamraght.",
+   379→   379→  },
+   380→   380→  {
+   381→   381→    icon: "sparkles",
+   382→   382→    title: "All-Inclusive Morning",
+   383→   383→    text: "Welcome coffee and Moroccan tea, about 60 minutes over the Souss Valley, a Berber breakfast in a Caïdal tent and your official flight certificate.",
+   384→   384→  },
+   385→   385→] as const;
+   386→   386→
+   387→   387→/* The complete Agadir experience, from pickup to drop off. */
+   388→   388→export const experienceSteps = [
+   389→   389→  {
+   390→   390→    time: "04:00 to 05:00",
+   391→   391→    title: "Hotel pickup in Agadir",
+   392→   392→    text: "Your driver collects you from your hotel while the city is still asleep. The exact time depends on the season and your hotel location.",
+   393→   393→  },
+   394→   394→  {
+   395→   395→    time: "On arrival",
+   396→   396→    title: "Welcome coffee and tea",
+   397→   397→    text: "Arrive at the Souss Valley launch site and enjoy a warm Moroccan welcome with coffee and traditional mint tea.",
+   398→   398→  },
+   399→   399→  {
+   400→   400→    time: "Before dawn",
+   401→   401→    title: "Balloon inflation",
+   402→   402→    text: "Watch the balloon come alive as the crew inflates the envelope, then meet your licensed pilot for the safety briefing.",
+   403→   403→  },
+   404→   404→  {
+   405→   405→    time: "Sunrise",
+   406→   406→    title: "Take off at first light",
+   407→   407→    text: "The burner roars, the ground falls away and you lift off just as the sun rises over the Atlas Mountains.",
+   408→   408→  },
+   409→   409→  {
+   410→   410→    time: "In the air",
+   411→   411→    title: "60 minutes over the Souss Valley",
+   412→   412→    text: "Enjoy approximately one hour of peaceful flying over green fields, argan groves and Berber villages.",
+   413→   413→  },
+   414→   414→  {
+   415→   415→    time: "In the air",
+   416→   416→    title: "Panoramic landscapes",
+   417→   417→    text: "Admire the breathtaking scenery of the Souss Valley and the Atlas Mountains glowing in the morning light.",
+   418→   418→  },
+   419→   419→  {
+   420→   420→    time: "After landing",
+   421→   421→    title: "Traditional Berber breakfast",
+   422→   422→    text: "Sit down to a traditional Moroccan Berber breakfast served in a traditional Caïdal tent, with mint tea and fresh msemen.",
+   423→   423→  },
+   424→   424→  {
+   425→   425→    time: "Ceremony",
+   426→   426→    title: "Your flight certificate",
+   427→   427→    text: "Receive your official flight certificate, a personal souvenir of your morning in the sky above Agadir.",
+   428→   428→  },
+   429→   429→  {
+   430→   430→    time: "Around 10:00 AM",
+   431→   431→    title: "Return to your hotel",
+   432→   432→    text: "Relax on the drive back to your hotel, camera roll full of memories. The experience usually finishes around 10:00 AM.",
+   433→   433→  },
+   434→   434→] as const;
+   435→   435→
+   436→   436→export const weatherNote =
+   437→   437→  "Flights are subject to suitable weather and wind conditions. If we have to cancel for safety reasons, you choose between a new date or a full refund.";
+   438→   438→
+   439→   439→export const pickupAreas = [
+   440→   440→  { name: "Agadir city", note: "Round-trip hotel pickup included", included: true },
+   441→   441→  { name: "Taghazout", note: "Round-trip hotel pickup included", included: true },
+   442→   442→  { name: "Tamraght", note: "Round-trip hotel pickup included", included: true },
+   443→   443→] as const;
+   444→   444→
+   445→   445→/* Timeline used on the Marrakech page. Steps without a time simply show no time badge. */
+   446→   446→export const marrakechTimeline: readonly { time?: string; title: string; text: string }[] = [
+   447→   447→  { time: "04:45", title: "Hotel pickup", text: "Your driver collects you from your hotel or riad in Marrakech while the sky is still dark." },
+   448→   448→  { title: "Inflation and briefing", text: "Watch the balloon come alive in the Palmeraie desert and meet your pilot for the safety briefing." },
+   449→   449→  { title: "Takeoff at sunrise", text: "The burner roars, the ground falls away and the sun rises with you over the palm groves." },
+   450→   450→  { title: "45 to 60 minutes in the air", text: "Float over the Palmeraie and the desert plains with the Atlas mountains on the horizon." },
+   451→   451→  { title: "Landing ceremony", text: "A gentle landing followed by the traditional pilot toast with the crew." },
+   452→   452→  { title: "Berber breakfast", text: "Fresh msemen, dates, eggs, mint tea and coffee served at the landing site." },
+   453→   453→  { title: "Flight certificate", text: "You receive your personalized certificate before the drive back." },
+   454→   454→  { time: "Around 10:00", title: "Back at your hotel", text: "Drop off in Marrakech with a camera roll full of memories and stories to tell." },
+   455→   455→];
+   456→   456→
+   457→   457→/* ------------------------------------------------------------------ */
+   458→   458→/* Reviews are NOT stored here anymore. Every displayed review, the     */
+   459→   459→/* rating and the review count come from the live official Google       */
+   460→   460→/* Places API through /api/google-reviews (see that route for the       */
+   461→   461→/* integration details). When the live data is unavailable, the Agadir  */
+   462→   462→/* homepage falls back to the verified word for word copy of our real   */
+   463→   463→/* Google reviews in src/lib/verified-reviews.ts; the Marrakech page    */
+   464→   464→/* keeps hiding the review cards and linking to the Google profile.     */
+   465→   465→/* No review is ever invented or shown from an unverified source.       */
+   466→   466→/*                                                                     */
+   467→   467→/* reviewHighlights are marketing summary lines of the review section, */
+   468→   468→/* not review content.                                                 */
+   469→   469→/* ------------------------------------------------------------------ */
+   470→   470→export const reviewHighlights = [
+   471→   471→  "Professional licensed pilot",
+   472→   472→  "Safe and smooth sunrise flight",
+   473→   473→  "Great breakfast after landing",
+   474→   474→] as const;
+   475→   475→
+   476→   476→/* ------------------------------------------------------------------ */
+   477→   477→/* Google Business Profile configuration.                              */
+   478→   478→/*                                                                     */
+   479→   479→/* ONE SINGLE Google Business Profile serves BOTH destinations: the    */
+   480→   480→/* owner confirmed that Agadir and Marrakech do NOT have separate      */
+   481→   481→/* Google Business Profiles. Both pages therefore use the exact same   */
+   482→   482→/* official links:                                                     */
+   483→   483→/*                                                                     */
+   484→   484→/* reviewUrl  = official Google review submission link. Opens Google's */
+   485→   485→/*              own review-writing interface in a new tab, where the   */
+   486→   486→/*              customer selects a star rating and publishes directly  */
+   487→   487→/*              on Google. There is no on-site review form and reviews */
+   488→   488→/*              are never submitted programmatically on behalf of      */
+   489→   489→/*              customers.                                             */
+   490→   490→/* profileUrl = official Google Business Profile link.                 */
+   491→   491→/*                                                                     */
+   492→   492→/* Published reviews are read back from this same profile through the  */
+   493→   493→/* official Google Places API (see /api/google-reviews) and shown on   */
+   494→   494→/* both pages. Owner replies are never displayed anywhere.             */
+   495→   495→/* ------------------------------------------------------------------ */
+   496→   496→export type CityKey = "agadir" | "marrakech";
+   497→   497→
+   498→   498→export interface CityGoogleConfig {
+   499→   499→  reviewUrl: string;
+   500→   500→  profileUrl: string;
+   501→   501→}
+   502→   502→
+   503→   503→const singleProfileConfig: CityGoogleConfig = {
+   504→   504→  reviewUrl: GOOGLE_REVIEW_URL,
+   505→   505→  profileUrl: GOOGLE_PROFILE_URL,
+   506→   506→};
+   507→   507→
+   508→   508→export const cityGoogleConfig: Record<CityKey, CityGoogleConfig> = {
+   509→   509→  agadir: singleProfileConfig,
+   510→   510→  marrakech: singleProfileConfig,
+   511→   511→};
+   512→   512→
+   513→   513→/* ------------------------------------------------------------------ */
+   514→   514→/* FAQ. Homepage FAQ is Agadir focused.                                */
+   515→   515→/* ------------------------------------------------------------------ */
+   516→   516→export interface Faq {
+   517→   517→  q: string;
+   518→   518→  a: string;
+   519→   519→  link?: { href: string; label: string };
+   520→   520→}
+   521→   521→
+   522→   522→export const faqs: Faq[] = [
+   523→   523→  {
+   524→   524→    q: "What time is the hotel pickup in Agadir?",
+   525→   525→    a: "Pickup from your Agadir hotel happens early in the morning, between 4:00 AM and 5:00 AM, depending on the season and your hotel location. The full experience finishes around 10:00 AM with drop off at your hotel.",
+   526→   526→  },
+   527→   527→  {
+   528→   528→    q: "Where do the balloon flights take off?",
+   529→   529→    a: "Our launch sites are in the Souss Valley, approximately 50 minutes to 1 hour from central Agadir.",
+   530→   530→  },
+   531→   531→  {
+   532→   532→    q: "Is transportation included from my hotel?",
+   533→   533→    a: "Yes! Round-trip hotel pickup is included for guests staying in Agadir City, Taghazout and Tamraght. Our team will coordinate your exact pickup location and time with you via WhatsApp.",
+   534→   534→  },
+   535→   535→  {
+   536→   536→    q: "What does the price include?",
+   537→   537→    a: "The Classic Flight is 2,199 MAD per person and includes round-trip transportation from Agadir, welcome coffee and Moroccan tea, the balloon flight over the Souss Valley, a traditional Berber breakfast in a Caïdal tent and the official flight certificate. The Private Flight is 6,999 MAD per person with a minimum of 2 guests and includes private transportation, an exclusive balloon and a private Berber breakfast under an argan tree. The Royal Flight is 8,999 MAD per person with a minimum of 2 guests and adds a Berber breakfast served in the sky aboard the balloon.",
+   538→   538→  },
+   539→   539→  {
+   540→   540→    q: "What happens if the weather is bad?",
+   541→   541→    a: "Ballooning depends on suitable weather and wind conditions. If your flight is cancelled for weather or safety reasons, you choose between a new date or a full refund with no fees.",
+   542→   542→  },
+   543→   543→  {
+   544→   544→    q: "How long do we stay in the air?",
+   545→   545→    a: "The balloon flies for approximately 60 minutes. Plan the whole morning from pickup between 4:00 and 5:00 AM until drop off around 10:00 AM.",
+   546→   546→  },
+   547→   547→  {
+   548→   548→    q: "What should I wear and bring?",
+   549→   549→    a: "Wear warm layers and closed shoes because it is cool before sunrise. Bring a hat, sunglasses and your camera. We provide the rest.",
+   550→   550→  },
+   551→   551→  {
+   552→   552→    q: "Are there age or weight limits?",
+   553→   553→    a: "Children from 3 years old can fly with an adult. For guests weighing 140 kg or more, please contact us on WhatsApp so we can check whether it is possible to accommodate you safely.",
+   554→   554→    link: {
+   555→   555→      href: waLink(
+   556→   556→        "Hello! I weigh 140 kg or more and I have a question about the balloon flights in Agadir. Can you check whether it is possible to accommodate me safely?",
+   557→   557→      ),
+   558→   558→      label: "Contact us on WhatsApp",
+   559→   559→    },
+   560→   560→  },
+   561→   561→  {
+   562→   562→    q: "Do you also fly in Marrakech?",
+   563→   563→    a: "Yes. Marrakech is our second destination, operated by the same Agadir team, with its own launch site in the Palmeraie desert and its own offers and prices.",
+   564→   564→    link: { href: "/marrakech-flights", label: "Discover our Marrakech Flights" },
+   565→   565→  },
+   566→   566→];
+   567→   567→
+   568→   568→export const marrakechFaqs: Faq[] = [
+   569→   569→  {
+   570→   570→    q: "Where do Marrakech balloon flights take off?",
+   571→   571→    a: "Marrakech flights launch from the Palmeraie area, about 30 minutes from central Marrakech.",
+   572→   572→  },
+   573→   573→  {
+   574→   574→    q: "What time is the hotel pickup in Marrakech?",
+   575→   575→    a: "We collect you from your hotel or riad about one hour before takeoff, early in the morning before sunrise. Your exact pickup time is confirmed on WhatsApp the day before the flight.",
+   576→   576→  },
+   577→   577→  {
+   578→   578→    q: "Is hotel transfer included in Marrakech?",
+   579→   579→    a: "Yes, pickup and drop off from all hotels and riads in the Marrakech city area are included in every Marrakech flight.",
+   580→   580→  },
+   581→   581→  {
+   582→   582→    q: "What happens if the weather is bad?",
+   583→   583→    a: "Flights depend on suitable weather and wind conditions. If your flight is cancelled for weather or safety reasons, you choose between a new date or a full refund with no fees.",
+   584→   584→  },
+   585→   585→  {
+   586→   586→    q: "What is included in the Marrakech flights?",
+   587→   587→    a: "Every Marrakech flight includes transportation, coffee and Moroccan tea on arrival, the balloon flight, breakfast and the flight certificate. The Classic Low Cost is 999 MAD per person, the Classic Flight is 1,399 MAD per person, the Private Flight is 5,299 MAD per person with a minimum of 2 guests and the Royal Flight is 6,299 MAD per person with a minimum of 2 guests and breakfast served in the sky aboard the balloon.",
+   588→   588→  },
+   589→   589→  {
+   590→   590→    q: "Where is your company based?",
+   591→   591→    a: "Our home base is Agadir, where we fly over the Souss Valley every morning. Marrakech is our second destination, flown by the same licensed team.",
+   592→   592→    link: { href: "/", label: "Discover our Agadir flights" },
+   593→   593→  },
+   594→   594→];
+   595→   595→
+   596→   596→/* ------------------------------------------------------------------ */
+   597→   597→/* Gallery media now lives in the single shared configuration file src/lib/gallery.ts. */
+   598→   598→
