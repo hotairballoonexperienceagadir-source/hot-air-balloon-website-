@@ -118,6 +118,13 @@ export interface Offer {
   cityName: string;
   name: string;
   description: string;
+  /* SEO-only copy for JSON-LD structured data. Owner decision 2026-11-20:
+   * the VISIBLE Marrakech copy no longer mentions the Palmeraie, but the
+   * JSON-LD Product descriptions must stay EXACTLY as they were before that
+   * decision. When seoDescription is set, the JSON-LD renders it and the
+   * page renders description. NEVER edit a seoDescription: it freezes the
+   * pre-decision SEO copy word for word. */
+  seoDescription?: string;
   priceMad: number;
   minGuests?: number;
   duration: string;
@@ -161,8 +168,8 @@ export const cities: Record<
     name: "Marrakech",
     headline: "Hot Air Balloon Flights in Marrakech",
     intro:
-      "Our second destination, operated by the same Agadir based team. Lift off from the Palmeraie desert on the edge of the red city and watch the Atlas mountains turn gold at sunrise.",
-    launchSite: "Palmeraie area, about 30 minutes from central Marrakech",
+      "Our second destination, operated by the same Agadir based team. Lift off from the desert on the edge of the red city and watch the Atlas mountains turn gold at sunrise.",
+    launchSite: "Desert launch area, about 30 minutes from central Marrakech",
     isMain: false,
   },
 };
@@ -233,6 +240,10 @@ export const agadirOffers: Offer[] = [
 /* MARRAKECH OFFERS. Separate packages for the secondary destination,  */
 /* shown only on /marrakech-flights. Never mixed with Agadir.          */
 /* All prices below were approved by the owner on 2026-11-20.          */
+/* Owner decision 2026-11-20: the word "Palmeraie" is removed from the */
+/* VISIBLE Marrakech copy (descriptions, tags, FAQ, booking labels).   */
+/* The JSON-LD structured data keeps the original wording untouched    */
+/* through the frozen seoDescription fields below.                     */
 /* ------------------------------------------------------------------ */
 
 export const marrakechOffers: Offer[] = [
@@ -242,6 +253,8 @@ export const marrakechOffers: Offer[] = [
     cityName: "Marrakech",
     name: "Classic Low Cost",
     description:
+      "Our most affordable way to fly over the desert landscapes around Marrakech. Join a friendly group, enjoy a shared balloon flight of about 40 minutes and finish the morning with a traditional Berber breakfast at a Kasbah. Sunrise and the first flight of the morning are not guaranteed.",
+    seoDescription:
       "Our most affordable way to fly over the Palmeraie desert. Join a friendly group, enjoy a shared balloon flight of about 40 minutes and finish the morning with a traditional Berber breakfast at a Kasbah. Sunrise and the first flight of the morning are not guaranteed.",
     priceMad: 999,
     duration: "About 40 minutes airborne",
@@ -290,6 +303,8 @@ export const marrakechOffers: Offer[] = [
     cityName: "Marrakech",
     name: "Private Flight",
     description:
+      "The whole balloon just for your party. Travel in a private 4x4, fly for about 60 minutes over Marrakech’s desert landscapes and enjoy a traditional Berber breakfast in a private tent overlooking the Atlas mountains. Ideal for couples, families and special occasions.",
+    seoDescription:
       "The whole balloon just for your party. Travel in a private 4x4, fly for about 60 minutes over the Palmeraie desert and enjoy a traditional Berber breakfast in a private tent overlooking the Atlas mountains. Ideal for couples, families and special occasions.",
     priceMad: 5299,
     minGuests: 2,
@@ -313,6 +328,8 @@ export const marrakechOffers: Offer[] = [
     cityName: "Marrakech",
     name: "Royal Flight",
     description:
+      "The whole balloon just for your party, elevated to the most exclusive Marrakech morning. Travel in a private 4x4, fly for about 60 minutes over Marrakech’s desert landscapes and enjoy your Berber breakfast served in the sky aboard the balloon, with the Atlas mountains on the horizon.",
+    seoDescription:
       "The whole balloon just for your party, elevated to the most exclusive Marrakech morning. Travel in a private 4x4, fly for about 60 minutes over the Palmeraie desert and enjoy your Berber breakfast served in the sky aboard the balloon, with the Atlas mountains on the horizon.",
     priceMad: 6299,
     minGuests: 2,
@@ -433,9 +450,9 @@ export const pickupAreas = [
 /* Timeline used on the Marrakech page. Steps without a time simply show no time badge. */
 export const marrakechTimeline: readonly { time?: string; title: string; text: string }[] = [
   { time: "04:45", title: "Hotel pickup", text: "Your driver collects you from your hotel or riad in Marrakech while the sky is still dark." },
-  { title: "Inflation and briefing", text: "Watch the balloon come alive in the Palmeraie desert and meet your pilot for the safety briefing." },
-  { title: "Takeoff at sunrise", text: "The burner roars, the ground falls away and the sun rises with you over the palm groves." },
-  { title: "45 to 60 minutes in the air", text: "Float over the Palmeraie and the desert plains with the Atlas mountains on the horizon." },
+  { title: "Inflation and briefing", text: "Watch the balloon come alive in the desert outside Marrakech and meet your pilot for the safety briefing." },
+  { title: "Takeoff at sunrise", text: "The burner roars, the ground falls away and the sun rises with you over the desert." },
+  { title: "45 to 60 minutes in the air", text: "Float over Marrakech’s desert plains with the Atlas mountains on the horizon." },
   { title: "Landing ceremony", text: "A gentle landing followed by the traditional pilot toast with the crew." },
   { title: "Berber breakfast", text: "Fresh msemen, dates, eggs, mint tea and coffee served at the landing site." },
   { title: "Flight certificate", text: "You receive your personalized certificate before the drive back." },
@@ -548,7 +565,7 @@ export const faqs: Faq[] = [
   },
   {
     q: "Do you also fly in Marrakech?",
-    a: "Yes. Marrakech is our second destination, operated by the same Agadir team, with its own launch site in the Palmeraie desert and its own offers and prices.",
+    a: "Yes. Marrakech is our second destination, operated by the same Agadir team, with its own launch site in the desert outside the city and its own offers and prices.",
     link: { href: "/marrakech-flights", label: "Discover our Marrakech Flights" },
   },
 ];
@@ -556,7 +573,7 @@ export const faqs: Faq[] = [
 export const marrakechFaqs: Faq[] = [
   {
     q: "Where do Marrakech balloon flights take off?",
-    a: "Marrakech flights launch from the Palmeraie area, about 30 minutes from central Marrakech.",
+    a: "Marrakech flights launch from our desert launch area, about 30 minutes from central Marrakech.",
   },
   {
     q: "What time is the hotel pickup in Marrakech?",

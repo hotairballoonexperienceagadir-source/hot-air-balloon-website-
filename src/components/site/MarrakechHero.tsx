@@ -28,7 +28,7 @@ export function MarrakechHero() {
     <section id="home" className="relative isolate overflow-hidden bg-navy-900">
       <Image
         src="/images/hero-marrakech.webp"
-        alt="Colorful hot air balloons drifting over the Palmeraie desert of Marrakech at sunrise with the Atlas mountains behind"
+        alt="Colorful hot air balloons drifting over the desert of Marrakech at sunrise with the Atlas mountains behind"
         fill
         priority
         fetchPriority="high"
@@ -42,7 +42,7 @@ export function MarrakechHero() {
           next/image sizes check stay intact. */}
       <div
         role="img"
-        aria-label="Colorful hot air balloons drifting over the Palmeraie desert of Marrakech at sunrise with the Atlas mountains behind"
+        aria-label="Colorful hot air balloons drifting over the desert of Marrakech at sunrise with the Atlas mountains behind"
         className="absolute inset-0 bg-cover bg-center bg-no-repeat md:hidden"
         style={{ backgroundImage: "url('/images/hero-marrakech-mobile.webp')" }}
       />

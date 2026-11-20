@@ -26,7 +26,7 @@ import { Stars, WhatsAppIcon } from "./icons";
  *   packages selectable. Choosing Marrakech in the Destination select sends
  *   visitors to the dedicated Marrakech page instead of booking, so the two
  *   destinations and their packages never mix (original behaviour).
- * - Marrakech page: destination locked to Marrakech (Palmeraie), only the
+ * - Marrakech page: destination locked to Marrakech, only the
  *   real Marrakech packages selectable.
  *
  * WhatsApp opens ONLY when the visitor presses "Check Availability" with a
@@ -92,9 +92,6 @@ export function BookingBar({ page }: { page: BookingDestination }) {
             </span>
             <div className="flex h-12 items-center justify-between rounded-xl border border-brand-400/40 bg-brand-500/10 px-4 text-sm font-bold text-brand-200">
               Marrakech
-              <span className="text-[10px] font-semibold uppercase tracking-wider text-brand-300/80">
-                Palmeraie
-              </span>
             </div>
           </div>
         )}

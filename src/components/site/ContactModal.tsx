@@ -14,7 +14,8 @@ import {
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { useContactStore } from "@/lib/contact-store";
-import { site } from "@/lib/site";
+import { site, waLink } from "@/lib/site";
+import { WhatsAppIcon } from "./icons";
 
 /**
  * THE contact form of the website, shown in a modal with the same navy and
@@ -24,10 +25,18 @@ import { site } from "@/lib/site";
  * button) through the contact store. All fields are required and validated
  * on the client, validated again on the server by /api/contact, and the
  * message is delivered over SMTP by that server side route. The form shows
- * a loading state while sending, a clear success message after delivery and
- * an honest error message if sending fails. Duplicate submissions are
- * prevented on the client (guard + disabled controls while sending) and on
- * the server (per IP rate limit).
+ * a loading state while sending and a clear success message after delivery.
+ *
+ * DELIVERY FALLBACK (owner decision 2026-11-20): a customer message is
+ * NEVER lost. When /api/contact cannot deliver (503 not configured, 429
+ * rate limit, 500 delivery error) or the request fails at network level,
+ * the modal keeps every filled value and shows a friendly panel with a
+ * primary "Send on WhatsApp" button carrying the exact same message
+ * pre-filled (wa.me) plus a secondary "Email us instead" mailto link. The
+ * old technical wording ("Email delivery is not configured yet") is never
+ * shown to customers. Server side field validation (400) keeps the visitor
+ * on the form with the values filled so they can fix the highlighted
+ * fields.
  */
 
 type FieldId = "name" | "email" | "subject" | "message";
@@ -64,6 +73,20 @@ function FieldError({ id, message }: { id: string; message?: string }) {
   );
 }
 
+/* The message a customer can always deliver, even when email sending is
+   unavailable: the exact content they typed, pre-filled for the WhatsApp
+   button and the mailto fallback link. Apostrophes follow the copy rule
+   (U+2019). */
+function buildFallbackMessage(form: Record<FieldId, string>): string {
+  return [
+    "Hello, I’m contacting you from the website.",
+    `Name: ${form.name.trim()}`,
+    `Email: ${form.email.trim()}`,
+    `Subject: ${form.subject.trim()}`,
+    `Message: ${form.message.trim()}`,
+  ].join("\n");
+}
+
 export function ContactModal() {
   const isOpen = useContactStore((state) => state.isOpen);
   const closeContact = useContactStore((state) => state.closeContact);
@@ -71,7 +94,6 @@ export function ContactModal() {
   const [status, setStatus] = useState<Status>("idle");
   const [values, setValues] = useState(EMPTY_VALUES);
   const [errors, setErrors] = useState<Partial<Record<FieldId, string>>>({});
-  const [serverError, setServerError] = useState("");
 
   const sending = status === "sending";
 
@@ -100,7 +122,6 @@ export function ContactModal() {
     if (!validate()) return;
 
     setStatus("sending");
-    setServerError("");
 
     try {
       const response = await fetch("/api/contact", {
@@ -120,18 +141,21 @@ export function ContactModal() {
         return;
       }
 
+      /* Server side field validation (400): not a delivery failure. The
+         customer stays on the form, values filled, and fixes the
+         highlighted fields. */
       if (data?.fieldErrors) {
         setErrors((current) => ({ ...current, ...data.fieldErrors }));
+        setStatus("idle");
+        return;
       }
-      setServerError(
-        data?.error ??
-          "Your message could not be sent right now. Please try again in a moment, or reach us directly on WhatsApp or by phone.",
-      );
+
+      /* Every delivery failure (503 not configured, 429 rate limit, 500
+         SMTP error, anything unexpected): the message is never lost. The
+         fallback panel keeps the values filled and offers WhatsApp. */
       setStatus("error");
     } catch {
-      setServerError(
-        "Network error: your message could not be sent. Please check your connection and try again, or reach us on WhatsApp or by phone.",
-      );
+      /* Network failure: same fallback, values kept. */
       setStatus("error");
     }
   }
@@ -139,7 +163,6 @@ export function ContactModal() {
   function resetForm() {
     setValues(EMPTY_VALUES);
     setErrors({});
-    setServerError("");
     setStatus("idle");
   }
 
@@ -151,6 +174,14 @@ export function ContactModal() {
   }
 
   const describedBy = (field: FieldId) => (errors[field] ? `${field}-error` : undefined);
+
+  /* The never-lose-the-message fallback targets, always derived from the
+     current form values (kept filled on failure). */
+  const fallbackMessage = buildFallbackMessage(values);
+  const whatsappHref = waLink(fallbackMessage);
+  const mailtoHref = `mailto:${site.contactEmail}?subject=${encodeURIComponent(
+    values.subject.trim() || "Website message",
+  )}&body=${encodeURIComponent(fallbackMessage)}`;
 
   return (
     <Dialog open={isOpen} onOpenChange={handleOpenChange}>
@@ -266,13 +297,33 @@ export function ContactModal() {
               </div>
             </div>
 
-            {status === "error" && serverError && (
+            {status === "error" && (
               <div
                 role="alert"
-                className="mt-4 flex items-start gap-3 rounded-xl border border-red-400/40 bg-red-400/10 p-4 text-sm leading-relaxed text-red-200"
+                className="mt-4 rounded-xl border border-gold-400/30 bg-gold-400/10 p-4"
               >
-                <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
-                <span>{serverError}</span>
+                <div className="flex items-start gap-3">
+                  <AlertCircle className="mt-0.5 h-4 w-4 shrink-0 text-gold-400" aria-hidden="true" />
+                  <p className="text-sm leading-relaxed text-cream-100/85">
+                    We couldn’t send your email right now. Tap below to send the same message on WhatsApp. We
+                    reply 24 hours a day.
+                  </p>
+                </div>
+                <Button
+                  type="button"
+                  onClick={() => window.open(whatsappHref, "_blank", "noopener,noreferrer")}
+                  className="mt-3 h-11 w-full rounded-xl bg-brand-500 text-sm font-bold text-white shadow-lg shadow-brand-900/40 hover:bg-brand-600"
+                >
+                  <WhatsAppIcon className="h-4 w-4" aria-hidden="true" />
+                  Send on WhatsApp
+                </Button>
+                <a
+                  href={mailtoHref}
+                  className="mt-3 flex items-center justify-center gap-2 text-sm font-semibold text-cream-100/75 underline underline-offset-4 transition hover:text-white"
+                >
+                  <Mail className="h-3.5 w-3.5" aria-hidden="true" />
+                  Email us instead
+                </a>
               </div>
             )}
 

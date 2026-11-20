@@ -3,18 +3,24 @@ import type { NextRequest } from "next/server";
 import { z } from "zod";
 import { createTransport } from "nodemailer";
 import { site } from "@/lib/site";
+import { isSmtpConfigured } from "@/lib/contact-config";
 
 /**
  * Contact form email delivery, server side only.
  *
  * Modes (mutually exclusive, always honest):
- * - LIVE MODE: when SMTP_USER and SMTP_PASSWORD are configured in .env, the
- *   message is genuinely delivered over SMTP (default smtp.gmail.com:465,
- *   works with a Gmail App Password) to CONTACT_RECIPIENT_EMAIL, falling
+ * - LIVE MODE: when SMTP_USER and SMTP_PASSWORD are configured in .env (the
+ *   Gmail App Password setup), the message is genuinely delivered over
+ *   SMTP (default smtp.gmail.com:465) to CONTACT_RECIPIENT_EMAIL, falling
  *   back to the business inbox from the site config.
- * - NOT CONFIGURED MODE (current state, no credentials set yet): the route
- *   returns 503 with a clear error. A message is NEVER reported as sent
- *   when it was not delivered.
+ * - NOT CONFIGURED MODE (after a sandbox reset wiped .env, or a broken
+ *   deployment): the route returns 503, logs a server warning WITHOUT any
+ *   secret values, and the ContactModal on the client offers the customer
+ *   a WhatsApp fallback with the same message, so a customer message is
+ *   never lost. A message is NEVER reported as sent when it was not
+ *   delivered.
+ * - FAIL MODE: when the SMTP delivery itself throws, the route returns
+ *   500 and logs the failure; the client offers the same WhatsApp fallback.
  *
  * Security rules enforced here:
  *   - SMTP credentials live only in environment variables, never in the
@@ -80,10 +86,6 @@ function getClientIp(request: NextRequest): string {
   );
 }
 
-function isEmailConfigured(): boolean {
-  return Boolean(process.env.SMTP_USER && process.env.SMTP_PASSWORD);
-}
-
 /* Escape user content before embedding it into the HTML email body. */
 function escapeHtml(value: string): string {
   return value
@@ -129,7 +131,13 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  if (!isEmailConfigured()) {
+  if (!isSmtpConfigured()) {
+    /* Server warning without any secret values: the customer is not shown
+       this technical wording, the client modal offers the WhatsApp
+       fallback instead and the typed message is never lost. */
+    console.warn(
+      "[contact] SMTP not configured — customer was offered WhatsApp fallback",
+    );
     return NextResponse.json(
       {
         ok: false,
@@ -189,6 +197,9 @@ export async function POST(request: NextRequest) {
     });
   } catch (error) {
     console.error("[api/contact] Email delivery failed:", error);
+    console.warn(
+      "[contact] SMTP send failed — customer was offered WhatsApp fallback",
+    );
     return NextResponse.json(
       {
         ok: false,

@@ -126,6 +126,20 @@ public/images/                       all site images
    footer uses `mt-auto`. Preserve this on any new page.
 7. Keep all image dimensions and aspect ratios unchanged when replacing an
    image file, and keep alt text + captions in gallery entries accurate.
+8. **No "Palmeraie" in visible Marrakech content.** Owner decision
+   2026-11-20: the word "Palmeraie" must not appear in VISIBLE Marrakech
+   copy. Offer card location tags, the booking bar chip, the booking
+   modal destination and the WhatsApp message destination now read just
+   "Marrakech"; descriptions, timeline, FAQ answers, footer, gallery
+   captions and image alt texts describe the area as Marrakech desert
+   landscapes / desert launch area instead. SEO is intentionally left
+   UNCHANGED: page title, meta description, keywords, Open Graph,
+   Twitter cards, JSON-LD, sitemap, robots, OG image route, URLs and
+   slugs keep their original wording even where they contain
+   "Palmeraie". The three marrakechOffers `seoDescription` fields in
+   site.ts freeze the pre-decision JSON-LD copy (the Marrakech Product
+   schema renders `offer.seoDescription ?? offer.description`) and must
+   NEVER be edited.
 
 ## 6. API routes
 
@@ -140,6 +154,15 @@ public/images/                       all site images
   window. Sources in order: Open-Meteo, MET Norway, 7Timer. Per city 10 min
   in-memory cache; stale results are served with a stale flag on upstream
   failure. Route is `force-dynamic`.
+- `GET /api/contact` POST
+  Contact form delivery over Gmail SMTP (see section 10). 503 when SMTP
+  is not configured, 500 on delivery failure, both logged as server
+  warnings without secrets; the client modal then offers the WhatsApp
+  fallback so the message is never lost.
+- `GET /api/contact/health`
+  Returns `{ smtpConfigured: true | false }` (boolean only, never any
+  variable value) so email delivery can be checked after a sandbox
+  reset. Route is `force-dynamic`.
 - `GET /api/og?t=<title>&s=<subtitle>` renders the dynamic OG image.
 
 ## 7. Header behaviors (shared by both pages, in Header.tsx)
@@ -202,7 +225,16 @@ instantly, no controls rendered. Do not make it rotate on screen.
 
 ## 10. Environment
 
-- `DATABASE_URL` (SQLite) is the only active var in .env; Prisma is unused.
+- Variables currently used in .env (NAMES only, never commit values):
+  `DATABASE_URL`, `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`,
+  `SMTP_PASSWORD` (Gmail App Password, spaces removed),
+  `CONTACT_RECIPIENT_EMAIL`.
+- The Z.ai sandbox resets .env from time to time (it is git ignored, so
+  a reset restores the repo without it). After a reset the contact
+  route answers 503, logs "[contact] SMTP not configured — customer was
+  offered WhatsApp fallback" and the modal keeps the message safe via
+  the WhatsApp fallback. Restore the five SMTP variables in .env and
+  restart the dev server; check with GET /api/contact/health.
 - `GOOGLE_PLACES_API_KEY` + `GOOGLE_PLACE_ID` switch the reviews API to live
   Google data. Never commit secrets; document new vars by name only.
 
@@ -217,6 +249,11 @@ instantly, no controls rendered. Do not make it rotate on screen.
   photo strip component exists in Reviews.tsx but is not rendered anywhere.
 - 7 day flight probability widget on live weather data (API + caching).
 - FAQ accordions, stats strip, pickup areas, closing CTA sections.
+- Contact form modal delivering over Gmail SMTP; on missing SMTP config,
+  delivery failure or network failure it shows a WhatsApp fallback
+  ("Send on WhatsApp" + "Email us instead" mailto) with the message
+  pre-filled and keeps the form values, so a customer message is never
+  lost. Health check: GET /api/contact/health.
 - Shared Header/Footer with the logo behaviors described above, floating
   WhatsApp/call buttons, sticky footer.
 - SEO: per page metadata + og images, JSON-LD (Organization, offers,

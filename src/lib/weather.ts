@@ -93,7 +93,9 @@ export const weatherCities: Record<WeatherCityId, WeatherCityConfig> = {
   marrakech: {
     id: "marrakech",
     name: "Marrakech",
-    area: "Palmeraie desert launch area",
+    /* Visible in the Live Outlook widget subtitle. Owner decision
+     * 2026-11-20: no "Palmeraie" in visible Marrakech content. */
+    area: "desert launch area",
     latitude: 31.66,
     longitude: -7.9,
   },

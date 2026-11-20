@@ -56,7 +56,7 @@ function MarrakechOfferCard({ offer }: { offer: Offer }) {
           className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
         />
         <span className="absolute bottom-3 left-3 rounded-full bg-navy-950/75 px-3 py-1 text-xs font-semibold text-cream-100 backdrop-blur">
-          {offer.cityName} | Palmeraie
+          {offer.cityName}
         </span>
       </div>
 
@@ -178,7 +178,7 @@ export function MarrakechExperience() {
               />
             </div>
             <span className="absolute left-4 top-4 rounded-xl bg-brand-500 px-4 py-2 text-center font-display text-lg font-bold leading-tight text-white shadow-lg">
-              Palmeraie
+              Marrakech
               <span className="block text-[10px] font-semibold uppercase tracking-widest text-white/85">Desert launch site</span>
             </span>
           </div>
@@ -191,8 +191,9 @@ export function MarrakechExperience() {
               How Your Marrakech Balloon Morning Works
             </h2>
             <p className="mt-4 text-base leading-relaxed text-cream-100/85">
-              The same careful routine our team applies in Agadir, adapted to the Palmeraie desert: a dark early
-              drive, a glowing inflation, a golden sunrise over the palm groves and a Berber breakfast to finish.
+              The same careful routine our team applies in Agadir, adapted to the desert launch area outside
+              Marrakech: a dark early drive, a glowing inflation, a golden sunrise and a Berber breakfast to
+              finish.
             </p>
 
             <div className="mt-6 rounded-xl border border-white/10 bg-white/5 p-4">
@@ -244,7 +245,7 @@ export function MarrakechCta() {
     <section id="book" className="relative isolate overflow-hidden bg-navy-950 py-20 md:py-28">
       <Image
         src="/images/marrakech-classic.jpg"
-        alt="Hot air balloons floating over the Palmeraie desert of Marrakech at sunrise"
+        alt="Hot air balloons floating over the desert of Marrakech at sunrise"
         fill
         loading="lazy"
         sizes="100vw"
@@ -259,7 +260,7 @@ export function MarrakechCta() {
           Book Your Marrakech Sunrise Flight
         </h2>
         <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-cream-100/85">
-          Send us a message today and fly over the Palmeraie desert and the Atlas mountains tomorrow morning.
+          Send us a message today and fly over the desert landscapes around Marrakech and the Atlas mountains tomorrow morning.
         </p>
         <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <BookingButton

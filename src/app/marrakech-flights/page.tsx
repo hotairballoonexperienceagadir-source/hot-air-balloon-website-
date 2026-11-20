@@ -53,7 +53,11 @@ function MarrakechStructuredData() {
       ...marrakechOffers.map((offer) => ({
         "@type": "Product",
         name: `${offer.name} in Marrakech`,
-        description: offer.description,
+        /* Owner decision 2026-11-20: JSON-LD must stay EXACTLY as it was,
+         * even where it contains "Palmeraie". The frozen seoDescription
+         * fields in site.ts preserve the original structured data wording
+         * while the visible card copy is Palmeraie free. */
+        description: offer.seoDescription ?? offer.description,
         image: offer.image,
         brand: { "@type": "Brand", name: site.brand },
         offers: {
@@ -85,7 +89,7 @@ export default function MarrakechFlightsPage() {
         {/* Marrakech gallery: its own completely separate collection
          * (src/lib/marrakech-gallery.ts), never mixed with Agadir media. */}
         <Gallery
-          title="Marrakech and the Palmeraie From Above"
+          title="Marrakech From Above"
           description="A glimpse of the landscapes, flights and mornings waiting for you in the skies of Marrakech."
           items={marrakechGalleryItems}
         />
@@ -100,7 +104,7 @@ export default function MarrakechFlightsPage() {
           items={marrakechFaqs}
           waMessage="Hello! I have a question about the balloon flights in Marrakech."
           title="Marrakech Flights FAQ"
-          subtitle="Everything you need to know before your balloon flight over the Palmeraie desert."
+          subtitle="Everything you need to know before your balloon flight over Marrakech’s desert landscapes."
         />
         <MarrakechCta />
       </main>

@@ -125,7 +125,7 @@ export function FlightProbability({ city }: { city: WeatherCityId }) {
             7-Day Balloon Flight Probability
           </h2>
           <p className="mt-3 text-sm text-white/60 md:text-base">
-            {data ? `${data.cityName}, ${data.area}` : city === "agadir" ? "Agadir, Souss Valley launch area" : "Marrakech, Palmeraie desert launch area"} · Indicative scores, always confirm on flight morning
+            {data ? `${data.cityName}, ${data.area}` : city === "agadir" ? "Agadir, Souss Valley launch area" : "Marrakech, desert launch area"} · Indicative scores, always confirm on flight morning
           </p>
           <p className="mt-1.5 text-xs text-white/40">
             An indicative estimate only, never a guarantee of flight availability. Final approval always belongs to the pilot.

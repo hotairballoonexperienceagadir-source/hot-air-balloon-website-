@@ -214,7 +214,7 @@ export function Footer({ variant = "home" }: { variant?: FooterVariant }) {
               <p className="mt-1.5 text-xs leading-relaxed text-cream-100/70">
                 Agadir: Souss Valley launch site, our home base.
                 <br />
-                Marrakech: Palmeraie desert launch site.
+                Marrakech: desert launch site.
                 <br />
                 {site.hours}
               </p>
