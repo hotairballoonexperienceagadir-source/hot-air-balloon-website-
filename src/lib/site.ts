@@ -164,6 +164,7 @@ export const cities: Record<
 
 /* ------------------------------------------------------------------ */
 /* AGADIR OFFERS. The real packages and prices of our main destination. */
+/* All prices below were approved by the owner on 2026-11-20.           */
 /* ------------------------------------------------------------------ */
 
 export const agadirOffers: Offer[] = [
@@ -174,7 +175,7 @@ export const agadirOffers: Offer[] = [
     name: "Classic Flight",
     description:
       "Our signature Agadir sunrise. Share a balloon with a small group, drift over the beautiful Souss Valley with panoramic views of the Atlas Mountains, then land to a traditional Berber breakfast in a Caïdal tent.",
-    priceMad: 2200,
+    priceMad: 2199,
     duration: "About 60 minutes airborne",
     groupSize: "Shared basket",
     image: "/images/classic-flight-sunrise.webp",
@@ -199,7 +200,7 @@ export const agadirOffers: Offer[] = [
     name: "Private Flight",
     description:
       "The ultimate exclusive experience. Your own balloon, your own pilot and a personalized morning above the Souss Valley, designed for couples, families, proposals and special occasions.",
-    priceMad: 7000,
+    priceMad: 6999,
     minGuests: 2,
     duration: "About 60 minutes airborne",
     groupSize: "Private basket, minimum 2 guests",
@@ -213,15 +214,41 @@ export const agadirOffers: Offer[] = [
       { icon: "heart", label: "Exclusive private balloon" },
       { icon: "sparkles", label: "Personalized experience" },
       { icon: "award", label: "Flight certificate" },
-      { icon: "tent", label: "Berber breakfast onboard or under an argan tree" },
+      { icon: "tent", label: "Berber breakfast under an argan tree" },
     ],
     badge: "Luxury and Exclusive",
+  },
+  {
+    id: "agadir-royal",
+    city: "agadir",
+    cityName: "Agadir",
+    name: "Royal Flight",
+    description:
+      "The royal version of our private flight. Your own balloon, your own pilot and a personalized morning above the Souss Valley, with your private Berber breakfast served in the sky aboard the balloon as the Atlas Mountains turn gold on the horizon.",
+    priceMad: 8999,
+    minGuests: 2,
+    duration: "About 60 minutes airborne",
+    groupSize: "Private basket, minimum 2 guests",
+    image: "/images/gallery-basket-aerial-view.webp",
+    imageWidth: 1080,
+    imageHeight: 1350,
+    imageAlt:
+      "View from the basket of a hot air balloon flying over the Souss Valley countryside at dawn",
+    features: [
+      { icon: "bus", label: "Private transportation" },
+      { icon: "heart", label: "Exclusive private balloon" },
+      { icon: "sparkles", label: "Personalized experience" },
+      { icon: "coffee", label: "Berber breakfast served in the sky aboard the balloon" },
+      { icon: "award", label: "Flight certificate" },
+    ],
+    badge: "Royal Experience",
   },
 ];
 
 /* ------------------------------------------------------------------ */
 /* MARRAKECH OFFERS. Separate packages for the secondary destination,  */
 /* shown only on /marrakech-flights. Never mixed with Agadir.          */
+/* All prices below were approved by the owner on 2026-11-20.          */
 /* ------------------------------------------------------------------ */
 
 export const marrakechOffers: Offer[] = [
@@ -257,7 +284,7 @@ export const marrakechOffers: Offer[] = [
     name: "Classic Flight",
     description:
       "Our signature Marrakech balloon morning. Ride through the desert in a 4x4, fly for about 60 minutes with the Atlas mountains on the horizon and land to a traditional Berber breakfast at a Kasbah overlooking the mountains.",
-    priceMad: 2199,
+    priceMad: 1399,
     duration: "About 60 minutes airborne",
     groupSize: "Shared balloon",
     image: "/images/marrakech-comfort.jpg",
@@ -280,7 +307,8 @@ export const marrakechOffers: Offer[] = [
     name: "Private Flight",
     description:
       "The whole balloon just for your party. Travel in a private 4x4, fly for about 60 minutes over the Palmeraie desert and enjoy a traditional Berber breakfast in a private tent overlooking the Atlas mountains. Ideal for couples, families and special occasions.",
-    priceMad: 5499,
+    priceMad: 5299,
+    minGuests: 2,
     duration: "About 60 minutes airborne",
     groupSize: "Private balloon",
     image: "/images/marrakech-private.jpg",
@@ -293,8 +321,32 @@ export const marrakechOffers: Offer[] = [
       { icon: "clock", label: "Private balloon flight of about 60 minutes" },
       { icon: "award", label: "Official flight certificate" },
       { icon: "coffee", label: "Berber breakfast in a private tent overlooking the Atlas mountains" },
-      { icon: "users", label: "Children\u2019s price: 2,999 MAD per child" },
     ],
+  },
+  {
+    id: "mk-royal",
+    city: "marrakech",
+    cityName: "Marrakech",
+    name: "Royal Flight",
+    description:
+      "The whole balloon just for your party, elevated to the most exclusive Marrakech morning. Travel in a private 4x4, fly for about 60 minutes over the Palmeraie desert and enjoy your Berber breakfast served in the sky aboard the balloon, with the Atlas mountains on the horizon.",
+    priceMad: 6299,
+    minGuests: 2,
+    duration: "About 60 minutes airborne",
+    groupSize: "Private balloon",
+    image: "/images/marrakech-basket-breakfast.jpg",
+    imageWidth: 500,
+    imageHeight: 400,
+    imageAlt:
+      "Breakfast served inside a hot air balloon basket at sunrise with many balloons flying outside",
+    features: [
+      { icon: "heart", label: "Private 4x4 transportation" },
+      { icon: "coffee", label: "Coffee and Moroccan tea on arrival" },
+      { icon: "clock", label: "Private balloon flight of about 60 minutes" },
+      { icon: "coffee", label: "Breakfast served in the sky aboard the balloon" },
+      { icon: "award", label: "Official flight certificate" },
+    ],
+    badge: "Royal Experience",
   },
 ];
 
@@ -482,7 +534,7 @@ export const faqs: Faq[] = [
   },
   {
     q: "What does the price include?",
-    a: "The Classic Flight is 2,200 MAD per person and includes round-trip transportation from Agadir, welcome coffee and Moroccan tea, the balloon flight over the Souss Valley, a traditional Berber breakfast in a Caïdal tent and the official flight certificate. The Private Flight is 7,000 MAD per person with a minimum of 2 guests and includes private transportation, an exclusive balloon and breakfast onboard or under an argan tree.",
+    a: "The Classic Flight is 2,199 MAD per person and includes round-trip transportation from Agadir, welcome coffee and Moroccan tea, the balloon flight over the Souss Valley, a traditional Berber breakfast in a Caïdal tent and the official flight certificate. The Private Flight is 6,999 MAD per person with a minimum of 2 guests and includes private transportation, an exclusive balloon and a private Berber breakfast under an argan tree. The Royal Flight is 8,999 MAD per person with a minimum of 2 guests and adds a Berber breakfast served in the sky aboard the balloon.",
   },
   {
     q: "What happens if the weather is bad?",
@@ -532,7 +584,7 @@ export const marrakechFaqs: Faq[] = [
   },
   {
     q: "What is included in the Marrakech flights?",
-    a: "Every Marrakech flight includes transportation, coffee and Moroccan tea on arrival, the balloon flight, breakfast and the flight certificate. The Classic Low Cost is 999 MAD per person, the Classic Flight is 2,199 MAD per person and the Private Flight is 5,499 MAD per adult and 2,999 MAD per child.",
+    a: "Every Marrakech flight includes transportation, coffee and Moroccan tea on arrival, the balloon flight, breakfast and the flight certificate. The Classic Low Cost is 999 MAD per person, the Classic Flight is 1,399 MAD per person, the Private Flight is 5,299 MAD per person with a minimum of 2 guests and the Royal Flight is 6,299 MAD per person with a minimum of 2 guests and breakfast served in the sky aboard the balloon.",
   },
   {
     q: "Where is your company based?",

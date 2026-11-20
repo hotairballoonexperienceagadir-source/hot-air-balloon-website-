@@ -36,6 +36,7 @@ export function BookingModal() {
   const booking = useBookingForm({
     destination,
     packageName: selectedOffer.name,
+    priceMad: selectedOffer.priceMad,
     minGuests: selectedOffer.minGuests,
     onSubmitted: closeBooking,
   });

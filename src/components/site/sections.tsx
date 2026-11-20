@@ -99,7 +99,7 @@ export function Stats() {
 }
 
 /* ------------------------------------------------------------------ */
-/* Agadir packages. The two real services of our main destination.     */
+/* Agadir packages. The three real services of our main destination.   */
 /* ------------------------------------------------------------------ */
 
 function AgadirOfferCard({ offer, tall }: { offer: Offer; tall?: boolean }) {
@@ -124,7 +124,7 @@ function AgadirOfferCard({ offer, tall }: { offer: Offer; tall?: boolean }) {
           alt={offer.imageAlt}
           width={offer.imageWidth}
           height={offer.imageHeight}
-          sizes="(max-width: 768px) 46vw, 50vw"
+          sizes="(max-width: 767px) 100vw, 33vw"
           className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
         />
         <span className="absolute bottom-3 left-3 rounded-full bg-navy-950/75 px-3 py-1 text-xs font-semibold text-cream-100 backdrop-blur">
@@ -198,16 +198,16 @@ export function AgadirPackages() {
             Our Flight Packages and Prices in Agadir
           </h2>
           <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-            Two ways to live the sunrise over the Souss Valley: our shared Classic Flight or the fully private
-            experience. Every flight includes hotel pickup in Agadir, welcome tea, the flight and the Berber
-            breakfast.
+            Three ways to live the sunrise over the Souss Valley: our shared Classic Flight, the fully private
+            experience or the Royal Flight with breakfast served in the sky. Every flight includes hotel pickup in
+            Agadir, welcome tea, the flight and the Berber breakfast.
           </p>
           <p className="mt-2 inline-flex items-center gap-2 text-sm font-semibold text-brand-700">
             <MapPin className="h-4 w-4" aria-hidden="true" /> Souss Valley launch site, approximately 50 minutes to 1 hour from central Agadir
           </p>
         </div>
 
-        <div className="mx-auto mt-12 grid max-w-5xl grid-cols-2 gap-4 sm:gap-8">
+        <div className="mx-auto mt-12 grid max-w-6xl grid-cols-1 gap-4 md:grid-cols-3 md:gap-6 lg:gap-8">
           {agadirOffers.map((offer) => (
             <AgadirOfferCard key={offer.id} offer={offer} tall />
           ))}

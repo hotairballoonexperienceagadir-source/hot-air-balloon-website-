@@ -31,10 +31,13 @@ export function useToday() {
 }
 
 /* The exact availability message WhatsApp receives. Every booking on the
-   site goes through this one builder. */
+   site goes through this one builder. The price always comes from the
+   selected offer (site.ts), so the message can never drift from the
+   displayed price. */
 function buildBookingMessage(input: {
   destination: BookingDestination;
   packageName: string;
+  priceMad: number;
   date: string;
   guests: number;
 }): string {
@@ -45,6 +48,7 @@ function buildBookingMessage(input: {
     `Package: ${input.packageName}`,
     `Date: ${input.date}`,
     `Number of Guests: ${input.guests}`,
+    `Price: ${input.priceMad.toLocaleString("en-US")} MAD per person`,
     "",
     "Could you please confirm availability?",
   ].join("\n");
@@ -53,12 +57,16 @@ function buildBookingMessage(input: {
 export function useBookingForm(options: {
   destination: BookingDestination;
   packageName: string;
-  /* A package may carry a minimum number of guests (Private Flight, 2). */
+  /* The per person price of the selected package, shown in the WhatsApp
+     message. Always read from the offer in site.ts. */
+  priceMad: number;
+  /* A package may carry a minimum number of guests (Private and Royal
+     Flights, 2). */
   minGuests?: number;
   /* Called after WhatsApp opened successfully (the modal closes itself). */
   onSubmitted?: () => void;
 }) {
-  const { destination, packageName, minGuests = 1, onSubmitted } = options;
+  const { destination, packageName, priceMad, minGuests = 1, onSubmitted } = options;
 
   const today = useToday();
   const [date, setDate] = useState("");
@@ -93,6 +101,7 @@ export function useBookingForm(options: {
     const message = buildBookingMessage({
       destination,
       packageName,
+      priceMad,
       date,
       guests: effectiveGuests,
     });

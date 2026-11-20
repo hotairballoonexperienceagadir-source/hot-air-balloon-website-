@@ -62,10 +62,17 @@ src/app/globals.css                  theme tokens (brand palette, fonts, scrollb
 src/lib/site.ts                      SINGLE SOURCE OF TRUTH for all content:
                                      site identity + WhatsApp number + waLink()
                                      message helpers, cities, agadirOffers
-                                     (Classic 2,200 MAD / Private 7,000 MAD),
+                                     (Classic 2,199 MAD / Private 6,999 MAD /
+                                     Royal 8,999 MAD, Private and Royal min
+                                     2 guests; Private breakfast under an
+                                     argan tree, Royal breakfast served in
+                                     the sky aboard the balloon),
                                      marrakechOffers (Classic Low Cost 999 /
-                                     Classic Flight 2,199 / Private 5,499 +
-                                     children 2,999 MAD), stats, whyUs,
+                                     Classic Flight 1,399 / Private 5,299 /
+                                     Royal 6,299 MAD, Private and Royal min
+                                     2 guests, Royal breakfast served in the
+                                     sky aboard the balloon; approved by the
+                                     owner on 2026-11-20), stats, whyUs,
                                      experienceSteps, pickupAreas,
                                      marrakechTimeline, reviews (static
                                      fallback), reviewHighlights,

@@ -51,7 +51,7 @@ function MarrakechOfferCard({ offer }: { offer: Offer }) {
           alt={offer.imageAlt}
           width={offer.imageWidth}
           height={offer.imageHeight}
-          sizes="(max-width: 768px) 46vw, (max-width: 1200px) 50vw, 33vw"
+          sizes="(max-width: 768px) 46vw, (max-width: 1023px) 50vw, 25vw"
           className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
         />
         <span className="absolute bottom-3 left-3 rounded-full bg-navy-950/75 px-3 py-1 text-xs font-semibold text-cream-100 backdrop-blur">
@@ -70,7 +70,7 @@ function MarrakechOfferCard({ offer }: { offer: Offer }) {
           <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{offer.description}</p>
         </div>
 
-        <ul className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+        <ul className="grid grid-cols-1 gap-2 xl:grid-cols-2">
           {offer.features.map((feature) => {
             const Icon = mkFeatureIcons[feature.icon] ?? Sparkles;
             return (
@@ -89,6 +89,11 @@ function MarrakechOfferCard({ offer }: { offer: Offer }) {
               {offer.priceMad.toLocaleString("en-US")} MAD
               <span className="ml-1 text-xs font-normal text-muted-foreground">/ person</span>
             </p>
+            {offer.minGuests && (
+              <p className="mt-1 text-xs font-semibold text-brand-700">
+                Minimum booking: {offer.minGuests} people
+              </p>
+            )}
           </div>
           <BookingButton
             destination="Marrakech"
@@ -122,7 +127,7 @@ export function MarrakechPackages() {
           </p>
         </div>
 
-        <div className="mt-10 grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-3">
+        <div className="mt-10 grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
           {marrakechOffers.map((offer) => (
             <MarrakechOfferCard key={offer.id} offer={offer} />
           ))}
