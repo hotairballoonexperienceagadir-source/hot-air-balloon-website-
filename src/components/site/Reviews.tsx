@@ -6,8 +6,6 @@ import { Button } from "@/components/ui/button";
 import {
   cityGoogleConfig,
   reviewHighlights,
-  reviews as staticReviews,
-  site,
   type CityKey,
 } from "@/lib/site";
 import { GoogleIcon, Stars } from "./icons";
@@ -20,12 +18,17 @@ import { GoogleIcon, Stars } from "./icons";
  * the exact same official Google links. No destination ever shows a
  * different Google profile.
  *
- * Data flow: the section renders the verified static profile data
- * immediately, then /api/google-reviews upgrades it to live Google Places
- * API data for the shared profile when the official integration is
- * configured. When the API reports the static fallback, the verified
- * static data stays. No review is ever invented, and owner replies are
- * never displayed anywhere.
+ * Data flow: EVERYTHING displayed (reviews, rating, review count) comes
+ * exclusively from the live official Google Places API via
+ * /api/google-reviews. There is no static or hardcoded review data:
+ * - while loading and whenever live Google data is unavailable (not
+ *   configured, API failure, network hiccup), the review cards stay
+ *   hidden and the section shows an honest "Read our reviews on Google"
+ *   link instead. Nothing is ever invented.
+ * - only payloads with source "google-places-api" are trusted.
+ *
+ * No review is ever invented, and owner replies are never displayed
+ * anywhere.
  */
 
 interface DisplayReview {
@@ -42,44 +45,41 @@ interface ReviewsState {
   reviews: DisplayReview[];
 }
 
-/* Verified static data of the single shared Google Business Profile: the
- * genuine published reviews, rendered instantly on both pages until the
- * live Places API integration takes over. */
-const SHARED_STATIC_STATE: ReviewsState = {
-  rating: site.googleRating,
-  reviewCount: null,
-  reviews: staticReviews.map((r) => ({ name: r.name, rating: 5, text: r.text, date: r.time })),
-};
-
 const SECTION_TITLE: Record<CityKey, string> = {
   agadir: "What Our Guests Say",
   marrakech: "What Our Marrakech Guests Say",
 };
 
 export function Reviews({ city = "agadir" }: { city?: CityKey }) {
-  const [data, setData] = useState<ReviewsState>(SHARED_STATIC_STATE);
+  /* null = live Google data not (yet) available: hide the review cards. */
+  const [data, setData] = useState<ReviewsState | null>(null);
 
   useEffect(() => {
     const controller = new AbortController();
     fetch(`/api/google-reviews?city=${city}`, { cache: "no-store", signal: controller.signal })
       .then((response) => (response.ok ? response.json() : Promise.reject(new Error("Bad response"))))
       .then((payload: { source?: string; rating: number | null; reviewCount: number | null; reviews: DisplayReview[] }) => {
-        /* Only trust live official Google data; the static fallback is
-         * already rendered and never overrides it with anything invented. */
+        /* Only trust live official Google data. Anything else (unconfigured,
+         * error, static fallback) keeps the cards hidden. */
         if (payload.source === "google-places-api" && Array.isArray(payload.reviews)) {
-          setData({ rating: payload.rating, reviewCount: payload.reviewCount, reviews: payload.reviews });
+          setData({
+            rating: payload.rating,
+            reviewCount: payload.reviewCount,
+            reviews: payload.reviews,
+          });
         }
       })
       .catch(() => {
-        /* Network or API hiccup: keep showing the verified static data. */
+        /* Network or API hiccup: keep showing the honest Google link state. */
       });
     return () => controller.abort();
   }, [city]);
 
   /* The single Google Business Profile shared by both destinations. */
   const google = cityGoogleConfig[city];
-  const featured = data.reviews[0] ?? null;
-  const more = data.reviews.slice(1);
+  const hasReviews = data !== null && data.reviews.length > 0;
+  const featured = hasReviews ? data.reviews[0] : null;
+  const more = hasReviews ? data.reviews.slice(1) : [];
 
   return (
     <section id="reviews" className="bg-cream-100 py-16 md:py-24">
@@ -91,7 +91,7 @@ export function Reviews({ city = "agadir" }: { city?: CityKey }) {
           <h2 className="mt-4 font-display text-3xl font-bold text-foreground text-balance md:text-4xl">
             {SECTION_TITLE[city]}
           </h2>
-          {data.rating !== null && (
+          {data?.rating != null && (
             <div className="mt-4 inline-flex flex-wrap items-center justify-center gap-3 rounded-2xl bg-white px-5 py-3 shadow-sm">
               <GoogleIcon className="h-6 w-6" />
               <span className="font-display text-3xl font-bold text-foreground">
@@ -156,7 +156,7 @@ export function Reviews({ city = "agadir" }: { city?: CityKey }) {
 
               {/* Rating summary and calls to action */}
               <div className="flex flex-col gap-6">
-                {data.rating !== null && (
+                {data?.rating != null && (
                   <div className="rounded-2xl bg-white p-6 shadow-sm">
                     <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Review summary</p>
                     <div className="mt-4 flex items-end gap-3">
@@ -165,7 +165,11 @@ export function Reviews({ city = "agadir" }: { city?: CityKey }) {
                       </span>
                       <div className="pb-1">
                         <Stars className="text-gold-500" />
-                        <p className="mt-1 text-xs text-muted-foreground">Based on verified Google reviews</p>
+                        <p className="mt-1 text-xs text-muted-foreground">
+                          {data.reviewCount !== null
+                            ? `Based on ${data.reviewCount} Google reviews`
+                            : "Based on verified Google reviews"}
+                        </p>
                       </div>
                     </div>
                     <ul className="mt-5 space-y-3 text-sm text-foreground/80">
@@ -244,11 +248,30 @@ export function Reviews({ city = "agadir" }: { city?: CityKey }) {
             )}
           </>
         ) : (
-          /* Defensive fallback if Google ever reports no reviews for the
-           * shared profile: show only the genuine call to action, never
-           * invented reviews. */
+          /* Honest state whenever live Google data is not available (loading,
+           * integration not configured yet, or API failure): no review cards,
+           * no invented content, only the genuine Google links. */
           <div className="mx-auto mt-12 max-w-md">
-            <div className="rounded-2xl bg-navy-900 p-6 text-center text-cream-100 shadow-sm md:p-8">
+            <div className="rounded-2xl bg-white p-6 text-center shadow-sm md:p-8">
+              <GoogleIcon className="mx-auto h-8 w-8" />
+              <p className="mt-3 font-display text-lg font-bold text-foreground">
+                All of our guest reviews live on Google
+              </p>
+              <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
+                Every review is published on our official Google Business Profile. Read them all there.
+              </p>
+              <Button
+                asChild
+                variant="outline"
+                className="mt-4 w-full rounded-full border-brand-600/40 bg-white px-5 py-2.5 text-sm font-bold text-brand-700 hover:bg-brand-50"
+              >
+                <a href={google.profileUrl} target="_blank" rel="noopener noreferrer">
+                  <GoogleIcon className="h-4 w-4" />
+                  Read our reviews on Google
+                </a>
+              </Button>
+            </div>
+            <div className="mt-6 rounded-2xl bg-navy-900 p-6 text-center text-cream-100 shadow-sm md:p-8">
               <p className="font-display text-lg font-bold text-white">Have you flown with us?</p>
               <p className="mt-1.5 text-sm leading-relaxed text-cream-100/80">
                 Your review helps other travelers choose their sunrise adventure.

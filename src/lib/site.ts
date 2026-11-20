@@ -8,8 +8,30 @@
  *
  * WhatsApp number, Google rating and Google profile link are the real ones
  * from the Hot Air Balloon Experience Agadir business profile.
- * Edit prices, texts and reviews here, the pages read everything from this file.
+ * Edit prices and texts here, the pages read everything from this file.
+ * Reviews are delivered live by /api/google-reviews, never from this file.
  */
+
+/* ------------------------------------------------------------------ */
+/* Official Google Business Profile links. ONE shared source of truth  */
+/* for the whole website: the reviews section, header, footer, gallery */
+/* and structured data all read these two constants. Never duplicate   */
+/* these URL strings anywhere else.                                    */
+/*                                                                     */
+/* GOOGLE_PROFILE_URL = official "View our Google Business Profile"    */
+/*   link (Google share link of the single shared profile).            */
+/* GOOGLE_REVIEW_URL = official Google review submission link. Opens   */
+/*   Google's own review-writing interface in a new tab, where the     */
+/*   customer selects a star rating and publishes directly on Google.  */
+/*   There is no on-site review form and reviews are never submitted   */
+/*   programmatically on behalf of customers.                          */
+/*                                                                     */
+/* ONE SINGLE Google Business Profile serves BOTH destinations: the    */
+/* owner confirmed that Agadir and Marrakech do NOT have separate      */
+/* profiles, so both pages use these exact same official links.        */
+/* ------------------------------------------------------------------ */
+export const GOOGLE_PROFILE_URL = "https://share.google/XwquPB554mW6IBGgo";
+export const GOOGLE_REVIEW_URL = "https://g.page/r/CTpAykunXGoYEAE/review";
 
 export const site = {
   brand: "Hot Air Balloon Experience Agadir",
@@ -21,10 +43,11 @@ export const site = {
    * modal and /api/contact delivers the message to this inbox. */
   contactEmail: "hotairballoonexperienceagadir@gmail.com",
   googleRating: 5.0,
-  /* Official Google Business Profile link. ONE single profile serves BOTH
-   * the Agadir and Marrakech pages (owner confirmed), so every Google
-   * Business Profile reference on the website points to this same URL. */
-  googleReviewsUrl: "https://share.google/V4QKDqSaXmN6ySAhl",
+  /* Official Google Business Profile link, always the shared constant. ONE
+   * single profile serves BOTH the Agadir and Marrakech pages (owner
+   * confirmed), so every Google Business Profile reference on the website
+   * points to this same URL. */
+  googleReviewsUrl: GOOGLE_PROFILE_URL,
   address: "Agadir 80000, Morocco",
   plusCode: "CC4W+7Q Agadir, Morocco",
   hours: "Open 24 hours",
@@ -380,20 +403,16 @@ export const marrakechTimeline: readonly { time?: string; title: string; text: s
 ];
 
 /* ------------------------------------------------------------------ */
-/* Reviews. Genuine published data of THE single Google Business       */
-/* Profile that serves both the Agadir and Marrakech pages. Rendered   */
-/* instantly while /api/google-reviews tries the official Places API.  */
-/* Never invented and owner replies are never displayed.               */
+/* Reviews are NOT stored here anymore. Every displayed review, the     */
+/* rating and the review count come exclusively from the live official  */
+/* Google Places API through /api/google-reviews (see that route for    */
+/* the integration details). If the live data is unavailable, the site  */
+/* hides the review cards and links to the Google profile instead: no   */
+/* review is ever invented, cached statically or shown from a copy.     */
+/*                                                                     */
+/* reviewHighlights are marketing summary lines of the review section, */
+/* not review content.                                                 */
 /* ------------------------------------------------------------------ */
-export const reviews = [
-  {
-    name: "wai mei poon",
-    meta: "8 reviews · 5 photos on Google",
-    time: "2 weeks ago",
-    text: "Amazing air balloon ride over Agadir with sunrise view! Professional pilot and take us for a safe flight! Also it serves us a Great breakfast!!",
-  },
-] as const;
-
 export const reviewHighlights = [
   "Professional licensed pilot",
   "Safe and smooth sunrise flight",
@@ -428,8 +447,8 @@ export interface CityGoogleConfig {
 }
 
 const singleProfileConfig: CityGoogleConfig = {
-  reviewUrl: "https://g.page/r/CTpAykunXGoYEAE/review",
-  profileUrl: "https://share.google/V4QKDqSaXmN6ySAhl",
+  reviewUrl: GOOGLE_REVIEW_URL,
+  profileUrl: GOOGLE_PROFILE_URL,
 };
 
 export const cityGoogleConfig: Record<CityKey, CityGoogleConfig> = {

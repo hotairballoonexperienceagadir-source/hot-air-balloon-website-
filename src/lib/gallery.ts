@@ -37,10 +37,12 @@
 /* Gallery media format: Instagram portrait, 1080 x 1350 px (4:5).     */
 /* ------------------------------------------------------------------ */
 
+import { GOOGLE_PROFILE_URL } from "@/lib/site";
+
 /** Google Business Profile: opened in a new tab when any gallery item is clicked.
- * ONE single Google Business Profile serves both destinations (owner confirmed),
- * so this is the exact same official profile link used everywhere on the site. */
-export const GOOGLE_BUSINESS_PROFILE_URL = "https://share.google/V4QKDqSaXmN6ySAhl";
+ * Re-export of the ONE shared constant from src/lib/site.ts, so the gallery
+ * can never drift from the links used everywhere else on the site. */
+export const GOOGLE_BUSINESS_PROFILE_URL = GOOGLE_PROFILE_URL;
 
 export type GalleryMediaType = "image" | "video";
 
