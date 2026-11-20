@@ -404,11 +404,13 @@ export const marrakechTimeline: readonly { time?: string; title: string; text: s
 
 /* ------------------------------------------------------------------ */
 /* Reviews are NOT stored here anymore. Every displayed review, the     */
-/* rating and the review count come exclusively from the live official  */
-/* Google Places API through /api/google-reviews (see that route for    */
-/* the integration details). If the live data is unavailable, the site  */
-/* hides the review cards and links to the Google profile instead: no   */
-/* review is ever invented, cached statically or shown from a copy.     */
+/* rating and the review count come from the live official Google       */
+/* Places API through /api/google-reviews (see that route for the       */
+/* integration details). When the live data is unavailable, the Agadir  */
+/* homepage falls back to the verified word for word copy of our real   */
+/* Google reviews in src/lib/verified-reviews.ts; the Marrakech page    */
+/* keeps hiding the review cards and linking to the Google profile.     */
+/* No review is ever invented or shown from an unverified source.       */
 /*                                                                     */
 /* reviewHighlights are marketing summary lines of the review section, */
 /* not review content.                                                 */

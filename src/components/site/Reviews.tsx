@@ -2,33 +2,46 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   cityGoogleConfig,
   reviewHighlights,
   type CityKey,
 } from "@/lib/site";
+import {
+  formatRelativeReviewDate,
+  verifiedReviews,
+} from "@/lib/verified-reviews";
 import { GoogleIcon, Stars } from "./icons";
 
 /**
- * Guest reviews section, identical for both destinations.
+ * Guest reviews section.
  *
  * The owner confirmed that Agadir and Marrakech share ONE Google Business
- * Profile, so both pages render reviews of that same profile and both use
- * the exact same official Google links. No destination ever shows a
- * different Google profile.
+ * Profile, so both pages talk about that same profile and use the exact
+ * same official Google links (defined once in src/lib/site.ts).
  *
- * Data flow: EVERYTHING displayed (reviews, rating, review count) comes
- * exclusively from the live official Google Places API via
- * /api/google-reviews. There is no static or hardcoded review data:
- * - while loading and whenever live Google data is unavailable (not
- *   configured, API failure, network hiccup), the review cards stay
- *   hidden and the section shows an honest "Read our reviews on Google"
- *   link instead. Nothing is ever invented.
- * - only payloads with source "google-places-api" are trusted.
+ * Data priority, per destination:
+ * - 1. LIVE: every displayed review, the rating and the review count come
+ *   from the official Google Places API via /api/google-reviews when it
+ *   answers with source "google-places-api". A response is never presented
+ *   as Google data unless it genuinely came from Google.
+ * - 2. VERIFIED (Agadir homepage only): while the live integration is not
+ *   configured, the section shows the verified word for word copy of our
+ *   real Google reviews from src/lib/verified-reviews.ts. Average rating
+ *   and review count are always computed from that data, never hardcoded.
+ *   The Marrakech page never uses the verified copy: it keeps showing an
+ *   honest "Read our reviews on Google" link state instead.
  *
- * No review is ever invented, and owner replies are never displayed
- * anywhere.
+ * Integrity rules enforced here:
+ *   - No review is ever invented, filtered to look better than it is, or
+ *     replaced with placeholder content.
+ *   - Owner replies are never displayed.
+ *   - Reviewer photos are never displayed.
+ *   - Nothing is presented as Google data unless it genuinely came from
+ *     Google (live API) or was copied word for word from our profile
+ *     (verified file).
  */
 
 interface DisplayReview {
@@ -36,7 +49,6 @@ interface DisplayReview {
   rating: number;
   text: string;
   date: string;
-  photo?: string;
 }
 
 interface ReviewsState {
@@ -45,23 +57,57 @@ interface ReviewsState {
   reviews: DisplayReview[];
 }
 
+/* At most this many review cards are visible before the "See more reviews"
+ * button reveals the rest. With 4 or fewer reviews the button never renders. */
+const INITIAL_VISIBLE_CARDS = 4;
+
 const SECTION_TITLE: Record<CityKey, string> = {
   agadir: "What Our Guests Say",
   marrakech: "What Our Marrakech Guests Say",
 };
 
+/* Builds the display state from the verified word for word reviews.
+ * Average and count are computed from the data at call time so they can
+ * never drift from the array, and relative dates are computed at render
+ * time so they never go stale. */
+function buildVerifiedReviewsState(): ReviewsState {
+  const reviews = verifiedReviews.map((review) => ({
+    name: review.author,
+    rating: review.rating,
+    text: review.text,
+    date: formatRelativeReviewDate(review.date),
+  }));
+  return {
+    rating:
+      reviews.length > 0
+        ? reviews.reduce((sum, review) => sum + review.rating, 0) / reviews.length
+        : null,
+    reviewCount: reviews.length,
+    reviews,
+  };
+}
+
 export function Reviews({ city = "agadir" }: { city?: CityKey }) {
-  /* null = live Google data not (yet) available: hide the review cards. */
-  const [data, setData] = useState<ReviewsState | null>(null);
+  /* For Agadir the state starts from the verified reviews so real content
+   * renders immediately (SSR included). For Marrakech it stays null until
+   * live Google data arrives: no cards, only the honest Google links. */
+  const [data, setData] = useState<ReviewsState | null>(() =>
+    city === "agadir" ? buildVerifiedReviewsState() : null,
+  );
+  const [showAllReviews, setShowAllReviews] = useState(false);
 
   useEffect(() => {
     const controller = new AbortController();
     fetch(`/api/google-reviews?city=${city}`, { cache: "no-store", signal: controller.signal })
       .then((response) => (response.ok ? response.json() : Promise.reject(new Error("Bad response"))))
       .then((payload: { source?: string; rating: number | null; reviewCount: number | null; reviews: DisplayReview[] }) => {
-        /* Only trust live official Google data. Anything else (unconfigured,
-         * error, static fallback) keeps the cards hidden. */
-        if (payload.source === "google-places-api" && Array.isArray(payload.reviews)) {
+        /* Live official Google data wins when it is genuinely available.
+         * Anything else (unconfigured, error) keeps the current state. */
+        if (
+          payload.source === "google-places-api" &&
+          Array.isArray(payload.reviews) &&
+          payload.reviews.length > 0
+        ) {
           setData({
             rating: payload.rating,
             reviewCount: payload.reviewCount,
@@ -70,7 +116,7 @@ export function Reviews({ city = "agadir" }: { city?: CityKey }) {
         }
       })
       .catch(() => {
-        /* Network or API hiccup: keep showing the honest Google link state. */
+        /* Network or API hiccup: keep showing the current honest state. */
       });
     return () => controller.abort();
   }, [city]);
@@ -78,8 +124,33 @@ export function Reviews({ city = "agadir" }: { city?: CityKey }) {
   /* The single Google Business Profile shared by both destinations. */
   const google = cityGoogleConfig[city];
   const hasReviews = data !== null && data.reviews.length > 0;
-  const featured = hasReviews ? data.reviews[0] : null;
-  const more = hasReviews ? data.reviews.slice(1) : [];
+  const allReviews = hasReviews ? data.reviews : [];
+  /* The "See more reviews" button exists only when there are MORE than the
+   * initial number of visible cards. */
+  const reviewsOverflow = allReviews.length > INITIAL_VISIBLE_CARDS;
+  const visibleReviews = showAllReviews
+    ? allReviews
+    : allReviews.slice(0, INITIAL_VISIBLE_CARDS);
+  const featured = visibleReviews[0] ?? null;
+  const more = visibleReviews.slice(1);
+  /* Adaptive grid so 1, 2, 3, 4 or more secondary cards never leave an
+   * awkward empty gap or a single stretched card. */
+  const moreGridClass =
+    more.length === 1
+      ? "mx-auto mt-6 grid max-w-2xl gap-6"
+      : more.length === 3
+        ? "mx-auto mt-6 grid max-w-5xl gap-6 md:grid-cols-3"
+        : "mx-auto mt-6 grid max-w-5xl gap-6 md:grid-cols-2";
+
+  /* Shared link styling for the whole clickable review cards. */
+  const cardLinkClass =
+    "group block rounded-2xl bg-white shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500";
+  const viewHint = (
+    <span className="ml-auto inline-flex items-center gap-1 text-xs font-semibold text-brand-600 opacity-70 transition group-hover:opacity-100">
+      View on Google
+      <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
+    </span>
+  );
 
   return (
     <section id="reviews" className="bg-cream-100 py-16 md:py-24">
@@ -92,7 +163,14 @@ export function Reviews({ city = "agadir" }: { city?: CityKey }) {
             {SECTION_TITLE[city]}
           </h2>
           {data?.rating != null && (
-            <div className="mt-4 inline-flex flex-wrap items-center justify-center gap-3 rounded-2xl bg-white px-5 py-3 shadow-sm">
+            /* Rating badge: the whole badge opens our Google Business Profile. */
+            <a
+              href={google.profileUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Read our Google reviews, rated ${data.rating.toFixed(1)} out of 5, opens in a new tab`}
+              className="mt-4 inline-flex flex-wrap items-center justify-center gap-3 rounded-2xl bg-white px-5 py-3 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500"
+            >
               <GoogleIcon className="h-6 w-6" />
               <span className="font-display text-3xl font-bold text-foreground">
                 {data.rating.toFixed(1)}
@@ -103,11 +181,12 @@ export function Reviews({ city = "agadir" }: { city?: CityKey }) {
               ) : (
                 <span className="text-sm text-muted-foreground">on Google Business Profile</span>
               )}
-            </div>
+            </a>
           )}
           {/* Prominent call to action: opens Google's own review-writing
            * interface for our official profile in a new tab. Customers
-           * publish directly on Google; there is no on-site review form. */}
+           * publish directly on Google; there is no on-site review form.
+           * Stays a standalone link, never nested inside a clickable card. */}
           <div className="mt-6">
             <Button
               asChild
@@ -124,40 +203,49 @@ export function Reviews({ city = "agadir" }: { city?: CityKey }) {
         {featured ? (
           <>
             <div className="mx-auto mt-12 grid max-w-5xl gap-6 lg:grid-cols-[1.4fr_1fr]">
-              {/* Genuine customer review card, straight from Google. */}
-              <figure className="flex flex-col rounded-2xl bg-white p-6 shadow-sm md:p-8">
-                <div className="flex items-center justify-between gap-4">
-                  <Stars rating={featured.rating} className="text-gold-500" />
-                  <GoogleIcon className="h-5 w-5" />
-                </div>
-                <blockquote className="mt-4 font-display text-xl font-semibold leading-relaxed text-foreground md:text-2xl">
-                  &ldquo;{featured.text}&rdquo;
-                </blockquote>
-                <figcaption className="mt-6 flex items-center gap-3 border-t border-border pt-5">
-                  {featured.photo ? (
-                    <Image
-                      src={featured.photo}
-                      alt={`Google profile photo of ${featured.name}`}
-                      width={44}
-                      height={44}
-                      className="h-11 w-11 rounded-full object-cover"
-                    />
-                  ) : (
-                    <span className="flex h-11 w-11 items-center justify-center rounded-full bg-brand-500/10 font-display text-lg font-bold text-brand-600">
+              {/* Genuine customer review card. The whole card is one link to
+               * our Google Business Profile (contains no nested links). */}
+              <a
+                href={google.profileUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Read ${featured.name}'s review on Google`}
+                className={cardLinkClass}
+              >
+                <figure className="flex h-full flex-col p-6 md:p-8">
+                  <div className="flex items-center justify-between gap-4">
+                    <Stars rating={featured.rating} className="text-gold-500" />
+                    <GoogleIcon className="h-5 w-5" />
+                  </div>
+                  <blockquote className="mt-4 font-display text-xl font-semibold leading-relaxed text-foreground md:text-2xl">
+                    &ldquo;{featured.text}&rdquo;
+                  </blockquote>
+                  <figcaption className="mt-6 flex items-center gap-3 border-t border-border pt-5">
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brand-500/10 font-display text-lg font-bold text-brand-600">
                       {featured.name.charAt(0).toUpperCase()}
                     </span>
-                  )}
-                  <span>
-                    <span className="block text-sm font-bold text-foreground">{featured.name}</span>
-                    <span className="block text-xs text-muted-foreground">{featured.date}</span>
-                  </span>
-                </figcaption>
-              </figure>
+                    <span>
+                      <span className="block text-sm font-bold text-foreground">{featured.name}</span>
+                      <span suppressHydrationWarning className="block text-xs text-muted-foreground">{featured.date}</span>
+                    </span>
+                    {viewHint}
+                  </figcaption>
+                </figure>
+              </a>
 
-              {/* Rating summary and calls to action */}
+              {/* Rating summary and calls to action, stacked in the sidebar
+               * column exactly like the original layout. */}
               <div className="flex flex-col gap-6">
+                {/* Rating summary: the whole card is one link to our Google
+                 * Business Profile (contains no nested links). */}
                 {data?.rating != null && (
-                  <div className="rounded-2xl bg-white p-6 shadow-sm">
+                  <a
+                    href={google.profileUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Open our Google Business Profile to read all reviews"
+                    className={`${cardLinkClass} p-6`}
+                  >
                     <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Review summary</p>
                     <div className="mt-4 flex items-end gap-3">
                       <span className="font-display text-5xl font-bold leading-none text-foreground">
@@ -182,18 +270,15 @@ export function Reviews({ city = "agadir" }: { city?: CityKey }) {
                         </li>
                       ))}
                     </ul>
-                    <a
-                      href={google.profileUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-4 inline-flex items-center gap-1.5 text-xs font-semibold text-brand-600 underline-offset-4 hover:underline"
-                    >
+                    <span className="mt-4 inline-flex items-center gap-1.5 text-xs font-semibold text-brand-600 underline-offset-4 group-hover:underline">
                       View our Google Business Profile
                       <span aria-hidden="true">→</span>
-                    </a>
-                  </div>
+                    </span>
+                  </a>
                 )}
 
+                {/* Plain (non clickable) card: hosts the standalone
+                 * "Write a Google Review" link, never nested in a link. */}
                 <div className="rounded-2xl bg-navy-900 p-6 text-cream-100 shadow-sm">
                   <p className="font-display text-lg font-bold text-white">Have you flown with us?</p>
                   <p className="mt-1.5 text-sm leading-relaxed text-cream-100/80">
@@ -213,44 +298,78 @@ export function Reviews({ city = "agadir" }: { city?: CityKey }) {
             </div>
 
             {more.length > 0 && (
-              <div className="mx-auto mt-6 grid max-w-5xl gap-6 md:grid-cols-2">
-                {more.map((review) => (
-                  <figure key={`${review.name}-${review.date}`} className="flex flex-col rounded-2xl bg-white p-6 shadow-sm">
-                    <div className="flex items-center justify-between gap-4">
-                      <Stars rating={review.rating} className="text-gold-500" />
-                      <GoogleIcon className="h-5 w-5" />
-                    </div>
-                    <blockquote className="mt-3 flex-1 text-sm leading-relaxed text-foreground/85">
-                      &ldquo;{review.text}&rdquo;
-                    </blockquote>
-                    <figcaption className="mt-4 flex items-center gap-3 border-t border-border pt-4">
-                      {review.photo ? (
-                        <Image
-                          src={review.photo}
-                          alt={`Google profile photo of ${review.name}`}
-                          width={36}
-                          height={36}
-                          className="h-9 w-9 rounded-full object-cover"
-                        />
-                      ) : (
-                        <span className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-500/10 font-display text-base font-bold text-brand-600">
+              <div
+                key={showAllReviews ? "all" : "initial"}
+                className={`${moreGridClass} animate-in fade-in slide-in-from-bottom-2 duration-300`}
+              >
+                {more.map((review, index) => (
+                  <a
+                    key={`${review.name}-${index}`}
+                    href={google.profileUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Read ${review.name}'s review on Google`}
+                    className={cardLinkClass}
+                  >
+                    <figure className="flex h-full flex-col p-6">
+                      <div className="flex items-center justify-between gap-4">
+                        <Stars rating={review.rating} className="text-gold-500" />
+                        <GoogleIcon className="h-5 w-5" />
+                      </div>
+                      <blockquote className="mt-3 flex-1 text-sm leading-relaxed text-foreground/85">
+                        &ldquo;{review.text}&rdquo;
+                      </blockquote>
+                      <figcaption className="mt-4 flex items-center gap-3 border-t border-border pt-4">
+                        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-500/10 font-display text-base font-bold text-brand-600">
                           {review.name.charAt(0).toUpperCase()}
                         </span>
-                      )}
-                      <span>
-                        <span className="block text-sm font-bold text-foreground">{review.name}</span>
-                        <span className="block text-xs text-muted-foreground">{review.date}</span>
-                      </span>
-                    </figcaption>
-                  </figure>
+                        <span>
+                          <span className="block text-sm font-bold text-foreground">{review.name}</span>
+                          <span suppressHydrationWarning className="block text-xs text-muted-foreground">{review.date}</span>
+                        </span>
+                        {viewHint}
+                      </figcaption>
+                    </figure>
+                  </a>
                 ))}
               </div>
             )}
+
+            {/* Exists only with MORE than the initial number of cards; never
+             * rendered with 4 or fewer. Reveals the rest inline, then flips
+             * to "Show less". Stays a standalone button, never nested in a
+             * clickable card. */}
+            {reviewsOverflow && (
+              <div className="mt-8 text-center">
+                <Button
+                  variant="outline"
+                  onClick={() => setShowAllReviews((value) => !value)}
+                  aria-expanded={showAllReviews}
+                  className="rounded-full border-brand-600/40 bg-white px-6 py-2.5 text-sm font-bold text-brand-700 hover:bg-brand-50"
+                >
+                  {showAllReviews ? "Show less" : "See more reviews"}
+                </Button>
+              </div>
+            )}
+
+            {/* Google attribution and link to every review on Google. */}
+            <div className="mt-6 text-center">
+              <a
+                href={google.profileUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-600 underline-offset-4 hover:underline"
+              >
+                Read all reviews on Google
+                <ExternalLink className="h-4 w-4" aria-hidden="true" />
+              </a>
+            </div>
           </>
         ) : (
-          /* Honest state whenever live Google data is not available (loading,
-           * integration not configured yet, or API failure): no review cards,
-           * no invented content, only the genuine Google links. */
+          /* Honest state whenever no review data is available (loading,
+           * integration not configured on Marrakech, or API failure with no
+           * verified copy for this destination): no review cards, no
+           * invented content, only the genuine Google links. */
           <div className="mx-auto mt-12 max-w-md">
             <div className="rounded-2xl bg-white p-6 text-center shadow-sm md:p-8">
               <GoogleIcon className="mx-auto h-8 w-8" />
