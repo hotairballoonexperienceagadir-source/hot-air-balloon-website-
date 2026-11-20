@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { BookingButton } from "./BookingModal";
+import { BookingButton } from "./BookingButton";
 import { BookingBar } from "./BookingBar";
 import { WhatsAppIcon } from "./icons";
 

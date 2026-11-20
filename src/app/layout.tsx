@@ -9,10 +9,12 @@ const jost = Jost({
   display: "swap",
 });
 
-/* Heading font: Poppins, Bold 700 for a strong and premium look. */
+/* Heading font: Poppins. Only Bold 700 and Semibold 600 are used on the
+ * site (headings and one semibold label), so only those two weights are
+ * downloaded instead of five. */
 const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["600", "700"],
   variable: "--font-poppins",
   display: "swap",
 });

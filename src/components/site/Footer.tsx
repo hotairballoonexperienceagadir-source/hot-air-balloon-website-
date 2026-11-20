@@ -11,7 +11,8 @@ import {
   waLink,
 } from "@/lib/site";
 import { WhatsAppIcon } from "./icons";
-import { ContactButton, ContactModal } from "./ContactModal";
+import { ContactButton } from "./ContactModal";
+import { ContactModalLazy } from "./ContactModalLazy";
 import { SocialLinks } from "./SocialLinks";
 
 type FooterVariant = "home" | "marrakech";
@@ -233,7 +234,7 @@ export function Footer({ variant = "home" }: { variant?: FooterVariant }) {
       </footer>
       {/* THE shared contact form. One instance per page, opened by every
           email contact option through the contact store. */}
-      <ContactModal />
+      <ContactModalLazy />
     </>
   );
 }

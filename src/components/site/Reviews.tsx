@@ -98,9 +98,25 @@ export function Reviews({ city = "agadir" }: { city?: CityKey }) {
 
   useEffect(() => {
     const controller = new AbortController();
-    fetch(`/api/google-reviews?city=${city}`, { cache: "no-store", signal: controller.signal })
-      .then((response) => (response.ok ? response.json() : Promise.reject(new Error("Bad response"))))
-      .then((payload: { source?: string; rating: number | null; reviewCount: number | null; reviews: DisplayReview[] }) => {
+
+    /* Every await in this chain is inside the try, so a rejection can never
+     * escape unhandled: fetch, response.json() and the state update are all
+     * guarded here. */
+    async function loadLiveReviews() {
+      try {
+        const response = await fetch(`/api/google-reviews?city=${city}`, {
+          cache: "no-store",
+          signal: controller.signal,
+        });
+        if (!response.ok) return;
+        const payload = (await response.json()) as {
+          source?: string;
+          rating: number | null;
+          reviewCount: number | null;
+          reviews: DisplayReview[];
+        };
+        /* Never touch state after unmount or abort. */
+        if (controller.signal.aborted) return;
         /* Live official Google data wins when it is genuinely available.
          * Anything else (unconfigured, error) keeps the current state. */
         if (
@@ -114,11 +130,24 @@ export function Reviews({ city = "agadir" }: { city?: CityKey }) {
             reviews: payload.reviews,
           });
         }
-      })
-      .catch(() => {
+      } catch (error) {
+        /* Unmount and city switches abort this fetch on purpose: that is not
+         * an error, so it stays completely silent (no logging, no state). */
+        const isAbort =
+          controller.signal.aborted ||
+          (typeof error === "object" &&
+            error !== null &&
+            (error as { name?: unknown }).name === "AbortError");
+        if (isAbort) return;
         /* Network or API hiccup: keep showing the current honest state. */
-      });
-    return () => controller.abort();
+      }
+    }
+
+    void loadLiveReviews();
+
+    /* Abort with a named AbortError reason: aborting without one makes some
+     * browsers report "signal is aborted without reason" as a runtime error. */
+    return () => controller.abort(new DOMException("Component unmounted", "AbortError"));
   }, [city]);
 
   /* The single Google Business Profile shared by both destinations. */

@@ -1,6 +1,5 @@
 "use client";
 
-import type { ComponentProps } from "react";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { offersForDestination, useBookingStore, type BookingDestination } from "@/lib/booking-store";
@@ -11,10 +10,10 @@ import { WhatsAppIcon } from "./icons";
 /**
  * THE booking modal of the website, shown in a popup.
  *
- * One single instance is mounted per page (inside <Header />) and every
- * booking CTA opens it through the booking store, which preselects the
- * destination of the current page and, when the CTA belongs to a specific
- * package card, that exact package.
+ * One single instance is mounted per page (inside <Header /> through
+ * BookingModalLazy) and every booking CTA opens it through the booking
+ * store, which preselects the destination of the current page and, when the
+ * CTA belongs to a specific package card, that exact package.
  *
  * It shares its state handling, required field validation and the exact
  * WhatsApp message with the inline hero BookingBar through useBookingForm
@@ -97,26 +96,3 @@ export function BookingModal() {
   );
 }
 
-/* BookingButton keeps the exact visual design of the previous WhatsApp link
-   buttons while opening the shared booking modal instead. Server components
-   use it to trigger the modal without holding any booking state. */
-type BookingButtonProps = Omit<ComponentProps<typeof Button>, "asChild"> & {
-  destination: BookingDestination;
-  /** Preselect a specific package of the given destination. */
-  packageId?: string;
-};
-
-export function BookingButton({ destination, packageId, onClick, children, ...buttonProps }: BookingButtonProps) {
-  const openBooking = useBookingStore((state) => state.openBooking);
-  return (
-    <Button
-      {...buttonProps}
-      onClick={(event) => {
-        onClick?.(event);
-        openBooking({ destination, packageId });
-      }}
-    >
-      {children}
-    </Button>
-  );
-}

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ArrowUpRight, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cities, site } from "@/lib/site";
-import { BookingButton } from "./BookingModal";
+import { BookingButton } from "./BookingButton";
 import { BookingBar } from "./BookingBar";
 import { WhatsAppIcon } from "./icons";
 

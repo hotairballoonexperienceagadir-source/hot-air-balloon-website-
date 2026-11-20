@@ -13,7 +13,8 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { site } from "@/lib/site";
-import { BookingButton, BookingModal } from "./BookingModal";
+import { BookingButton } from "./BookingButton";
+import { BookingModalLazy } from "./BookingModalLazy";
 import { WhatsAppIcon } from "./icons";
 
 type HeaderVariant = "home" | "marrakech";
@@ -144,6 +145,10 @@ export function Header({ variant = "home" }: { variant?: HeaderVariant }) {
               height={1024}
               priority
               quality={90}
+              /* The logo renders 72 px wide on mobile and 84 px on desktop;
+               * without this hint the browser downloads the logo at its full
+               * 1536 px width on every device. */
+              sizes="(max-width: 767px) 72px, 84px"
               className="h-12 w-auto object-contain transition-transform duration-300 ease-out motion-reduce:transition-none md:h-14"
               style={{ transform: atTop ? "scale(1.45)" : "scale(1)" }}
             />
@@ -227,8 +232,9 @@ export function Header({ variant = "home" }: { variant?: HeaderVariant }) {
       </div>
       </header>
       {/* THE shared booking form. One instance per page, opened by every
-          booking CTA through the booking store. */}
-      <BookingModal />
+          booking CTA through the booking store. Loaded as an async chunk so
+          it never weighs down the first paint. */}
+      <BookingModalLazy />
     </>
   );
 }

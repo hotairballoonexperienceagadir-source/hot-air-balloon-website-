@@ -2,7 +2,7 @@
 
 import { Phone } from "lucide-react";
 import { site } from "@/lib/site";
-import { BookingButton } from "./BookingModal";
+import { BookingButton } from "./BookingButton";
 import { WhatsAppIcon } from "./icons";
 
 /**

@@ -12,7 +12,7 @@ import {
   weatherNote,
   type Offer,
 } from "@/lib/site";
-import { BookingButton } from "./BookingModal";
+import { BookingButton } from "./BookingButton";
 import { ExperienceSlideshow } from "./ExperienceSlideshow";
 import { Stars, WhatsAppIcon } from "./icons";
 
@@ -51,7 +51,7 @@ function MarrakechOfferCard({ offer }: { offer: Offer }) {
           alt={offer.imageAlt}
           width={offer.imageWidth}
           height={offer.imageHeight}
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          sizes="(max-width: 768px) 46vw, (max-width: 1200px) 50vw, 33vw"
           className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
         />
         <span className="absolute bottom-3 left-3 rounded-full bg-navy-950/75 px-3 py-1 text-xs font-semibold text-cream-100 backdrop-blur">
