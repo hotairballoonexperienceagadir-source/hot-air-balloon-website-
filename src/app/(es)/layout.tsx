@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { I18nProvider } from "@/lib/i18n/context";
+import { toClientI18nValue } from "@/lib/i18n/client-value";
 import { es } from "@/lib/i18n/dictionaries/es";
 import { es as esContent } from "@/lib/i18n/content/es";
 import { jost, poppins } from "@/lib/fonts";
@@ -53,7 +54,7 @@ export default function SpanishLayout({ children }: { children: React.ReactNode 
   return (
     <html lang="es" data-scroll-behavior="smooth" className={`${jost.variable} ${poppins.variable}`}>
       <body>
-        <I18nProvider value={{ locale: "es", dict: es, content: esContent }}>{children}</I18nProvider>
+        <I18nProvider value={toClientI18nValue("es", es, esContent)}>{children}</I18nProvider>
       </body>
     </html>
   );

@@ -468,8 +468,41 @@ export interface SiteContent {
   gallery: Record<CityId, GalleryItem[]>;
 }
 
+/* ------------------------------------------------------------------ */
+/* Client subset                                                       */
+/* ------------------------------------------------------------------ */
+
+/**
+ * The server components receive the FULL dictionary and content as props
+ * from the pages. Only the CLIENT components consume the React context, and
+ * they need just a small subset. Slimming the provider value keeps the
+ * serialized RSC payload (the inline HTML of every prerendered page) small.
+ */
+export interface ClientDictionary {
+  common: Dictionary["common"];
+  header: Dictionary["header"];
+  switcher: Dictionary["switcher"];
+  home: Pick<Dictionary["home"], "hero">;
+  marrakech: Pick<Dictionary["marrakech"], "hero">;
+  booking: Dictionary["booking"];
+  contact: Dictionary["contact"];
+  reviews: Dictionary["reviews"];
+  weather: Dictionary["weather"];
+  floating: Dictionary["floating"];
+  galleryGrid: Dictionary["galleryGrid"];
+  social: Dictionary["social"];
+}
+
+export interface ClientContent {
+  destinations: {
+    agadir: { cityName: string };
+    marrakech: { cityName: string; intro: string };
+  };
+  reviewHighlights: string[];
+}
+
 export interface I18nValue {
   locale: Locale;
-  dict: Dictionary;
-  content: SiteContent;
+  dict: ClientDictionary;
+  content: ClientContent;
 }
