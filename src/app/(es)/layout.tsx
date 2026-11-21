@@ -4,6 +4,7 @@ import { toClientI18nValue } from "@/lib/i18n/client-value";
 import { es } from "@/lib/i18n/dictionaries/es";
 import { es as esContent } from "@/lib/i18n/content/es";
 import { jost, poppins } from "@/lib/fonts";
+import "../globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.hotairballoonexperienceagadir.com"),

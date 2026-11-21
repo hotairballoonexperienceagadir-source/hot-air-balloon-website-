@@ -5,6 +5,7 @@ import { en } from "@/lib/i18n/dictionaries/en";
 import { en as enContent } from "@/lib/i18n/content/en";
 import { jost, poppins } from "@/lib/fonts";
 import { AgadirHome } from "@/components/site/AgadirHome";
+import "../globals.css";
 
 /* English root layout. This is the EXACT metadata of the original site root
  * layout, untouched (title, description, keywords, canonical, Open Graph):

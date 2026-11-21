@@ -9,37 +9,31 @@ import type { Locale } from "./config";
  * - fr: "2 199 MAD"   (narrow no break space, French convention)
  * - de: "2.199 MAD"
  * - es: "2.199 MAD"
+ *
+ * The grouping is written by hand instead of relying on Intl.NumberFormat:
+ * CLDR treats Spanish as "grouping from 10000 only" (2199 would render
+ * "2199"), while the approved site convention is "2.199 MAD" in Spanish.
  */
 
-function localeTag(locale: Locale): string {
-  switch (locale) {
-    case "en":
-      return "en-US";
-    case "fr":
-      return "fr-FR";
-    case "de":
-      return "de-DE";
-    case "es":
-      return "es-ES";
-  }
+function groupDigits(value: string, separator: string): string {
+  return value.replace(/\B(?=(\d{3})+(?!\d))/g, separator);
 }
 
 /** "2,199 MAD" / "2 199 MAD" / "2.199 MAD" */
 export function formatPrice(mad: number, locale: Locale): string {
-  return `${new Intl.NumberFormat(localeTag(locale), { maximumFractionDigits: 0 }).format(mad)} MAD`;
+  const digits = groupDigits(String(mad), locale === "en" ? "," : locale === "fr" ? "\u202f" : ".");
+  return `${digits} MAD`;
 }
 
 /** Localized number without the currency suffix. */
 export function formatNumber(value: number, locale: Locale): string {
-  return new Intl.NumberFormat(localeTag(locale), { maximumFractionDigits: 0 }).format(value);
+  return groupDigits(String(value), locale === "en" ? "," : locale === "fr" ? "\u202f" : ".");
 }
 
 /** Ratings keep exactly one decimal: "5.0" (en) / "5,0" (fr, de, es). */
 export function formatRating(rating: number, locale: Locale): string {
-  return new Intl.NumberFormat(localeTag(locale), {
-    minimumFractionDigits: 1,
-    maximumFractionDigits: 1,
-  }).format(rating);
+  const fixed = rating.toFixed(1);
+  return locale === "en" ? fixed : fixed.replace(".", ",");
 }
 
 /**
