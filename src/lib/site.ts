@@ -168,7 +168,7 @@ export const cities: Record<
     name: "Marrakech",
     headline: "Hot Air Balloon Flights in Marrakech",
     intro:
-      "Our second destination, operated by the same Agadir based team. Lift off from the desert on the edge of the red city and watch the Atlas mountains turn gold at sunrise.",
+      "Our second destination, operated by the same Agadir based team. Lift off from the desert on the edge of the red city and watch the Atlas mountains turn gold at sunrise. A balloon flight in Marrakech is one of the most memorable ways to start the day, and hot air balloon Marrakech prices start at 999 MAD per person for the Classic Low Cost flight.",
     launchSite: "Desert launch area, about 30 minutes from central Marrakech",
     isMain: false,
   },
@@ -568,6 +568,23 @@ export const faqs: Faq[] = [
     a: "Yes. Marrakech is our second destination, operated by the same Agadir team, with its own launch site in the desert outside the city and its own offers and prices.",
     link: { href: "/marrakech-flights", label: "Discover our Marrakech Flights" },
   },
+  /* Phase E SEO FAQs (owner approved 2026-11-21): APPENDED at the END of the
+   * list so the homepage JSON-LD FAQPage slice(0, 6) stays byte identical.
+   * Every fact below is already visible on the English site (owner provided
+   * pickup clock times are deliberately NOT restated: they would contradict
+   * the approved FAQ above). */
+  {
+    q: "Can I book a private hot air balloon flight in Agadir?",
+    a: "Yes. The Private Flight gives you the whole balloon just for your party: 6,999 MAD per person with a minimum of 2 guests, private transportation, your own pilot and a traditional private Berber breakfast under an argan tree.",
+  },
+  {
+    q: "When do the hot air balloon flights take off in Agadir?",
+    a: "Every flight is a sunrise flight: the balloon lifts off at first light, just as the sun rises over the Atlas Mountains, and the whole morning ends around 10:00 AM with drop off at your hotel.",
+  },
+  {
+    q: "Can babies join the hot air balloon flight in Agadir?",
+    a: "For safety reasons, babies are not permitted on the balloon flights. Children from 3 years old are welcome and can fly with an adult.",
+  },
 ];
 
 export const marrakechFaqs: Faq[] = [
@@ -595,6 +612,25 @@ export const marrakechFaqs: Faq[] = [
     q: "Where is your company based?",
     a: "Our home base is Agadir, where we fly over the Souss Valley every morning. Marrakech is our second destination, flown by the same licensed team.",
     link: { href: "/", label: "Discover our Agadir flights" },
+  },
+  /* Phase E SEO FAQs (owner approved 2026-11-21): APPENDED at the END of the
+   * list. Every time and price below is already stated on the Marrakech
+   * page itself (timeline and offers). */
+  {
+    q: "How much does a hot air balloon flight in Marrakech cost?",
+    a: "The Classic Low Cost is 999 MAD per person, the Classic Flight is 1,399 MAD per person, the Private Flight is 5,299 MAD per person with a minimum of 2 guests and the Royal Flight is 6,299 MAD per person with a minimum of 2 guests.",
+  },
+  {
+    q: "How long does the balloon flight last in Marrakech?",
+    a: "The Classic Low Cost flies for about 40 minutes. The Classic Flight, the Private Flight and the Royal Flight fly for about 60 minutes, floating over the desert plains outside Marrakech.",
+  },
+  {
+    q: "Can I book a private hot air balloon flight in Marrakech?",
+    a: "Yes. The Private Flight is 5,299 MAD per person with a minimum of 2 guests, and the Royal Flight is 6,299 MAD per person with a minimum of 2 guests and your Berber breakfast served in the sky aboard the balloon.",
+  },
+  {
+    q: "Is the Marrakech balloon flight at sunrise?",
+    a: "Yes, every Marrakech flight is an early morning sunrise experience: hotel pickup at 04:45, takeoff at sunrise and drop off back at your hotel around 10:00.",
   },
 ];
 

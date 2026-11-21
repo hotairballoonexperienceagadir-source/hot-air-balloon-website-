@@ -422,6 +422,20 @@ export const de: SiteContent = {
           a: "Ja. Marrakesch ist unser zweites Reiseziel, betrieben vom selben Team aus Agadir, mit eigenem Startplatz in der Wüste vor der Stadt und eigenen Paketen und Preisen.",
           link: { href: "/de/ballonfahrt-marrakesch", label: "Entdecken Sie unsere Marrakesch Fahrten" },
         },
+        /* SEO-FAQs Phase E (Eigentümer Freigabe 2026-11-21): am ENDE der
+         * Liste angehängt, aus den englischen FAQs übersetzt. */
+        {
+          q: "Kann ich eine private Ballonfahrt in Agadir buchen?",
+          a: "Ja. Der Private Flight gibt Ihnen den ganzen Ballon nur für Ihre Gruppe: 6.999 MAD pro Person mit mindestens 2 Gästen, privater Transport, Ihr eigener Pilot und ein traditionelles privates berberisches Frühstück unter einem Arganbaum.",
+        },
+        {
+          q: "Wann starten die Ballonfahrten in Agadir?",
+          a: "Jede Fahrt ist eine Sonnenaufgangsfahrt: Der Ballon steigt beim ersten Licht auf, während die Sonne über dem Atlasgebirge aufgeht, und der ganze Vormittag endet gegen 10:00 Uhr mit der Rückgabe an Ihrem Hotel.",
+        },
+        {
+          q: "Dürfen Babys bei der Ballonfahrt in Agadir mitfliegen?",
+          a: "Aus Sicherheitsgründen sind Babys bei den Ballonfahrten nicht erlaubt. Kinder ab 3 Jahren sind herzlich willkommen und dürfen mit einem Erwachsenen mitfliegen.",
+        },
       ],
       waMessage:
         "Hallo! Ich möchte meine Ballonfahrt in Agadir buchen. Bitte senden Sie mir Verfügbarkeit und Preise.",
@@ -600,6 +614,23 @@ export const de: SiteContent = {
           q: "Wo hat Ihr Unternehmen seinen Sitz?",
           a: "Unsere Heimbasis ist Agadir, wo wir jeden Morgen über das Souss-Tal fliegen. Marrakesch ist unser zweites Reiseziel, geflogen vom selben lizenzierten Team.",
           link: { href: "/de", label: "Entdecken Sie unsere Agadir Fahrten" },
+        },
+        /* SEO-FAQs Phase E: am ENDE der Liste angehängt. */
+        {
+          q: "Wie viel kostet eine Ballonfahrt in Marrakesch?",
+          a: "Der Classic Low Cost kostet 999 MAD pro Person, der Classic Flight 1.399 MAD pro Person, der Private Flight 5.299 MAD pro Person mit mindestens 2 Gästen und der Royal Flight 6.299 MAD pro Person mit mindestens 2 Gästen.",
+        },
+        {
+          q: "Wie lange dauert die Ballonfahrt in Marrakesch?",
+          a: "Der Classic Low Cost fliegt rund 40 Minuten. Der Classic Flight, der Private Flight und der Royal Flight fliegen rund 60 Minuten, schwebend über die Wüstenebenen vor Marrakesch.",
+        },
+        {
+          q: "Kann ich eine private Ballonfahrt in Marrakesch buchen?",
+          a: "Ja. Der Private Flight kostet 5.299 MAD pro Person mit mindestens 2 Gästen und der Royal Flight 6.299 MAD pro Person mit mindestens 2 Gästen und Ihrem berberischen Frühstück, das in der Luft an Bord des Ballons serviert wird.",
+        },
+        {
+          q: "Findet die Ballonfahrt in Marrakesch bei Sonnenaufgang statt?",
+          a: "Ja, jede Marrakesch Fahrt ist ein Erlebnis am frühen Morgen bei Sonnenaufgang: Hotelabholung um 04:45, Start bei Sonnenaufgang und Rückgabe an Ihrem Hotel gegen 10:00.",
         },
       ],
       waMessage:

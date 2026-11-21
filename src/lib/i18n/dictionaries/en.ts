@@ -52,7 +52,7 @@ export const en: Dictionary = {
       badge: "Agadir | Souss Valley | Morocco",
       titleLead: "Experience the Magic of Hot Air Balloon Flights in",
       titleHighlight: "Agadir",
-      text: "Discover the breathtaking beauty of the Souss Valley from above. Enjoy a magical sunrise flight, a traditional Berber breakfast and unforgettable views of the Atlas Mountains.",
+      text: "Discover the breathtaking beauty of the Souss Valley from above. Enjoy a magical sunrise flight, a traditional Berber breakfast and unforgettable views of the Atlas Mountains. A hot air balloon ride in Agadir is one of the most beautiful experiences in Morocco.",
       bookCta: "Book Your Agadir Flight",
       exploreCta: "Explore Our Experience",
       imageAlt:
@@ -77,7 +77,7 @@ export const en: Dictionary = {
     whyUs: {
       badge: "Why Choose Us",
       title: "Why Choose Our Agadir Experience",
-      text: "From the balloons we fly to the crew we train, every decision is built around your safety and your morning above the Souss Valley.",
+      text: "From the balloons we fly to the crew we train, every decision is built around your safety and your morning above the Souss Valley. Our hot air balloon flights in Agadir run every single morning when the weather allows.",
     },
     experience: {
       slideBadgeTime: "04:00 to 05:00",
@@ -100,7 +100,7 @@ export const en: Dictionary = {
     cta: {
       badge: "Ready for Adventure?",
       title: "Book Your Agadir Balloon Flight Today",
-      text: "Do not miss the experience of a lifetime. Send us a message today and fly over the Souss Valley at sunrise tomorrow morning.",
+      text: "Do not miss the experience of a lifetime. Send us a message today and fly over the Souss Valley at sunrise tomorrow morning. Book your Agadir sunrise balloon flight today and see why our guests rate us five stars.",
       bookCta: "Book Your Agadir Flight",
       exploreLink: "Explore Marrakech Flights",
       followLabel: "Follow our Agadir adventures",
@@ -148,7 +148,7 @@ export const en: Dictionary = {
       badgeLabel: "Desert launch site",
       badge: "Flight Day",
       title: "How Your Marrakech Balloon Morning Works",
-      text: "The same careful routine our team applies in Agadir, adapted to the desert launch area outside Marrakech: a dark early drive, a glowing inflation, a golden sunrise and a Berber breakfast to finish.",
+      text: "The same careful routine our team applies in Agadir, adapted to the desert launch area outside Marrakech: a dark early drive, a glowing inflation, a golden sunrise and a Berber breakfast to finish. A sunrise hot air balloon ride over Marrakech is one of the top things to do in the red city.",
       planCta: "Plan Your Marrakech Flight",
     },
     gallery: {
@@ -160,7 +160,7 @@ export const en: Dictionary = {
     cta: {
       badge: "Ready for Adventure?",
       title: "Book Your Marrakech Sunrise Flight",
-      text: "Send us a message today and fly over the desert landscapes around Marrakech and the Atlas mountains tomorrow morning.",
+      text: "Send us a message today and fly over the desert landscapes around Marrakech and the Atlas mountains tomorrow morning. Our private hot air balloon flights in Marrakech can be booked directly on WhatsApp.",
       bookCta: "Book Your Marrakech Flight",
       discoverLink: "Discover Agadir Flights",
       imageAlt: "Hot air balloons floating over the desert of Marrakech at sunrise",

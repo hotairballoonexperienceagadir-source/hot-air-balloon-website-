@@ -24,6 +24,10 @@ export const metadata: Metadata = {
     "sunrise balloon flight agadir",
     "balloon ride morocco",
     "montgolfiere agadir",
+    /* Phase E: additive English keyword phrases, appended only. */
+    "hot air balloon ride agadir",
+    "agadir sunrise balloon",
+    "hot air balloon morocco agadir",
   ],
   /* Phase D: the hreflang alternates are ADDED to the existing metadata;
    * the canonical, title, description, keywords and Open Graph stay exactly

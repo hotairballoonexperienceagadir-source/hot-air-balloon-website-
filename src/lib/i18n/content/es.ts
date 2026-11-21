@@ -422,6 +422,20 @@ export const es: SiteContent = {
           a: "Sí. Marrakech es nuestro segundo destino, operado por el mismo equipo de Agadir, con su propia zona de despegue en el desierto a las afueras de la ciudad y sus propios paquetes y precios.",
           link: { href: "/es/globo-aerostatico-marrakech", label: "Descubre nuestros vuelos a Marrakech" },
         },
+        /* FAQ de SEO Fase E (aprobación del propietario 2026-11-21): añadidas
+         * al FINAL de la lista, traducidas de las FAQ inglesas. */
+        {
+          q: "¿Puedo reservar un vuelo en globo privado en Agadir?",
+          a: "Sí. El Private Flight te ofrece el globo entero solo para tu grupo: 6.999 MAD por persona con un mínimo de 2 personas, transporte privado, tu propio piloto y un desayuno bereber privado tradicional bajo un argán.",
+        },
+        {
+          q: "¿Cuándo despegan los vuelos en globo en Agadir?",
+          a: "Cada vuelo es un vuelo al amanecer: el globo despega a primera luz, justo cuando el sol sale sobre las montañas del Atlas, y toda la mañana termina alrededor de las 10:00 con la devolución en tu hotel.",
+        },
+        {
+          q: "¿Pueden ir bebés en el vuelo en globo en Agadir?",
+          a: "Por motivos de seguridad, los bebés no están permitidos en los vuelos en globo. Los niños a partir de 3 años son bienvenidos y pueden volar acompañados de un adulto.",
+        },
       ],
       waMessage:
         "¡Hola! Me gustaría reservar mi vuelo en globo en Agadir. Enviadme la disponibilidad y los precios, por favor.",
@@ -600,6 +614,23 @@ export const es: SiteContent = {
           q: "¿Dónde tiene la sede vuestra empresa?",
           a: "Nuestra base está en Agadir, donde volamos sobre el valle del Souss cada mañana. Marrakech es nuestro segundo destino, volado por el mismo equipo con licencia.",
           link: { href: "/es", label: "Descubre nuestros vuelos a Agadir" },
+        },
+        /* FAQ de SEO Fase E: añadidas al FINAL de la lista. */
+        {
+          q: "¿Cuánto cuesta un vuelo en globo en Marrakech?",
+          a: "El Classic Low Cost cuesta 999 MAD por persona, el Classic Flight 1.399 MAD por persona, el Private Flight 5.299 MAD por persona con un mínimo de 2 personas y el Royal Flight 6.299 MAD por persona con un mínimo de 2 personas.",
+        },
+        {
+          q: "¿Cuánto dura el vuelo en globo en Marrakech?",
+          a: "El Classic Low Cost vuela unos 40 minutos. El Classic Flight, el Private Flight y el Royal Flight vuelan unos 60 minutos, flotando sobre las llanuras desérticas a las afueras de Marrakech.",
+        },
+        {
+          q: "¿Puedo reservar un vuelo en globo privado en Marrakech?",
+          a: "Sí. El Private Flight cuesta 5.299 MAD por persona con un mínimo de 2 personas y el Royal Flight 6.299 MAD por persona con un mínimo de 2 personas y tu desayuno bereber servido en el aire a bordo del globo.",
+        },
+        {
+          q: "¿El vuelo en globo en Marrakech es al amanecer?",
+          a: "Sí, cada vuelo a Marrakech es una experiencia de primera hora de la mañana al amanecer: recogida en el hotel a las 04:45, despegue al amanecer y devolución en tu hotel alrededor de las 10:00.",
         },
       ],
       waMessage:

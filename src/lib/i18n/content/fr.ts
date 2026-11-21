@@ -422,6 +422,20 @@ export const fr: SiteContent = {
           a: "Oui. Marrakech est notre seconde destination, opérée par la même équipe d’Agadir, avec son propre site de décollage dans le désert aux portes de la ville ainsi que ses propres formules et tarifs.",
           link: { href: "/fr/montgolfiere-marrakech", label: "Découvrir nos vols à Marrakech" },
         },
+        /* FAQ SEO Phase E (approbation du propriétaire 2026-11-21) : ajoutées
+         * à la FIN de la liste, traduites depuis les FAQ anglaises. */
+        {
+          q: "Puis-je réserver un vol en montgolfière privé à Agadir ?",
+          a: "Oui. Le Private Flight vous offre la montgolfière entièrement réservée à votre groupe : 6 999 MAD par personne avec un minimum de 2 personnes, transport privé, votre propre pilote et un petit-déjeuner berbère privé traditionnel sous un arganier.",
+        },
+        {
+          q: "Quand les vols en montgolfière décollent-ils à Agadir ?",
+          a: "Chaque vol est un vol au lever du soleil : la montgolfière s’envole aux premières lueurs, tandis que le soleil se lève sur les montagnes de l’Atlas, et toute la matinée se termine vers 10h00 avec le retour à votre hôtel.",
+        },
+        {
+          q: "Les bébés peuvent-ils participer au vol en montgolfière à Agadir ?",
+          a: "Pour des raisons de sécurité, les bébés ne sont pas admis à bord des vols en montgolfière. Les enfants à partir de 3 ans sont les bienvenus et peuvent voler accompagnés d’un adulte.",
+        },
       ],
       waMessage:
         "Bonjour ! Je souhaite réserver mon vol en montgolfière à Agadir. Merci de m’envoyer la disponibilité et les tarifs.",
@@ -600,6 +614,23 @@ export const fr: SiteContent = {
           q: "Où est basée votre entreprise ?",
           a: "Notre base se trouve à Agadir, où nous survolons la vallée du Souss chaque matin. Marrakech est notre seconde destination, survolée par la même équipe licenciée.",
           link: { href: "/fr", label: "Découvrir nos vols à Agadir" },
+        },
+        /* FAQ SEO Phase E : ajoutées à la FIN de la liste. */
+        {
+          q: "Combien coûte un vol en montgolfière à Marrakech ?",
+          a: "Le Classic Low Cost coûte 999 MAD par personne, le Classic Flight 1 399 MAD par personne, le Private Flight 5 299 MAD par personne avec un minimum de 2 personnes et le Royal Flight 6 299 MAD par personne avec un minimum de 2 personnes.",
+        },
+        {
+          q: "Combien de temps dure le vol en montgolfière à Marrakech ?",
+          a: "Le Classic Low Cost vole pendant environ 40 minutes. Le Classic Flight, le Private Flight et le Royal Flight volent pendant environ 60 minutes, au-dessus des plaines désertiques aux portes de Marrakech.",
+        },
+        {
+          q: "Puis-je réserver un vol en montgolfière privé à Marrakech ?",
+          a: "Oui. Le Private Flight coûte 5 299 MAD par personne avec un minimum de 2 personnes, et le Royal Flight 6 299 MAD par personne avec un minimum de 2 personnes et votre petit-déjeuner berbère servi dans les airs à bord de la montgolfière.",
+        },
+        {
+          q: "Le vol en montgolfière à Marrakech a-t-il lieu au lever du soleil ?",
+          a: "Oui, chaque vol à Marrakech est une expérience du petit matin au lever du soleil : prise en charge à l’hôtel à 04:45, décollage au lever du soleil et retour à votre hôtel vers 10h00.",
         },
       ],
       waMessage:

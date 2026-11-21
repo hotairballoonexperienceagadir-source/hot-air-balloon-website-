@@ -16,6 +16,12 @@ export const metadata: Metadata = {
     "balloon ride marrakech",
     "sunrise balloon marrakech",
     "palmeraie balloon flight",
+    /* Phase E: additive English keyword phrases, appended only. */
+    "hot air balloon ride marrakech",
+    "sunrise hot air balloon marrakech",
+    "private hot air balloon marrakech",
+    "hot air balloon marrakech price",
+    "balloon flight marrakech",
   ],
   /* Phase D: the hreflang alternates are ADDED; the canonical and every
    * other metadata field stay exactly as they were. */
