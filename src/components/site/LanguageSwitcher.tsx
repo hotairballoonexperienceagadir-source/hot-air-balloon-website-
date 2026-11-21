@@ -82,7 +82,7 @@ export function LanguageSwitcher() {
               key={code}
               role="menuitem"
               href={pagePaths[pageKey][code]}
-              hreflang={code}
+              hrefLang={code}
               lang={code}
               onClick={() => {
                 rememberLocale(code);
@@ -125,7 +125,7 @@ export function LanguageSwitcherMobileList() {
           <a
             key={code}
             href={pagePaths[pageKey][code]}
-            hreflang={code}
+            hrefLang={code}
             lang={code}
             onClick={() => rememberLocale(code)}
             className={`flex items-center justify-center gap-1.5 rounded-xl px-3 py-2.5 text-sm font-semibold transition ${

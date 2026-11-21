@@ -381,7 +381,7 @@ export const es: SiteContent = {
       faqs: [
         {
           q: "¿A qué hora es la recogida en el hotel en Agadir?",
-          a: "La recogida en tu hotel de Agadir tiene lugar a primera hora de la mañana, entre las 04:00 y las 05:00, según la temporada y la ubicación de tu hotel. Toda la experiencia termina alrededor de las 10:00 con la devolución en tu hotel.",
+          a: "La recogida en tu hotel de Agadir tiene lugar a primera hora de la mañana, entre las 04:00 y las 05:00, según la temporada y la ubicación de tu hotel. Toda la experiencia termina alrededor de las 10:00 con el traslado de vuelta a tu hotel.",
         },
         {
           q: "¿Desde dónde despegan los vuelos en globo?",
@@ -401,7 +401,7 @@ export const es: SiteContent = {
         },
         {
           q: "¿Cuánto tiempo estamos en el aire?",
-          a: "El globo vuela aproximadamente 60 minutos. Planifica toda la mañana, desde la recogida entre las 04:00 y las 05:00 hasta la devolución alrededor de las 10:00.",
+          a: "El globo vuela aproximadamente 60 minutos. Planifica toda la mañana, desde la recogida entre las 04:00 y las 05:00 hasta la vuelta a tu hotel alrededor de las 10:00.",
         },
         {
           q: "¿Qué debo llevar y ponerme?",
@@ -409,10 +409,10 @@ export const es: SiteContent = {
         },
         {
           q: "¿Hay límites de edad o de peso?",
-          a: "Los niños a partir de 3 años pueden volar acompañados de un adulto. Para los viajeros que pesen 140 kg o más, contáctanos por WhatsApp para comprobar si es posible acomodarte con seguridad.",
+          a: "Los niños a partir de 3 años pueden volar acompañados de un adulto. Hasta 140 kg puedes reservar con normalidad. Si pesas más de 140 kg, también eres bienvenido: escríbenos por WhatsApp antes de reservar y lo organizamos todo para ti.",
           link: {
             href: waLink(
-              "¡Hola! Peso 140 kg o más y tengo una duda sobre los vuelos en globo en Agadir. ¿Podéis comprobar si es posible acomodarme con seguridad?",
+              "¡Hola! Peso más de 140 kg y me gustaría reservar un vuelo en globo en Agadir. ¿Lo organizamos juntos?",
             ),
             label: "Contáctanos por WhatsApp",
           },
@@ -430,11 +430,17 @@ export const es: SiteContent = {
         },
         {
           q: "¿Cuándo despegan los vuelos en globo en Agadir?",
-          a: "Cada vuelo es un vuelo al amanecer: el globo despega a primera luz, justo cuando el sol sale sobre las montañas del Atlas, y toda la mañana termina alrededor de las 10:00 con la devolución en tu hotel.",
+          a: "Cada vuelo es un vuelo al amanecer: el globo despega a primera luz, justo cuando el sol sale sobre las montañas del Atlas, y toda la mañana termina alrededor de las 10:00 con el traslado de vuelta a tu hotel.",
         },
         {
           q: "¿Pueden ir bebés en el vuelo en globo en Agadir?",
-          a: "Por motivos de seguridad, los bebés no están permitidos en los vuelos en globo. Los niños a partir de 3 años son bienvenidos y pueden volar acompañados de un adulto.",
+          a: "Los niños a partir de 3 años son bienvenidos y pueden volar acompañados de un adulto. ¿Viajas con un niño menor de 3 años? Escríbenos por WhatsApp y quizá tengamos una solución para tu familia.",
+        },
+        /* FAQ de reglas de edad para niños (decisión del propietario
+         * 2026-11-21): añadida al FINAL de la lista. */
+        {
+          q: "¿Desde qué edad pueden volar los niños en Agadir?",
+          a: "Los niños a partir de 3 años pueden volar acompañados de un adulto. Si viajas con un niño menor de 3 años, escríbenos por WhatsApp antes de reservar y haremos todo lo posible por encontrar una solución para tu familia.",
         },
       ],
       waMessage:
@@ -538,16 +544,16 @@ export const es: SiteContent = {
           cityName: "Marrakech",
           name: "Royal Flight",
           description:
-            "El globo entero solo para tu grupo, elevado a la mañana más exclusiva de Marrakech. Viaja en un 4x4 privado, vuela unos 60 minutos sobre los paisajes desérticos de Marrakech y disfruta de tu desayuno bereber servido en el aire a bordo del globo, con las montañas del Atlas en el horizonte.",
+            "El globo entero solo para tu grupo, para vivir la mañana más exclusiva de Marrakech. Viaja en un 4x4 privado, vuela unos 60 minutos sobre los paisajes desérticos de Marrakech y disfruta de tu desayuno bereber servido a bordo del globo, en pleno vuelo, con las montañas del Atlas en el horizonte.",
           duration: "Aproximadamente 60 minutos en el aire",
           groupSize: "Globo privado",
           imageAlt:
-            "Una pareja disfrutando del desayuno en el aire a bordo de un globo aerostático privado sobre Marrakech al amanecer",
+            "Una pareja disfrutando del desayuno a bordo de un globo aerostático privado sobre Marrakech al amanecer",
           features: [
             { icon: "heart", label: "Transporte privado en 4x4" },
             { icon: "coffee", label: "Café y té marroquí a la llegada" },
             { icon: "clock", label: "Vuelo en globo privado de unos 60 minutos" },
-            { icon: "coffee", label: "Desayuno servido en el aire a bordo del globo" },
+            { icon: "coffee", label: "Desayuno servido a bordo del globo, en pleno vuelo" },
             { icon: "award", label: "Certificado de vuelo oficial" },
           ],
           badge: "Experiencia real",
@@ -586,7 +592,7 @@ export const es: SiteContent = {
         {
           time: "Sobre las 10:00",
           title: "De vuelta en tu hotel",
-          text: "Devolución en Marrakech con la cámara llena de recuerdos e historias que contar.",
+          text: "Traslado de vuelta a Marrakech con la cámara llena de recuerdos e historias que contar.",
         },
       ],
       faqs: [
@@ -600,7 +606,7 @@ export const es: SiteContent = {
         },
         {
           q: "¿Está incluido el traslado desde el hotel en Marrakech?",
-          a: "Sí, la recogida y la devolución desde todos los hoteles y riads de la zona de la ciudad de Marrakech están incluidas en cada vuelo a Marrakech.",
+          a: "Sí, la recogida y el traslado de vuelta desde todos los hoteles y riads de la zona de la ciudad de Marrakech están incluidos en cada vuelo a Marrakech.",
         },
         {
           q: "¿Qué pasa si hace mal tiempo?",
@@ -608,11 +614,11 @@ export const es: SiteContent = {
         },
         {
           q: "¿Qué incluyen los vuelos a Marrakech?",
-          a: "Cada vuelo a Marrakech incluye el transporte, el café y el té marroquí a la llegada, el vuelo en globo, el desayuno y el certificado de vuelo. El Classic Low Cost cuesta 999 MAD por persona, el Classic Flight 1.399 MAD por persona, el Private Flight 5.299 MAD por persona con un mínimo de 2 personas y el Royal Flight 6.299 MAD por persona con un mínimo de 2 personas y el desayuno servido en el aire a bordo del globo.",
+          a: "Cada vuelo a Marrakech incluye el transporte, el café y el té marroquí a la llegada, el vuelo en globo, el desayuno y el certificado de vuelo. El Classic Low Cost cuesta 999 MAD por persona, el Classic Flight 1.399 MAD por persona, el Private Flight 5.299 MAD por persona con un mínimo de 2 personas y el Royal Flight 6.299 MAD por persona con un mínimo de 2 personas y el desayuno servido a bordo del globo.",
         },
         {
           q: "¿Dónde tiene la sede vuestra empresa?",
-          a: "Nuestra base está en Agadir, donde volamos sobre el valle del Souss cada mañana. Marrakech es nuestro segundo destino, volado por el mismo equipo con licencia.",
+          a: "Nuestra base está en Agadir, donde volamos sobre el valle del Souss cada mañana. Marrakech es nuestro segundo destino, operado por el mismo equipo con licencia.",
           link: { href: "/es", label: "Descubre nuestros vuelos a Agadir" },
         },
         /* FAQ de SEO Fase E: añadidas al FINAL de la lista. */
@@ -626,11 +632,17 @@ export const es: SiteContent = {
         },
         {
           q: "¿Puedo reservar un vuelo en globo privado en Marrakech?",
-          a: "Sí. El Private Flight cuesta 5.299 MAD por persona con un mínimo de 2 personas y el Royal Flight 6.299 MAD por persona con un mínimo de 2 personas y tu desayuno bereber servido en el aire a bordo del globo.",
+          a: "Sí. El Private Flight cuesta 5.299 MAD por persona con un mínimo de 2 personas y el Royal Flight 6.299 MAD por persona con un mínimo de 2 personas y tu desayuno bereber servido a bordo del globo.",
         },
         {
           q: "¿El vuelo en globo en Marrakech es al amanecer?",
-          a: "Sí, cada vuelo a Marrakech es una experiencia de primera hora de la mañana al amanecer: recogida en el hotel a las 04:45, despegue al amanecer y devolución en tu hotel alrededor de las 10:00.",
+          a: "Sí, cada vuelo a Marrakech es una experiencia de primera hora de la mañana al amanecer: recogida en el hotel a las 04:45, despegue al amanecer y traslado de vuelta a tu hotel alrededor de las 10:00.",
+        },
+        /* FAQ de reglas de edad para niños (decisión del propietario
+         * 2026-11-21): añadida al FINAL de la lista. */
+        {
+          q: "¿Desde qué edad pueden volar los niños en Marrakech?",
+          a: "Los niños a partir de 3 años pueden volar acompañados de un adulto. Si viajas con un niño menor de 3 años, escríbenos por WhatsApp antes de reservar y haremos todo lo posible por encontrar una solución para tu familia.",
         },
       ],
       waMessage:
@@ -641,7 +653,7 @@ export const es: SiteContent = {
   weatherNote:
     "Los vuelos están sujetos a unas condiciones meteorológicas y de viento adecuadas. Si tenemos que cancelar por motivos de seguridad, eliges entre una nueva fecha o un reembolso completo.",
   reviewHighlights: [
-    "Piloto con licencia profesional",
+    "Piloto profesional con licencia",
     "Vuelo al amanecer seguro y suave",
     "Desayuno estupendo tras el aterrizaje",
   ],

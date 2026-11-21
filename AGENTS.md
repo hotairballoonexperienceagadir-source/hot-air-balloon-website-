@@ -194,6 +194,22 @@ public/images/                       all site images
    keeps Agadir and Marrakech content fully separated and each layout
    imports `../globals.css` (the original restructure bug: pages render
    unstyled without it).
+10. **Never delete images from /public (owner rule 2026-11-21).** Image
+   files in `public/images/` are referenced across BOTH pages and all
+   four languages (cards, heroes, gallery, CTA, OG). Never delete, rename
+   or "clean up" an image file without the owner's explicit approval, and
+   never replace an approved image with a different or newly generated
+   one. After ANY refactor that touches image paths, components or
+   layouts, check ALL 8 pages (/, /marrakech-flights/, /fr/,
+   /fr/montgolfiere-marrakech/, /de/, /de/ballonfahrt-marrakesch/, /es/,
+   /es/globo-aerostatico-marrakech/) in the browser for broken images
+   (every `<img>` must reach naturalWidth > 0, galleries expanded via the
+   See more button). Note: a long running dev server can get a stuck
+   in memory image optimizer worker (requests to a specific
+   `/_next/image` width hang forever with no status and no bytes while
+   other widths and raw /images/ URLs return 200): if exactly one width
+   of one image never loads, restart the dev server and retest before
+   changing any code.
 
 ## 6. API routes
 

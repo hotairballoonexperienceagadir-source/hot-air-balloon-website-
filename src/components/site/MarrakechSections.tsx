@@ -163,6 +163,21 @@ export function MarrakechPackages({
           {dict.marrakech.packages.noteSuffix}
         </p>
 
+        {/* Children under 3 note (owner decision 2026-11-21): friendly
+         * WhatsApp invitation for families with very young children. */}
+        <p className="mx-auto mt-3 max-w-3xl text-center text-sm text-muted-foreground">
+          {dict.marrakech.packages.childrenNote}{" "}
+          <a
+            href={waLink(dict.marrakech.packages.childrenWa)}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-semibold text-brand-600 underline-offset-4 hover:underline"
+          >
+            {dict.marrakech.packages.childrenNoteLink}
+          </a>{" "}
+          {dict.marrakech.packages.childrenNoteSuffix}
+        </p>
+
         <p className="mt-8 text-center text-sm text-muted-foreground">
           {dict.marrakech.packages.lookingFor}{" "}
           <Link

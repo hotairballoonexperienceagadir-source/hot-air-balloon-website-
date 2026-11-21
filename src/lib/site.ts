@@ -328,7 +328,7 @@ export const marrakechOffers: Offer[] = [
     cityName: "Marrakech",
     name: "Royal Flight",
     description:
-      "The whole balloon just for your party, elevated to the most exclusive Marrakech morning. Travel in a private 4x4, fly for about 60 minutes over Marrakech’s desert landscapes and enjoy your Berber breakfast served in the sky aboard the balloon, with the Atlas mountains on the horizon.",
+      "Your own private balloon for the most exclusive morning in Marrakech. Travel in a private 4x4, fly for about 60 minutes over Marrakech’s desert landscapes and enjoy your Berber breakfast served in the sky aboard the balloon, with the Atlas mountains on the horizon.",
     seoDescription:
       "The whole balloon just for your party, elevated to the most exclusive Marrakech morning. Travel in a private 4x4, fly for about 60 minutes over the Palmeraie desert and enjoy your Berber breakfast served in the sky aboard the balloon, with the Atlas mountains on the horizon.",
     priceMad: 6299,
@@ -555,10 +555,10 @@ export const faqs: Faq[] = [
   },
   {
     q: "Are there age or weight limits?",
-    a: "Children from 3 years old can fly with an adult. For guests weighing 140 kg or more, please contact us on WhatsApp so we can check whether it is possible to accommodate you safely.",
+    a: "Children from 3 years old can fly with an adult. Guests up to 140 kg book normally. Guests over 140 kg are still very welcome: just send us a message on WhatsApp before booking so we can arrange everything for you.",
     link: {
       href: waLink(
-        "Hello! I weigh 140 kg or more and I have a question about the balloon flights in Agadir. Can you check whether it is possible to accommodate me safely?",
+        "Hello! I weigh more than 140 kg and I would like to book a balloon flight in Agadir. Can we arrange it together?",
       ),
       label: "Contact us on WhatsApp",
     },
@@ -583,7 +583,13 @@ export const faqs: Faq[] = [
   },
   {
     q: "Can babies join the hot air balloon flight in Agadir?",
-    a: "For safety reasons, babies are not permitted on the balloon flights. Children from 3 years old are welcome and can fly with an adult.",
+    a: "Children from 3 years old are welcome and can fly accompanied by an adult. For children under 3, message us on WhatsApp and we may have a solution for your family.",
+  },
+  /* Children age rules FAQ (owner decision 2026-11-21): APPENDED at the END
+   * so the homepage JSON-LD FAQPage slice(0, 6) stays byte identical. */
+  {
+    q: "From what age can children fly in Agadir?",
+    a: "Children from 3 years old can fly accompanied by an adult. If you are travelling with a child under 3, message us on WhatsApp before booking and we will do our best to find a solution for your family.",
   },
 ];
 
@@ -631,6 +637,12 @@ export const marrakechFaqs: Faq[] = [
   {
     q: "Is the Marrakech balloon flight at sunrise?",
     a: "Yes, every Marrakech flight is an early morning sunrise experience: hotel pickup at 04:45, takeoff at sunrise and drop off back at your hotel around 10:00.",
+  },
+  /* Children age rules FAQ (owner decision 2026-11-21): APPENDED at the END
+   * of the list. */
+  {
+    q: "From what age can children fly in Marrakech?",
+    a: "Children from 3 years old can fly accompanied by an adult. If you are travelling with a child under 3, message us on WhatsApp before booking and we will do our best to find a solution for your family.",
   },
 ];
 

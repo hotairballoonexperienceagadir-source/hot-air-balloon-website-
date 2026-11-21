@@ -66,6 +66,11 @@ export const fr: Dictionary = {
       noteLink: "Demandez-nous sur WhatsApp",
       noteSuffix: "pour les tarifs famille.",
       questionWa: "Bonjour ! J’ai une question sur les vols en montgolfière à Agadir.",
+      childrenNote: "Vous voyagez avec un enfant de moins de 3 ans ?",
+      childrenNoteLink: "Écrivez-nous sur WhatsApp",
+      childrenNoteSuffix: "et nous avons peut-être une solution pour votre famille.",
+      childrenWa:
+        "Bonjour, je souhaite réserver un vol en montgolfière avec un enfant de moins de 3 ans.\n\nDestination: Agadir\nLanguage: French",
     },
     offerCard: {
       cityChip: "{city} | Vallée du Souss",
@@ -111,7 +116,7 @@ export const fr: Dictionary = {
     },
     seo: {
       businessDescription:
-        "Vols en montgolfière au lever du soleil à Agadir, avec licence, au-dessus de la vallée du Souss et des montagnes de l’Atlas.",
+        "Vols en montgolfière au lever du soleil à Agadir au-dessus de la vallée du Souss et des montagnes de l’Atlas, avec des pilotes brevetés.",
       productNameTemplate: "{name} à Agadir",
     },
   },
@@ -134,6 +139,11 @@ export const fr: Dictionary = {
       noteLink: "Demandez-nous sur WhatsApp",
       noteSuffix: "pour les tarifs famille.",
       questionWa: "Bonjour ! J’ai une question sur les vols en montgolfière à Marrakech.",
+      childrenNote: "Vous voyagez avec un enfant de moins de 3 ans ?",
+      childrenNoteLink: "Écrivez-nous sur WhatsApp",
+      childrenNoteSuffix: "et nous avons peut-être une solution pour votre famille.",
+      childrenWa:
+        "Bonjour, je souhaite réserver un vol en montgolfière avec un enfant de moins de 3 ans.\n\nDestination: Marrakech\nLanguage: French",
       lookingFor: "Vous cherchez notre destination principale ?",
       discoverLink: "Découvrez nos vols à Agadir au-dessus de la vallée du Souss",
     },
@@ -199,10 +209,10 @@ export const fr: Dictionary = {
     destinationMarrakech: "Marrakech",
     trust: {
       googleReviews: "{rating} sur les avis Google",
-      licensed: "Pilotes licenciés et assurance complète",
+      licensed: "Pilotes brevetés et assurance complète",
       whatsapp: "Réservation instantanée sur WhatsApp",
       ratedCompany: "Compagnie notée {rating} sur Google",
-      samePilots: "Les mêmes pilotes licenciés qu’à Agadir",
+      samePilots: "Les mêmes pilotes brevetés qu’à Agadir",
     },
     messages: {
       greeting: "Bonjour, je souhaite vérifier la disponibilité pour un vol en montgolfière.",
@@ -330,13 +340,13 @@ export const fr: Dictionary = {
     recentHistory: "Historique récent, {n} derniers jours",
     howScoreTitle: "Comment le score est calculé",
     howScoreBullets: [
-      "Mesuré sur la fenêtre réelle de vol de chaque matinée, de 05:00 à 11:00 heure locale.",
+      "Mesuré sur la plage horaire réelle de vol de chaque matinée, de 05:00 à 11:00 heure locale.",
       "Un vent de 15 km/h ou moins et des rafales de 28 km/h ou moins obtiennent la note maximale.",
       "La pluie, les orages et le brouillard réduisent fortement le score, exactement comme ils clouent les montgolfières au sol.",
       "À partir de 55, la matinée est Favorable ; à partir de 35, elle est Incertaine ; en dessous de 35, le risque est élevé.",
     ],
     howScoreNote:
-      "La probabilité de vol est une estimation indicative calculée à partir de données de prévisions publiques, jamais une garantie de vol. La météo peut changer vite et l’approbation finale du vol appartient toujours à votre pilote licencié le matin du vol.",
+      "La probabilité de vol est une estimation indicative calculée à partir de données de prévisions publiques, jamais une garantie de vol. La météo peut changer vite et l’approbation finale du vol appartient toujours à votre pilote breveté le matin du vol.",
     tableHeaders: {
       day: "Jour",
       score: "Score",
@@ -357,7 +367,7 @@ export const fr: Dictionary = {
 
   footer: {
     about:
-      "Vols en montgolfière au lever du soleil au départ d’Agadir, avec licence, au-dessus de la vallée du Souss. Les mêmes pilotes, la même sécurité, et un second site de décollage à Marrakech pour nos voyageurs.",
+      "Vols en montgolfière au lever du soleil au départ d’Agadir au-dessus de la vallée du Souss, avec des pilotes brevetés. Les mêmes pilotes, la même sécurité, et un second site de décollage à Marrakech pour nos voyageurs.",
     whatsappUs: "Écrivez-nous sur WhatsApp à tout moment",
     followTitle: "Suivez nos aventures à Agadir",
     followText: "De vrais vols au lever du soleil, de vraies matinées au-dessus de la vallée du Souss.",

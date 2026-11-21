@@ -67,6 +67,11 @@ export const es: Dictionary = {
       noteLink: "Pregúntanos por WhatsApp",
       noteSuffix: "para precios familiares.",
       questionWa: "¡Hola! Tengo una pregunta sobre los vuelos en globo en Agadir.",
+      childrenNote: "¿Viajas con un niño menor de 3 años?",
+      childrenNoteLink: "Escríbenos por WhatsApp",
+      childrenNoteSuffix: "y quizá tengamos una solución para tu familia.",
+      childrenWa:
+        "Hola, me gustaría reservar un vuelo en globo aerostático con un niño menor de 3 años.\n\nDestination: Agadir\nLanguage: Spanish",
     },
     offerCard: {
       cityChip: "{city} | Valle del Souss",
@@ -87,7 +92,7 @@ export const es: Dictionary = {
     },
     pickup: {
       title: "Recogida en el hotel y transporte en Agadir",
-      text: "El transporte de ida y vuelta desde tu hotel está incluido en todos los vuelos de Agadir en la ciudad de Agadir, Taghazout y Tamraght.",
+      text: "El transporte de ida y vuelta desde tu hotel está incluido en todos los vuelos a Agadir desde la ciudad de Agadir, Taghazout y Tamraght.",
     },
     gallery: {
       eyebrow: "Galería",
@@ -112,7 +117,7 @@ export const es: Dictionary = {
     },
     seo: {
       businessDescription:
-        "Vuelos en globo aerostático al amanecer en Agadir, con licencia, sobre el valle del Souss y las montañas del Atlas.",
+        "Vuelos en globo aerostático al amanecer en Agadir sobre el valle del Souss y las montañas del Atlas, con pilotos titulados.",
       productNameTemplate: "{name} en Agadir",
     },
   },
@@ -135,6 +140,11 @@ export const es: Dictionary = {
       noteLink: "Pregúntanos por WhatsApp",
       noteSuffix: "para precios familiares.",
       questionWa: "¡Hola! Tengo una pregunta sobre los vuelos en globo en Marrakech.",
+      childrenNote: "¿Viajas con un niño menor de 3 años?",
+      childrenNoteLink: "Escríbenos por WhatsApp",
+      childrenNoteSuffix: "y quizá tengamos una solución para tu familia.",
+      childrenWa:
+        "Hola, me gustaría reservar un vuelo en globo aerostático con un niño menor de 3 años.\n\nDestination: Marrakech\nLanguage: Spanish",
       lookingFor: "¿Buscas nuestro destino principal?",
       discoverLink: "Descubre nuestros vuelos a Agadir sobre el valle del Souss",
     },
@@ -245,7 +255,7 @@ export const es: Dictionary = {
     sending: "Enviando...",
     deliveredTo: "Entregado de forma segura a {email}",
     fallbackText:
-      "No hemos podido enviar tu correo ahora mismo. Toca abajo para enviar el mismo mensaje por WhatsApp. Respondemos 24 horas al día.",
+      "No hemos podido enviar tu correo en este momento. Toca abajo para enviar el mismo mensaje por WhatsApp. Respondemos 24 horas al día.",
     sendOnWhatsApp: "Enviar por WhatsApp",
     emailInstead: "Escríbenos por correo electrónico",
     mailtoSubject: "Mensaje de la web",
@@ -299,7 +309,7 @@ export const es: Dictionary = {
   },
 
   weather: {
-    liveOutlook: "Perspectiva en directo",
+    liveOutlook: "Previsión en directo",
     title: "Probabilidad de vuelo en globo a 7 días",
     areaAgadir: "Agadir, zona de despegue en el valle del Souss",
     areaMarrakech: "Marrakech, zona de despegue en el desierto",
@@ -332,7 +342,7 @@ export const es: Dictionary = {
     recentHistory: "Historial reciente, últimos {n} días",
     howScoreTitle: "Cómo se calcula la puntuación",
     howScoreBullets: [
-      "Medido durante la ventana real de vuelo de cada mañana, de 05:00 a 11:00 hora local.",
+      "Medido durante la franja horaria real de vuelo de cada mañana, de 05:00 a 11:00 hora local.",
       "Viento de 15 km/h o menos y rachas de 28 km/h o menos obtienen la máxima puntuación.",
       "La lluvia, las tormentas y la niebla reducen mucho la puntuación, igual que dejan los globos en tierra.",
       "A partir de 55 la mañana es Probable, a partir de 35 es Dudosa y por debajo de 35 es Riesgo alto.",
@@ -359,7 +369,7 @@ export const es: Dictionary = {
 
   footer: {
     about:
-      "Vuelos en globo aerostático al amanecer desde Agadir, con licencia, sobre el valle del Souss. Los mismos pilotos, la misma seguridad y una segunda zona de despegue en Marrakech para nuestros viajeros.",
+      "Vuelos en globo aerostático al amanecer desde Agadir sobre el valle del Souss, con pilotos titulados. Los mismos pilotos, la misma seguridad y una segunda zona de despegue en Marrakech para nuestros viajeros.",
     whatsappUs: "Escríbenos por WhatsApp a cualquier hora",
     followTitle: "Sigue nuestras aventuras en Agadir",
     followText: "Vuelos reales al amanecer, mañanas reales sobre el valle del Souss.",

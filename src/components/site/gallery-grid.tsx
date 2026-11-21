@@ -8,10 +8,12 @@
    (src/lib/marrakech-gallery.ts). The two collections are never mixed.
 
    Shows the first 8 photos initially (4 columns x 2 rows on desktop,
-   2 columns x 4 rows on mobile) and a centered "Voir plus" button below
-   the grid. Expanding reveals every remaining photo in the same grid and
+   2 columns x 4 rows on mobile) and a centered expand button below
+   the grid (dict.galleryGrid.more, localized per page language).
+   Expanding reveals every remaining photo in the same grid and
    in the original order, without any page reload or redirect, and swaps
-   the button to "Voir moins" to return to the initial 8 photo display.
+   the button to the localized dict.galleryGrid.less label to return
+   to the initial 8 photo display.
 
    Every tile still opens the Google Business Profile in a new tab. */
 

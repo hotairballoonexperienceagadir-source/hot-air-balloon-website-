@@ -237,6 +237,21 @@ export function AgadirPackages({
           </a>{" "}
           {dict.home.packages.noteSuffix}
         </p>
+
+        {/* Children under 3 note (owner decision 2026-11-21): friendly
+         * WhatsApp invitation for families with very young children. */}
+        <p className="mx-auto mt-3 max-w-3xl text-center text-sm text-muted-foreground">
+          {dict.home.packages.childrenNote}{" "}
+          <a
+            href={waLink(dict.home.packages.childrenWa)}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-semibold text-brand-600 underline-offset-4 hover:underline"
+          >
+            {dict.home.packages.childrenNoteLink}
+          </a>{" "}
+          {dict.home.packages.childrenNoteSuffix}
+        </p>
       </div>
     </section>
   );

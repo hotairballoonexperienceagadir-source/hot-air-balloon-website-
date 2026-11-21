@@ -138,7 +138,7 @@ const agadirGallery: GalleryItem[] = [
     type: "image",
     src: "/images/gallery-inflation-dawn-fire.jpg",
     alt: "Crew hält den Korb eines riesigen roten Heißluftballons in der Dämmerung neben einem lodernden Feuer",
-    caption: "Aufrüsten in der Dämmerung",
+    caption: "Ballonbereitung in der Dämmerung",
     width: 896,
     height: 1600,
   },
@@ -292,7 +292,7 @@ export const de: SiteContent = {
       headline: "Ballonfahrten in Agadir",
       intro:
         "Unsere Heimbasis und das Herz von allem, was wir tun. Jeden Morgen heben wir vom Souss-Tal ab und schweben über grüne Felder, Arganbäume und berberische Dörfer, während das Atlasgebirge am Horizont leuchtet.",
-      launchSite: "Startplatz im Souss-Tal, ca. 50 Minuten bis 1 Stunde von der Agadir Innenstadt entfernt",
+      launchSite: "Startplatz im Souss-Tal, ca. 50 Minuten bis 1 Stunde von der Innenstadt Agadirs entfernt",
       offers: [
         localizeOffer("agadir-classic", {
           cityName: "Agadir",
@@ -344,7 +344,7 @@ export const de: SiteContent = {
         },
         {
           time: "Vor Morgengrauen",
-          title: "Aufrüsten des Ballons",
+          title: "Vorbereitung des Ballons",
           text: "Sehen Sie zu, wie der Ballon zum Leben erwacht, während die Crew die Hülle füllt, und lernen Sie Ihren lizenzierten Piloten beim Sicherheitsbriefing kennen.",
         },
         {
@@ -365,7 +365,7 @@ export const de: SiteContent = {
         {
           time: "Nach der Landung",
           title: "Traditionelles berberisches Frühstück",
-          text: "Lassen Sie sich ein traditionelles marokkanisches berberisches Frühstück in einem traditionellen Caïdal-Zelt servieren, mit Minzentee und frischen Msemen.",
+          text: "Lassen Sie sich ein marokkanisches berberisches Frühstück in einem traditionellen Caïdal-Zelt servieren, mit Minzentee und frischen Msemen.",
         },
         {
           time: "Zeremonie",
@@ -381,11 +381,11 @@ export const de: SiteContent = {
       faqs: [
         {
           q: "Wann findet die Hotelabholung in Agadir statt?",
-          a: "Die Abholung von Ihrem Agadir Hotel findet früh am Morgen statt, zwischen 04:00 und 05:00 Uhr, je nach Saison und Lage Ihres Hotels. Das gesamte Erlebnis endet gegen 10:00 Uhr mit der Rückgabe an Ihrem Hotel.",
+          a: "Die Abholung von Ihrem Agadir Hotel findet früh am Morgen statt, zwischen 04:00 und 05:00 Uhr, je nach Saison und Lage Ihres Hotels. Das gesamte Erlebnis endet gegen 10:00 Uhr mit dem Rücktransfer zu Ihrem Hotel.",
         },
         {
           q: "Von wo starten die Ballonfahrten?",
-          a: "Unsere Startplätze liegen im Souss-Tal, ca. 50 Minuten bis 1 Stunde von der Agadir Innenstadt entfernt.",
+          a: "Unsere Startplätze liegen im Souss-Tal, ca. 50 Minuten bis 1 Stunde von der Innenstadt Agadirs entfernt.",
         },
         {
           q: "Ist der Transport von meinem Hotel inklusive?",
@@ -401,7 +401,7 @@ export const de: SiteContent = {
         },
         {
           q: "Wie lange sind wir in der Luft?",
-          a: "Der Ballon fliegt ungefähr 60 Minuten. Planen Sie den ganzen Vormittag ein, von der Abholung zwischen 04:00 und 05:00 Uhr bis zur Rückgabe gegen 10:00 Uhr.",
+          a: "Der Ballon fliegt ungefähr 60 Minuten. Planen Sie den ganzen Vormittag ein, von der Abholung zwischen 04:00 und 05:00 Uhr bis zum Rücktransfer gegen 10:00 Uhr.",
         },
         {
           q: "Was soll ich anziehen und mitbringen?",
@@ -409,10 +409,10 @@ export const de: SiteContent = {
         },
         {
           q: "Gibt es Alters- oder Gewichtsbeschränkungen?",
-          a: "Kinder ab 3 Jahren dürfen mit einem Erwachsenen mitfliegen. Für Gäste mit 140 kg oder mehr kontaktieren Sie uns bitte auf WhatsApp, damit wir prüfen können, ob wir Sie sicher mitnehmen können.",
+          a: "Kinder ab 3 Jahren dürfen mit einem Erwachsenen mitfliegen. Bis 140 kg buchen Sie ganz normal. Gäste über 140 kg sind ebenfalls herzlich willkommen: Schicken Sie uns einfach vor der Buchung eine Nachricht auf WhatsApp, dann bereiten wir alles für Sie vor.",
           link: {
             href: waLink(
-              "Hallo! Ich wiege 140 kg oder mehr und habe eine Frage zu den Ballonfahrten in Agadir. Könnten Sie bitte prüfen, ob es möglich ist, mich sicher mitzunehmen?",
+              "Hallo! Ich wiege mehr als 140 kg und möchte gern eine Ballonfahrt in Agadir buchen. Können wir das gemeinsam organisieren?",
             ),
             label: "Kontaktieren Sie uns auf WhatsApp",
           },
@@ -420,7 +420,7 @@ export const de: SiteContent = {
         {
           q: "Fliegen Sie auch in Marrakesch?",
           a: "Ja. Marrakesch ist unser zweites Reiseziel, betrieben vom selben Team aus Agadir, mit eigenem Startplatz in der Wüste vor der Stadt und eigenen Paketen und Preisen.",
-          link: { href: "/de/ballonfahrt-marrakesch", label: "Entdecken Sie unsere Marrakesch Fahrten" },
+          link: { href: "/de/ballonfahrt-marrakesch", label: "Entdecken Sie unsere Marrakesch-Fahrten" },
         },
         /* SEO-FAQs Phase E (Eigentümer Freigabe 2026-11-21): am ENDE der
          * Liste angehängt, aus den englischen FAQs übersetzt. */
@@ -430,18 +430,24 @@ export const de: SiteContent = {
         },
         {
           q: "Wann starten die Ballonfahrten in Agadir?",
-          a: "Jede Fahrt ist eine Sonnenaufgangsfahrt: Der Ballon steigt beim ersten Licht auf, während die Sonne über dem Atlasgebirge aufgeht, und der ganze Vormittag endet gegen 10:00 Uhr mit der Rückgabe an Ihrem Hotel.",
+          a: "Jede Fahrt ist eine Sonnenaufgangsfahrt: Der Ballon steigt beim ersten Licht auf, während die Sonne über dem Atlasgebirge aufgeht, und der ganze Vormittag endet gegen 10:00 Uhr mit dem Rücktransfer zu Ihrem Hotel.",
         },
         {
           q: "Dürfen Babys bei der Ballonfahrt in Agadir mitfliegen?",
-          a: "Aus Sicherheitsgründen sind Babys bei den Ballonfahrten nicht erlaubt. Kinder ab 3 Jahren sind herzlich willkommen und dürfen mit einem Erwachsenen mitfliegen.",
+          a: "Kinder ab 3 Jahren sind herzlich willkommen und dürfen mit einem Erwachsenen mitfliegen. Sie reisen mit einem Kind unter 3 Jahren? Schreiben Sie uns auf WhatsApp, vielleicht haben wir eine Lösung für Ihre Familie.",
+        },
+        /* FAQ Altersregeln für Kinder (Eigentümer Entscheidung 2026-11-21):
+         * am ENDE der Liste angehängt. */
+        {
+          q: "Ab welchem Alter dürfen Kinder in Agadir mitfliegen?",
+          a: "Kinder ab 3 Jahren dürfen in Begleitung eines Erwachsenen mitfliegen. Wenn Sie mit einem Kind unter 3 Jahren reisen, schreiben Sie uns vor der Buchung auf WhatsApp, und wir tun unser Bestes, um eine Lösung für Ihre Familie zu finden.",
         },
       ],
       waMessage:
         "Hallo! Ich möchte meine Ballonfahrt in Agadir buchen. Bitte senden Sie mir Verfügbarkeit und Preise.",
       faqWaMessage: "Hallo! Ich habe eine Frage zu den Ballonfahrten in Agadir.",
       stats: [
-        { value: "5,0", label: "Google Bewertung", icon: "star" },
+        { value: "5,0", label: "Google-Bewertung", icon: "star" },
         { value: "60 Min.", label: "Über dem Souss-Tal", icon: "sun" },
         { value: "100%", label: "Sicherheitsbilanz", icon: "shield" },
         { value: "24/7", label: "Buchung über WhatsApp", icon: "users" },
@@ -450,7 +456,7 @@ export const de: SiteContent = {
         {
           icon: "badge",
           title: "Agadir Heimbasis",
-          text: "Wir sind mit Herz und Seele ein Agadir Unternehmen. Unsere lizenzierten marokkanischen Piloten fliegen jeden einzelnen Morgen, das ganze Jahr über, das Souss-Tal.",
+          text: "Wir sind mit Herz und Seele ein Unternehmen aus Agadir. Unsere lizenzierten marokkanischen Piloten überfliegen das Souss-Tal jeden Morgen, das ganze Jahr über.",
         },
         {
           icon: "shield",
@@ -460,7 +466,7 @@ export const de: SiteContent = {
         {
           icon: "bus",
           title: "Hotelabholung in Agadir",
-          text: "Genießen Sie den kostenlosen Hin- und Rücktransport von der Agadir Stadt, Taghazout und Tamraght.",
+          text: "Genießen Sie den kostenlosen Hin- und Rücktransport aus der Stadt Agadir, aus Taghazout und aus Tamraght.",
         },
         {
           icon: "sparkles",
@@ -479,7 +485,7 @@ export const de: SiteContent = {
       bookingDestination: "Marrakech",
       headline: "Ballonfahrten in Marrakesch",
       intro:
-        "Unser zweites Reiseziel, betrieben vom selben Team aus Agadir. Heben Sie am Rand der roten Stadt aus der Wüste ab und sehen Sie zu, wie das Atlasgebirge bei Sonnenaufgang golden wird.",
+        "Unser zweites Reiseziel, betrieben vom selben Team aus Agadir. Heben Sie in der Wüste am Rand der roten Stadt ab und sehen Sie zu, wie das Atlasgebirge bei Sonnenaufgang golden wird.",
       launchSite: "Wüstenstartgebiet, ca. 30 Minuten vom Zentrum von Marrakesch entfernt",
       offers: [
         localizeOffer("mk-classic", {
@@ -538,16 +544,16 @@ export const de: SiteContent = {
           cityName: "Marrakesch",
           name: "Royal Flight",
           description:
-            "Der ganze Ballon nur für Ihre Gruppe, erhoben zum exklusivsten Ballonmorgen in Marrakesch. Fahren Sie in einem privaten 4x4, fliegen Sie rund 60 Minuten über die Wüstenlandschaften von Marrakesch und genießen Sie Ihr berberisches Frühstück, das in der Luft an Bord des Ballons serviert wird, mit dem Atlasgebirge am Horizont.",
+            "Der ganze Ballon nur für Ihre Gruppe, für den exklusivsten Morgen in Marrakesch. Fahren Sie in einem privaten 4x4, fliegen Sie rund 60 Minuten über die Wüstenlandschaften von Marrakesch und genießen Sie Ihr berberisches Frühstück an Bord des Ballons, serviert in der Luft, mit dem Atlasgebirge am Horizont.",
           duration: "Rund 60 Minuten in der Luft",
           groupSize: "Privater Ballon",
           imageAlt:
-            "Paar genießt das Frühstück in der Luft an Bord eines privaten Heißluftballons über Marrakesch bei Sonnenaufgang",
+            "Paar genießt das Frühstück an Bord eines privaten Heißluftballons über Marrakesch bei Sonnenaufgang",
           features: [
             { icon: "heart", label: "Privater 4x4 Transport" },
             { icon: "coffee", label: "Kaffee und marokkanischer Tee bei Ankunft" },
             { icon: "clock", label: "Private Ballonfahrt von rund 60 Minuten" },
-            { icon: "coffee", label: "Frühstück serviert in der Luft an Bord des Ballons" },
+            { icon: "coffee", label: "Frühstück an Bord des Ballons, serviert in der Luft" },
             { icon: "award", label: "Offizielles Flugzertifikat" },
           ],
           badge: "Königliches Erlebnis",
@@ -560,7 +566,7 @@ export const de: SiteContent = {
           text: "Ihr Fahrer holt Sie von Ihrem Hotel oder Riad in Marrakesch ab, während der Himmel noch dunkel ist.",
         },
         {
-          title: "Aufrüsten und Briefing",
+          title: "Ballonbereitung und Briefing",
           text: "Sehen Sie zu, wie der Ballon in der Wüste vor Marrakesch zum Leben erwacht, und treffen Sie Ihren Piloten zum Sicherheitsbriefing.",
         },
         {
@@ -586,13 +592,13 @@ export const de: SiteContent = {
         {
           time: "Gegen 10:00",
           title: "Zurück an Ihrem Hotel",
-          text: "Rückgabe in Marrakesch mit einer Kamerakarte voller Erinnerungen und Geschichten zum Erzählen.",
+          text: "Rücktransfer nach Marrakesch mit einer Kamerakarte voller Erinnerungen und Geschichten zum Erzählen.",
         },
       ],
       faqs: [
         {
           q: "Von wo starten die Ballonfahrten in Marrakesch?",
-          a: "Die Marrakesch Fahrten starten von unserem Wüstenstartgebiet, ca. 30 Minuten vom Zentrum von Marrakesch entfernt.",
+          a: "Die Marrakesch-Fahrten starten von unserem Wüstenstartgebiet, ca. 30 Minuten vom Zentrum von Marrakesch entfernt.",
         },
         {
           q: "Wann findet die Hotelabholung in Marrakesch statt?",
@@ -600,15 +606,15 @@ export const de: SiteContent = {
         },
         {
           q: "Ist der Hoteltransfer in Marrakesch inklusive?",
-          a: "Ja, Abholung und Rückgabe von allen Hotels und Riads im Bereich der Stadt Marrakesch sind bei jeder Marrakesch Fahrt inklusive.",
+          a: "Ja, Abholung und Rücktransfer von allen Hotels und Riads im Bereich der Stadt Marrakesch sind bei jeder Marrakesch-Fahrt inklusive.",
         },
         {
           q: "Was passiert bei schlechtem Wetter?",
           a: "Die Fahrten hängen von geeignetem Wetter und Wind ab. Wenn Ihre Fahrt aus Wetter- oder Sicherheitsgründen abgesagt wird, wählen Sie zwischen einem neuen Datum oder einer vollständigen Rückerstattung ohne Gebühren.",
         },
         {
-          q: "Was ist in den Marrakesch Fahrten enthalten?",
-          a: "Jede Marrakesch Fahrt beinhaltet den Transport, Kaffee und marokkanischen Tee bei Ankunft, die Ballonfahrt, das Frühstück und das Flugzertifikat. Der Classic Low Cost kostet 999 MAD pro Person, der Classic Flight 1.399 MAD pro Person, der Private Flight 5.299 MAD pro Person mit mindestens 2 Gästen und der Royal Flight 6.299 MAD pro Person mit mindestens 2 Gästen und Frühstück, das in der Luft an Bord des Ballons serviert wird.",
+          q: "Was ist in den Marrakesch-Fahrten enthalten?",
+          a: "Jede Marrakesch-Fahrt beinhaltet den Transport, Kaffee und marokkanischen Tee bei Ankunft, die Ballonfahrt, das Frühstück und das Flugzertifikat. Der Classic Low Cost kostet 999 MAD pro Person, der Classic Flight 1.399 MAD pro Person, der Private Flight 5.299 MAD pro Person mit mindestens 2 Gästen und der Royal Flight 6.299 MAD pro Person mit mindestens 2 Gästen und Frühstück an Bord des Ballons.",
         },
         {
           q: "Wo hat Ihr Unternehmen seinen Sitz?",
@@ -626,11 +632,17 @@ export const de: SiteContent = {
         },
         {
           q: "Kann ich eine private Ballonfahrt in Marrakesch buchen?",
-          a: "Ja. Der Private Flight kostet 5.299 MAD pro Person mit mindestens 2 Gästen und der Royal Flight 6.299 MAD pro Person mit mindestens 2 Gästen und Ihrem berberischen Frühstück, das in der Luft an Bord des Ballons serviert wird.",
+          a: "Ja. Der Private Flight kostet 5.299 MAD pro Person mit mindestens 2 Gästen und der Royal Flight 6.299 MAD pro Person mit mindestens 2 Gästen und Ihrem berberischen Frühstück an Bord des Ballons.",
         },
         {
           q: "Findet die Ballonfahrt in Marrakesch bei Sonnenaufgang statt?",
-          a: "Ja, jede Marrakesch Fahrt ist ein Erlebnis am frühen Morgen bei Sonnenaufgang: Hotelabholung um 04:45, Start bei Sonnenaufgang und Rückgabe an Ihrem Hotel gegen 10:00.",
+          a: "Ja, jede Marrakesch-Fahrt ist ein Erlebnis am frühen Morgen bei Sonnenaufgang: Hotelabholung um 04:45, Start bei Sonnenaufgang und Rücktransfer zu Ihrem Hotel gegen 10:00.",
+        },
+        /* FAQ Altersregeln für Kinder (Eigentümer Entscheidung 2026-11-21):
+         * am ENDE der Liste angehängt. */
+        {
+          q: "Ab welchem Alter dürfen Kinder in Marrakesch mitfliegen?",
+          a: "Kinder ab 3 Jahren dürfen in Begleitung eines Erwachsenen mitfliegen. Wenn Sie mit einem Kind unter 3 Jahren reisen, schreiben Sie uns vor der Buchung auf WhatsApp, und wir tun unser Bestes, um eine Lösung für Ihre Familie zu finden.",
         },
       ],
       waMessage:

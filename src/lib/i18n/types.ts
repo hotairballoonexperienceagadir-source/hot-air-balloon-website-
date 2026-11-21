@@ -75,6 +75,12 @@ export interface Dictionary {
       noteLink: string;
       noteSuffix: string;
       questionWa: string;
+      /** Children under 3 note, rendered under the packages note. */
+      childrenNote: string;
+      childrenNoteLink: string;
+      childrenNoteSuffix: string;
+      /** Prefilled WhatsApp message of the children under 3 note link. */
+      childrenWa: string;
     };
     offerCard: {
       cityChip: string;
@@ -138,6 +144,12 @@ export interface Dictionary {
       noteLink: string;
       noteSuffix: string;
       questionWa: string;
+      /** Children under 3 note, rendered under the packages note. */
+      childrenNote: string;
+      childrenNoteLink: string;
+      childrenNoteSuffix: string;
+      /** Prefilled WhatsApp message of the children under 3 note link. */
+      childrenWa: string;
       lookingFor: string;
       discoverLink: string;
     };

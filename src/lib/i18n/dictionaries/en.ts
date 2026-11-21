@@ -69,6 +69,11 @@ export const en: Dictionary = {
       noteLink: "Ask us on WhatsApp",
       noteSuffix: "for family pricing.",
       questionWa: "Hello! I have a question about balloon flights in Agadir.",
+      childrenNote: "Travelling with a child under 3?",
+      childrenNoteLink: "Message us on WhatsApp",
+      childrenNoteSuffix: "and we may have a solution for your family.",
+      childrenWa:
+        "Hello, I would like to book a hot air balloon flight with a child under 3 years old.\n\nDestination: Agadir\nLanguage: English",
     },
     offerCard: {
       cityChip: "{city} | Souss Valley",
@@ -137,6 +142,11 @@ export const en: Dictionary = {
       noteLink: "Ask us on WhatsApp",
       noteSuffix: "for family pricing.",
       questionWa: "Hello! I have a question about balloon flights in Marrakech.",
+      childrenNote: "Travelling with a child under 3?",
+      childrenNoteLink: "Message us on WhatsApp",
+      childrenNoteSuffix: "and we may have a solution for your family.",
+      childrenWa:
+        "Hello, I would like to book a hot air balloon flight with a child under 3 years old.\n\nDestination: Marrakech\nLanguage: English",
       lookingFor: "Looking for our main destination?",
       discoverLink: "Discover our Agadir flights over the Souss Valley",
     },
@@ -404,8 +414,8 @@ export const en: Dictionary = {
   },
 
   galleryGrid: {
-    more: "Voir plus",
-    less: "Voir moins",
+    more: "See more",
+    less: "See less",
     tileAria:
       "{caption}: see more photos and videos on our Google Business Profile (opens in a new tab)",
     imageAlt: "Gallery photo",

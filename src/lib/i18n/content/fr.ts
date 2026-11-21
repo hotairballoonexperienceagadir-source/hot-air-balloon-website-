@@ -345,7 +345,7 @@ export const fr: SiteContent = {
         {
           time: "Avant l’aube",
           title: "Gonflage de la montgolfière",
-          text: "Regardez la montgolfière prendre vie pendant que l’équipage gonfle l’enveloppe, puis faites connaissance avec votre pilote licencié lors du briefing de sécurité.",
+          text: "Regardez la montgolfière prendre vie pendant que l’équipage gonfle l’enveloppe, puis faites connaissance avec votre pilote breveté lors du briefing de sécurité.",
         },
         {
           time: "Lever du soleil",
@@ -409,10 +409,10 @@ export const fr: SiteContent = {
         },
         {
           q: "Y a-t-il des limites d’âge ou de poids ?",
-          a: "Les enfants à partir de 3 ans peuvent voler accompagnés d’un adulte. Pour les voyageurs pesant 140 kg ou plus, contactez-nous sur WhatsApp afin que nous puissions vérifier s’il est possible de vous accueillir en toute sécurité.",
+          a: "Les enfants à partir de 3 ans peuvent voler accompagnés d’un adulte. Jusqu’à 140 kg, vous réservez normalement. Au-delà de 140 kg, vous restez les bienvenus : envoyez-nous simplement un message sur WhatsApp avant de réserver et nous organisons tout pour vous.",
           link: {
             href: waLink(
-              "Bonjour ! Je pèse 140 kg ou plus et j’ai une question sur les vols en montgolfière à Agadir. Pouvez-vous vérifier s’il est possible de m’accueillir en toute sécurité ?",
+              "Bonjour ! Je pèse plus de 140 kg et je souhaite réserver un vol en montgolfière à Agadir. Pouvons-nous organiser cela ensemble ?",
             ),
             label: "Contactez-nous sur WhatsApp",
           },
@@ -434,7 +434,13 @@ export const fr: SiteContent = {
         },
         {
           q: "Les bébés peuvent-ils participer au vol en montgolfière à Agadir ?",
-          a: "Pour des raisons de sécurité, les bébés ne sont pas admis à bord des vols en montgolfière. Les enfants à partir de 3 ans sont les bienvenus et peuvent voler accompagnés d’un adulte.",
+          a: "Les enfants à partir de 3 ans sont les bienvenus et peuvent voler accompagnés d’un adulte. Vous voyagez avec un enfant de moins de 3 ans ? Écrivez-nous sur WhatsApp, nous avons peut-être une solution pour votre famille.",
+        },
+        /* FAQ règles d’âge des enfants (décision du propriétaire 2026-11-21) :
+         * ajoutée à la FIN de la liste. */
+        {
+          q: "À partir de quel âge les enfants peuvent-ils voler à Agadir ?",
+          a: "Les enfants à partir de 3 ans peuvent voler accompagnés d’un adulte. Si vous voyagez avec un enfant de moins de 3 ans, écrivez-nous sur WhatsApp avant de réserver et nous ferons tout notre possible pour trouver une solution pour votre famille.",
         },
       ],
       waMessage:
@@ -450,7 +456,7 @@ export const fr: SiteContent = {
         {
           icon: "badge",
           title: "Notre base à Agadir",
-          text: "Nous sommes une entreprise d’Agadir avant tout. Nos pilotes marocains licenciés survolent la vallée du Souss chaque matin, toute l’année.",
+          text: "Nous sommes une entreprise d’Agadir avant tout. Nos pilotes marocains brevetés survolent la vallée du Souss chaque matin, toute l’année.",
         },
         {
           icon: "shield",
@@ -538,7 +544,7 @@ export const fr: SiteContent = {
           cityName: "Marrakech",
           name: "Royal Flight",
           description:
-            "La montgolfière entièrement réservée à votre groupe, élevée à la matinée la plus exclusive de Marrakech. Voyagez en 4x4 privé, volez pendant environ 60 minutes au-dessus des paysages désertiques de Marrakech et savourez votre petit-déjeuner berbère servi dans les airs, à bord de la montgolfière, avec les montagnes de l’Atlas à l’horizon.",
+            "La montgolfière rien que pour vous, pour vivre la matinée la plus exclusive de Marrakech. Voyagez en 4x4 privé, volez pendant environ 60 minutes au-dessus des paysages désertiques de Marrakech et savourez votre petit-déjeuner berbère servi à bord de la montgolfière, dans les airs, avec les montagnes de l’Atlas à l’horizon.",
           duration: "Environ 60 minutes dans les airs",
           groupSize: "Montgolfière privée",
           imageAlt:
@@ -612,7 +618,7 @@ export const fr: SiteContent = {
         },
         {
           q: "Où est basée votre entreprise ?",
-          a: "Notre base se trouve à Agadir, où nous survolons la vallée du Souss chaque matin. Marrakech est notre seconde destination, survolée par la même équipe licenciée.",
+          a: "Notre base se trouve à Agadir, où nous survolons la vallée du Souss chaque matin. Marrakech est notre seconde destination, opérée par la même équipe de pilotes brevetés.",
           link: { href: "/fr", label: "Découvrir nos vols à Agadir" },
         },
         /* FAQ SEO Phase E : ajoutées à la FIN de la liste. */
@@ -632,6 +638,12 @@ export const fr: SiteContent = {
           q: "Le vol en montgolfière à Marrakech a-t-il lieu au lever du soleil ?",
           a: "Oui, chaque vol à Marrakech est une expérience du petit matin au lever du soleil : prise en charge à l’hôtel à 04:45, décollage au lever du soleil et retour à votre hôtel vers 10h00.",
         },
+        /* FAQ règles d’âge des enfants (décision du propriétaire 2026-11-21) :
+         * ajoutée à la FIN de la liste. */
+        {
+          q: "À partir de quel âge les enfants peuvent-ils voler à Marrakech ?",
+          a: "Les enfants à partir de 3 ans peuvent voler accompagnés d’un adulte. Si vous voyagez avec un enfant de moins de 3 ans, écrivez-nous sur WhatsApp avant de réserver et nous ferons tout notre possible pour trouver une solution pour votre famille.",
+        },
       ],
       waMessage:
         "Bonjour ! Je souhaite réserver un vol en montgolfière à Marrakech. Merci de m’envoyer la disponibilité et les tarifs.",
@@ -641,7 +653,7 @@ export const fr: SiteContent = {
   weatherNote:
     "Les vols sont soumis à des conditions météorologiques et de vent favorables. Si nous devons annuler pour des raisons de sécurité, vous choisissez entre une nouvelle date ou un remboursement intégral.",
   reviewHighlights: [
-    "Pilote licencié professionnel",
+    "Pilote professionnel breveté",
     "Vol au lever du soleil sûr et tout en douceur",
     "Excellent petit-déjeuner après l’atterrissage",
   ],
