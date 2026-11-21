@@ -25,7 +25,19 @@ export const metadata: Metadata = {
     "balloon ride morocco",
     "montgolfiere agadir",
   ],
-  alternates: { canonical: "/" },
+  /* Phase D: the hreflang alternates are ADDED to the existing metadata;
+   * the canonical, title, description, keywords and Open Graph stay exactly
+   * as they were. x-default points to the English homepage. */
+  alternates: {
+    canonical: "/",
+    languages: {
+      en: "/",
+      fr: "/fr",
+      de: "/de",
+      es: "/es",
+      "x-default": "/",
+    },
+  },
   openGraph: {
     type: "website",
     siteName: "Hot Air Balloon Experience Agadir",

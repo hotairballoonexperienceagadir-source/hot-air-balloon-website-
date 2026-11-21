@@ -12,6 +12,34 @@ export const metadata: Metadata = {
   },
   description:
     "Vols en montgolfière au lever du soleil à Agadir, Maroc. Survolez la vallée du Souss et les montagnes de l’Atlas, savourez un petit-déjeuner berbère sous une tente caïdale et repartez avec votre certificat de vol. Réservation par WhatsApp.",
+  keywords: [
+    "montgolfière agadir",
+    "vol en montgolfière agadir",
+    "montgolfière agadir prix",
+    "vallée du souss",
+    "lever du soleil agadir",
+    "montgolfière maroc",
+  ],
+  alternates: {
+    canonical: "/fr",
+    languages: {
+      en: "/",
+      fr: "/fr",
+      de: "/de",
+      es: "/es",
+      "x-default": "/",
+    },
+  },
+  openGraph: {
+    type: "website",
+    siteName: "Hot Air Balloon Experience Agadir",
+    locale: "fr_FR",
+    alternateLocale: ["en_US", "de_DE", "es_ES"],
+    title: "Montgolfière Agadir | Vols au lever du soleil sur la vallée du Souss",
+    description:
+      "Vols en montgolfière au lever du soleil à Agadir. Survolez la vallée du Souss et l’Atlas avec un petit-déjeuner berbère sous une tente caïdale inclus. Réservation directe par WhatsApp.",
+    images: [{ url: "/images/hero-agadir.webp", width: 1672, height: 941, alt: "Montgolfières au lever du soleil sur la vallée du Souss près d’Agadir" }],
+  },
   robots: { index: true, follow: true },
 };
 

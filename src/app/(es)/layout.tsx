@@ -12,6 +12,34 @@ export const metadata: Metadata = {
   },
   description:
     "Vuelos en globo aerostático al amanecer en Agadir, Marruecos. Vuela sobre el valle del Souss y las montañas del Atlas, disfruta de un desayuno bereber en una jaima caïdal y recibe tu certificado de vuelo. Reserva por WhatsApp.",
+  keywords: [
+    "globo aerostático agadir",
+    "paseo en globo agadir",
+    "vuelo en globo marruecos",
+    "valle del souss",
+    "amanecer en globo agadir",
+    "globo aerostático marruecos",
+  ],
+  alternates: {
+    canonical: "/es",
+    languages: {
+      en: "/",
+      fr: "/fr",
+      de: "/de",
+      es: "/es",
+      "x-default": "/",
+    },
+  },
+  openGraph: {
+    type: "website",
+    siteName: "Hot Air Balloon Experience Agadir",
+    locale: "es_ES",
+    alternateLocale: ["en_US", "fr_FR", "de_DE"],
+    title: "Globo aerostático Agadir | Vuelos al amanecer sobre el valle del Souss",
+    description:
+      "Vuelos en globo al amanecer en Agadir. Vuela sobre el valle del Souss y el Atlas, con desayuno bereber en una jaima caïdal incluido. Reserva directamente por WhatsApp.",
+    images: [{ url: "/images/hero-agadir.webp", width: 1672, height: 941, alt: "Globos aerostáticos al amanecer sobre el valle del Souss cerca de Agadir" }],
+  },
   robots: { index: true, follow: true },
 };
 

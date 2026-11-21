@@ -17,7 +17,18 @@ export const metadata: Metadata = {
     "sunrise balloon marrakech",
     "palmeraie balloon flight",
   ],
-  alternates: { canonical: "/marrakech-flights" },
+  /* Phase D: the hreflang alternates are ADDED; the canonical and every
+   * other metadata field stay exactly as they were. */
+  alternates: {
+    canonical: "/marrakech-flights",
+    languages: {
+      en: "/marrakech-flights",
+      fr: "/fr/montgolfiere-marrakech",
+      de: "/de/ballonfahrt-marrakesch",
+      es: "/es/globo-aerostatico-marrakech",
+      "x-default": "/marrakech-flights",
+    },
+  },
   openGraph: {
     type: "website",
     siteName: "Hot Air Balloon Experience Agadir",
