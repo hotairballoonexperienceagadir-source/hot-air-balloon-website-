@@ -12,13 +12,19 @@ Marketing and booking website for **Hot Air Balloon Experience Agadir**, a
 licensed hot air balloon operator based in Agadir, Morocco (Souss Valley
 launch site). The site presents the experiences and closes every booking
 through **WhatsApp deep links** (no payment gateway, no cart, no account
-system). The UI language is **French**.
+system). The site is multilingual (i18n, 2026-11-21): **English is the
+default language** at the original URLs, with French, German and Spanish
+versions under their own prefixes.
 
-- `/` (src/app/page.tsx) ........ Agadir homepage. Agadir is the MAIN
-  destination and the company home base.
-- `/marrakech-flights/` (src/app/marrakech-flights/page.tsx) ... Marrakech,
-  the SECOND destination, operated by the same team. Own offers, prices,
-  photos, timeline and FAQ. The two destinations are never mixed.
+- `/` (src/app/(en)/page.tsx) ........ Agadir homepage (EN, default).
+  Agadir is the MAIN destination and the company home base.
+- `/marrakech-flights/` (src/app/(en)/marrakech-flights/page.tsx) ...
+  Marrakech, the SECOND destination, operated by the same team. Own offers,
+  prices, photos, timeline and FAQ. The two destinations are never mixed.
+- `/fr/` + `/fr/montgolfiere-marrakech/` ... French versions.
+- `/de/` + `/de/ballonfahrt-marrakesch/` ... German versions (the city is
+  spelled "Marrakesch").
+- `/es/` + `/es/globo-aerostatico-marrakech/` ... Spanish versions.
 
 Everything the visitor reads (prices, texts, offers, reviews, FAQs) lives in
 typed data files under `src/lib/` and flows into the pages from there.
@@ -55,10 +61,32 @@ Notes:
 ## 4. Where things live (map)
 
 ```
-src/app/page.tsx                     Agadir homepage (section composition)
-src/app/marrakech-flights/page.tsx   Marrakech page + its metadata/og + JSON-LD
-src/app/layout.tsx                   fonts, global metadata (og image hero-agadir.webp)
+src/app/(en)/layout.tsx              EN root layout: original metadata UNTOUCHED
+                                     (+ hreflang alternates added Phase D)
+src/app/(en)/page.tsx                Agadir homepage (EN)
+src/app/(en)/marrakech-flights/      Marrakech page (EN) + its metadata/og
+src/app/(fr|de|es)/layout.tsx        Locale root layouts (<html lang>, own
+                                     metadata, og:locale, hreflang)
+src/app/(fr)/fr/montgolfiere-marrakech/   (de)/de/ballonfahrt-marrakesch/
+src/app/(es)/es/globo-aerostatico-marrakech/   translated Marrakech pages
+src/app/global-not-found.tsx         English shell 404 behind the four groups
+                                     (needs experimental.globalNotFound)
 src/app/globals.css                  theme tokens (brand palette, fonts, scrollbar)
+                                     IMPORTANT: imported by EACH language layout
+src/lib/i18n/config.ts               locales, pagePaths URL map (ONE source for
+                                     switcher + hreflang + sitemap), native names
+src/lib/i18n/types.ts                Dictionary + SiteContent + client subset types
+src/lib/i18n/dictionaries/{en,fr,de,es}.ts   all UI strings per language (EN
+                                     dictionary = the approved copy, word for word)
+src/lib/i18n/content/{en,fr,de,es}.ts localized data (EN re-exports site.ts by
+                                     reference so English never drifts; locale
+                                     files pull prices from site.ts by offer id)
+src/lib/i18n/context.tsx             I18nProvider + useI18n (client components)
+src/lib/i18n/client-value.ts         builds the SLIM context value (server passes
+                                     the full dict/content to server components
+                                     as props; only a subset goes to the client)
+src/lib/i18n/format.ts               formatPrice / formatRating / tpl placeholders
+src/lib/fonts.ts                     Jost + Poppins, imported by all 4 layouts
 src/lib/site.ts                      SINGLE SOURCE OF TRUTH for all content:
                                      site identity + WhatsApp number + waLink()
                                      message helpers, cities, agadirOffers
@@ -85,12 +113,15 @@ src/lib/marrakech-gallery.ts         Marrakech gallery: exactly the 15 owner
                                      provided photos
 src/lib/experience-slides.ts         derives each slideshow from its gallery
 src/lib/weather.ts                   live weather service for the forecast widget
-src/components/site/                 Header, Footer, Hero, MarrakechHero,
-                                     sections.tsx (Agadir sections incl.
-                                     ExperienceSlideshow usage, CtaSection),
-                                     MarrakechSections.tsx, ExperienceSlideshow,
-                                     Reviews, FlightProbability, FaqSection,
-                                     FloatingActions, WhatsAppIcon
+src/components/site/                 Header (+ LanguageSwitcher), Footer, Hero,
+                                     MarrakechHero, sections.tsx, MarrakechSections.tsx,
+                                     AgadirHome.tsx + MarrakechPage.tsx (shared page
+                                     bodies incl. per-locale JSON-LD), ExperienceSlideshow,
+                                     BookingBar/BookingModal/BookingFields,
+                                     ContactModal, Reviews, FlightProbability,
+                                     FaqSection, FloatingActions, WhatsAppIcon
+src/app/sitemap.ts                   2 English entries (original shape) + 6 locale
+                                     entries with xhtml hreflang alternates
 src/app/api/google-reviews/route.ts  reviews API (see section 6)
 src/app/api/flight-forecast/route.ts forecast API (see section 6)
 src/app/api/og/route.tsx             dynamic 1200x630 OG image generator
@@ -112,12 +143,18 @@ public/images/                       all site images
    never the ASCII apostrophe. Check with:
    `rg -n "–|—" src/` and `rg -n "'" src/components src/lib`
 3. **Booking is WhatsApp only.** Every CTA builds a `wa.me` link through
-   `waLink()` in site.ts with a prefilled French message. Do not introduce
-   other booking or payment flows. The shared availability message in
-   `use-booking-form.ts` (used by BOTH the BookingModal and the inline
-   BookingBar) ends with a Total line computed at submit time as
-   selectedOffer.priceMad x guests and formatted with thousands separators
-   ("Total: 1,998 MAD"). Never hardcode totals anywhere.
+   `waLink()` in site.ts with a prefilled message in the LANGUAGE of the
+   page (owner approved 2026-11-21). Do not introduce other booking or
+   payment flows. The shared availability message in `use-booking-form.ts`
+   (used by BOTH the BookingModal and the inline BookingBar) carries a
+   literal "Language: English/French/German/Spanish" line after the Total
+   line, an ISO date and the localized destination name (German
+   "Marrakesch"). The Total is computed at submit time as
+   selectedOffer.priceMad x guests and localized ("Total: 1,998 MAD" EN /
+   "2 199 MAD" FR narrow no break space / "2.199 MAD" DE and ES). Never
+   hardcode totals anywhere. Package names stay ENGLISH in every language
+   (owner decision): Classic Flight, Private Flight, Royal Flight,
+   Classic Low Cost.
 4. **Reviews integrity.** Reviews are only ever READ from Google. Never
    invent, filter, reorder for vanity, or synthesize owner replies.
 5. **Do not regress the header behaviors** (section 7) or the
@@ -128,18 +165,35 @@ public/images/                       all site images
    image file, and keep alt text + captions in gallery entries accurate.
 8. **No "Palmeraie" in visible Marrakech content.** Owner decision
    2026-11-20: the word "Palmeraie" must not appear in VISIBLE Marrakech
-   copy. Offer card location tags, the booking bar chip, the booking
-   modal destination and the WhatsApp message destination now read just
-   "Marrakech"; descriptions, timeline, FAQ answers, footer, gallery
-   captions and image alt texts describe the area as Marrakech desert
-   landscapes / desert launch area instead. SEO is intentionally left
-   UNCHANGED: page title, meta description, keywords, Open Graph,
-   Twitter cards, JSON-LD, sitemap, robots, OG image route, URLs and
-   slugs keep their original wording even where they contain
+   copy in ANY language (EN, FR, DE, ES). Offer card location tags, the
+   booking bar chip, the booking modal destination and the WhatsApp
+   message destination read just "Marrakech" ("Marrakesch" in German);
+   descriptions, timeline, FAQ answers, footer, gallery captions and
+   image alt texts describe the area as Marrakech desert landscapes /
+   desert launch area instead. SEO is intentionally left UNCHANGED on the
+   ENGLISH page only: page title, meta description, keywords, Open Graph,
+   JSON-LD and slugs keep their original wording even where they contain
    "Palmeraie". The three marrakechOffers `seoDescription` fields in
    site.ts freeze the pre-decision JSON-LD copy (the Marrakech Product
    schema renders `offer.seoDescription ?? offer.description`) and must
-   NEVER be edited.
+   NEVER be edited. Translated pages have NO Palmeraie exemption: their
+   metadata and JSON-LD are Palmeraie free.
+9. **i18n rules (owner approved 2026-11-21).** English is the default
+   language and the two English URLs (`/`, `/marrakech-flights`) are never
+   moved or redirected. NO automatic browser/IP language redirect ever
+   exists: the header switcher links to the same page in the other
+   language (map in `src/lib/i18n/config.ts` pagePaths) and only stores
+   the choice in localStorage (`preferred-locale`). Every new visible
+   string goes into all four dictionaries (typed by `Dictionary`; the
+   provider carries only the client subset). Dictionaries are plain data:
+   no functions, placeholders resolved with `tpl()`. Prices always come
+   from site.ts; format only with `formatPrice()`. New ENGLISH copy is
+   append only (never rewrite or remove approved sentences) and new
+   English FAQs are appended at the END of the FAQ arrays so the homepage
+   JSON-LD FAQPage `faqs.slice(0, 6)` stays byte identical. Each language
+   keeps Agadir and Marrakech content fully separated and each layout
+   imports `../globals.css` (the original restructure bug: pages render
+   unstyled without it).
 
 ## 6. API routes
 
@@ -240,8 +294,10 @@ instantly, no controls rendered. Do not make it rotate on screen.
 
 ## 11. Build status (already implemented, keep working)
 
-- Two complete pages (Agadir home, Marrakech) with hero + booking widgets
-  that build prefilled WhatsApp deep links from date/package/guests.
+- Two complete pages in FOUR languages (EN default at the original URLs,
+  FR/DE/ES under their prefixes) with hero + booking widgets that build
+  prefilled WhatsApp deep links from date/package/guests, in the visitor
+  language with the Language line.
 - Offers cards for both destinations with per-offer WhatsApp messages.
 - Galleries (15 + 15 photos) as responsive grids, each feeding its derived
   Experience slideshow (ExperienceSlideshow.tsx, no lightbox).
@@ -256,15 +312,23 @@ instantly, no controls rendered. Do not make it rotate on screen.
   lost. Health check: GET /api/contact/health.
 - Shared Header/Footer with the logo behaviors described above, floating
   WhatsApp/call buttons, sticky footer.
-- SEO: per page metadata + og images, JSON-LD (Organization, offers,
-  breadcrumbs), sitemap.ts, robots.ts, /api/og generator, /en redirect.
+- SEO: per page metadata + og images in all four languages, hreflang
+  alternates (en/fr/de/es + x-default to the English URL) and self
+  canonicals, per-locale JSON-LD (LocalBusiness, offers, FAQ slice(0,6)
+  on Agadir homes, breadcrumbs on Marrakech), sitemap.ts with the 6
+  locale entries carrying alternates, robots.ts, /api/og generator,
+  /en redirect. Never redirect on Accept-Language.
+- Language switcher in the header (desktop dropdown + mobile menu list):
+  real crawlable `<a href>` links, same-page mapping, localStorage
+  memory only.
 
 ## 12. Definition of done for any change
 
 1. `bun run lint` passes.
 2. dev.log shows no compile or runtime errors.
-3. Browser verified: Agadir and Marrakech pages, desktop (1440x900) and
-   mobile (390x844): no broken images, galleries render in order,
-   slideshows work, WhatsApp CTAs open correct prefilled messages,
-   sticky footer correct.
+3. Browser verified: all 8 pages (2 x 4 languages), desktop (1440x900)
+   and mobile (390x844): no broken images, galleries render in order,
+   slideshows work, WhatsApp CTAs open correct prefilled messages (per
+   language, with the Language line), language switcher keeps the visitor
+   on the same page, sticky footer correct.
 4. No changes outside the scope the user asked for.
