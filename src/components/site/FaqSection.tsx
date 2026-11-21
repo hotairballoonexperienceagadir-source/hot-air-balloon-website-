@@ -6,23 +6,27 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
-import { faqs, waLink, type Faq } from "@/lib/site";
+import { waLink, type Faq } from "@/lib/site";
+import type { Dictionary } from "@/lib/i18n/types";
 import { WhatsAppIcon } from "./icons";
 
 /**
- * FAQ section. The homepage uses the Agadir FAQ by default and the Marrakech
- * page passes its own list through props.
+ * FAQ section. The homepage uses the localized Agadir FAQ by default and the
+ * Marrakech page passes its own localized list through props. All shared UI
+ * strings come from the dictionary of the current language.
  */
 export function FaqSection({
-  items = faqs,
-  waMessage = "Hello! I have a question about the balloon flights in Agadir.",
-  title = "Frequently Asked Questions",
-  subtitle = "Everything you need to know before your balloon flight over the Souss Valley in Agadir.",
+  items,
+  waMessage,
+  title,
+  subtitle,
+  dict,
 }: {
-  items?: Faq[];
-  waMessage?: string;
-  title?: string;
-  subtitle?: string;
+  items: Faq[];
+  waMessage: string;
+  title: string;
+  subtitle: string;
+  dict: Dictionary;
 }) {
   return (
     <section id="faq" className="bg-background py-16 md:py-24">
@@ -75,11 +79,11 @@ export function FaqSection({
         </Accordion>
 
         <div className="mt-10 text-center">
-          <p className="text-sm text-muted-foreground">Still have a question?</p>
+          <p className="text-sm text-muted-foreground">{dict.common.stillQuestion}</p>
           <Button asChild className="mt-3 rounded-full bg-brand-500 px-6 py-3 font-bold text-white hover:bg-brand-600">
             <a href={waLink(waMessage)} target="_blank" rel="noopener noreferrer">
               <WhatsAppIcon className="h-4 w-4" />
-              Ask Us on WhatsApp
+              {dict.common.askUs}
             </a>
           </Button>
         </div>

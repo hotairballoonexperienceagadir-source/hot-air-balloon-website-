@@ -21,19 +21,15 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { galleryExperienceSlides } from "@/lib/experience-slides";
 import type { GalleryItem } from "@/lib/gallery";
 import {
-  agadirOffers,
-  experienceSteps,
-  pickupAreas,
   site,
-  stats,
   waLink,
-  weatherNote,
-  whyUs,
   type Offer,
 } from "@/lib/site";
+import { pagePaths, type Locale } from "@/lib/i18n/config";
+import { formatPrice, formatRating, tpl } from "@/lib/i18n/format";
+import type { AgadirContent, Dictionary } from "@/lib/i18n/types";
 import { BookingButton } from "./BookingButton";
 import { ExperienceSlideshow } from "./ExperienceSlideshow";
 import { GalleryGrid } from "./gallery-grid";
@@ -74,11 +70,11 @@ const whyIcons: Record<string, LucideIcon> = {
 /* Stats band                                                          */
 /* ------------------------------------------------------------------ */
 
-export function Stats() {
+export function Stats({ dict, agadir }: { dict: Dictionary; agadir: AgadirContent }) {
   return (
     <section aria-label="Company statistics" className="border-b border-white/5 bg-navy-900">
       <div className="mx-auto grid max-w-7xl grid-cols-2 gap-6 px-4 py-10 md:grid-cols-4 md:gap-0 md:px-6 md:py-12">
-        {stats.map((stat) => {
+        {agadir.stats.map((stat) => {
           const Icon = statIcons[stat.icon] ?? Sparkles;
           return (
             <div
@@ -102,7 +98,17 @@ export function Stats() {
 /* Agadir packages. The two real services of our main destination.     */
 /* ------------------------------------------------------------------ */
 
-function AgadirOfferCard({ offer, tall }: { offer: Offer; tall?: boolean }) {
+function AgadirOfferCard({
+  offer,
+  dict,
+  locale,
+  tall,
+}: {
+  offer: Offer;
+  dict: Dictionary;
+  locale: Locale;
+  tall?: boolean;
+}) {
   return (
     <article
       className={`group relative flex flex-col overflow-hidden rounded-2xl bg-card shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${
@@ -128,14 +134,16 @@ function AgadirOfferCard({ offer, tall }: { offer: Offer; tall?: boolean }) {
           className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
         />
         <span className="absolute bottom-3 left-3 rounded-full bg-navy-950/75 px-3 py-1 text-xs font-semibold text-cream-100 backdrop-blur">
-          {offer.cityName} | Souss Valley
+          {tpl(dict.home.offerCard.cityChip, { city: offer.cityName })}
         </span>
       </div>
 
       <div className="flex flex-1 flex-col gap-4 p-4 sm:p-6 md:p-7">
         <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
           <Stars className="text-gold-500" />
-          <span className="text-xs text-muted-foreground">{site.googleRating.toFixed(1)} rated on Google</span>
+          <span className="text-xs text-muted-foreground">
+            {tpl(dict.home.offerCard.ratingLine, { rating: formatRating(site.googleRating, locale) })}
+          </span>
         </div>
 
         <div>
@@ -161,14 +169,14 @@ function AgadirOfferCard({ offer, tall }: { offer: Offer; tall?: boolean }) {
 
         <div className="mt-auto flex flex-col items-stretch gap-3 border-t border-border pt-4 sm:flex-row sm:items-end sm:justify-between sm:gap-3">
           <div>
-            <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">From</p>
+            <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">{dict.common.from}</p>
             <p className="font-display text-2xl font-bold text-foreground sm:text-3xl">
-              {offer.priceMad.toLocaleString("en-US")} MAD
-              <span className="ml-1 text-xs font-normal text-muted-foreground">/ person</span>
+              {formatPrice(offer.priceMad, locale)}
+              <span className="ml-1 text-xs font-normal text-muted-foreground">{dict.common.perPerson}</span>
             </p>
             {offer.minGuests && (
               <p className="mt-1 text-xs font-semibold text-brand-700">
-                Minimum booking: {offer.minGuests} people
+                {tpl(dict.common.minBooking, { n: offer.minGuests })}
               </p>
             )}
           </div>
@@ -178,7 +186,7 @@ function AgadirOfferCard({ offer, tall }: { offer: Offer; tall?: boolean }) {
             className="rounded-full bg-brand-500 px-6 py-3 font-bold text-white hover:bg-brand-600"
           >
             <WhatsAppIcon className="h-4 w-4" />
-            Book
+            {dict.common.book}
           </BookingButton>
         </div>
       </div>
@@ -186,45 +194,48 @@ function AgadirOfferCard({ offer, tall }: { offer: Offer; tall?: boolean }) {
   );
 }
 
-export function AgadirPackages() {
+export function AgadirPackages({
+  dict,
+  agadir,
+  locale,
+}: {
+  dict: Dictionary;
+  agadir: AgadirContent;
+  locale: Locale;
+}) {
   return (
     <section id="flights" className="bg-background py-16 md:py-24">
       <div className="mx-auto max-w-7xl px-4 md:px-6">
         <div className="mx-auto max-w-2xl text-center">
           <span className="inline-flex items-center gap-2 rounded-full bg-secondary px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-secondary-foreground">
-            <Sun className="h-3.5 w-3.5" aria-hidden="true" /> Agadir Balloon Flight Packages
+            <Sun className="h-3.5 w-3.5" aria-hidden="true" /> {dict.home.packages.badge}
           </span>
           <h2 className="mt-4 font-display text-3xl font-bold text-foreground text-balance md:text-4xl">
-            Our Flight Packages and Prices in Agadir
+            {dict.home.packages.title}
           </h2>
-          <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-            Two ways to live the sunrise over the Souss Valley: our shared Classic Flight or the fully private
-            experience. Every flight includes hotel pickup in Agadir, welcome tea, the flight and the Berber
-            breakfast.
-          </p>
+          <p className="mt-4 text-base leading-relaxed text-muted-foreground">{dict.home.packages.text}</p>
           <p className="mt-2 inline-flex items-center gap-2 text-sm font-semibold text-brand-700">
-            <MapPin className="h-4 w-4" aria-hidden="true" /> Souss Valley launch site, approximately 50 minutes to 1 hour from central Agadir
+            <MapPin className="h-4 w-4" aria-hidden="true" /> {dict.home.packages.launchSite}
           </p>
         </div>
 
         <div className="mx-auto mt-12 grid max-w-5xl grid-cols-2 gap-4 sm:gap-8">
-          {agadirOffers.map((offer) => (
-            <AgadirOfferCard key={offer.id} offer={offer} tall />
+          {agadir.offers.map((offer) => (
+            <AgadirOfferCard key={offer.id} offer={offer} dict={dict} locale={locale} tall />
           ))}
         </div>
 
         <p className="mx-auto mt-8 max-w-3xl text-center text-sm text-muted-foreground">
-          Sunrise over the Souss Valley and panoramic views of the Atlas Mountains are included in every flight.
-          Children from 3 years old can fly with an adult.{" "}
+          {dict.home.packages.note}{" "}
           <a
-            href={waLink("Hello! I have a question about balloon flights in Agadir.")}
+            href={waLink(dict.home.packages.questionWa)}
             target="_blank"
             rel="noopener noreferrer"
             className="font-semibold text-brand-600 underline-offset-4 hover:underline"
           >
-            Ask us on WhatsApp
+            {dict.home.packages.noteLink}
           </a>{" "}
-          for family pricing.
+          {dict.home.packages.noteSuffix}
         </p>
       </div>
     </section>
@@ -235,25 +246,22 @@ export function AgadirPackages() {
 /* Why us                                                              */
 /* ------------------------------------------------------------------ */
 
-export function WhyUs() {
+export function WhyUs({ dict, agadir }: { dict: Dictionary; agadir: AgadirContent }) {
   return (
     <section id="why-us" className="bg-cream-100 py-16 md:py-24">
       <div className="mx-auto max-w-7xl px-4 md:px-6">
         <div className="mx-auto max-w-2xl text-center">
           <span className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-brand-700 shadow-sm">
-            <Sparkles className="h-3.5 w-3.5" aria-hidden="true" /> Why Choose Us
+            <Sparkles className="h-3.5 w-3.5" aria-hidden="true" /> {dict.home.whyUs.badge}
           </span>
           <h2 className="mt-4 font-display text-3xl font-bold text-foreground text-balance md:text-4xl">
-            Why Choose Our Agadir Experience
+            {dict.home.whyUs.title}
           </h2>
-          <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-            From the balloons we fly to the crew we train, every decision is built around your safety and your
-            morning above the Souss Valley.
-          </p>
+          <p className="mt-4 text-base leading-relaxed text-muted-foreground">{dict.home.whyUs.text}</p>
         </div>
 
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {whyUs.map((item) => {
+          {agadir.whyUs.map((item) => {
             const Icon = whyIcons[item.icon] ?? Sparkles;
             return (
               <div
@@ -278,7 +286,17 @@ export function WhyUs() {
 /* Agadir experience: intro + 9 steps + weather note                   */
 /* ------------------------------------------------------------------ */
 
-export function Experience() {
+export function Experience({
+  dict,
+  agadir,
+  weatherNote,
+  galleryItems,
+}: {
+  dict: Dictionary;
+  agadir: AgadirContent;
+  weatherNote: string;
+  galleryItems: GalleryItem[];
+}) {
   return (
     <section id="experience" className="bg-navy-900 py-16 md:py-24">
       <div className="mx-auto max-w-7xl px-4 md:px-6">
@@ -287,27 +305,28 @@ export function Experience() {
           <div className="relative">
             <div className="relative h-[320px] w-full overflow-hidden rounded-2xl md:h-[440px]">
               <ExperienceSlideshow
-                slides={galleryExperienceSlides}
+                slides={galleryItems
+                  .filter((item) => item.type === "image")
+                  .map((item) => ({ src: item.src, alt: item.alt ?? dict.galleryGrid.imageAlt }))}
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </div>
             <span className="absolute left-4 top-4 rounded-xl bg-brand-500 px-4 py-2 text-center font-display text-lg font-bold leading-tight text-white shadow-lg">
-              04:00 to 05:00
-              <span className="block text-[10px] font-semibold uppercase tracking-widest text-white/85">Hotel pickup</span>
+              {dict.home.experience.slideBadgeTime}
+              <span className="block text-[10px] font-semibold uppercase tracking-widest text-white/85">
+                {dict.home.experience.slideBadgeLabel}
+              </span>
             </span>
           </div>
 
           <div>
             <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-brand-300">
-              <Flame className="h-3.5 w-3.5" aria-hidden="true" /> The Experience
+              <Flame className="h-3.5 w-3.5" aria-hidden="true" /> {dict.home.experience.badge}
             </span>
             <h2 className="mt-4 font-display text-3xl font-bold text-white text-balance md:text-4xl">
-              How Your Agadir Balloon Morning Works
+              {dict.home.experience.title}
             </h2>
-            <p className="mt-4 text-base leading-relaxed text-cream-100/85">
-              From the first knock on your hotel door before dawn to the last sip of mint tea in the Caïdal
-              tent, here is the complete journey we share with you over the Souss Valley.
-            </p>
+            <p className="mt-4 text-base leading-relaxed text-cream-100/85">{dict.home.experience.text}</p>
 
             <div className="mt-6 rounded-xl border border-white/10 bg-white/5 p-4">
               <p className="flex items-start gap-3 text-sm leading-relaxed text-cream-100/85">
@@ -321,14 +340,14 @@ export function Experience() {
               className="mt-7 rounded-full bg-brand-500 px-7 py-3 font-bold text-white hover:bg-brand-600"
             >
               <WhatsAppIcon className="h-4 w-4" />
-              Plan Your Flight
+              {dict.home.experience.planCta}
             </BookingButton>
           </div>
         </div>
 
         {/* 9 steps */}
         <ol className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {experienceSteps.map((step, index) => (
+          {agadir.experienceSteps.map((step, index) => (
             <li key={step.title} className="relative rounded-2xl border border-white/10 bg-white/5 p-5">
               <span className="absolute right-4 top-4 font-display text-4xl font-bold text-white/10" aria-hidden="true">
                 {String(index + 1).padStart(2, "0")}
@@ -350,22 +369,17 @@ export function Experience() {
 /* Pickup areas                                                        */
 /* ------------------------------------------------------------------ */
 
-export function PickupStrip() {
+export function PickupStrip({ dict, agadir }: { dict: Dictionary; agadir: AgadirContent }) {
   return (
     <section aria-label="Pickup areas" className="border-y border-border bg-cream-50 py-12">
       <div className="mx-auto max-w-7xl px-4 md:px-6">
         <div className="flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-center">
           <div className="max-w-xl">
-            <h2 className="font-display text-2xl font-bold text-foreground md:text-3xl">
-              Hotel Pickup and Transportation in Agadir
-            </h2>
-            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-              Round-trip transportation from your hotel is included in every Agadir flight across
-              Agadir city, Taghazout and Tamraght.
-            </p>
+            <h2 className="font-display text-2xl font-bold text-foreground md:text-3xl">{dict.home.pickup.title}</h2>
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{dict.home.pickup.text}</p>
           </div>
           <div className="grid w-full gap-3 sm:grid-cols-3 lg:w-auto">
-            {pickupAreas.map((area) => (
+            {agadir.pickupAreas.map((area) => (
               <div
                 key={area.name}
                 className={`rounded-xl border p-4 ${
@@ -395,26 +409,20 @@ export function PickupStrip() {
 
 type GalleryProps = {
   /** Section eyebrow chip text. */
-  eyebrow?: string;
+  eyebrow: string;
   /** Section heading. */
-  title?: string;
+  title: string;
   /** Section intro paragraph. */
-  description?: string;
-  /** Destination gallery collection. Defaults to the Agadir gallery; the
-   * Marrakech page passes its own separate marrakechGalleryItems. */
-  items?: GalleryItem[];
+  description: string;
+  /** Destination gallery collection (Agadir or Marrakech, never mixed). */
+  items: GalleryItem[];
 };
 
 /* Destination gallery driven entirely by its own gallery collection file
- * (src/lib/gallery.ts for Agadir, src/lib/marrakech-gallery.ts for
- * Marrakech). Every item opens the Google Business Profile in a new tab,
- * so there is no lightbox and no inline video player. */
-export function Gallery({
-  eyebrow = "Gallery",
-  title = "Agadir and the Souss Valley From Above",
-  description = "A glimpse of the landscapes, flights and mornings waiting for you in the skies of Agadir.",
-  items,
-}: GalleryProps) {
+ * (localized alt text and captions come with the collection). Every item
+ * opens the Google Business Profile in a new tab, so there is no lightbox
+ * and no inline video player. */
+export function Gallery({ eyebrow, title, description, items }: GalleryProps) {
   return (
     <section id="gallery" className="bg-cream-100 py-16 md:py-24">
       <div className="mx-auto max-w-7xl px-4 md:px-6">
@@ -440,12 +448,12 @@ export function Gallery({
 /* Final CTA                                                           */
 /* ------------------------------------------------------------------ */
 
-export function CtaSection() {
+export function CtaSection({ dict, locale }: { dict: Dictionary; locale: Locale }) {
   return (
     <section id="book" className="relative isolate overflow-hidden bg-navy-950 py-20 md:py-28">
       <Image
         src="/images/agadir-hero.webp"
-        alt="Hot air balloons flying over the Souss Valley near Agadir at golden sunrise"
+        alt={dict.home.cta.imageAlt}
         fill
         loading="lazy"
         sizes="100vw"
@@ -454,14 +462,13 @@ export function CtaSection() {
       <div className="absolute inset-0 bg-gradient-to-b from-navy-950/85 via-navy-950/60 to-navy-950/90" aria-hidden="true" />
       <div className="relative mx-auto max-w-3xl px-4 text-center md:px-6">
         <span className="inline-flex items-center gap-2 rounded-full bg-brand-500/90 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-white">
-          Ready for Adventure?
+          {dict.home.cta.badge}
         </span>
         <h2 className="mt-5 font-display text-3xl font-bold text-white text-balance md:text-5xl">
-          Book Your Agadir Balloon Flight Today
+          {dict.home.cta.title}
         </h2>
         <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-cream-100/85">
-          Do not miss the experience of a lifetime. Send us a message today and fly over the Souss Valley at
-          sunrise tomorrow morning.
+          {dict.home.cta.text}
         </p>
         <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <BookingButton
@@ -470,7 +477,7 @@ export function CtaSection() {
             className="w-full rounded-full bg-brand-500 px-8 py-4 text-base font-bold uppercase tracking-wide text-white shadow-xl shadow-brand-900/40 hover:bg-brand-600 sm:w-auto"
           >
             <WhatsAppIcon className="h-5 w-5" />
-            Book Your Agadir Flight
+            {dict.home.cta.bookCta}
           </BookingButton>
           <Button
             asChild
@@ -478,8 +485,8 @@ export function CtaSection() {
             variant="outline"
             className="w-full rounded-full border-white/40 bg-white/10 px-8 py-4 text-base font-bold text-white backdrop-blur hover:bg-white/20 hover:text-white sm:w-auto"
           >
-            <Link href={site.marrakechPath}>
-              Explore Marrakech Flights
+            <Link href={pagePaths.marrakech[locale]}>
+              {dict.home.cta.exploreLink}
               <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
             </Link>
           </Button>
@@ -488,7 +495,7 @@ export function CtaSection() {
         {/* Agadir official social media: this section renders on the Agadir homepage only. */}
         <div className="mt-12 flex flex-col items-center gap-4 border-t border-white/10 pt-8">
           <p className="text-xs font-bold uppercase tracking-widest text-gold-400">
-            Follow our Agadir adventures
+            {dict.home.cta.followLabel}
           </p>
           <SocialLinks className="justify-center" />
         </div>

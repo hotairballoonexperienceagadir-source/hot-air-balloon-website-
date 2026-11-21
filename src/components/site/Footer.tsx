@@ -1,15 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Clock, Mail, MapPin, Phone } from "lucide-react";
-import {
-  agadirOffers,
-  defaultWaMessage,
-  marrakechOffers,
-  marrakechWaMessage,
-  offerWaMessage,
-  site,
-  waLink,
-} from "@/lib/site";
+import { site, waLink } from "@/lib/site";
+import { pagePaths } from "@/lib/i18n/config";
+import { formatPrice, tpl } from "@/lib/i18n/format";
+import type { Dictionary, SiteContent } from "@/lib/i18n/types";
 import { WhatsAppIcon } from "./icons";
 import { ContactButton } from "./ContactModal";
 import { ContactModalLazy } from "./ContactModalLazy";
@@ -17,55 +12,72 @@ import { SocialLinks } from "./SocialLinks";
 
 type FooterVariant = "home" | "marrakech";
 
-const quickLinksByVariant: Record<FooterVariant, { href: string; label: string }[]> = {
-  home: [
-    { href: "#home", label: "Home" },
-    { href: "#flights", label: "Agadir Flights" },
-    { href: "#experience", label: "The Agadir Experience" },
-    { href: "#gallery", label: "Gallery" },
-    { href: "#reviews", label: "Guest Reviews" },
-    { href: "#faq", label: "FAQ" },
-  ],
-  marrakech: [
-    { href: "/", label: "Home" },
-    { href: "#flights", label: "Marrakech Flights" },
-    { href: "#experience", label: "Flight Day Experience" },
-    { href: "#reviews", label: "Guest Reviews" },
-    { href: "#faq", label: "FAQ" },
-    { href: site.homePath, label: "Agadir Flights (main destination)" },
-  ],
-};
+/**
+ * The shared footer. Server component: dict and content arrive as props
+ * from the page (server components cannot consume the client context).
+ * Package names stay English in every language; only the surrounding UI,
+ * the city names and the WhatsApp messages are localized.
+ */
+export function Footer({
+  dict,
+  content,
+  variant = "home",
+}: {
+  dict: Dictionary;
+  content: SiteContent;
+  variant?: FooterVariant;
+}) {
+  const { locale } = content;
+  const agadir = content.destinations.agadir;
+  const marrakech = content.destinations.marrakech;
 
-const offerListByVariant: Record<
-  FooterVariant,
-  { title: string; offers: typeof agadirOffers; path: string; secondary?: { title: string; offers: typeof marrakechOffers; path: string } }
-> = {
-  home: {
-    title: "Agadir Flights | Main Destination",
-    offers: agadirOffers,
-    path: "#flights",
-    secondary: {
-      title: "Marrakech Flights | Also Available",
-      offers: marrakechOffers,
-      path: site.marrakechPath,
-    },
-  },
-  marrakech: {
-    title: "Marrakech Flights",
-    offers: marrakechOffers,
-    path: "#flights",
-    secondary: {
-      title: "Agadir Flights | Main Destination",
-      offers: agadirOffers,
-      path: site.homePath,
-    },
-  },
-};
+  const quickLinks =
+    variant === "home"
+      ? [
+          { href: "#home", label: dict.footer.quickLinks.home },
+          { href: "#flights", label: dict.footer.quickLinks.agadirFlights },
+          { href: "#experience", label: dict.footer.quickLinks.agadirExperience },
+          { href: "#gallery", label: dict.footer.quickLinks.gallery },
+          { href: "#reviews", label: dict.footer.quickLinks.guestReviews },
+          { href: "#faq", label: dict.footer.quickLinks.faq },
+        ]
+      : [
+          { href: pagePaths.home[locale], label: dict.footer.quickLinks.home },
+          { href: "#flights", label: dict.footer.quickLinks.marrakechFlights },
+          { href: "#experience", label: dict.footer.quickLinks.flightDayExperience },
+          { href: "#reviews", label: dict.footer.quickLinks.guestReviews },
+          { href: "#faq", label: dict.footer.quickLinks.faq },
+          { href: pagePaths.home[locale], label: dict.footer.quickLinks.agadirFlightsMain },
+        ];
 
-export function Footer({ variant = "home" }: { variant?: FooterVariant }) {
-  const quickLinks = quickLinksByVariant[variant];
-  const lists = offerListByVariant[variant];
-  const homeMessage = variant === "marrakech" ? marrakechWaMessage : defaultWaMessage;
+  const lists = {
+    main:
+      variant === "home"
+        ? {
+            title: dict.footer.offersHomeTitle,
+            offers: agadir.offers,
+            path: "#flights",
+          }
+        : {
+            title: dict.footer.offersMarrakechTitle,
+            offers: marrakech.offers,
+            path: "#flights",
+          },
+    secondary:
+      variant === "home"
+        ? {
+            title: dict.footer.offersMarrakechSecondaryTitle,
+            offers: marrakech.offers,
+            path: pagePaths.marrakech[locale],
+          }
+        : {
+            title: dict.footer.offersHomeTitle,
+            offers: agadir.offers,
+            path: pagePaths.home[locale],
+          },
+  };
+
+  const homeMessage = variant === "marrakech" ? marrakech.waMessage : agadir.waMessage;
 
   return (
     <>
@@ -76,17 +88,14 @@ export function Footer({ variant = "home" }: { variant?: FooterVariant }) {
           <div>
             <Image
               src="/images/logo.webp"
-              alt="Hot Air Balloon Experience Agadir logo"
+              alt={dict.header.logoAlt}
               width={1536}
               height={1024}
               loading="lazy"
               quality={90}
               className="h-16 w-auto object-contain"
             />
-            <p className="mt-4 text-sm leading-relaxed text-cream-100/75">
-              Agadir based licensed sunrise hot air balloon flights over the Souss Valley. Same pilots, same
-              safety, and a second launch site in Marrakech for our travelers.
-            </p>
+            <p className="mt-4 text-sm leading-relaxed text-cream-100/75">{dict.footer.about}</p>
             <ul className="mt-5 space-y-3 text-sm">
               <li>
                 <a href={`tel:${site.phoneTel}`} className="flex items-center gap-2.5 text-cream-100/85 transition hover:text-brand-300">
@@ -102,7 +111,7 @@ export function Footer({ variant = "home" }: { variant?: FooterVariant }) {
                   className="flex items-center gap-2.5 text-cream-100/85 transition hover:text-brand-300"
                 >
                   <WhatsAppIcon className="h-4 w-4 shrink-0 text-whatsapp" />
-                  WhatsApp us anytime
+                  {dict.footer.whatsappUs}
                 </a>
               </li>
               <li className="flex items-center gap-2.5 text-cream-100/85">
@@ -120,17 +129,15 @@ export function Footer({ variant = "home" }: { variant?: FooterVariant }) {
               </li>
               <li className="flex items-center gap-2.5 text-cream-100/85">
                 <Clock className="h-4 w-4 shrink-0 text-brand-400" aria-hidden="true" />
-                {site.hours}
+                {dict.footer.hours}
               </li>
             </ul>
 
           {/* Agadir official social media: homepage variant only, never on Marrakech. */}
           {variant === "home" && (
             <div className="mt-7 border-t border-white/10 pt-6">
-              <h3 className="font-display text-base font-bold text-white">Follow Our Agadir Adventures</h3>
-              <p className="mt-1.5 text-xs leading-relaxed text-cream-100/65">
-                Real sunrise flights, real mornings over the Souss Valley.
-              </p>
+              <h3 className="font-display text-base font-bold text-white">{dict.footer.followTitle}</h3>
+              <p className="mt-1.5 text-xs leading-relaxed text-cream-100/65">{dict.footer.followText}</p>
               <SocialLinks className="mt-4" />
             </div>
           )}
@@ -138,7 +145,7 @@ export function Footer({ variant = "home" }: { variant?: FooterVariant }) {
 
           {/* Quick links */}
           <nav aria-label="Footer quick links">
-            <h3 className="font-display text-lg font-bold text-white">Quick Links</h3>
+            <h3 className="font-display text-lg font-bold text-white">{dict.footer.quickLinksTitle}</h3>
             <ul className="mt-4 space-y-2.5 text-sm">
               {quickLinks.map((link) => (
                 <li key={link.label}>
@@ -152,50 +159,52 @@ export function Footer({ variant = "home" }: { variant?: FooterVariant }) {
 
           {/* Flights: main destination first */}
           <nav aria-label="Footer flight offers">
-            <h3 className="font-display text-lg font-bold text-white">{lists.title}</h3>
+            <h3 className="font-display text-lg font-bold text-white">{lists.main.title}</h3>
             <ul className="mt-4 space-y-2.5 text-sm">
-              {lists.offers.map((offer) => (
+              {lists.main.offers.map((offer) => (
                 <li key={offer.id}>
                   <a
-                    href={waLink(offerWaMessage(offer.name, offer.cityName, offer.priceMad))}
+                    href={waLink(
+                      tpl(dict.footer.offerWaTemplate, {
+                        name: offer.name,
+                        city: offer.cityName,
+                        price: formatPrice(offer.priceMad, locale),
+                      }),
+                    )}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-cream-100/75 transition hover:text-brand-300"
                   >
-                    {offer.name} <span className="text-cream-100/50">| {offer.priceMad.toLocaleString("en-US")} MAD</span>
+                    {offer.name} <span className="text-cream-100/50">| {formatPrice(offer.priceMad, locale)}</span>
                   </a>
                 </li>
               ))}
             </ul>
-            {lists.secondary && (
-              <>
-                <h3 className="mt-6 font-display text-base font-bold text-white/90">{lists.secondary.title}</h3>
-                <ul className="mt-3 space-y-2.5 text-sm">
-                  {lists.secondary.offers.map((offer) => (
-                    <li key={offer.id}>
-                      <Link
-                        href={lists.secondary!.path}
-                        className="text-cream-100/75 transition hover:text-brand-300"
-                      >
-                        {offer.name}
-                        <span className="text-cream-100/50"> in {offer.cityName}</span>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </>
-            )}
+            <h3 className="mt-6 font-display text-base font-bold text-white/90">{lists.secondary.title}</h3>
+            <ul className="mt-3 space-y-2.5 text-sm">
+              {lists.secondary.offers.map((offer) => (
+                <li key={offer.id}>
+                  <Link
+                    href={lists.secondary.path}
+                    className="text-cream-100/75 transition hover:text-brand-300"
+                  >
+                    {offer.name}
+                    <span className="text-cream-100/50"> {tpl(dict.footer.inCity, { city: offer.cityName })}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </nav>
 
           {/* Support */}
           <nav aria-label="Footer support links">
-            <h3 className="font-display text-lg font-bold text-white">Support</h3>
+            <h3 className="font-display text-lg font-bold text-white">{dict.footer.supportTitle}</h3>
             <ul className="mt-4 space-y-2.5 text-sm">
               {[
-                { href: "#reviews", label: "Guest Reviews" },
-                { href: "#faq", label: "FAQ" },
-                { href: "#book", label: "Book Your Flight" },
-                { href: site.googleReviewsUrl, label: "Google Business Profile", external: true },
+                { href: "#reviews", label: dict.footer.guestReviews },
+                { href: "#faq", label: dict.footer.faq },
+                { href: "#book", label: dict.footer.bookYourFlight },
+                { href: site.googleReviewsUrl, label: dict.footer.googleBusinessProfile, external: true },
               ].map((link) => (
                 <li key={link.label}>
                   <a
@@ -210,13 +219,13 @@ export function Footer({ variant = "home" }: { variant?: FooterVariant }) {
               ))}
             </ul>
             <div className="mt-6 rounded-xl border border-white/10 bg-white/5 p-4">
-              <p className="text-xs font-bold uppercase tracking-widest text-brand-300">Sunrise flights daily</p>
+              <p className="text-xs font-bold uppercase tracking-widest text-brand-300">{dict.footer.sunriseDaily}</p>
               <p className="mt-1.5 text-xs leading-relaxed text-cream-100/70">
-                Agadir: Souss Valley launch site, our home base.
+                {dict.footer.agadirLaunch}
                 <br />
-                Marrakech: desert launch site.
+                {dict.footer.marrakechLaunch}
                 <br />
-                {site.hours}
+                {dict.footer.hours}
               </p>
             </div>
           </nav>
@@ -225,10 +234,8 @@ export function Footer({ variant = "home" }: { variant?: FooterVariant }) {
 
       <div className="border-t border-white/10">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-4 py-5 text-xs text-cream-100/60 sm:flex-row md:px-6">
-          <p>
-            © {new Date().getFullYear()} {site.brand}. All rights reserved.
-          </p>
-          <p>Agadir sunrise balloon flights over the Souss Valley, Morocco.</p>
+          <p>{tpl(dict.footer.copyright, { year: new Date().getFullYear(), brand: site.brand })}</p>
+          <p>{dict.footer.tagline}</p>
         </div>
       </div>
       </footer>

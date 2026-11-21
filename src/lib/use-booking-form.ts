@@ -2,6 +2,9 @@
 
 import { useState, useSyncExternalStore } from "react";
 import { waLink } from "@/lib/site";
+import { languageNameInEnglish } from "@/lib/i18n/config";
+import { useI18n } from "@/lib/i18n/context";
+import { formatPrice } from "@/lib/i18n/format";
 import type { BookingDestination } from "@/lib/booking-store";
 
 /**
@@ -13,6 +16,14 @@ import type { BookingDestination } from "@/lib/booking-store";
  * validation (the flight date is the only field that can be missing) and the
  * exact WhatsApp availability message, so the two forms can never drift
  * apart or send different details.
+ *
+ * LOCALIZATION: the message is written in the language of the page the
+ * visitor is on (owner approved 2026-11-21). After the Total line it always
+ * carries a literal "Language: English/French/German/Spanish" line so the
+ * team can see the conversation language at a glance. The price and total
+ * come from the selected offer (site.ts), so they can never drift from the
+ * displayed price, and the total is computed at submit time. Never hardcode
+ * totals. The date stays ISO (YYYY-MM-DD) in every language.
  */
 
 /* Upper limit of the guest counter, identical everywhere. */
@@ -31,28 +42,39 @@ export function useToday() {
 }
 
 /* The exact availability message WhatsApp receives. Every booking on the
-   site goes through this one builder. The price always comes from the
-   selected offer (site.ts), so the message can never drift from the
-   displayed price, and the total is computed at submit time as the price
-   per person times the number of guests. Never hardcode totals. */
+   site goes through this one builder. */
 function buildBookingMessage(input: {
-  destination: BookingDestination;
   packageName: string;
   priceMad: number;
   date: string;
   guests: number;
+  destinationName: string;
+  locale: "en" | "fr" | "de" | "es";
+  messages: {
+    greeting: string;
+    destinationLabel: string;
+    packageLabel: string;
+    dateLabel: string;
+    guestsLabel: string;
+    priceLabel: string;
+    perPerson: string;
+    totalLabel: string;
+    languageLabel: string;
+    confirm: string;
+  };
 }): string {
   return [
-    "Hello, I would like to check availability for a hot air balloon flight.",
+    input.messages.greeting,
     "",
-    `Destination: ${input.destination}`,
-    `Package: ${input.packageName}`,
-    `Date: ${input.date}`,
-    `Number of Guests: ${input.guests}`,
-    `Price: ${input.priceMad.toLocaleString("en-US")} MAD per person`,
-    `Total: ${(input.priceMad * input.guests).toLocaleString("en-US")} MAD`,
+    `${input.messages.destinationLabel} ${input.destinationName}`,
+    `${input.messages.packageLabel} ${input.packageName}`,
+    `${input.messages.dateLabel} ${input.date}`,
+    `${input.messages.guestsLabel} ${input.guests}`,
+    `${input.messages.priceLabel} ${formatPrice(input.priceMad, input.locale)} ${input.messages.perPerson}`,
+    `${input.messages.totalLabel} ${formatPrice(input.priceMad * input.guests, input.locale)}`,
+    `${input.messages.languageLabel} ${languageNameInEnglish[input.locale]}`,
     "",
-    "Could you please confirm availability?",
+    input.messages.confirm,
   ].join("\n");
 }
 
@@ -69,6 +91,7 @@ export function useBookingForm(options: {
   onSubmitted?: () => void;
 }) {
   const { destination, packageName, priceMad, minGuests = 1, onSubmitted } = options;
+  const { locale, content, dict } = useI18n();
 
   const today = useToday();
   const [date, setDate] = useState("");
@@ -100,12 +123,21 @@ export function useBookingForm(options: {
       return false;
     }
 
+    /* Localized destination name for the message: "Agadir", "Marrakech",
+       "Marrakesch" (German)... always the display name of the city. */
+    const destinationName =
+      destination === "Agadir"
+        ? content.destinations.agadir.cityName
+        : content.destinations.marrakech.cityName;
+
     const message = buildBookingMessage({
-      destination,
       packageName,
       priceMad,
       date,
       guests: effectiveGuests,
+      destinationName,
+      locale,
+      messages: dict.booking.messages,
     });
 
     window.open(waLink(message), "_blank", "noopener,noreferrer");

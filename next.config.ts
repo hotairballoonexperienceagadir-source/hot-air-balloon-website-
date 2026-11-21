@@ -3,6 +3,12 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   output: "standalone",
   trailingSlash: true,
+  /* The four language route groups each carry their own root layout, so the
+   * global not found shell (src/app/global-not-found.tsx) provides the 404
+   * document for every unknown URL. */
+  experimental: {
+    globalNotFound: true,
+  },
   images: {
     /* Allow sharper-than-default delivery for the brand logo (quality={90}). */
     qualities: [75, 90],

@@ -2,6 +2,8 @@
 
 import type { ReactNode } from "react";
 import { CalendarDays, MapPin, Minus, Plus, ShieldCheck, Users, type LucideIcon } from "lucide-react";
+import { formatPrice, tpl } from "@/lib/i18n/format";
+import { useI18n } from "@/lib/i18n/context";
 import type { Offer } from "@/lib/site";
 import type { BookingDestination } from "@/lib/booking-store";
 
@@ -30,15 +32,16 @@ export function BookingDateField({
   onChange: (value: string) => void;
   invalid: boolean;
 }) {
+  const { dict } = useI18n();
   return (
     <label className="block">
-      <FieldLabel icon={CalendarDays}>Select Date</FieldLabel>
+      <FieldLabel icon={CalendarDays}>{dict.booking.dateLabel}</FieldLabel>
       <input
         type="date"
         min={min || undefined}
         value={value}
         onChange={(event) => onChange(event.target.value)}
-        aria-label="Flight date"
+        aria-label={dict.booking.dateAria}
         aria-invalid={invalid || undefined}
         className={`h-12 w-full rounded-xl border bg-white/10 px-4 text-white [color-scheme:dark] outline-none transition focus:border-brand-400 ${
           invalid ? "border-red-400/70" : "border-white/15"
@@ -46,7 +49,7 @@ export function BookingDateField({
       />
       {invalid && (
         <span role="alert" className="mt-1.5 block text-xs font-semibold text-red-300">
-          Please select your preferred flight date.
+          {dict.booking.dateError}
         </span>
       )}
     </label>
@@ -62,19 +65,20 @@ export function BookingPackageField({
   value: string;
   onChange: (id: string) => void;
 }) {
+  const { locale, dict } = useI18n();
   return (
     <label className="block">
-      <FieldLabel icon={ShieldCheck}>Package</FieldLabel>
+      <FieldLabel icon={ShieldCheck}>{dict.booking.packageLabel}</FieldLabel>
       <select
         value={value}
         onChange={(event) => onChange(event.target.value)}
-        aria-label="Flight package"
+        aria-label={dict.booking.packageAria}
         className="h-12 w-full rounded-xl border border-white/15 bg-white/10 px-4 text-white outline-none transition focus:border-brand-400"
       >
         {offers.map((offer) => (
           <option key={offer.id} value={offer.id} className="text-navy-900">
-            {offer.name} | {offer.priceMad.toLocaleString("en-US")} MAD
-            {offer.minGuests ? ` (min ${offer.minGuests} guests)` : ""}
+            {offer.name} | {formatPrice(offer.priceMad, locale)}
+            {offer.minGuests ? tpl(dict.booking.minGuestsOption, { n: offer.minGuests }) : ""}
           </option>
         ))}
       </select>
@@ -89,20 +93,21 @@ export function BookingDestinationField({
   value: BookingDestination;
   onChange: (destination: BookingDestination) => void;
 }) {
+  const { dict } = useI18n();
   return (
     <label className="block">
-      <FieldLabel icon={MapPin}>Destination</FieldLabel>
+      <FieldLabel icon={MapPin}>{dict.booking.destinationLabel}</FieldLabel>
       <select
         value={value}
         onChange={(event) => onChange(event.target.value as BookingDestination)}
-        aria-label="Flight destination"
+        aria-label={dict.booking.destinationAria}
         className="h-12 w-full rounded-xl border border-white/15 bg-white/10 px-4 text-white outline-none transition focus:border-brand-400"
       >
         <option value="Agadir" className="text-navy-900">
-          Agadir (main)
+          {dict.booking.destinationAgadir}
         </option>
         <option value="Marrakech" className="text-navy-900">
-          Marrakech
+          {dict.booking.destinationMarrakech}
         </option>
       </select>
     </label>
@@ -118,13 +123,14 @@ export function BookingGuestsField({
   onDecrease: () => void;
   onIncrease: () => void;
 }) {
+  const { dict } = useI18n();
   return (
     <div>
-      <FieldLabel icon={Users}>Number of Guests</FieldLabel>
+      <FieldLabel icon={Users}>{dict.booking.guestsLabel}</FieldLabel>
       <div className="flex h-12 items-center justify-between rounded-xl border border-white/15 bg-white/10 px-2">
         <button
           type="button"
-          aria-label="Remove one guest"
+          aria-label={dict.booking.decreaseAria}
           onClick={onDecrease}
           className="flex h-8 w-8 items-center justify-center rounded-lg text-white transition hover:bg-white/15"
         >
@@ -135,7 +141,7 @@ export function BookingGuestsField({
         </span>
         <button
           type="button"
-          aria-label="Add one guest"
+          aria-label={dict.booking.increaseAria}
           onClick={onIncrease}
           className="flex h-8 w-8 items-center justify-center rounded-lg text-white transition hover:bg-white/15"
         >

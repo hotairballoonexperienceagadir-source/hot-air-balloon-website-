@@ -10,6 +10,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { useI18n } from "@/lib/i18n/context";
+import { tpl } from "@/lib/i18n/format";
 import type { ForecastDay, ForecastPayload, FlightStatus, WeatherCityId } from "@/lib/weather";
 
 /**
@@ -25,44 +27,29 @@ import type { ForecastDay, ForecastPayload, FlightStatus, WeatherCityId } from "
  * /api/flight-forecast. No hardcoded weather values, no fake percentages.
  * The score is an indicative estimate, the final flight approval always
  * belongs to the pilot on the morning of the flight.
+ *
+ * All labels, dates and times are localized through the i18n dictionary and
+ * the visitor language; the weather DATA itself stays untouched.
  */
 
 const REFRESH_INTERVAL_MS = 15 * 60 * 1000;
 
-const STATUS_META: Record<FlightStatus, { label: string; stroke: string; text: string }> = {
-  likely: {
-    label: "Likely",
-    stroke: "#4ade80",
-    text: "text-green-300",
-  },
-  uncertain: {
-    label: "Uncertain",
-    stroke: "#fbbf24",
-    text: "text-amber-300",
-  },
-  high_risk: {
-    label: "High Risk",
-    stroke: "#f87171",
-    text: "text-red-300",
-  },
-};
-
-const SAFETY_DISCLAIMER =
-  "Flight probability is an indicative weather estimate, not a flight guarantee. Final approval always depends on the pilot’s safety assessment.";
-
-function weekdayLabel(date: string): string {
-  return new Date(`${date}T12:00:00Z`).toLocaleDateString("en", { weekday: "short" }).toUpperCase();
-}
-
-function dateLabel(date: string): string {
-  return new Date(`${date}T12:00:00Z`).toLocaleDateString("en", { month: "short", day: "numeric" });
-}
-
-function timeLabel(iso: string): string {
-  return new Intl.DateTimeFormat("en", { hour: "numeric", minute: "2-digit" }).format(new Date(iso));
+function statusMeta(status: FlightStatus, labels: { likely: string; uncertain: string; highRisk: string }) {
+  switch (status) {
+    case "likely":
+      return { label: labels.likely, stroke: "#4ade80", text: "text-green-300" };
+    case "uncertain":
+      return { label: labels.uncertain, stroke: "#fbbf24", text: "text-amber-300" };
+    case "high_risk":
+      return { label: labels.highRisk, stroke: "#f87171", text: "text-red-300" };
+  }
 }
 
 export function FlightProbability({ city }: { city: WeatherCityId }) {
+  const { locale, dict } = useI18n();
+  const w = dict.weather;
+  const labels = { likely: w.statusLikely, uncertain: w.statusUncertain, highRisk: w.statusHighRisk };
+
   const [data, setData] = useState<ForecastPayload | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
@@ -80,7 +67,7 @@ export function FlightProbability({ city }: { city: WeatherCityId }) {
         setError(payload.message);
       }
     } catch {
-      setError("The live weather forecast is temporarily unavailable, please try again shortly.");
+      setError(w.errorFetch);
     } finally {
       setLoading(false);
     }
@@ -91,6 +78,20 @@ export function FlightProbability({ city }: { city: WeatherCityId }) {
     const timer = window.setInterval(() => void load(), REFRESH_INTERVAL_MS);
     return () => window.clearInterval(timer);
   }, [load]);
+
+  function weekdayLabel(date: string): string {
+    return new Date(`${date}T12:00:00Z`).toLocaleDateString(locale, { weekday: "short" }).toUpperCase();
+  }
+
+  function dateLabel(date: string): string {
+    return new Date(`${date}T12:00:00Z`).toLocaleDateString(locale, { month: "short", day: "numeric" });
+  }
+
+  function timeLabel(iso: string): string {
+    return new Intl.DateTimeFormat(locale, { hour: "numeric", minute: "2-digit" }).format(new Date(iso));
+  }
+
+  const cityArea = city === "agadir" ? w.areaAgadir : w.areaMarrakech;
 
   return (
     <section
@@ -116,33 +117,31 @@ export function FlightProbability({ city }: { city: WeatherCityId }) {
               <span className="relative inline-flex h-2 w-2 rounded-full bg-white" />
             </span>
             <Flame className="h-3.5 w-3.5" aria-hidden="true" />
-            Live Outlook
+            {w.liveOutlook}
           </span>
           <h2
             id="flight-forecast-title"
             className="mt-5 text-3xl font-bold text-white text-balance md:text-5xl"
           >
-            7-Day Balloon Flight Probability
+            {w.title}
           </h2>
           <p className="mt-3 text-sm text-white/60 md:text-base">
-            {data ? `${data.cityName}, ${data.area}` : city === "agadir" ? "Agadir, Souss Valley launch area" : "Marrakech, desert launch area"} · Indicative scores, always confirm on flight morning
+            {cityArea} · {w.indicativeScores}
           </p>
-          <p className="mt-1.5 text-xs text-white/40">
-            An indicative estimate only, never a guarantee of flight availability. Final approval always belongs to the pilot.
-          </p>
+          <p className="mt-1.5 text-xs text-white/40">{w.estimateNote}</p>
         </div>
 
         <div className="mt-10 sm:mt-12">
           {loading && !data ? (
             <SkeletonRow />
           ) : error && !data ? (
-            <ErrorBox message={error} onRetry={() => void load()} />
+            <ErrorBox message={error} onRetry={() => void load()} tryAgainLabel={w.tryAgain} />
           ) : data ? (
             <>
-              <ForecastRow days={data.days} />
+              <ForecastRow days={data.days} locale={locale} dict={dict} labels={labels} />
               {data.stale && (
                 <p className="mt-4 text-center text-xs text-amber-300">
-                  Live refresh failed just now, showing the last successful update from {timeLabel(data.updatedAt)}.
+                  {tpl(w.staleNotice, { time: timeLabel(data.updatedAt) })}
                 </p>
               )}
             </>
@@ -152,17 +151,15 @@ export function FlightProbability({ city }: { city: WeatherCityId }) {
         {/* Elegant safety disclaimer below the 7 day forecast cards. */}
         <div className="mx-auto mt-6 flex max-w-2xl items-start justify-center gap-2.5 px-2 md:mt-8">
           <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-gold-400" aria-hidden="true" />
-          <p className="text-center text-xs leading-relaxed text-white/55 md:text-[13px]">
-            {SAFETY_DISCLAIMER}
-          </p>
+          <p className="text-center text-xs leading-relaxed text-white/55 md:text-[13px]">{w.disclaimer}</p>
         </div>
 
         <div className="mt-8 flex flex-col items-center gap-3 sm:mt-10">
-          {data && <ForecastDialog data={data} />}
+          {data && <ForecastDialog data={data} locale={locale} dict={dict} labels={labels} />}
           <p aria-live="polite" className="text-xs text-white/45">
             {data
-              ? `Updated ${timeLabel(data.updatedAt)} · Live data from ${data.source} · Refreshes automatically every 15 minutes`
-              : "Connecting to the live weather service"}
+              ? tpl(w.updatedNotice, { time: timeLabel(data.updatedAt), source: data.source })
+              : w.connecting}
           </p>
         </div>
       </div>
@@ -174,18 +171,44 @@ export function FlightProbability({ city }: { city: WeatherCityId }) {
 /* Cards                                                               */
 /* ------------------------------------------------------------------ */
 
-function ForecastRow({ days }: { days: ForecastDay[] }) {
+function ForecastRow({
+  days,
+  locale,
+  dict,
+  labels,
+}: {
+  days: ForecastDay[];
+  locale: "en" | "fr" | "de" | "es";
+  dict: ReturnType<typeof useI18n>["dict"];
+  labels: { likely: string; uncertain: string; highRisk: string };
+}) {
   return (
     <ul className="scrollbar-none -mx-1 flex snap-x snap-mandatory gap-3.5 overflow-x-auto px-1 pb-2 pt-1 sm:grid sm:grid-cols-4 sm:gap-4 sm:overflow-visible lg:grid-cols-7">
       {days.map((day) => (
-        <DayCard key={day.date} day={day} />
+        <DayCard key={day.date} day={day} locale={locale} dict={dict} labels={labels} />
       ))}
     </ul>
   );
 }
 
-function DayCard({ day }: { day: ForecastDay }) {
-  const meta = STATUS_META[day.status];
+function DayCard({
+  day,
+  locale,
+  dict,
+  labels,
+}: {
+  day: ForecastDay;
+  locale: "en" | "fr" | "de" | "es";
+  dict: ReturnType<typeof useI18n>["dict"];
+  labels: { likely: string; uncertain: string; highRisk: string };
+}) {
+  const w = dict.weather;
+  const meta = statusMeta(day.status, labels);
+  const weekdayLabel = (date: string): string =>
+    new Date(`${date}T12:00:00Z`).toLocaleDateString(locale, { weekday: "short" }).toUpperCase();
+  const dateLabel = (date: string): string =>
+    new Date(`${date}T12:00:00Z`).toLocaleDateString(locale, { month: "short", day: "numeric" });
+
   return (
     <li className="w-[56%] min-w-[176px] max-w-[230px] shrink-0 snap-start sm:w-auto sm:min-w-0 sm:max-w-none sm:shrink">
       <div
@@ -197,38 +220,49 @@ function DayCard({ day }: { day: ForecastDay }) {
           <span
             className={`font-semibold uppercase tracking-wider ${day.isToday ? "text-brand-400" : "text-white/55"}`}
           >
-            {day.isToday ? "Today" : weekdayLabel(day.date)}
+            {day.isToday ? w.today : weekdayLabel(day.date)}
           </span>
           <span className="font-medium text-white/75">{dateLabel(day.date)}</span>
         </div>
 
         <div className="mt-3 flex justify-center">
-          <ProbabilityRing score={day.score} status={day.status} />
+          <ProbabilityRing score={day.score} status={day.status} labels={labels} ariaTemplate={w.probabilityAria} />
         </div>
 
         <div className="mt-3 flex h-[30px] items-center justify-center">
           <p className="text-center text-[11px] leading-snug">
-            <span className="text-white/55">Flight Conditions: </span>
+            <span className="text-white/55">{w.conditionsLabel} </span>
             <span className={`font-bold ${meta.text}`}>{meta.label}</span>
           </p>
         </div>
 
         <div className="mt-3.5 grid grid-cols-3 gap-1.5">
-          <StatBox value={String(Math.round(day.windKmh))} unit="km/h" label="Wind" />
-          <StatBox value={String(day.tempC)} unit="°C" label="Temp" />
-          <StatBox value={String(day.humidityPct)} unit="%" label="Hum" />
+          <StatBox value={String(Math.round(day.windKmh))} unit="km/h" label={w.windLabel} />
+          <StatBox value={String(day.tempC)} unit="°C" label={w.tempLabel} />
+          <StatBox value={String(day.humidityPct)} unit="%" label={w.humidityLabel} />
         </div>
 
         <p className="mt-2.5 text-center text-[10px] leading-relaxed text-white/45">
-          Gusts {day.gustKmh != null ? `${Math.round(day.gustKmh)} km/h` : "N/A"} · Rain {day.precipMm.toFixed(1)} mm
+          {w.gustsLabel} {day.gustKmh != null ? `${Math.round(day.gustKmh)} km/h` : w.notAvailable} · {w.rainLabel}{" "}
+          {day.precipMm.toFixed(1)} mm
         </p>
       </div>
     </li>
   );
 }
 
-function ProbabilityRing({ score, status }: { score: number; status: FlightStatus }) {
-  const meta = STATUS_META[status];
+function ProbabilityRing({
+  score,
+  status,
+  labels,
+  ariaTemplate,
+}: {
+  score: number;
+  status: FlightStatus;
+  labels: { likely: string; uncertain: string; highRisk: string };
+  ariaTemplate: string;
+}) {
+  const meta = statusMeta(status, labels);
   const radius = 31;
   const circumference = 2 * Math.PI * radius;
   const [animated, setAnimated] = useState(false);
@@ -245,7 +279,7 @@ function ProbabilityRing({ score, status }: { score: number; status: FlightStatu
       viewBox="0 0 72 72"
       className="h-[68px] w-[68px] md:h-[72px] md:w-[72px]"
       role="img"
-      aria-label={`Flight probability ${score} percent, ${meta.label}`}
+      aria-label={tpl(ariaTemplate, { score, status: meta.label })}
     >
       <circle cx="36" cy="36" r={radius} fill="none" stroke="rgba(255,255,255,0.09)" strokeWidth="6.5" />
       <circle
@@ -305,7 +339,7 @@ function SkeletonRow() {
   );
 }
 
-function ErrorBox({ message, onRetry }: { message: string; onRetry: () => void }) {
+function ErrorBox({ message, onRetry, tryAgainLabel }: { message: string; onRetry: () => void; tryAgainLabel: string }) {
   return (
     <div className="mx-auto max-w-md rounded-2xl border border-white/10 bg-white/[0.045] p-8 text-center">
       <AlertTriangle className="mx-auto h-8 w-8 text-amber-400" aria-hidden="true" />
@@ -316,7 +350,7 @@ function ErrorBox({ message, onRetry }: { message: string; onRetry: () => void }
         className="mt-5 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-5 py-2.5 text-sm font-medium text-white transition hover:border-brand-400/60 hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-400"
       >
         <RefreshCw className="h-4 w-4" aria-hidden="true" />
-        Try again
+        {tryAgainLabel}
       </button>
     </div>
   );
@@ -326,7 +360,21 @@ function ErrorBox({ message, onRetry }: { message: string; onRetry: () => void }
 /* Full forecast and history dialog                                    */
 /* ------------------------------------------------------------------ */
 
-function ForecastDialog({ data }: { data: ForecastPayload }) {
+function ForecastDialog({
+  data,
+  locale,
+  dict,
+  labels,
+}: {
+  data: ForecastPayload;
+  locale: "en" | "fr" | "de" | "es";
+  dict: ReturnType<typeof useI18n>["dict"];
+  labels: { likely: string; uncertain: string; highRisk: string };
+}) {
+  const w = dict.weather;
+  const timeLabel = (iso: string): string =>
+    new Intl.DateTimeFormat(locale, { hour: "numeric", minute: "2-digit" }).format(new Date(iso));
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -335,34 +383,34 @@ function ForecastDialog({ data }: { data: ForecastPayload }) {
           className="inline-flex items-center gap-2.5 rounded-full border border-white/15 bg-white/[0.05] px-6 py-3 text-sm font-medium text-white transition hover:border-brand-400/60 hover:bg-white/10 hover:shadow-lg hover:shadow-black/30 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-400"
         >
           <ChartLine className="h-4 w-4 text-gold-400" aria-hidden="true" />
-          Full Forecast &amp; History
+          {w.fullForecast}
         </button>
       </DialogTrigger>
       <DialogContent className="max-h-[86vh] w-[calc(100%-2rem)] max-w-3xl overflow-y-auto rounded-2xl border border-white/15 bg-navy-900 text-white sm:max-w-3xl">
         <DialogHeader>
           <DialogTitle className="text-xl font-bold text-white md:text-2xl">
-            {data.cityName} Full Forecast &amp; History
+            {tpl(w.dialogTitle, { city: data.cityName })}
           </DialogTitle>
           <DialogDescription className="text-sm text-white/60">
-            {data.cityName}, {data.area} · Live data from {data.source}, updated {timeLabel(data.updatedAt)}.
+            {tpl(w.dialogDescription, { city: data.cityName, area: data.area, source: data.source, time: timeLabel(data.updatedAt) })}
           </DialogDescription>
         </DialogHeader>
 
         <div className="space-y-6">
           <section>
-            <h3 className="text-xs font-bold uppercase tracking-widest text-white/55">The next 7 days</h3>
+            <h3 className="text-xs font-bold uppercase tracking-widest text-white/55">{w.next7Days}</h3>
             <div className="mt-3 overflow-x-auto rounded-xl border border-white/10">
-              <ForecastTable days={data.days} />
+              <ForecastTable days={data.days} locale={locale} dict={dict} labels={labels} />
             </div>
           </section>
 
           {data.history.length > 0 && (
             <section>
               <h3 className="text-xs font-bold uppercase tracking-widest text-white/55">
-                Recent history, last {data.history.length} days
+                {tpl(w.recentHistory, { n: data.history.length })}
               </h3>
               <div className="mt-3 overflow-x-auto rounded-xl border border-white/10">
-                <ForecastTable days={data.history} recorded />
+                <ForecastTable days={data.history} locale={locale} dict={dict} labels={labels} recorded />
               </div>
             </section>
           )}
@@ -370,22 +418,17 @@ function ForecastDialog({ data }: { data: ForecastPayload }) {
           {/* Safety disclaimer inside the dialog. */}
           <div className="flex items-start gap-3 rounded-xl border border-gold-400/25 bg-gold-400/[0.08] p-4">
             <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-gold-400" aria-hidden="true" />
-            <p className="text-xs leading-relaxed text-white/80 md:text-[13px]">{SAFETY_DISCLAIMER}</p>
+            <p className="text-xs leading-relaxed text-white/80 md:text-[13px]">{w.disclaimer}</p>
           </div>
 
           <section className="rounded-xl border border-white/10 bg-white/[0.04] p-4 md:p-5">
-            <h3 className="text-sm font-bold text-white">How the score is calculated</h3>
+            <h3 className="text-sm font-bold text-white">{w.howScoreTitle}</h3>
             <ul className="mt-3 list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-white/65">
-              <li>Measured over the real ballooning window of each morning, 05:00 to 11:00 local time.</li>
-              <li>Wind of 15 km/h or less and gusts of 28 km/h or less score full marks.</li>
-              <li>Rain, storms and fog strongly reduce the score, exactly as they ground the balloons.</li>
-              <li>From 55 the morning is Likely, from 35 it is Uncertain, below 35 it is High Risk.</li>
+              {w.howScoreBullets.map((bullet) => (
+                <li key={bullet}>{bullet}</li>
+              ))}
             </ul>
-            <p className="mt-4 text-xs leading-relaxed text-white/45">
-              Flight probability is an indicative estimate computed from public forecast data, never a
-              guarantee of flight availability. Weather can change fast and the final flight approval
-              always belongs to your licensed pilot on the morning of the flight.
-            </p>
+            <p className="mt-4 text-xs leading-relaxed text-white/45">{w.howScoreNote}</p>
           </section>
         </div>
       </DialogContent>
@@ -393,59 +436,80 @@ function ForecastDialog({ data }: { data: ForecastPayload }) {
   );
 }
 
-function ForecastTable({ days, recorded = false }: { days: ForecastDay[]; recorded?: boolean }) {
+function ForecastTable({
+  days,
+  locale,
+  dict,
+  labels,
+  recorded = false,
+}: {
+  days: ForecastDay[];
+  locale: "en" | "fr" | "de" | "es";
+  dict: ReturnType<typeof useI18n>["dict"];
+  labels: { likely: string; uncertain: string; highRisk: string };
+  recorded?: boolean;
+}) {
+  const w = dict.weather;
+  const dateLabel = (date: string): string =>
+    new Date(`${date}T12:00:00Z`).toLocaleDateString(locale, { month: "short", day: "numeric" });
+  const weekdayLabel = (date: string): string =>
+    new Date(`${date}T12:00:00Z`).toLocaleDateString(locale, { weekday: "short" }).toUpperCase();
+
   return (
     <table className="w-full min-w-[640px] text-sm">
       <caption className="sr-only">
-        {recorded ? "Recorded past days" : "The next seven days"} with flight probability, wind, gusts,
-        temperature, humidity and rain
+        {recorded ? w.captionRecorded : w.captionNext}
+        {w.captionSuffix}
       </caption>
       <thead>
         <tr className="bg-white/[0.06] text-left text-[10px] uppercase tracking-wider text-white/50">
-          <th scope="col" className="px-3 py-2.5 font-semibold">Day</th>
-          <th scope="col" className="px-3 py-2.5 font-semibold">Score</th>
-          <th scope="col" className="px-3 py-2.5 font-semibold">Conditions</th>
-          <th scope="col" className="px-3 py-2.5 font-semibold">Wind</th>
-          <th scope="col" className="px-3 py-2.5 font-semibold">Gusts</th>
-          <th scope="col" className="px-3 py-2.5 font-semibold">Temp</th>
-          <th scope="col" className="px-3 py-2.5 font-semibold">Humidity</th>
-          <th scope="col" className="px-3 py-2.5 font-semibold">Rain</th>
-          <th scope="col" className="px-3 py-2.5 font-semibold">Sunrise</th>
+          <th scope="col" className="px-3 py-2.5 font-semibold">{w.tableHeaders.day}</th>
+          <th scope="col" className="px-3 py-2.5 font-semibold">{w.tableHeaders.score}</th>
+          <th scope="col" className="px-3 py-2.5 font-semibold">{w.tableHeaders.conditions}</th>
+          <th scope="col" className="px-3 py-2.5 font-semibold">{w.tableHeaders.wind}</th>
+          <th scope="col" className="px-3 py-2.5 font-semibold">{w.tableHeaders.gusts}</th>
+          <th scope="col" className="px-3 py-2.5 font-semibold">{w.tableHeaders.temp}</th>
+          <th scope="col" className="px-3 py-2.5 font-semibold">{w.tableHeaders.humidity}</th>
+          <th scope="col" className="px-3 py-2.5 font-semibold">{w.tableHeaders.rain}</th>
+          <th scope="col" className="px-3 py-2.5 font-semibold">{w.tableHeaders.sunrise}</th>
         </tr>
       </thead>
       <tbody>
-        {days.map((day) => (
-          <tr key={day.date} className="border-t border-white/5 text-white/80">
-            <th scope="row" className="whitespace-nowrap px-3 py-2.5 text-left font-semibold text-white">
-              {dateLabel(day.date)}
-              <span className="ml-1.5 text-[10px] font-medium uppercase tracking-wide text-white/45">
-                {recorded ? "recorded" : day.isToday ? "today" : weekdayLabel(day.date)}
-              </span>
-            </th>
-            <td className="whitespace-nowrap px-3 py-2.5">
-              <span className="inline-flex items-center gap-1.5">
-                <span
-                  aria-hidden="true"
-                  className="h-2 w-2 rounded-full"
-                  style={{ backgroundColor: STATUS_META[day.status].stroke }}
-                />
-                <span className="font-bold" style={{ color: STATUS_META[day.status].stroke }}>
-                  {day.score}%
+        {days.map((day) => {
+          const meta = statusMeta(day.status, labels);
+          return (
+            <tr key={day.date} className="border-t border-white/5 text-white/80">
+              <th scope="row" className="whitespace-nowrap px-3 py-2.5 text-left font-semibold text-white">
+                {dateLabel(day.date)}
+                <span className="ml-1.5 text-[10px] font-medium uppercase tracking-wide text-white/45">
+                  {recorded ? w.recorded : day.isToday ? w.today : weekdayLabel(day.date)}
                 </span>
-                <span className="text-xs text-white/50">{STATUS_META[day.status].label}</span>
-              </span>
-            </td>
-            <td className="px-3 py-2.5 text-white/65">{day.weatherLabel}</td>
-            <td className="whitespace-nowrap px-3 py-2.5">{Math.round(day.windKmh)} km/h</td>
-            <td className="whitespace-nowrap px-3 py-2.5">
-              {day.gustKmh != null ? `${Math.round(day.gustKmh)} km/h` : "N/A"}
-            </td>
-            <td className="whitespace-nowrap px-3 py-2.5">{day.tempC} °C</td>
-            <td className="whitespace-nowrap px-3 py-2.5">{day.humidityPct}%</td>
-            <td className="whitespace-nowrap px-3 py-2.5">{day.precipMm.toFixed(1)} mm</td>
-            <td className="whitespace-nowrap px-3 py-2.5 text-white/55">{day.sunrise ?? "N/A"}</td>
-          </tr>
-        ))}
+              </th>
+              <td className="whitespace-nowrap px-3 py-2.5">
+                <span className="inline-flex items-center gap-1.5">
+                  <span
+                    aria-hidden="true"
+                    className="h-2 w-2 rounded-full"
+                    style={{ backgroundColor: meta.stroke }}
+                  />
+                  <span className="font-bold" style={{ color: meta.stroke }}>
+                    {day.score}%
+                  </span>
+                  <span className="text-xs text-white/50">{meta.label}</span>
+                </span>
+              </td>
+              <td className="px-3 py-2.5 text-white/65">{day.weatherLabel}</td>
+              <td className="whitespace-nowrap px-3 py-2.5">{Math.round(day.windKmh)} km/h</td>
+              <td className="whitespace-nowrap px-3 py-2.5">
+                {day.gustKmh != null ? `${Math.round(day.gustKmh)} km/h` : w.notAvailable}
+              </td>
+              <td className="whitespace-nowrap px-3 py-2.5">{day.tempC} °C</td>
+              <td className="whitespace-nowrap px-3 py-2.5">{day.humidityPct}%</td>
+              <td className="whitespace-nowrap px-3 py-2.5">{day.precipMm.toFixed(1)} mm</td>
+              <td className="whitespace-nowrap px-3 py-2.5 text-white/55">{day.sunrise ?? w.notAvailable}</td>
+            </tr>
+          );
+        })}
       </tbody>
     </table>
   );

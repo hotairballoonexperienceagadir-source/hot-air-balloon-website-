@@ -1,24 +1,13 @@
 import type { Metadata, Viewport } from "next";
-import { Jost, Poppins } from "next/font/google";
-import "./globals.css";
+import { I18nProvider } from "@/lib/i18n/context";
+import { en } from "@/lib/i18n/dictionaries/en";
+import { en as enContent } from "@/lib/i18n/content/en";
+import { jost, poppins } from "@/lib/fonts";
+import { AgadirHome } from "@/components/site/AgadirHome";
 
-/* Body font: Jost, Regular 400 for text and Medium 500 for emphasis. */
-const jost = Jost({
-  subsets: ["latin"],
-  variable: "--font-jost",
-  display: "swap",
-});
-
-/* Heading font: Poppins. Only Bold 700 and Semibold 600 are used on the
- * site (headings and one semibold label), so only those two weights are
- * downloaded instead of five. */
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["600", "700"],
-  variable: "--font-poppins",
-  display: "swap",
-});
-
+/* English root layout. This is the EXACT metadata of the original site root
+ * layout, untouched (title, description, keywords, canonical, Open Graph):
+ * English stays the default language at "/" and "/marrakech-flights". */
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.hotairballoonexperienceagadir.com"),
   title: {
@@ -54,10 +43,12 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function EnglishLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" data-scroll-behavior="smooth" className={`${jost.variable} ${poppins.variable}`}>
-      <body>{children}</body>
+      <body>
+        <I18nProvider value={{ locale: "en", dict: en, content: enContent }}>{children}</I18nProvider>
+      </body>
     </html>
   );
 }

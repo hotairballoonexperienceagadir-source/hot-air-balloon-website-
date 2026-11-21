@@ -6,13 +6,11 @@ import { ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   cityGoogleConfig,
-  reviewHighlights,
   type CityKey,
 } from "@/lib/site";
-import {
-  formatRelativeReviewDate,
-  verifiedReviews,
-} from "@/lib/verified-reviews";
+import { verifiedReviews } from "@/lib/verified-reviews";
+import { useI18n } from "@/lib/i18n/context";
+import { formatRating, tpl } from "@/lib/i18n/format";
 import { GoogleIcon, Stars } from "./icons";
 
 /**
@@ -37,6 +35,8 @@ import { GoogleIcon, Stars } from "./icons";
  * Integrity rules enforced here:
  *   - No review is ever invented, filtered to look better than it is, or
  *     replaced with placeholder content.
+ *   - Review TEXTS are never translated: only the surrounding UI is
+ *     localized (owner approved 2026-11-21).
  *   - Owner replies are never displayed.
  *   - Reviewer photos are never displayed.
  *   - Nothing is presented as Google data unless it genuinely came from
@@ -61,21 +61,55 @@ interface ReviewsState {
  * button reveals the rest. With 4 or fewer reviews the button never renders. */
 const INITIAL_VISIBLE_CARDS = 4;
 
-const SECTION_TITLE: Record<CityKey, string> = {
-  agadir: "What Our Guests Say",
-  marrakech: "What Our Marrakech Guests Say",
-};
+/* Localized relative review dates, same math as
+ * src/lib/verified-reviews.ts. Non ISO strings (for example the relative
+ * labels returned live by Google) pass through unchanged. */
+function formatRelativeReviewDate(
+  isoDate: string,
+  dates: {
+    today: string;
+    yesterday: string;
+    daysAgo: string;
+    oneWeek: string;
+    weeksAgo: string;
+    oneMonth: string;
+    monthsAgo: string;
+    oneYear: string;
+    yearsAgo: string;
+  },
+): string {
+  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(isoDate);
+  if (!match) {
+    return isoDate;
+  }
+  const year = Number(match[1]);
+  const month = Number(match[2]);
+  const day = Number(match[3]);
+  const reviewTime = Date.UTC(year, month - 1, day);
+  const now = new Date();
+  const todayTime = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
+  const days = Math.floor((todayTime - reviewTime) / 86_400_000);
+  if (days <= 0) return dates.today;
+  if (days === 1) return dates.yesterday;
+  if (days < 7) return tpl(dates.daysAgo, { n: days });
+  const weeks = Math.floor(days / 7);
+  if (days < 30) return weeks === 1 ? dates.oneWeek : tpl(dates.weeksAgo, { n: weeks });
+  const months = Math.floor(days / 30);
+  if (days < 365) return months === 1 ? dates.oneMonth : tpl(dates.monthsAgo, { n: months });
+  const years = Math.floor(days / 365);
+  return years === 1 ? dates.oneYear : tpl(dates.yearsAgo, { n: years });
+}
 
 /* Builds the display state from the verified word for word reviews.
  * Average and count are computed from the data at call time so they can
  * never drift from the array, and relative dates are computed at render
  * time so they never go stale. */
-function buildVerifiedReviewsState(): ReviewsState {
+function buildVerifiedReviewsState(dateLabels: Parameters<typeof formatRelativeReviewDate>[1]): ReviewsState {
   const reviews = verifiedReviews.map((review) => ({
     name: review.author,
     rating: review.rating,
     text: review.text,
-    date: formatRelativeReviewDate(review.date),
+    date: formatRelativeReviewDate(review.date, dateLabels),
   }));
   return {
     rating:
@@ -88,11 +122,14 @@ function buildVerifiedReviewsState(): ReviewsState {
 }
 
 export function Reviews({ city = "agadir" }: { city?: CityKey }) {
+  const { dict, content } = useI18n();
+  const t = dict.reviews;
+
   /* For Agadir the state starts from the verified reviews so real content
    * renders immediately (SSR included). For Marrakech it stays null until
    * live Google data arrives: no cards, only the honest Google links. */
   const [data, setData] = useState<ReviewsState | null>(() =>
-    city === "agadir" ? buildVerifiedReviewsState() : null,
+    city === "agadir" ? buildVerifiedReviewsState(t.dates) : null,
   );
   const [showAllReviews, setShowAllReviews] = useState(false);
 
@@ -152,6 +189,8 @@ export function Reviews({ city = "agadir" }: { city?: CityKey }) {
 
   /* The single Google Business Profile shared by both destinations. */
   const google = cityGoogleConfig[city];
+  const reviewHighlights = content.reviewHighlights;
+  const sectionTitle = city === "agadir" ? t.titleAgadir : t.titleMarrakech;
   const hasReviews = data !== null && data.reviews.length > 0;
   const allReviews = hasReviews ? data.reviews : [];
   /* The "See more reviews" button exists only when there are MORE than the
@@ -176,7 +215,7 @@ export function Reviews({ city = "agadir" }: { city?: CityKey }) {
     "group block rounded-2xl bg-white shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500";
   const viewHint = (
     <span className="ml-auto inline-flex items-center gap-1 text-xs font-semibold text-brand-600 opacity-70 transition group-hover:opacity-100">
-      View on Google
+      {t.viewOnGoogle}
       <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
     </span>
   );
@@ -186,10 +225,10 @@ export function Reviews({ city = "agadir" }: { city?: CityKey }) {
       <div className="mx-auto max-w-7xl px-4 md:px-6">
         <div className="mx-auto max-w-2xl text-center">
           <span className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-brand-700 shadow-sm">
-            <Stars className="text-gold-500" /> Guest Reviews
+            <Stars className="text-gold-500" /> {t.eyebrow}
           </span>
           <h2 className="mt-4 font-display text-3xl font-bold text-foreground text-balance md:text-4xl">
-            {SECTION_TITLE[city]}
+            {sectionTitle}
           </h2>
           {data?.rating != null && (
             /* Rating badge: the whole badge opens our Google Business Profile. */
@@ -197,18 +236,20 @@ export function Reviews({ city = "agadir" }: { city?: CityKey }) {
               href={google.profileUrl}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label={`Read our Google reviews, rated ${data.rating.toFixed(1)} out of 5, opens in a new tab`}
+              aria-label={tpl(t.ratingBadgeAria, { rating: formatRating(data.rating, content.locale) })}
               className="mt-4 inline-flex flex-wrap items-center justify-center gap-3 rounded-2xl bg-white px-5 py-3 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500"
             >
               <GoogleIcon className="h-6 w-6" />
               <span className="font-display text-3xl font-bold text-foreground">
-                {data.rating.toFixed(1)}
+                {formatRating(data.rating, content.locale)}
               </span>
               <Stars className="text-gold-500" />
               {data.reviewCount !== null ? (
-                <span className="text-sm text-muted-foreground">{data.reviewCount} Google reviews</span>
+                <span className="text-sm text-muted-foreground">
+                  {tpl(t.googleReviewsCount, { n: data.reviewCount })}
+                </span>
               ) : (
-                <span className="text-sm text-muted-foreground">on Google Business Profile</span>
+                <span className="text-sm text-muted-foreground">{t.onGoogleProfile}</span>
               )}
             </a>
           )}
@@ -223,7 +264,7 @@ export function Reviews({ city = "agadir" }: { city?: CityKey }) {
             >
               <a href={google.reviewUrl} target="_blank" rel="noopener noreferrer">
                 <GoogleIcon className="h-5 w-5" />
-                Write a Google Review
+                {t.writeReview}
               </a>
             </Button>
           </div>
@@ -238,7 +279,7 @@ export function Reviews({ city = "agadir" }: { city?: CityKey }) {
                 href={google.profileUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label={`Read ${featured.name}'s review on Google`}
+                aria-label={tpl(t.reviewCardAria, { name: featured.name })}
                 className={cardLinkClass}
               >
                 <figure className="flex h-full flex-col p-6 md:p-8">
@@ -272,20 +313,20 @@ export function Reviews({ city = "agadir" }: { city?: CityKey }) {
                     href={google.profileUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label="Open our Google Business Profile to read all reviews"
+                    aria-label={t.profileAria}
                     className={`${cardLinkClass} p-6`}
                   >
-                    <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Review summary</p>
+                    <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">{t.summaryLabel}</p>
                     <div className="mt-4 flex items-end gap-3">
                       <span className="font-display text-5xl font-bold leading-none text-foreground">
-                        {data.rating.toFixed(1)}
+                        {formatRating(data.rating, content.locale)}
                       </span>
                       <div className="pb-1">
                         <Stars className="text-gold-500" />
                         <p className="mt-1 text-xs text-muted-foreground">
                           {data.reviewCount !== null
-                            ? `Based on ${data.reviewCount} Google reviews`
-                            : "Based on verified Google reviews"}
+                            ? tpl(t.basedOnCount, { n: data.reviewCount })
+                            : t.basedOnVerified}
                         </p>
                       </div>
                     </div>
@@ -300,7 +341,7 @@ export function Reviews({ city = "agadir" }: { city?: CityKey }) {
                       ))}
                     </ul>
                     <span className="mt-4 inline-flex items-center gap-1.5 text-xs font-semibold text-brand-600 underline-offset-4 group-hover:underline">
-                      View our Google Business Profile
+                      {t.viewProfile}
                       <span aria-hidden="true">→</span>
                     </span>
                   </a>
@@ -309,17 +350,15 @@ export function Reviews({ city = "agadir" }: { city?: CityKey }) {
                 {/* Plain (non clickable) card: hosts the standalone
                  * "Write a Google Review" link, never nested in a link. */}
                 <div className="rounded-2xl bg-navy-900 p-6 text-cream-100 shadow-sm">
-                  <p className="font-display text-lg font-bold text-white">Have you flown with us?</p>
-                  <p className="mt-1.5 text-sm leading-relaxed text-cream-100/80">
-                    Your review helps other travelers choose their sunrise adventure.
-                  </p>
+                  <p className="font-display text-lg font-bold text-white">{t.flownWithUs}</p>
+                  <p className="mt-1.5 text-sm leading-relaxed text-cream-100/80">{t.reviewHelps}</p>
                   <Button
                     asChild
                     className="mt-4 w-full rounded-full bg-brand-500 px-5 py-2.5 text-sm font-bold text-white hover:bg-brand-600"
                   >
                     <a href={google.reviewUrl} target="_blank" rel="noopener noreferrer">
                       <GoogleIcon className="h-4 w-4" />
-                      Write a Google Review
+                      {t.writeReview}
                     </a>
                   </Button>
                 </div>
@@ -337,7 +376,7 @@ export function Reviews({ city = "agadir" }: { city?: CityKey }) {
                     href={google.profileUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label={`Read ${review.name}'s review on Google`}
+                    aria-label={tpl(t.reviewCardAria, { name: review.name })}
                     className={cardLinkClass}
                   >
                     <figure className="flex h-full flex-col p-6">
@@ -376,7 +415,7 @@ export function Reviews({ city = "agadir" }: { city?: CityKey }) {
                   aria-expanded={showAllReviews}
                   className="rounded-full border-brand-600/40 bg-white px-6 py-2.5 text-sm font-bold text-brand-700 hover:bg-brand-50"
                 >
-                  {showAllReviews ? "Show less" : "See more reviews"}
+                  {showAllReviews ? t.showLess : t.showMore}
                 </Button>
               </div>
             )}
@@ -389,7 +428,7 @@ export function Reviews({ city = "agadir" }: { city?: CityKey }) {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-600 underline-offset-4 hover:underline"
               >
-                Read all reviews on Google
+                {t.readAllOnGoogle}
                 <ExternalLink className="h-4 w-4" aria-hidden="true" />
               </a>
             </div>
@@ -402,12 +441,8 @@ export function Reviews({ city = "agadir" }: { city?: CityKey }) {
           <div className="mx-auto mt-12 max-w-md">
             <div className="rounded-2xl bg-white p-6 text-center shadow-sm md:p-8">
               <GoogleIcon className="mx-auto h-8 w-8" />
-              <p className="mt-3 font-display text-lg font-bold text-foreground">
-                All of our guest reviews live on Google
-              </p>
-              <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-                Every review is published on our official Google Business Profile. Read them all there.
-              </p>
+              <p className="mt-3 font-display text-lg font-bold text-foreground">{t.allOnGoogleTitle}</p>
+              <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{t.allOnGoogleText}</p>
               <Button
                 asChild
                 variant="outline"
@@ -415,22 +450,20 @@ export function Reviews({ city = "agadir" }: { city?: CityKey }) {
               >
                 <a href={google.profileUrl} target="_blank" rel="noopener noreferrer">
                   <GoogleIcon className="h-4 w-4" />
-                  Read our reviews on Google
+                  {t.readOnGoogle}
                 </a>
               </Button>
             </div>
             <div className="mt-6 rounded-2xl bg-navy-900 p-6 text-center text-cream-100 shadow-sm md:p-8">
-              <p className="font-display text-lg font-bold text-white">Have you flown with us?</p>
-              <p className="mt-1.5 text-sm leading-relaxed text-cream-100/80">
-                Your review helps other travelers choose their sunrise adventure.
-              </p>
+              <p className="font-display text-lg font-bold text-white">{t.flownWithUs}</p>
+              <p className="mt-1.5 text-sm leading-relaxed text-cream-100/80">{t.reviewHelps}</p>
               <Button
                 asChild
                 className="mt-4 w-full rounded-full bg-brand-500 px-5 py-2.5 text-sm font-bold text-white hover:bg-brand-600"
               >
                 <a href={google.reviewUrl} target="_blank" rel="noopener noreferrer">
                   <GoogleIcon className="h-4 w-4" />
-                  Write a Google Review
+                  {t.writeReview}
                 </a>
               </Button>
             </div>
@@ -443,13 +476,14 @@ export function Reviews({ city = "agadir" }: { city?: CityKey }) {
 
 /* Photo strip used between reviews and gallery for a travel brochure feel. */
 export function ReviewsBanner() {
+  const { dict } = useI18n();
   return (
     <section aria-hidden="true" className="relative overflow-hidden bg-cream-100 pb-16 md:pb-24">
       <div className="mx-auto max-w-7xl px-4 md:px-6">
         <div className="relative h-40 overflow-hidden rounded-2xl md:h-56">
           <Image
             src="/images/gallery-3.webp"
-            alt="Green and red hot air balloons inflating in the Moroccan desert at dawn"
+            alt={dict.reviews.bannerAlt}
             fill
             loading="lazy"
             sizes="100vw"

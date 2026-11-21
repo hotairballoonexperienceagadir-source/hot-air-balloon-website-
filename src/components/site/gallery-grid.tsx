@@ -20,6 +20,8 @@ import { useState } from "react";
 import { ChevronDown, ChevronUp, ExternalLink, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { GOOGLE_BUSINESS_PROFILE_URL, galleryItems, type GalleryItem } from "@/lib/gallery";
+import { useI18n } from "@/lib/i18n/context";
+import { tpl } from "@/lib/i18n/format";
 
 /* Number of photos displayed before the visitor expands the gallery. */
 const INITIAL_VISIBLE_COUNT = 8;
@@ -27,6 +29,7 @@ const INITIAL_VISIBLE_COUNT = 8;
 /* items defaults to the Agadir gallery so the Agadir homepage keeps its
  * exact previous behavior; the Marrakech page passes its own collection. */
 export function GalleryGrid({ items = galleryItems }: { items?: GalleryItem[] }) {
+  const { dict } = useI18n();
   const [expanded, setExpanded] = useState(false);
   const hasMore = items.length > INITIAL_VISIBLE_COUNT;
   const visibleItems = expanded
@@ -42,12 +45,12 @@ export function GalleryGrid({ items = galleryItems }: { items?: GalleryItem[] })
             href={GOOGLE_BUSINESS_PROFILE_URL}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label={`${item.caption ?? item.alt ?? "Gallery media"}: see more photos and videos on our Google Business Profile (opens in a new tab)`}
+            aria-label={tpl(dict.galleryGrid.tileAria, { caption: item.caption ?? item.alt ?? dict.galleryGrid.imageAlt })}
             className="group relative block overflow-hidden rounded-2xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500"
           >
             <Image
               src={item.type === "video" ? (item.poster ?? item.src) : item.src}
-              alt={item.alt ?? (item.type === "video" ? "Gallery video clip" : "Gallery photo")}
+              alt={item.alt ?? (item.type === "video" ? dict.galleryGrid.videoAlt : dict.galleryGrid.imageAlt)}
               width={item.width ?? 1200}
               height={item.height ?? 800}
               loading="lazy"
@@ -90,7 +93,7 @@ export function GalleryGrid({ items = galleryItems }: { items?: GalleryItem[] })
             ) : (
               <ChevronDown className="size-5" aria-hidden="true" />
             )}
-            {expanded ? "Voir moins" : "Voir plus"}
+            {expanded ? dict.galleryGrid.less : dict.galleryGrid.more}
           </Button>
         </div>
       )}

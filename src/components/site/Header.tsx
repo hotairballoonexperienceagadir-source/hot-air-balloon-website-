@@ -12,50 +12,24 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { pagePaths } from "@/lib/i18n/config";
+import { useI18n } from "@/lib/i18n/context";
+import { formatRating, tpl } from "@/lib/i18n/format";
 import { site } from "@/lib/site";
 import { BookingButton } from "./BookingButton";
 import { BookingModalLazy } from "./BookingModalLazy";
+import { LanguageSwitcher, LanguageSwitcherMobileList } from "./LanguageSwitcher";
 import { WhatsAppIcon } from "./icons";
 
 type HeaderVariant = "home" | "marrakech";
 
-const navByVariant: Record<
-  HeaderVariant,
-  {
-    main: { href: string; label: string; external?: boolean }[];
-    secondary: { href: string; label: string };
-    strip: string;
-    bookingDestination: "Agadir" | "Marrakech";
-  }
-> = {
-  home: {
-    main: [
-      { href: "#home", label: "Home" },
-      { href: "#flights", label: "Agadir Flights" },
-      { href: "#experience", label: "Experience" },
-      { href: "#gallery", label: "Gallery" },
-      { href: "#reviews", label: "Reviews" },
-      { href: "#faq", label: "FAQ" },
-    ],
-    secondary: { href: site.marrakechPath, label: "Marrakech Flights" },
-    strip: "Sunrise flights over the Souss Valley, Agadir",
-    bookingDestination: "Agadir",
-  },
-  marrakech: {
-    main: [
-      { href: "/", label: "Home" },
-      { href: "#flights", label: "Marrakech Flights" },
-      { href: "#experience", label: "Experience" },
-      { href: "#reviews", label: "Reviews" },
-      { href: "#faq", label: "FAQ" },
-    ],
-    secondary: { href: site.homePath, label: "Agadir Flights" },
-    strip: "Marrakech flights operated by our Agadir base",
-    bookingDestination: "Marrakech",
-  },
-};
-
+/**
+ * The shared header. All labels come from the i18n dictionary of the
+ * current language (provided once per language layout through context);
+ * the internal booking destination stays the untranslated store key.
+ */
 export function Header({ variant = "home" }: { variant?: HeaderVariant }) {
+  const { locale, dict } = useI18n();
   const [scrolled, setScrolled] = useState(false);
   /* Logo emphasis state: the painted logo grows gently only while the page
      rests at the very top and shrinks back to its exact regular size as soon
@@ -63,7 +37,6 @@ export function Header({ variant = "home" }: { variant?: HeaderVariant }) {
      header height never change. */
   const [atTop, setAtTop] = useState(true);
   const [open, setOpen] = useState(false);
-  const nav = navByVariant[variant];
 
   useEffect(() => {
     const onScroll = () => {
@@ -75,22 +48,50 @@ export function Header({ variant = "home" }: { variant?: HeaderVariant }) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  /* Logo click behaviour. While on the homepage the URL often carries a hash
-     such as #reviews (set by the nav links). A plain Link to "/" from a hash
-     URL is a same page navigation for Next.js: it keeps the hash and the
-     scroll position, so the visitor stays mid page. To avoid that we take
-     over the click when already on "/": clear the hash with replaceState and
+  /* Logo click behaviour. While on the homepage of the current language the
+     URL often carries a hash such as #reviews (set by the nav links). A
+     plain Link to the localized home path from a hash URL is a same page
+     navigation for Next.js: it keeps the hash and the scroll position, so
+     the visitor stays mid page. To avoid that we take over the click when
+     already on the localized home path: clear the hash with replaceState and
      scroll back to the very top. From the Marrakech page we do nothing and
-     let the Link navigate normally, which lands on "/" and scrolls to the
-     top of the Agadir homepage. */
+     let the Link navigate normally, which lands on the localized homepage
+     and scrolls it to the top. */
+  const homePath = pagePaths.home[locale];
   function onLogoClick(e: MouseEvent<HTMLAnchorElement>) {
-    if (window.location.pathname !== "/") return;
+    if (window.location.pathname.replace(/\/+$/, "") !== homePath.replace(/\/+$/, "")) return;
     e.preventDefault();
     if (window.location.hash) {
       window.history.replaceState(null, "", window.location.pathname + window.location.search);
     }
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
+
+  const nav = {
+    main:
+      variant === "home"
+        ? [
+            { href: "#home", label: dict.header.nav.home },
+            { href: "#flights", label: dict.header.nav.agadirFlights },
+            { href: "#experience", label: dict.header.nav.experience },
+            { href: "#gallery", label: dict.header.nav.gallery },
+            { href: "#reviews", label: dict.header.nav.reviews },
+            { href: "#faq", label: dict.header.nav.faq },
+          ]
+        : [
+            { href: homePath, label: dict.header.nav.home },
+            { href: "#flights", label: dict.header.nav.marrakechFlights },
+            { href: "#experience", label: dict.header.nav.experience },
+            { href: "#reviews", label: dict.header.nav.reviews },
+            { href: "#faq", label: dict.header.nav.faq },
+          ],
+    secondary:
+      variant === "home"
+        ? { href: pagePaths.marrakech[locale], label: dict.header.nav.marrakechFlights }
+        : { href: homePath, label: dict.header.nav.agadirFlights },
+    strip: variant === "home" ? dict.header.stripHome : dict.header.stripMarrakech,
+    bookingDestination: (variant === "home" ? "Agadir" : "Marrakech") as "Agadir" | "Marrakech",
+  };
 
   return (
     <>
@@ -109,13 +110,14 @@ export function Header({ variant = "home" }: { variant?: HeaderVariant }) {
               rel="noopener noreferrer"
               className="flex items-center gap-2 transition hover:text-brand-300"
             >
-              <span className="text-gold-400">★</span> {site.googleRating.toFixed(1)} on Google
+              <span className="text-gold-400">★</span>{" "}
+              {tpl(dict.header.ratingOnGoogle, { rating: formatRating(site.googleRating, locale) })}
             </a>
           </div>
           <div className="flex items-center gap-4">
             <span className="text-cream-100/70">{nav.strip}</span>
             <span className="h-3 w-px bg-cream-100/30" aria-hidden="true" />
-            <span className="font-medium text-brand-300">Open 24 hours</span>
+            <span className="font-medium text-brand-300">{dict.header.open24}</span>
           </div>
         </div>
       </div>
@@ -130,17 +132,17 @@ export function Header({ variant = "home" }: { variant?: HeaderVariant }) {
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 md:px-6">
           <Link
-            href={site.homePath}
+            href={homePath}
             onClick={onLogoClick}
             className="flex items-center"
-            aria-label="Hot Air Balloon Experience Agadir, home"
+            aria-label={dict.header.logoAria}
           >
             {/* Transform scale only: the layout box keeps its exact size, so
                 the header height, spacing and alignment never shift while the
                 painted logo gently grows at the top of the page. */}
             <Image
               src="/images/logo.webp"
-              alt="Hot Air Balloon Experience Agadir logo"
+              alt={dict.header.logoAlt}
               width={1536}
               height={1024}
               priority
@@ -175,28 +177,29 @@ export function Header({ variant = "home" }: { variant?: HeaderVariant }) {
           </nav>
 
           <div className="flex items-center gap-2">
+            <LanguageSwitcher />
             <BookingButton
               destination={nav.bookingDestination}
               className="rounded-full bg-brand-500 px-5 py-2.5 text-sm font-bold text-white shadow-lg shadow-brand-500/30 transition hover:bg-brand-600"
             >
               <WhatsAppIcon className="h-4 w-4" />
-              Book Now
+              {dict.common.bookNow}
             </BookingButton>
             <Sheet open={open} onOpenChange={setOpen}>
               <SheetTrigger asChild>
                 <Button
                   variant="outline"
                   size="icon"
-                  aria-label="Open menu"
+                  aria-label={dict.header.openMenu}
                   className="rounded-full border-white/25 bg-white/10 text-white hover:bg-white/20 hover:text-white lg:hidden"
                 >
                   <Menu className="h-5 w-5" />
                 </Button>
               </SheetTrigger>
               <SheetContent side="right" className="w-80 border-navy-800 bg-navy-900 text-cream-100">
-                <SheetTitle className="text-cream-100">Menu</SheetTitle>
+                <SheetTitle className="text-cream-100">{dict.header.menuTitle}</SheetTitle>
                 <SheetDescription className="sr-only">
-                  Navigate to the main sections of the site
+                  {dict.header.menuDescription}
                 </SheetDescription>
                 <nav aria-label="Mobile navigation" className="mt-6 flex flex-col gap-1">
                   {nav.main.map((link) => (
@@ -217,6 +220,7 @@ export function Header({ variant = "home" }: { variant?: HeaderVariant }) {
                     {nav.secondary.label}
                     <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
                   </Link>
+                  <LanguageSwitcherMobileList />
                   <a
                     href={`tel:${site.phoneTel}`}
                     className="mt-4 flex items-center gap-3 rounded-xl bg-white/5 px-4 py-3 text-base font-semibold"

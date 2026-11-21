@@ -6,10 +6,19 @@ import { Reviews } from "@/components/site/Reviews";
 import { FaqSection } from "@/components/site/FaqSection";
 import { Footer } from "@/components/site/Footer";
 import { FloatingActions } from "@/components/site/FloatingActions";
-import { agadirOffers, faqs, site, socialLinks } from "@/lib/site";
+import { site, socialLinks } from "@/lib/site";
+import { tpl } from "@/lib/i18n/format";
+import type { AgadirContent, Dictionary, SiteContent } from "@/lib/i18n/types";
+
+/**
+ * THE Agadir homepage body, shared by every language. The language layout
+ * provides the matching dictionary and content; the JSON-LD is built from
+ * the same localized data (English stays byte for byte identical to the
+ * pre i18n homepage because the English content re-exports site.ts).
+ */
 
 /** JSON-LD structured data: local business, Agadir offers and FAQ. */
-function StructuredData() {
+function StructuredData({ dict, agadir }: { dict: Dictionary; agadir: AgadirContent }) {
   const data = {
     "@context": "https://schema.org",
     "@graph": [
@@ -17,8 +26,7 @@ function StructuredData() {
         "@type": "LocalBusiness",
         "@id": "https://www.hotairballoonexperienceagadir.com/#business",
         name: site.brand,
-        description:
-          "Licensed sunrise hot air balloon flights in Agadir over the Souss Valley and the Atlas Mountains.",
+        description: dict.home.seo.businessDescription,
         telephone: site.phoneDisplay,
         address: {
           "@type": "PostalAddress",
@@ -36,9 +44,9 @@ function StructuredData() {
         /* Official Agadir social profiles, homepage structured data only. */
         sameAs: socialLinks.map((social) => social.url),
       },
-      ...agadirOffers.map((offer) => ({
+      ...agadir.offers.map((offer) => ({
         "@type": "Product",
-        name: `${offer.name} in Agadir`,
+        name: tpl(dict.home.seo.productNameTemplate, { name: offer.name }),
         description: offer.description,
         image: offer.image,
         brand: { "@type": "Brand", name: site.brand },
@@ -51,7 +59,7 @@ function StructuredData() {
       })),
       {
         "@type": "FAQPage",
-        mainEntity: faqs.slice(0, 6).map((faq) => ({
+        mainEntity: agadir.faqs.slice(0, 6).map((faq) => ({
           "@type": "Question",
           name: faq.q,
           acceptedAnswer: { "@type": "Answer", text: faq.a },
@@ -67,26 +75,45 @@ function StructuredData() {
   );
 }
 
-export default function Page() {
+export function AgadirHome({ dict, content }: { dict: Dictionary; content: SiteContent }) {
+  const { locale } = content;
+  const agadir = content.destinations.agadir;
+
   return (
     <div className="flex min-h-screen flex-col">
-      <StructuredData />
+      <StructuredData dict={dict} agadir={agadir} />
       <Header />
       <main className="flex-1">
         <Hero />
-        <Stats />
-        <AgadirPackages />
-        <WhyUs />
-        <Experience />
-        <PickupStrip />
-        <Gallery />
+        <Stats dict={dict} agadir={agadir} />
+        <AgadirPackages dict={dict} agadir={agadir} locale={locale} />
+        <WhyUs dict={dict} agadir={agadir} />
+        <Experience
+          dict={dict}
+          agadir={agadir}
+          weatherNote={content.weatherNote}
+          galleryItems={content.gallery.agadir}
+        />
+        <PickupStrip dict={dict} agadir={agadir} />
+        <Gallery
+          eyebrow={dict.home.gallery.eyebrow}
+          title={dict.home.gallery.title}
+          description={dict.home.gallery.description}
+          items={content.gallery.agadir}
+        />
         <Reviews city="agadir" />
         {/* Live 7 day flight outlook: Agadir homepage only, never on Marrakech. */}
         <FlightProbability city="agadir" />
-        <FaqSection />
-        <CtaSection />
+        <FaqSection
+          items={agadir.faqs}
+          waMessage={agadir.faqWaMessage}
+          title={dict.home.faq.title}
+          subtitle={dict.home.faq.subtitle}
+          dict={dict}
+        />
+        <CtaSection dict={dict} locale={locale} />
       </main>
-      <Footer />
+      <Footer dict={dict} content={content} />
       {/* Spacer so the mobile sticky bar never covers the footer bottom line */}
       <div className="h-16 bg-navy-950 md:hidden" aria-hidden="true" />
       <FloatingActions />

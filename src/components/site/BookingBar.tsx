@@ -5,6 +5,9 @@ import Link from "next/link";
 import { ArrowUpRight, MapPin, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { site } from "@/lib/site";
+import { pagePaths } from "@/lib/i18n/config";
+import { useI18n } from "@/lib/i18n/context";
+import { formatRating, tpl } from "@/lib/i18n/format";
 import { offersForDestination, type BookingDestination } from "@/lib/booking-store";
 import { useBookingForm } from "@/lib/use-booking-form";
 import {
@@ -34,6 +37,7 @@ import { Stars, WhatsAppIcon } from "./icons";
  */
 
 export function BookingBar({ page }: { page: BookingDestination }) {
+  const { locale, dict, content } = useI18n();
   /* Local form state. The bar never writes to the booking store: the modal
      keeps its own CTA driven preselection (package cards, header, ...). */
   const [destination, setDestination] = useState<BookingDestination>(page);
@@ -88,10 +92,10 @@ export function BookingBar({ page }: { page: BookingDestination }) {
         ) : (
           <div>
             <span className="mb-1.5 flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gold-400">
-              <MapPin className="h-3.5 w-3.5" aria-hidden="true" /> Destination
+              <MapPin className="h-3.5 w-3.5" aria-hidden="true" /> {dict.booking.destinationLabel}
             </span>
             <div className="flex h-12 items-center justify-between rounded-xl border border-brand-400/40 bg-brand-500/10 px-4 text-sm font-bold text-brand-200">
-              Marrakech
+              {content.destinations.marrakech.cityName}
             </div>
           </div>
         )}
@@ -108,9 +112,9 @@ export function BookingBar({ page }: { page: BookingDestination }) {
             size="lg"
             className="h-12 rounded-xl bg-brand-500 px-6 text-sm font-bold text-white shadow-lg shadow-brand-900/40 transition hover:bg-brand-600 sm:w-auto"
           >
-            <Link href={site.marrakechPath}>
+            <Link href={pagePaths.marrakech[locale]}>
               <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
-              Marrakech Flights
+              {dict.booking.goToMarrakechButton}
             </Link>
           </Button>
         ) : (
@@ -121,43 +125,45 @@ export function BookingBar({ page }: { page: BookingDestination }) {
             className="h-12 rounded-xl bg-brand-500 px-6 text-sm font-bold text-white shadow-lg shadow-brand-900/40 transition hover:bg-brand-600 sm:w-auto"
           >
             <WhatsAppIcon className="h-4 w-4" aria-hidden="true" />
-            Check Availability
+            {dict.common.checkAvailability}
           </Button>
         )}
       </div>
 
       {goToMarrakech ? (
         <p className="mx-auto mt-4 flex max-w-5xl flex-wrap items-center justify-center gap-2 text-center text-sm text-cream-100/85">
-          Marrakech flights have their own dedicated page with separate offers and prices.
+          {dict.booking.goToMarrakechNote}
           <Link
-            href={site.marrakechPath}
+            href={pagePaths.marrakech[locale]}
             className="inline-flex items-center gap-1 font-bold text-brand-300 underline-offset-4 hover:underline"
           >
-            Explore Marrakech Flights <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+            {dict.booking.exploreMarrakech} <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
           </Link>
         </p>
       ) : page === "Agadir" ? (
         <div className="mx-auto mt-4 flex max-w-5xl flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-cream-100/85">
           <span className="inline-flex items-center gap-2">
-            <Stars className="text-gold-400" /> {site.googleRating.toFixed(1)} on Google Reviews
+            <Stars className="text-gold-400" />{" "}
+            {tpl(dict.booking.trust.googleReviews, { rating: formatRating(site.googleRating, locale) })}
           </span>
           <span className="hidden h-4 w-px bg-white/25 sm:block" aria-hidden="true" />
           <span className="inline-flex items-center gap-2">
-            <ShieldCheck className="h-4 w-4 text-brand-400" aria-hidden="true" /> Licensed pilots and full insurance
+            <ShieldCheck className="h-4 w-4 text-brand-400" aria-hidden="true" /> {dict.booking.trust.licensed}
           </span>
           <span className="hidden h-4 w-px bg-white/25 sm:block" aria-hidden="true" />
           <span className="inline-flex items-center gap-2">
-            <WhatsAppIcon className="h-4 w-4 text-whatsapp" /> Instant booking on WhatsApp
+            <WhatsAppIcon className="h-4 w-4 text-whatsapp" /> {dict.booking.trust.whatsapp}
           </span>
         </div>
       ) : (
         <div className="mx-auto mt-4 flex max-w-3xl flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-cream-100/85">
           <span className="inline-flex items-center gap-2">
-            <Stars className="text-gold-400" /> {site.googleRating.toFixed(1)} rated company on Google
+            <Stars className="text-gold-400" />{" "}
+            {tpl(dict.booking.trust.ratedCompany, { rating: formatRating(site.googleRating, locale) })}
           </span>
           <span className="hidden h-4 w-px bg-white/25 sm:block" aria-hidden="true" />
           <span className="inline-flex items-center gap-2">
-            <ShieldCheck className="h-4 w-4 text-brand-400" aria-hidden="true" /> Same licensed pilots as Agadir
+            <ShieldCheck className="h-4 w-4 text-brand-400" aria-hidden="true" /> {dict.booking.trust.samePilots}
           </span>
         </div>
       )}

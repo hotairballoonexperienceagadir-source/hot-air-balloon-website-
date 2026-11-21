@@ -15,6 +15,9 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 import { Button } from "@/components/ui/button";
 import { useContactStore } from "@/lib/contact-store";
 import { site, waLink } from "@/lib/site";
+import { languageNameInEnglish } from "@/lib/i18n/config";
+import { useI18n } from "@/lib/i18n/context";
+import { tpl } from "@/lib/i18n/format";
 import { WhatsAppIcon } from "./icons";
 
 /**
@@ -37,6 +40,12 @@ import { WhatsAppIcon } from "./icons";
  * shown to customers. Server side field validation (400) keeps the visitor
  * on the form with the values filled so they can fix the highlighted
  * fields.
+ *
+ * LOCALIZATION (owner approved 2026-11-21): every label, message and the
+ * fallback WhatsApp / mailto message follow the language of the page. The
+ * fallback message ends with a literal "Language: French" (or German,
+ * Spanish, English) line so the team always knows the conversation
+ * language.
  */
 
 type FieldId = "name" | "email" | "subject" | "message";
@@ -73,21 +82,9 @@ function FieldError({ id, message }: { id: string; message?: string }) {
   );
 }
 
-/* The message a customer can always deliver, even when email sending is
-   unavailable: the exact content they typed, pre-filled for the WhatsApp
-   button and the mailto fallback link. Apostrophes follow the copy rule
-   (U+2019). */
-function buildFallbackMessage(form: Record<FieldId, string>): string {
-  return [
-    "Hello, I’m contacting you from the website.",
-    `Name: ${form.name.trim()}`,
-    `Email: ${form.email.trim()}`,
-    `Subject: ${form.subject.trim()}`,
-    `Message: ${form.message.trim()}`,
-  ].join("\n");
-}
-
 export function ContactModal() {
+  const { locale, dict } = useI18n();
+  const t = dict.contact;
   const isOpen = useContactStore((state) => state.isOpen);
   const closeContact = useContactStore((state) => state.closeContact);
 
@@ -104,12 +101,12 @@ export function ContactModal() {
 
   function validate(): boolean {
     const next: Partial<Record<FieldId, string>> = {};
-    if (!values.name.trim()) next.name = "Please enter your full name.";
+    if (!values.name.trim()) next.name = t.errorName;
     const email = values.email.trim();
-    if (!email) next.email = "Please enter your email address.";
-    else if (!EMAIL_REGEX.test(email)) next.email = "Please enter a valid email address.";
-    if (!values.subject.trim()) next.subject = "Please enter a subject.";
-    if (!values.message.trim()) next.message = "Please enter your message.";
+    if (!email) next.email = t.errorEmailRequired;
+    else if (!EMAIL_REGEX.test(email)) next.email = t.errorEmailInvalid;
+    if (!values.subject.trim()) next.subject = t.errorSubject;
+    if (!values.message.trim()) next.message = t.errorMessage;
     setErrors(next);
     return Object.keys(next).length === 0;
   }
@@ -176,20 +173,28 @@ export function ContactModal() {
   const describedBy = (field: FieldId) => (errors[field] ? `${field}-error` : undefined);
 
   /* The never-lose-the-message fallback targets, always derived from the
-     current form values (kept filled on failure). */
-  const fallbackMessage = buildFallbackMessage(values);
+     current form values (kept filled on failure). Localized field labels
+     plus the literal "Language: ..." line. */
+  const fallbackMessage = [
+    t.messageLabels.greeting,
+    `${t.messageLabels.name} ${values.name.trim()}`,
+    `${t.messageLabels.email} ${values.email.trim()}`,
+    `${t.messageLabels.subject} ${values.subject.trim()}`,
+    `${t.messageLabels.message} ${values.message.trim()}`,
+    `${t.messageLabels.languageLabel} ${languageNameInEnglish[locale]}`,
+  ].join("\n");
   const whatsappHref = waLink(fallbackMessage);
   const mailtoHref = `mailto:${site.contactEmail}?subject=${encodeURIComponent(
-    values.subject.trim() || "Website message",
+    values.subject.trim() || t.mailtoSubject,
   )}&body=${encodeURIComponent(fallbackMessage)}`;
 
   return (
     <Dialog open={isOpen} onOpenChange={handleOpenChange}>
       <DialogContent className="gap-0 rounded-2xl border border-white/15 bg-navy-900 p-6 text-cream-100 shadow-2xl shadow-navy-950/70 sm:max-w-md">
         <DialogHeader>
-          <DialogTitle className="font-display text-2xl font-bold text-white">Contact Us</DialogTitle>
+          <DialogTitle className="font-display text-2xl font-bold text-white">{t.title}</DialogTitle>
           <DialogDescription className="mt-1.5 text-sm leading-relaxed text-cream-100/75">
-            Send us a message and our team replies directly to your email inbox. We answer 24 hours a day.
+            {t.description}
           </DialogDescription>
         </DialogHeader>
 
@@ -197,12 +202,9 @@ export function ContactModal() {
           <div className="mt-5">
             <div className="rounded-xl border border-emerald-400/30 bg-emerald-400/10 p-5 text-center">
               <CheckCircle2 className="mx-auto h-10 w-10 text-emerald-300" aria-hidden="true" />
-              <p className="mt-3 font-display text-lg font-bold text-white">
-                Message sent successfully!
-              </p>
+              <p className="mt-3 font-display text-lg font-bold text-white">{t.successTitle}</p>
               <p className="mt-1.5 text-sm leading-relaxed text-cream-100/80">
-                Thank you {values.name.trim()}, your message is on its way to our team. We will reply to{" "}
-                <span className="font-semibold text-white">{values.email.trim()}</span> as soon as possible.
+                {tpl(t.successText, { name: values.name.trim(), email: values.email.trim() })}
               </p>
             </div>
             <div className="mt-5 flex flex-col gap-3 sm:flex-row">
@@ -212,14 +214,14 @@ export function ContactModal() {
                 variant="outline"
                 className="h-11 flex-1 rounded-xl border-white/25 bg-white/5 text-sm font-bold text-white hover:bg-white/15 hover:text-white"
               >
-                Send Another Message
+                {t.sendAnother}
               </Button>
               <Button
                 type="button"
                 onClick={closeContact}
                 className="h-11 flex-1 rounded-xl bg-brand-500 text-sm font-bold text-white shadow-lg shadow-brand-900/40 hover:bg-brand-600"
               >
-                Close
+                {t.close}
               </Button>
             </div>
           </div>
@@ -228,13 +230,13 @@ export function ContactModal() {
             <div className="mt-5 grid gap-4 sm:grid-cols-2">
               <div>
                 <label htmlFor="contact-name" className="block">
-                  <FieldLabel icon={User}>Full Name</FieldLabel>
+                  <FieldLabel icon={User}>{t.nameLabel}</FieldLabel>
                 </label>
                 <input
                   id="contact-name"
                   type="text"
                   autoComplete="name"
-                  placeholder="Your full name"
+                  placeholder={t.namePlaceholder}
                   value={values.name}
                   onChange={(event) => setValue("name", event.target.value)}
                   aria-invalid={errors.name ? true : undefined}
@@ -246,13 +248,13 @@ export function ContactModal() {
 
               <div>
                 <label htmlFor="contact-email" className="block">
-                  <FieldLabel icon={Mail}>Email Address</FieldLabel>
+                  <FieldLabel icon={Mail}>{t.emailLabel}</FieldLabel>
                 </label>
                 <input
                   id="contact-email"
                   type="email"
                   autoComplete="email"
-                  placeholder="you@example.com"
+                  placeholder={t.emailPlaceholder}
                   value={values.email}
                   onChange={(event) => setValue("email", event.target.value)}
                   aria-invalid={errors.email ? true : undefined}
@@ -264,12 +266,12 @@ export function ContactModal() {
 
               <div className="sm:col-span-2">
                 <label htmlFor="contact-subject" className="block">
-                  <FieldLabel icon={Tag}>Subject</FieldLabel>
+                  <FieldLabel icon={Tag}>{t.subjectLabel}</FieldLabel>
                 </label>
                 <input
                   id="contact-subject"
                   type="text"
-                  placeholder="e.g. Sunrise flight for two in March"
+                  placeholder={t.subjectPlaceholder}
                   value={values.subject}
                   onChange={(event) => setValue("subject", event.target.value)}
                   aria-invalid={errors.subject ? true : undefined}
@@ -281,12 +283,12 @@ export function ContactModal() {
 
               <div className="sm:col-span-2">
                 <label htmlFor="contact-message" className="block">
-                  <FieldLabel icon={MessageSquare}>Message</FieldLabel>
+                  <FieldLabel icon={MessageSquare}>{t.messageLabel}</FieldLabel>
                 </label>
                 <textarea
                   id="contact-message"
                   rows={4}
-                  placeholder="Tell us about your plans, questions or special requests..."
+                  placeholder={t.messagePlaceholder}
                   value={values.message}
                   onChange={(event) => setValue("message", event.target.value)}
                   aria-invalid={errors.message ? true : undefined}
@@ -304,10 +306,7 @@ export function ContactModal() {
               >
                 <div className="flex items-start gap-3">
                   <AlertCircle className="mt-0.5 h-4 w-4 shrink-0 text-gold-400" aria-hidden="true" />
-                  <p className="text-sm leading-relaxed text-cream-100/85">
-                    We couldn’t send your email right now. Tap below to send the same message on WhatsApp. We
-                    reply 24 hours a day.
-                  </p>
+                  <p className="text-sm leading-relaxed text-cream-100/85">{t.fallbackText}</p>
                 </div>
                 <Button
                   type="button"
@@ -315,14 +314,14 @@ export function ContactModal() {
                   className="mt-3 h-11 w-full rounded-xl bg-brand-500 text-sm font-bold text-white shadow-lg shadow-brand-900/40 hover:bg-brand-600"
                 >
                   <WhatsAppIcon className="h-4 w-4" aria-hidden="true" />
-                  Send on WhatsApp
+                  {t.sendOnWhatsApp}
                 </Button>
                 <a
                   href={mailtoHref}
                   className="mt-3 flex items-center justify-center gap-2 text-sm font-semibold text-cream-100/75 underline underline-offset-4 transition hover:text-white"
                 >
                   <Mail className="h-3.5 w-3.5" aria-hidden="true" />
-                  Email us instead
+                  {t.emailInstead}
                 </a>
               </div>
             )}
@@ -336,17 +335,17 @@ export function ContactModal() {
               {sending ? (
                 <>
                   <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
-                  Sending...
+                  {t.sending}
                 </>
               ) : (
                 <>
                   <Mail className="h-4 w-4" aria-hidden="true" />
-                  Send Message
+                  {t.send}
                 </>
               )}
             </Button>
             <p className="mt-3 text-center text-xs text-cream-100/60">
-              Delivered securely to {site.contactEmail}
+              {tpl(t.deliveredTo, { email: site.contactEmail })}
             </p>
           </form>
         )}
