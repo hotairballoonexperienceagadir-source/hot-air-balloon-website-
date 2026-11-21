@@ -1,10 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { I18nProvider } from "@/lib/i18n/context";
-/* PHASE B SCAFFOLD: the French layout serves the English dictionary and
- * content until Phase C lands the real translations. Only the <html lang>,
- * the URL prefix and the metadata are already French. */
-import { en } from "@/lib/i18n/dictionaries/en";
-import { en as enContent } from "@/lib/i18n/content/en";
+import { fr } from "@/lib/i18n/dictionaries/fr";
+import { fr as frContent } from "@/lib/i18n/content/fr";
 import { jost, poppins } from "@/lib/fonts";
 
 export const metadata: Metadata = {
@@ -28,7 +25,7 @@ export default function FrenchLayout({ children }: { children: React.ReactNode }
   return (
     <html lang="fr" data-scroll-behavior="smooth" className={`${jost.variable} ${poppins.variable}`}>
       <body>
-        <I18nProvider value={{ locale: "fr", dict: en, content: enContent }}>{children}</I18nProvider>
+        <I18nProvider value={{ locale: "fr", dict: fr, content: frContent }}>{children}</I18nProvider>
       </body>
     </html>
   );

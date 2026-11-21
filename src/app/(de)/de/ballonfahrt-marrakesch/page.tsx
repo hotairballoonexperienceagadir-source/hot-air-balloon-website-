@@ -1,9 +1,8 @@
-import { en } from "@/lib/i18n/dictionaries/en";
-import { en as enContent } from "@/lib/i18n/content/en";
+import { de } from "@/lib/i18n/dictionaries/de";
+import { de as deContent } from "@/lib/i18n/content/de";
 import { MarrakechPage } from "@/components/site/MarrakechPage";
 
-/* The German Marrakech page at "/de/ballonfahrt-marrakesch". PHASE B:
- * renders the English content; the German translations arrive in Phase C. */
+/* The German Marrakech page at "/de/ballonfahrt-marrakesch". */
 export default function Page() {
-  return <MarrakechPage dict={en} content={enContent} />;
+  return <MarrakechPage dict={de} content={deContent} />;
 }

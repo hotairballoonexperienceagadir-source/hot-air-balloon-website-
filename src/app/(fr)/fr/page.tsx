@@ -1,9 +1,8 @@
-import { en } from "@/lib/i18n/dictionaries/en";
-import { en as enContent } from "@/lib/i18n/content/en";
+import { fr } from "@/lib/i18n/dictionaries/fr";
+import { fr as frContent } from "@/lib/i18n/content/fr";
 import { AgadirHome } from "@/components/site/AgadirHome";
 
-/* The French Agadir homepage at "/fr". PHASE B: renders the English
- * content; the French translations arrive in Phase C. */
+/* The French Agadir homepage at "/fr". */
 export default function Page() {
-  return <AgadirHome dict={en} content={enContent} />;
+  return <AgadirHome dict={fr} content={frContent} />;
 }
