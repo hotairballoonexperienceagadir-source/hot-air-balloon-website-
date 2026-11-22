@@ -4,10 +4,11 @@ import { toClientI18nValue } from "@/lib/i18n/client-value";
 import { de } from "@/lib/i18n/dictionaries/de";
 import { de as deContent } from "@/lib/i18n/content/de";
 import { jost, poppins } from "@/lib/fonts";
+import { siteUrl } from "@/lib/i18n/config";
 import "../globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.hotairballoonexperienceagadir.com"),
+  metadataBase: new URL(siteUrl),
   title: {
     default: "Ballonfahrt Agadir | Heißluftballon bei Sonnenaufgang im Souss-Tal, Marokko",
     template: "%s | Hot Air Balloon Experience Agadir",

@@ -71,10 +71,17 @@ export const pagePaths: Record<PageKey, Record<Locale, string>> = {
   },
 };
 
+/**
+ * The live production domain (Vercel, DNS on Cloudflare, connected
+ * 2026-11-22). ONE source for metadataBase, canonicals, hreflang, sitemap,
+ * robots and JSON-LD. The apex hotairballoontoursmorocco.com redirects to
+ * this www host in Vercel.
+ */
+export const siteUrl = "https://www.hotairballoontoursmorocco.com";
+
 /** Absolute URL helpers for hreflang and the sitemap. */
 export function absolutePageUrl(pageKey: PageKey, locale: Locale): string {
-  const base = "https://www.hotairballoonexperienceagadir.com";
-  return `${base}${pagePaths[pageKey][locale]}`;
+  return `${siteUrl}${pagePaths[pageKey][locale]}`;
 }
 
 /**

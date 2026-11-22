@@ -5,13 +5,14 @@ import { en } from "@/lib/i18n/dictionaries/en";
 import { en as enContent } from "@/lib/i18n/content/en";
 import { jost, poppins } from "@/lib/fonts";
 import { AgadirHome } from "@/components/site/AgadirHome";
+import { siteUrl } from "@/lib/i18n/config";
 import "../globals.css";
 
 /* English root layout. This is the EXACT metadata of the original site root
  * layout, untouched (title, description, keywords, canonical, Open Graph):
  * English stays the default language at "/" and "/marrakech-flights". */
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.hotairballoonexperienceagadir.com"),
+  metadataBase: new URL(siteUrl),
   title: {
     default: "Hot Air Balloon Agadir | Sunrise Flights Over the Souss Valley, Morocco",
     template: "%s | Hot Air Balloon Experience Agadir",

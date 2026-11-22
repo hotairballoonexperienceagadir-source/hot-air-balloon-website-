@@ -8,6 +8,7 @@ import { Footer } from "@/components/site/Footer";
 import { FloatingActions } from "@/components/site/FloatingActions";
 import { site, socialLinks } from "@/lib/site";
 import { tpl } from "@/lib/i18n/format";
+import { siteUrl } from "@/lib/i18n/config";
 import type { AgadirContent, Dictionary, SiteContent } from "@/lib/i18n/types";
 
 /**
@@ -24,7 +25,7 @@ function StructuredData({ dict, agadir }: { dict: Dictionary; agadir: AgadirCont
     "@graph": [
       {
         "@type": "LocalBusiness",
-        "@id": "https://www.hotairballoonexperienceagadir.com/#business",
+        "@id": `${siteUrl}/#business`,
         name: site.brand,
         description: dict.home.seo.businessDescription,
         telephone: site.phoneDisplay,

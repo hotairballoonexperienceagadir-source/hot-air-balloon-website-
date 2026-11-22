@@ -40,7 +40,7 @@ export async function GET(request: Request) {
         <div style={{ display: "flex", fontSize: 50, fontWeight: 700, lineHeight: 1.25 }}>{title}</div>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: 26, color: "#F5E6D3" }}>
           <span>{subtitle}</span>
-          <span style={{ color: "#D4A24C" }}>hotairballoonexperienceagadir.com</span>
+          <span style={{ color: "#D4A24C" }}>hotairballoontoursmorocco.com</span>
         </div>
       </div>
     ),

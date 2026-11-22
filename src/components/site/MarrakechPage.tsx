@@ -8,7 +8,7 @@ import { FaqSection } from "@/components/site/FaqSection";
 import { Footer } from "@/components/site/Footer";
 import { FloatingActions } from "@/components/site/FloatingActions";
 import { site } from "@/lib/site";
-import { pagePaths } from "@/lib/i18n/config";
+import { pagePaths, siteUrl } from "@/lib/i18n/config";
 import { tpl } from "@/lib/i18n/format";
 import type { Dictionary, MarrakechContent, SiteContent } from "@/lib/i18n/types";
 
@@ -30,7 +30,7 @@ function MarrakechStructuredData({
   locale: SiteContent["locale"];
   marrakech: MarrakechContent;
 }) {
-  const base = "https://www.hotairballoonexperienceagadir.com";
+  const base = siteUrl;
   const data = {
     "@context": "https://schema.org",
     "@graph": [
