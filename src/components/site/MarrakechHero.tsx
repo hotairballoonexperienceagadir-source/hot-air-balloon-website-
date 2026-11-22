@@ -60,7 +60,7 @@ export function MarrakechHero() {
             {hero.titleLead} <span className="text-brand-400">{hero.titleHighlight}</span>
           </h1>
           <p className="mt-5 max-w-xl text-base leading-relaxed text-cream-100/90 md:text-lg">
-            {city.intro}
+            {city.heroText}
           </p>
 
           <div className="mt-7 flex flex-col gap-3 sm:flex-row">

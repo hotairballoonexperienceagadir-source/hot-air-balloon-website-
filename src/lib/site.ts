@@ -167,8 +167,13 @@ export const cities: Record<
     id: "marrakech",
     name: "Marrakech",
     headline: "Hot Air Balloon Flights in Marrakech",
+    /* Packages section intro of the Marrakech page. The hero paragraph is a
+     * separate field (heroText in the i18n content) so the hero and the
+     * packages intro can never share the same text again (owner fix
+     * 2026-11-22). The former combined intro, which repeated itself in the
+     * hero and in the packages section, is retired. */
     intro:
-      "Our second destination, operated by the same Agadir based team. Lift off from the desert on the edge of the red city and watch the Atlas mountains turn gold at sunrise. A balloon flight in Marrakech is one of the most memorable ways to start the day, and hot air balloon Marrakech prices start at 999 MAD per person for the Classic Low Cost flight.",
+      "From a shared sunrise flight at 999 MAD per person to a fully private balloon with breakfast served in the sky, choose the morning that suits you. A hot air balloon flight in Marrakech is one of the most memorable ways to start the day.",
     launchSite: "Desert launch area, about 30 minutes from central Marrakech",
     isMain: false,
   },

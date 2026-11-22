@@ -289,9 +289,6 @@ export const de: SiteContent = {
     agadir: {
       cityName: "Agadir",
       bookingDestination: "Agadir",
-      headline: "Ballonfahrten in Agadir",
-      intro:
-        "Unsere Heimbasis und das Herz von allem, was wir tun. Jeden Morgen heben wir vom Souss-Tal ab und schweben über grüne Felder, Arganbäume und berberische Dörfer, während das Atlasgebirge am Horizont leuchtet.",
       launchSite: "Startplatz im Souss-Tal, ca. 50 Minuten bis 1 Stunde von der Innenstadt Agadirs entfernt",
       offers: [
         localizeOffer("agadir-classic", {
@@ -483,9 +480,14 @@ export const de: SiteContent = {
     marrakech: {
       cityName: "Marrakesch",
       bookingDestination: "Marrakech",
-      headline: "Ballonfahrten in Marrakesch",
+      /* Hero-Absatz und Intro des Paketbereichs sind bewusst zwei
+       * getrennte Felder: Die beiden Texte dürfen nie wieder identisch
+       * sein (Korrektur vom Eigentümer, 2026-11-22). */
+      heroText:
+        "Unser zweites Reiseziel, betreut vom selben Team aus Agadir. Starten Sie in der Wüste am Rande der roten Stadt und sehen Sie zu, wie sich das Atlasgebirge bei Sonnenaufgang golden färbt.",
+      packagesHeadline: "Wählen Sie Ihre Ballonfahrt in Marrakesch",
       intro:
-        "Unser zweites Reiseziel, betrieben vom selben Team aus Agadir. Heben Sie in der Wüste am Rand der roten Stadt ab und sehen Sie zu, wie das Atlasgebirge bei Sonnenaufgang golden wird.",
+        "Vom geteilten Ballonflug bei Sonnenaufgang ab 999 MAD pro Person bis zum ganz privaten Ballon mit Frühstück hoch in der Luft: Wählen Sie den Morgen, der zu Ihnen passt. Eine Ballonfahrt in Marrakesch ist eine der schönsten Arten, den Tag zu beginnen.",
       launchSite: "Wüstenstartgebiet, ca. 30 Minuten vom Zentrum von Marrakesch entfernt",
       offers: [
         localizeOffer("mk-classic", {

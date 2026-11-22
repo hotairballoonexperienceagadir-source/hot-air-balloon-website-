@@ -289,9 +289,6 @@ export const fr: SiteContent = {
     agadir: {
       cityName: "Agadir",
       bookingDestination: "Agadir",
-      headline: "Vols en montgolfière à Agadir",
-      intro:
-        "Notre base et le cœur de tout ce que nous faisons. Chaque matin, nous décollons de la vallée du Souss et planons au-dessus de champs verts, d’arganiers et de villages berbères, avec les montagnes de l’Atlas qui resplendissent à l’horizon.",
       launchSite: "Site de décollage dans la vallée du Souss, à environ 50 minutes à 1 heure du centre d’Agadir",
       offers: [
         localizeOffer("agadir-classic", {
@@ -483,9 +480,14 @@ export const fr: SiteContent = {
     marrakech: {
       cityName: "Marrakech",
       bookingDestination: "Marrakech",
-      headline: "Vols en montgolfière à Marrakech",
+      /* Paragraphe du hero et intro de la section formules volontairement
+       * séparés : les deux textes ne doivent plus jamais être identiques
+       * (correction demandée par le propriétaire, 2026-11-22). */
+      heroText:
+        "Notre deuxième destination, opérée par la même équipe basée à Agadir. Décollez du désert aux portes de la ville rouge et regardez l’Atlas se teinter d’or au lever du soleil.",
+      packagesHeadline: "Choisissez votre vol en montgolfière à Marrakech",
       intro:
-        "Notre seconde destination, opérée par la même équipe basée à Agadir. Décollez du désert aux portes de la ville ocre et regardez les montagnes de l’Atlas se teinter d’or au lever du soleil.",
+        "D’un vol partagé au lever du soleil à partir de 999 MAD par personne jusqu’à une montgolfière entièrement privée avec petit-déjeuner servi dans les airs, choisissez la matinée qui vous ressemble. Un vol en montgolfière à Marrakech est l’une des plus belles façons de commencer la journée.",
       launchSite: "Zone de décollage dans le désert, à environ 30 minutes du centre de Marrakech",
       offers: [
         localizeOffer("mk-classic", {

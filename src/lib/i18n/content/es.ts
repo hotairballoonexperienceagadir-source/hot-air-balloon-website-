@@ -289,9 +289,6 @@ export const es: SiteContent = {
     agadir: {
       cityName: "Agadir",
       bookingDestination: "Agadir",
-      headline: "Vuelos en globo aerostático en Agadir",
-      intro:
-        "Nuestra base y el corazón de todo lo que hacemos. Cada mañana despegamos del valle del Souss y volamos sobre campos verdes, arganes y pueblos bereberes, con las montañas del Atlas brillando en el horizonte.",
       launchSite: "Zona de despegue en el valle del Souss, a unos 50 minutos a 1 hora del centro de Agadir",
       offers: [
         localizeOffer("agadir-classic", {
@@ -483,9 +480,14 @@ export const es: SiteContent = {
     marrakech: {
       cityName: "Marrakech",
       bookingDestination: "Marrakech",
-      headline: "Vuelos en globo aerostático en Marrakech",
+      /* El párrafo del hero y la intro de la sección de paquetes son
+       * a propósito dos campos separados: los dos textos no deben
+       * volver a ser idénticos (corrección del propietario, 2026-11-22). */
+      heroText:
+        "Nuestro segundo destino, gestionado por el mismo equipo de Agadir. Despega desde el desierto a las puertas de la ciudad roja y mira cómo el Atlas se tiñe de dorado al amanecer.",
+      packagesHeadline: "Elige tu paseo en globo en Marrakech",
       intro:
-        "Nuestro segundo destino, operado por el mismo equipo con base en Agadir. Despega del desierto a las afueras de la ciudad roja y mira cómo las montañas del Atlas se tiñen de oro al amanecer.",
+        "Desde un vuelo compartido al amanecer por 999 MAD por persona hasta un globo totalmente privado con desayuno servido en el aire, elige la mañana que más te guste. Un paseo en globo aerostático en Marrakech es una de las formas más inolvidables de empezar el día.",
       launchSite: "Zona de despegue en el desierto, a unos 30 minutos del centro de Marrakech",
       offers: [
         localizeOffer("mk-classic", {

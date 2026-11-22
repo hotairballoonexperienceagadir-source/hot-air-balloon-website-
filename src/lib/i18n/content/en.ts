@@ -33,8 +33,6 @@ export const en: SiteContent = {
     agadir: {
       cityName: cities.agadir.name,
       bookingDestination: "Agadir",
-      headline: cities.agadir.headline,
-      intro: cities.agadir.intro,
       launchSite: cities.agadir.launchSite,
       offers: agadirOffers,
       timeline: experienceSteps,
@@ -49,7 +47,13 @@ export const en: SiteContent = {
     marrakech: {
       cityName: cities.marrakech.name,
       bookingDestination: "Marrakech",
-      headline: cities.marrakech.headline,
+      /* Hero paragraph and packages intro are two separate fields on
+       * purpose: they must never share the same text again (owner fix
+       * 2026-11-22). intro holds the packages section copy (re-exported
+       * from site.ts), heroText holds the hero copy. */
+      heroText:
+        "Our second destination, operated by the same Agadir based team. Lift off from the desert on the edge of the red city and watch the Atlas mountains turn gold at sunrise.",
+      packagesHeadline: "Choose Your Marrakech Balloon Flight",
       intro: cities.marrakech.intro,
       launchSite: cities.marrakech.launchSite,
       offers: marrakechOffers,

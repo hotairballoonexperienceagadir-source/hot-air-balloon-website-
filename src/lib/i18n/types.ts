@@ -447,8 +447,6 @@ interface DestinationContentBase {
   cityName: string;
   /** Internal booking destination key, never translated. */
   bookingDestination: "Agadir" | "Marrakech";
-  headline: string;
-  intro: string;
   launchSite: string;
   offers: Offer[];
   timeline: LocalizedStep[];
@@ -466,7 +464,16 @@ export interface AgadirContent extends DestinationContentBase {
   pickupAreas: LocalizedPickupArea[];
 }
 
-export type MarrakechContent = DestinationContentBase;
+export interface MarrakechContent extends DestinationContentBase {
+  /** Hero paragraph of the Marrakech page. Deliberately separate from the
+   * packages intro (intro) so the hero and the packages section can never
+   * share the same text again (owner fix 2026-11-22). */
+  heroText: string;
+  /** Packages section H2, deliberately different from the page H1. */
+  packagesHeadline: string;
+  /** Packages section intro paragraph, never rendered in the hero. */
+  intro: string;
+}
 
 export interface SiteContent {
   locale: Locale;
@@ -508,7 +515,7 @@ export interface ClientDictionary {
 export interface ClientContent {
   destinations: {
     agadir: { cityName: string };
-    marrakech: { cityName: string; intro: string };
+    marrakech: { cityName: string; heroText: string };
   };
   reviewHighlights: string[];
 }

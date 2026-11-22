@@ -136,7 +136,7 @@ export function MarrakechPackages({
             <Sun className="h-3.5 w-3.5" aria-hidden="true" /> {dict.marrakech.packages.badge}
           </span>
           <h2 className="mt-4 font-display text-3xl font-bold text-foreground text-balance md:text-4xl">
-            {marrakech.headline}
+            {marrakech.packagesHeadline}
           </h2>
           <p className="mt-4 text-base leading-relaxed text-muted-foreground">{marrakech.intro}</p>
           <p className="mt-2 inline-flex items-center gap-2 text-sm font-semibold text-brand-700">

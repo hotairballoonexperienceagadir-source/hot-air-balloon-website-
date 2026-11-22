@@ -26,7 +26,7 @@ export function toClientI18nValue(
         agadir: { cityName: content.destinations.agadir.cityName },
         marrakech: {
           cityName: content.destinations.marrakech.cityName,
-          intro: content.destinations.marrakech.intro,
+          heroText: content.destinations.marrakech.heroText,
         },
       },
       reviewHighlights: content.reviewHighlights,
