@@ -8,7 +8,7 @@ import { Footer } from "@/components/site/Footer";
 import { FloatingActions } from "@/components/site/FloatingActions";
 import { site, socialLinks } from "@/lib/site";
 import { tpl } from "@/lib/i18n/format";
-import { siteUrl } from "@/lib/i18n/config";
+import { pagePaths, siteUrl } from "@/lib/i18n/config";
 import type { AgadirContent, Dictionary, SiteContent } from "@/lib/i18n/types";
 
 /**
@@ -19,7 +19,16 @@ import type { AgadirContent, Dictionary, SiteContent } from "@/lib/i18n/types";
  */
 
 /** JSON-LD structured data: local business, Agadir offers and FAQ. */
-function StructuredData({ dict, agadir }: { dict: Dictionary; agadir: AgadirContent }) {
+function StructuredData({
+  dict,
+  agadir,
+  locale,
+}: {
+  dict: Dictionary;
+  agadir: AgadirContent;
+  locale: SiteContent["locale"];
+}) {
+  const homePath = pagePaths.home[locale];
   const data = {
     "@context": "https://schema.org",
     "@graph": [
@@ -35,15 +44,14 @@ function StructuredData({ dict, agadir }: { dict: Dictionary; agadir: AgadirCont
           postalCode: "80000",
           addressCountry: "MA",
         },
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue: site.googleRating,
-          bestRating: 5,
-        },
+        /* aggregateRating removed 2026-11-22 (approved): Search Console
+         * flagged it for missing ratingCount/reviewCount. */
         openingHours: "Mo-Su 00:00-24:00",
-        url: site.googleReviewsUrl,
-        /* Official Agadir social profiles, homepage structured data only. */
-        sameAs: socialLinks.map((social) => social.url),
+        /* The page's own canonical URL (with trailing slash, per locale). */
+        url: `${siteUrl}${homePath === "/" ? "/" : `${homePath}/`}`,
+        /* Official Agadir social profiles plus the Google Business Profile,
+         * homepage structured data only. */
+        sameAs: [...socialLinks.map((social) => social.url), site.googleReviewsUrl],
       },
       ...agadir.offers.map((offer) => ({
         "@type": "Product",
@@ -82,7 +90,7 @@ export function AgadirHome({ dict, content }: { dict: Dictionary; content: SiteC
 
   return (
     <div className="flex min-h-screen flex-col">
-      <StructuredData dict={dict} agadir={agadir} />
+      <StructuredData dict={dict} agadir={agadir} locale={locale} />
       <Header />
       <main className="flex-1">
         <Hero />
