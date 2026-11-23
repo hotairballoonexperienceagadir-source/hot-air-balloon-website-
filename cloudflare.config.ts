@@ -5,11 +5,14 @@ export default defineConfig({
     name: "hotairballoon-morocco",
     entrypoint: "vinext/server/fetch-handler",
     compatibilityDate: "2026-11-23",
-    /* Mirrors the dashboard Observability settings so Git deploys keep them:
-     * logs on (100% sampling, invocation logs, persisted), traces off. */
+    /* Mirrors the dashboard Observability settings exactly so Git deploys
+     * keep them and the deploy config diff stays empty: top-level switch off,
+     * logs on (100% sampling, invocation logs, persisted), traces off,
+     * issue detection off. */
     observability: {
-      enabled: true,
+      enabled: false,
       headSamplingRate: 1,
+      issues: { enabled: false },
       logs: { enabled: true, headSamplingRate: 1, invocationLogs: true, persist: true },
       traces: { enabled: false },
     },
