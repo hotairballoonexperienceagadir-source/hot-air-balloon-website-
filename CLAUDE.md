@@ -227,7 +227,8 @@ public/images/                       all site images
   warnings without secrets; the client modal then offers the WhatsApp
   fallback so the message is never lost.
 - `GET /api/contact/health`
-  Returns `{ smtpConfigured: true | false }` (boolean only, never any
+  Returns `{ smtpConfigured, resendConfigured, transport }` (booleans and
+  "resend" | "smtp" | null only, never any
   variable value) so email delivery can be checked after a sandbox
   reset. Route is `force-dynamic`.
 - `GET /api/og?t=<title>&s=<subtitle>` renders the dynamic OG image.
@@ -295,7 +296,10 @@ instantly, no controls rendered. Do not make it rotate on screen.
 - Variables currently used in .env (NAMES only, never commit values):
   `DATABASE_URL`, `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`,
   `SMTP_PASSWORD` (Gmail App Password, spaces removed),
-  `CONTACT_RECIPIENT_EMAIL`.
+  `CONTACT_RECIPIENT_EMAIL`, optional `RESEND_API_KEY` +
+  `RESEND_FROM_EMAIL` (Resend HTTPS API; when the key is set it is used
+  instead of SMTP, required on Cloudflare Workers where SMTP cannot connect;
+  see .env.example).
 - The Z.ai sandbox resets .env from time to time (it is git ignored, so
   a reset restores the repo without it). After a reset the contact
   route answers 503, logs "[contact] SMTP not configured — customer was

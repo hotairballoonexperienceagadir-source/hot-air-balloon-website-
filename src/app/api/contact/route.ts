@@ -1,14 +1,18 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { z } from "zod";
-import { createTransport } from "nodemailer";
 import { site } from "@/lib/site";
-import { isSmtpConfigured } from "@/lib/contact-config";
+import { getEmailTransport } from "@/lib/contact-config";
+import { sendWithResend } from "@/lib/resend";
 
 /**
  * Contact form email delivery, server side only.
  *
  * Modes (mutually exclusive, always honest):
+ * - RESEND MODE: when RESEND_API_KEY is configured (Cloudflare Workers,
+ *   where outbound SMTP cannot connect), the message is delivered through
+ *   the Resend HTTPS API (src/lib/resend.ts) with the same subject, text
+ *   and HTML body as the SMTP path. Takes precedence over SMTP.
  * - LIVE MODE: when SMTP_USER and SMTP_PASSWORD are configured in .env (the
  *   Gmail App Password setup), the message is genuinely delivered over
  *   SMTP (default smtp.gmail.com:465) to CONTACT_RECIPIENT_EMAIL, falling
@@ -134,7 +138,8 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  if (!isSmtpConfigured()) {
+  const emailTransport = getEmailTransport();
+  if (!emailTransport) {
     /* Server warning without any secret values: the customer is not shown
        this technical wording, the client modal offers the WhatsApp
        fallback instead and the typed message is never lost. */
@@ -154,18 +159,6 @@ export async function POST(request: NextRequest) {
   const { name, email, subject, message } = parsed.data;
   const recipient =
     process.env.CONTACT_RECIPIENT_EMAIL?.trim() || site.contactEmail;
-  const smtpPort = Number(process.env.SMTP_PORT || 465);
-
-  const transport = createTransport({
-    host: process.env.SMTP_HOST || "smtp.gmail.com",
-    port: smtpPort,
-    secure: smtpPort === 465,
-    auth: {
-      user: process.env.SMTP_USER as string,
-      pass: process.env.SMTP_PASSWORD as string,
-    },
-  });
-
   const textBody = [
     `New message from the ${site.brand} website contact form.`,
     "",
@@ -188,6 +181,66 @@ export async function POST(request: NextRequest) {
     `<p style="margin:0 0 16px;white-space:pre-wrap">${escapeHtml(message)}</p>`,
     `<p style="margin:0;color:#666;font-size:13px">Reply to this email to answer ${escapeHtml(name)} directly.</p>`,
   ].join("\n");
+
+  if (emailTransport === "resend") {
+    let result: Awaited<ReturnType<typeof sendWithResend>>;
+    try {
+      result = await sendWithResend(
+        process.env.RESEND_API_KEY!.trim(),
+        {
+          to: recipient,
+          replyTo: email,
+          subject: `Website contact: ${subject}`,
+          text: textBody,
+          html: htmlBody,
+        },
+        process.env.RESEND_FROM_EMAIL,
+      );
+    } catch (error) {
+      result = {
+        ok: false,
+        status: 0,
+        name: error instanceof Error ? error.name : undefined,
+        message: error instanceof Error ? error.message : undefined,
+      };
+    }
+    if (!result.ok) {
+      /* Status code and Resend's error name/message only: never the API
+         key and never the request body (it contains the customer data). */
+      console.error(
+        `[api/contact] Resend delivery failed: status ${result.status}` +
+          (result.name ? ` ${result.name}` : "") +
+          (result.message ? `: ${result.message}` : ""),
+      );
+      console.warn(
+        "[contact] Resend send failed — customer was offered WhatsApp fallback",
+      );
+      return NextResponse.json(
+        {
+          ok: false,
+          error:
+            "Your message could not be sent right now. Please try again in a moment, or reach us directly on WhatsApp or by phone.",
+        },
+        { status: 500 },
+      );
+    }
+    return NextResponse.json({ ok: true });
+  }
+
+  /* SMTP path (unchanged behaviour). Nodemailer is loaded only here, so the
+     Resend path never touches it. */
+  const smtpPort = Number(process.env.SMTP_PORT || 465);
+  const { createTransport } = await import("nodemailer");
+
+  const transport = createTransport({
+    host: process.env.SMTP_HOST || "smtp.gmail.com",
+    port: smtpPort,
+    secure: smtpPort === 465,
+    auth: {
+      user: process.env.SMTP_USER as string,
+      pass: process.env.SMTP_PASSWORD as string,
+    },
+  });
 
   try {
     await transport.sendMail({
