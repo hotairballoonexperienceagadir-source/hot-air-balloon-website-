@@ -1,7 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  output: "standalone",
+  /* Standalone output is for the Next.js build script only. The vinext
+   * Cloudflare build (build:vinext) sets VINEXT_CLOUDFLARE=1 so vinext emits
+   * its Workers output instead of a dist/standalone Node server. */
+  output: process.env.VINEXT_CLOUDFLARE === "1" ? undefined : "standalone",
   trailingSlash: true,
   /* The four language route groups each carry their own root layout, so the
    * global not found shell (src/app/global-not-found.tsx) provides the 404
