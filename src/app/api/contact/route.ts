@@ -78,8 +78,11 @@ function isRateLimited(ip: string): boolean {
   return false;
 }
 
+/* Cloudflare Workers sets cf-connecting-ip to the real visitor IP; Vercel and
+   other proxies use x-forwarded-for, kept as the fallback. */
 function getClientIp(request: NextRequest): string {
   return (
+    request.headers.get("cf-connecting-ip")?.trim() ||
     request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
     request.headers.get("x-real-ip")?.trim() ||
     "unknown"
