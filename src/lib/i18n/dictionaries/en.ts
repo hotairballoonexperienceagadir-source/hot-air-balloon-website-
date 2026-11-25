@@ -426,4 +426,12 @@ export const en: Dictionary = {
     followAria: "Follow us on {name}, opens in a new tab",
     followTitle: "{name}, opens in a new tab",
   },
+
+  consent: {
+    ariaLabel: "Cookie consent",
+    message: "We use analytics cookies to understand how visitors use our site. Accept?",
+    accept: "Accept",
+    reject: "Reject",
+    settings: "Cookie settings",
+  },
 };

@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { I18nProvider } from "@/lib/i18n/context";
+import { Analytics } from "@/components/site/Analytics";
 import { toClientI18nValue } from "@/lib/i18n/client-value";
 import { de } from "@/lib/i18n/dictionaries/de";
 import { de as deContent } from "@/lib/i18n/content/de";
@@ -56,7 +57,9 @@ export default function GermanLayout({ children }: { children: React.ReactNode }
   return (
     <html lang="de" data-scroll-behavior="smooth" className={`${jost.variable} ${poppins.variable}`}>
       <body>
-        <I18nProvider value={toClientI18nValue("de", de, deContent)}>{children}</I18nProvider>
+        <I18nProvider value={toClientI18nValue("de", de, deContent)}>{children}
+          <Analytics />
+        </I18nProvider>
       </body>
     </html>
   );

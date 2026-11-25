@@ -20,6 +20,7 @@ export function toClientI18nValue(
       floating: dict.floating,
       galleryGrid: dict.galleryGrid,
       social: dict.social,
+      consent: dict.consent,
     },
     content: {
       destinations: {

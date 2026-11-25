@@ -422,4 +422,13 @@ export const fr: Dictionary = {
     followAria: "Suivez-nous sur {name}, s’ouvre dans un nouvel onglet",
     followTitle: "{name}, s’ouvre dans un nouvel onglet",
   },
+
+  consent: {
+    ariaLabel: "Consentement aux cookies",
+    message:
+      "Nous utilisons des cookies de mesure d’audience pour comprendre comment les visiteurs utilisent notre site. Les acceptez-vous ?",
+    accept: "Accepter",
+    reject: "Refuser",
+    settings: "Paramètres des cookies",
+  },
 };

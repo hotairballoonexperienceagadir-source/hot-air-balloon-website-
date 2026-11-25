@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { I18nProvider } from "@/lib/i18n/context";
+import { Analytics } from "@/components/site/Analytics";
 import { toClientI18nValue } from "@/lib/i18n/client-value";
 import { fr } from "@/lib/i18n/dictionaries/fr";
 import { fr as frContent } from "@/lib/i18n/content/fr";
@@ -56,7 +57,9 @@ export default function FrenchLayout({ children }: { children: React.ReactNode }
   return (
     <html lang="fr" data-scroll-behavior="smooth" className={`${jost.variable} ${poppins.variable}`}>
       <body>
-        <I18nProvider value={toClientI18nValue("fr", fr, frContent)}>{children}</I18nProvider>
+        <I18nProvider value={toClientI18nValue("fr", fr, frContent)}>{children}
+          <Analytics />
+        </I18nProvider>
       </body>
     </html>
   );

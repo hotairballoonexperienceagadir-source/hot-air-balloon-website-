@@ -48,6 +48,7 @@ export function BookingBar({ page }: { page: BookingDestination }) {
 
   const booking = useBookingForm({
     destination,
+    packageId: selectedOffer.id,
     packageName: selectedOffer.name,
     priceMad: selectedOffer.priceMad,
     minGuests: selectedOffer.minGuests,

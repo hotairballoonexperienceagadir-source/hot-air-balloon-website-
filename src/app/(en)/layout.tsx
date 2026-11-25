@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { I18nProvider } from "@/lib/i18n/context";
+import { Analytics } from "@/components/site/Analytics";
 import { toClientI18nValue } from "@/lib/i18n/client-value";
 import { en } from "@/lib/i18n/dictionaries/en";
 import { en as enContent } from "@/lib/i18n/content/en";
@@ -66,7 +67,9 @@ export default function EnglishLayout({ children }: { children: React.ReactNode 
   return (
     <html lang="en" data-scroll-behavior="smooth" className={`${jost.variable} ${poppins.variable}`}>
       <body>
-        <I18nProvider value={toClientI18nValue("en", en, enContent)}>{children}</I18nProvider>
+        <I18nProvider value={toClientI18nValue("en", en, enContent)}>{children}
+          <Analytics />
+        </I18nProvider>
       </body>
     </html>
   );

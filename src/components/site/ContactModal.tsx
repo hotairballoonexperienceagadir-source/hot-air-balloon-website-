@@ -18,6 +18,7 @@ import { site, waLink } from "@/lib/site";
 import { languageNameInEnglish } from "@/lib/i18n/config";
 import { useI18n } from "@/lib/i18n/context";
 import { tpl } from "@/lib/i18n/format";
+import { trackEvent } from "@/lib/analytics";
 import { WhatsAppIcon } from "./icons";
 
 /**
@@ -134,6 +135,8 @@ export function ContactModal() {
       const data = await response.json().catch(() => null);
 
       if (response.ok && data?.ok) {
+        /* GA4 lead (no-op without analytics consent). No form content. */
+        trackEvent("generate_lead", { method: "contact_form", language: locale });
         setStatus("success");
         return;
       }

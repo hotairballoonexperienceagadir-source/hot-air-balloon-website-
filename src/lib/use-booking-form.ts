@@ -6,6 +6,7 @@ import { languageNameInEnglish } from "@/lib/i18n/config";
 import { useI18n } from "@/lib/i18n/context";
 import { formatPrice } from "@/lib/i18n/format";
 import type { BookingDestination } from "@/lib/booking-store";
+import { trackEvent } from "@/lib/analytics";
 
 /**
  * Shared booking form logic used by BOTH booking surfaces of the site:
@@ -80,6 +81,8 @@ function buildBookingMessage(input: {
 
 export function useBookingForm(options: {
   destination: BookingDestination;
+  /* Offer id of the selected package (analytics only, never in the message). */
+  packageId: string;
   packageName: string;
   /* The per person price of the selected package, shown in the WhatsApp
      message. Always read from the offer in site.ts. */
@@ -90,7 +93,7 @@ export function useBookingForm(options: {
   /* Called after WhatsApp opened successfully (the modal closes itself). */
   onSubmitted?: () => void;
 }) {
-  const { destination, packageName, priceMad, minGuests = 1, onSubmitted } = options;
+  const { destination, packageId, packageName, priceMad, minGuests = 1, onSubmitted } = options;
   const { locale, content, dict } = useI18n();
 
   const today = useToday();
@@ -138,6 +141,17 @@ export function useBookingForm(options: {
       destinationName,
       locale,
       messages: dict.booking.messages,
+    });
+
+    /* GA4 lead (no-op without analytics consent). No personal data. */
+    trackEvent("generate_lead", {
+      method: "whatsapp",
+      destination: destination === "Agadir" ? "agadir" : "marrakech",
+      package: packageId,
+      guests: effectiveGuests,
+      value: priceMad * effectiveGuests,
+      currency: "MAD",
+      language: locale,
     });
 
     window.open(waLink(message), "_blank", "noopener,noreferrer");

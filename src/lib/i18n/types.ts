@@ -412,6 +412,15 @@ export interface Dictionary {
     followAria: string;
     followTitle: string;
   };
+
+  /** Analytics cookie consent banner + footer "Cookie settings" link. */
+  consent: {
+    ariaLabel: string;
+    message: string;
+    accept: string;
+    reject: string;
+    settings: string;
+  };
 }
 
 /* ------------------------------------------------------------------ */
@@ -510,6 +519,7 @@ export interface ClientDictionary {
   floating: Dictionary["floating"];
   galleryGrid: Dictionary["galleryGrid"];
   social: Dictionary["social"];
+  consent: Dictionary["consent"];
 }
 
 export interface ClientContent {

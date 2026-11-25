@@ -9,6 +9,7 @@ import { WhatsAppIcon } from "./icons";
 import { ContactButton } from "./ContactModal";
 import { ContactModalLazy } from "./ContactModalLazy";
 import { SocialLinks } from "./SocialLinks";
+import { CookieSettingsButton } from "./Analytics";
 
 type FooterVariant = "home" | "marrakech";
 
@@ -173,6 +174,7 @@ export function Footer({
                     )}
                     target="_blank"
                     rel="noopener noreferrer"
+                    data-lead-package={offer.id}
                     className="text-cream-100/75 transition hover:text-brand-300"
                   >
                     {offer.name} <span className="text-cream-100/50">| {formatPrice(offer.priceMad, locale)}</span>
@@ -235,7 +237,10 @@ export function Footer({
       <div className="border-t border-white/10">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-4 py-5 text-xs text-cream-100/60 sm:flex-row md:px-6">
           <p>{tpl(dict.footer.copyright, { year: new Date().getFullYear(), brand: site.brand })}</p>
-          <p>{dict.footer.tagline}</p>
+          <p>
+            {dict.footer.tagline} <span aria-hidden="true">|</span>{" "}
+            <CookieSettingsButton label={dict.consent.settings} />
+          </p>
         </div>
       </div>
       </footer>
