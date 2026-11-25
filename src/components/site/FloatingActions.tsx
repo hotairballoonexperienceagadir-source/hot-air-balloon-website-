@@ -1,21 +1,30 @@
 "use client";
 
-import { Phone } from "lucide-react";
+import { ArrowUpRight, Phone } from "lucide-react";
+import Link from "next/link";
+import { pagePaths } from "@/lib/i18n/config";
 import { site } from "@/lib/site";
 import { useI18n } from "@/lib/i18n/context";
 import { tpl } from "@/lib/i18n/format";
+import { trackEvent } from "@/lib/analytics";
 import { BookingButton } from "./BookingButton";
 import { WhatsAppIcon } from "./icons";
 
 /**
  * Desktop: floating WhatsApp bubble above the sticky bar area.
- * Mobile: sticky bottom bar with Call and booking actions.
+ * Mobile: sticky bottom bar with a cross-destination link and booking action.
  * Both booking actions open THE shared booking modal, prefilled with the
- * destination of the current page. The Call action stays a direct tel link.
+ * destination of the current page.
  */
 export function FloatingActions({ city = "agadir" }: { city?: "agadir" | "marrakech" }) {
-  const { dict } = useI18n();
+  const { dict, locale } = useI18n();
   const destination = city === "marrakech" ? "Marrakech" : "Agadir";
+  const otherCity = city === "marrakech" ? "agadir" : "marrakech";
+  /* pagePaths keys are "home" (Agadir) and "marrakech". */
+  const destinationLink = pagePaths[city === "marrakech" ? "home" : "marrakech"][locale];
+  const destinationLabel =
+    city === "marrakech" ? dict.header.nav.agadirFlights : dict.header.nav.marrakechFlights;
+
   return (
     <>
       {/* Floating booking bubble, desktop only */}
@@ -38,18 +47,25 @@ export function FloatingActions({ city = "agadir" }: { city?: "agadir" | "marrak
       {/* Sticky action bar, mobile only */}
       <div className="fixed inset-x-0 bottom-0 z-50 border-t border-navy-800 bg-navy-900/95 px-3 pb-[env(safe-area-inset-bottom)] pt-2 backdrop-blur md:hidden">
         <div className="flex items-center gap-2 pb-1">
-          <a
-            href={`tel:${site.phoneTel}`}
-            className="flex h-11 flex-1 items-center justify-center gap-2 rounded-full border border-white/25 text-sm font-bold text-cream-100 transition active:bg-white/10"
+          <Link
+            href={destinationLink}
+            onClick={() =>
+              trackEvent("select_destination", {
+                from: city,
+                to: otherCity,
+                language: locale,
+              })
+            }
+            className="flex h-10 min-w-0 flex-[1.05] items-center justify-center gap-1 whitespace-nowrap rounded-full border border-brand-400/40 bg-brand-500/10 px-1 text-[11px] font-semibold text-brand-300 transition active:bg-brand-500/20"
           >
-            <Phone className="h-4 w-4" aria-hidden="true" />
-            {dict.floating.call}
-          </a>
+            <span>{destinationLabel}</span>
+            <ArrowUpRight className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+          </Link>
           <BookingButton
             destination={destination}
-            className="flex h-11 flex-[1.4] items-center justify-center gap-2 rounded-full bg-whatsapp text-sm font-bold text-white shadow-lg shadow-whatsapp/25 transition active:bg-whatsapp-dark"
+            className="flex h-10 flex-[1.15] items-center justify-center gap-1.5 whitespace-nowrap rounded-full bg-whatsapp px-2 text-xs font-bold text-white shadow-lg shadow-whatsapp/25 transition active:bg-whatsapp-dark"
           >
-            <WhatsAppIcon className="h-4 w-4" />
+            <WhatsAppIcon className="h-3.5 w-3.5 shrink-0" />
             {dict.floating.bookOnWhatsApp}
           </BookingButton>
         </div>

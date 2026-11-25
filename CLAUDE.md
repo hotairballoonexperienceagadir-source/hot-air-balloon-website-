@@ -329,6 +329,8 @@ instantly, no controls rendered. Do not make it rotate on screen.
   lost. Health check: GET /api/contact/health.
 - Shared Header/Footer with the logo behaviors described above, floating
   WhatsApp/call buttons, sticky footer.
+- Mobile sticky bar: Call replaced by cross-destination link (owner
+  decision 2026-11-28); phone stays in footer as tel: link.
 - SEO: per page metadata + og images in all four languages, hreflang
   alternates (en/fr/de/es + x-default to the English URL) and self
   canonicals, per-locale JSON-LD (LocalBusiness, offers, FAQ slice(0,6)
